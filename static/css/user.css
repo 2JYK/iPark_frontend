@@ -1,1 +1,4 @@
-
+/* 기본 숨김처리 -> 카카오로그인을 진행시 visible */
+.user-info {
+    visibility: hidden;
+}

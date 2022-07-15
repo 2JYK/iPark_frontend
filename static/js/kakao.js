@@ -1,6 +1,11 @@
 const frontend_base_url = "http://127.0.0.1:5500"
+
+
 // 로그인 //
 function kakaoLogin() {
+  const kakaoLogin = document.getElementById("kakaologin")
+  const userInfo = document.getElementById("user-info")
+
   if (Kakao.isInitialized() == false) {
     Kakao.init("c414e5945e36386b3b383a30f1b31271");
   }
@@ -11,9 +16,12 @@ function kakaoLogin() {
         url: "/v2/user/me",
         success: function (response) {
           console.log("성공", response);
-          var username = response.id
-          var email = response.kakao_account.email
-          sendLoggedInData(username, email, "kakao");
+          const kakaoUsername = response.id
+          const kakaoEmail = response.kakao_account.email
+          
+          kakaoLogin.style.visibility = "hidden"
+          userInfo.style.visibility = "visible"
+          makeLoginForm(kakaoUsername, kakaoEmail);
         },
         fail: function (error) {
           console.log("실패", error);
@@ -32,6 +40,8 @@ function kakaoLogin() {
     },
   });
 }
+
+
 // 로그아웃 //
 function kakaoLogout() {
   console.log("확인1")
@@ -39,12 +49,13 @@ function kakaoLogout() {
     console.log('Not logged in.');
     return;
   }
-
   Kakao.Auth.logout(function (response) {
     alert(response + ' logout');
     //window.location.href='/'
   });
 };
+
+
 // 연결 끊기 //
 function disconnect() {
   console.log("확인2")
@@ -61,55 +72,14 @@ function disconnect() {
   });
 };
 
-// DB 보내기 //
-async function sendLoggedInData(username, email) {
-  alert(username, email);
-  const userInfo = {
-    username: username, 
-    email: email,
-    password: "qwertqwert1!",
-    fullname: "asdassa",
-    phone:"010-1111-2332",
-    birthday:2000-20-01,
-    region:2
-  }
 
-  const response = await fetch(`http://127.0.0.1:8000/user/`, {
-    method: "POST",
-    headers: { 'Content-type': 'application/json' },
-    body: JSON.stringify(userInfo),
-  })
-  console.log("됨", response)
+// 카카오 로그인 성공 -> 받아온 정보값을 회원가입 입력창으로 내용 보내기 (id, email 값) //
+function makeLoginForm(kakaoUsername, kakaoEmail) {
+  console.log(kakaoUsername, kakaoEmail)
 
-  if (response.status == 200) {
-    window.location.replace(`http://127.0.0.1:5500/input_info.html`);
-  } else {
-    console.log("db보내기 실패")
-    alert(response.status);
-  }
-}
+  const username = document.getElementById("username")
+  const email = document.getElementById("email")
 
-// data GET API//
-function showUserData() {
-  $.ajax({
-    type: 'GET',
-    url: `http://127.0.0.1:5500/input_info.html`,
-    data: {},
-    success: function (response) {
-
-      for (let i = 0; i < response.length; i++) {
-        append_temp_html(
-          response[i].id,
-        )
-      }
-      function append_temp_html(id) {
-        temp_html = `
-							<div class="username">
-								<input class="input-username" id="" type="text" />${id} 흠
-							</div>
-						`
-      }
-      $("#user-info").append(temp_html);
-    }
-  })
+  username.value = kakaoUsername
+  email.value = kakaoEmail
 }

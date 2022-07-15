@@ -7,6 +7,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<title>Login</title>
+
+	<link rel="stylesheet" href="../static/css/user.css" />
 </head>
 
 <body>
@@ -14,11 +16,49 @@
 		<form:form commandName="memberV0" id="mfm" name="mfm" method="post">
 			<input type="hidden" name="id" value="" />
 		</form:form>
-		<button class="btn-icon" onclick="kakaoLogin();">
-			<img src="./static/css/image/kakao_login.png" alt="카카오톡">
-		</button>
-		<a href="#0" id="kakaoLogout" onclick="kakaoLogout();">로그아웃</a>
-		<a href="#0" id="disconnect" onclick="disconnect();">탈퇴</a>
+		<div class="user-box">
+			<div class="user">
+				<div class="user-info" id="user-info">
+					<div class="username">
+						<input class="input-username" id="username" type="text" placeholder="username" /></input>
+					</div>
+					<div class="password">
+						<input class="input-password" id="password" type="password" placeholder="password" /></input>
+					</div>
+					<div class="email">
+						<input class="input-email" id="email" type="text" placeholder="email" /></input>
+					</div>
+					<div class="fullname">
+						<input class="input-fullname" id="fullname" type="text" placeholder="fullname" /></input>
+					</div>
+					<div class="phone">
+						<input class="input-phone" id="phone" type="text" placeholder="phone" /></input>
+					</div>
+					<div class="birthday">
+						<input class="input-birthday" id="birthday" type="text" placeholder="birthday" /></input>
+					</div>
+					<div class="region">
+						<input class="input-region" id="region" type="text" placeholder="region" /></input>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div>
+			<button class="btn-login" type="button" id="login" onclick="Login()">
+				<img src="" alt="로그인">
+			</button>
+			<button class="btn-login" type="button" id="kakao-login" onclick="kakaoLogin()">
+				<img src="./static/css/image/kakao_login.png" alt="카카오톡">
+			</button>
+		</div>
+		<div>
+			<button>
+				<a href="#0" id="kakaoLogout" onclick="kakaoLogout();">로그아웃</a>
+			</button>
+			<button>
+				<a href="#0" id="disconnect" onclick="disconnect();">탈퇴</a>
+			</button>
+		</div>
 	</div>
 
 	<!-- 카카오톡 로그인 -->

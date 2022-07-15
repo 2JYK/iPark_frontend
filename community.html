@@ -10,8 +10,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
 
   <!-- JQuery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -31,20 +35,72 @@
   <title>index</title>
 
   <link rel="stylesheet" href="./static/css/community.css">
+  <link rel="stylesheet" href="./static/css/nav.css">
 
 </head>
 
 <body>
 
-  <a href="#" title="Button push lightblue" class="button btnPush btnLightBlue" id="modal-open">
+  <nav class="navbar bg-light" aria-label="Light offcanvas navbar">
+    <div class="container-fluid">
+      <a href="/index.html"><img src="./static/css/img/park-logo.png" alt="mdo" width="150" height="70"></a>
+      <div class="col-2"></div>
+      <form role="search">
+        <input class="form-control col-4" type="search" placeholder="Search" aria-label="Search">
+      </form>
+      <div class="col-3"></div>
+      <div><a href="#" class="nav-link px-2 link-dark">PARK</a></div>
+      <div><a href="#" class="nav-link px-2 link-dark">COMMUNITY</a></div>
+      <!-- <div><a href="#" class="nav-link px-2 link-dark">FAVORITE</a></div> -->
+      <div class="dropdown">
+        <a href="#" class="d-block link text-decoration-none dropdown-toggle" id="dropdownUser1"
+          data-bs-toggle="dropdown" aria-expanded="false" style="color: black;">
+          <img src="./static/css/img/profile.png" alt="mdo" width="50" height="50" class="rounded-circle">
+        </a>
+        <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+          <li><a class="dropdown-item" href="#">즐겨찾기</a></li>
+          <li><a class="dropdown-item" href="#">내가 쓴 게시물</a></li>
+          <li><a class="dropdown-item" href="#">계정관리</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item" href="#">로그아웃</a></li>
+        </ul>
+      </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarLight"
+        aria-controls="offcanvasNavbarLight">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbarLight"
+        aria-labelledby="offcanvasNavbarLightLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLightLabel">공원 목록</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">남산공원</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">어린이대공원</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">서울대공원</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 업로드 버튼 -->
+  <button type="button" class="btn btn-primary" id="modal-open">
     업로드
-  </a>
+  </button>
 
-
-
-
-
-
+  <!-- 모달 -->
   <div class="popup-wrap" id="popup">
     <div class="popup">
 
@@ -58,32 +114,46 @@
       <!-- 업로드 모달 바디 -->
       <div class="popup-body">
         <div class="popup-body-file">
-          <input type="file" accept="image/jpeg,.txt" />
+          <input type="file" accept="image/jpeg,.txt" id="popup-body-file">
         </div>
         <br>
         <hr>
-        <div class="popup-choice">
-        <div>커뮤니티</div>
-        <div>마켓</div>
-        <hr>
-      </div>
 
+        <select name="choice" id="popup-body-choice" class="popup-body-choice">
+          <option value="">선택해주세요</option>
+          <option value="1">커뮤니티</option>
+          <option value="2">마켓</option>
+        </select>
+        <hr>
         <input class="popup-body-title" id="popup-body-title" placeholder="제목"><br>
         <textarea class="popup-body-content" id="popup-body-content" placeholder="내용"></textarea>
 
         <!-- 업로드 모달 업로드 -->
         <div class="popup-upload">
           <div class="result-btn upload">
-            <button type="button" class="btn btn-dark">업로드</button>
+            <button type="button" class="btn btn-dark" onclick="article_post()">업로드</button>
           </div>
         </div>
-
       </div>
     </div>
   </div>
 
-  <script src="./static/js/community.js"></script>
-  <script src="./static/js/api.js"></script>
+
+  <footer class="py-3 my-4" style="">
+    <ul class="nav justify-content-center pb-3 mb-3">
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Park</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Community</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About 2JYK</a></li>
+    </ul>
+    <!-- <p class="text-center text-muted">© 2022 Company, Inc</p> -->
+    <p class="text-center text-muted">© 2022 IPark mady by 2JYK</p>
+    <p class="text-center"><img src="./static/css/img/park-logo.png" alt="mdo" width="150" height="70"></p>
+  </footer>
+
+
+  <script src="/static/js/api_community.js"></script>
+  <script src="/static/js/community.js"></script>
 
 </body>
 

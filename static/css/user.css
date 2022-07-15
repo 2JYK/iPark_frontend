@@ -2,3 +2,184 @@
 .user-info {
     visibility: hidden;
 }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #ffffff3f;
+
+    background: url(../css/img/bg.jpg) no-repeat;
+    background-size: cover;
+    /* background-position: center; */
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    /* z-index: 1; */
+
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.sign {
+    z-index: 2;
+}
+
+@media screen and (max-width:1300px) {
+    .sign {
+        margin: auto;
+    }
+}
+
+@media (min-width:1300px) {
+    .sign {
+        right: 20%;
+        margin: 50% auto;
+    }
+}
+
+@media screen and (max-height:800px) {
+    .sign-logo {
+        bottom: 250px;
+    }
+
+    .sign {
+        top: 250px;
+        resize: 60%;
+    }
+}
+
+.sign h1 {
+    font-size: 32px;
+    color: black;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+
+/* 아이디, 패스워스 박스 */
+.int-area {
+    position: relative;
+    width: 400px;
+    margin-top: 20px;
+}
+
+.int-area:first-child {
+    margin-top: 0;
+}
+
+.int-area input {
+    width: 100%;
+    padding: 20px 10px 10px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid gray;
+    font-size: 18px;
+    color: black;
+    outline: none;
+}
+
+.int-area label {
+    position: absolute;
+    left: 10px;
+    top: 15px;
+    font-size: 18px;
+    color: gray;
+    transition: all .5s ease;
+}
+
+.int-area label.warning {
+    color: red !important;
+    animation: warning .3s ease;
+    animation-iteration-count: 3;
+}
+
+@keyframes warning {
+    0% {
+        transform: translateX(-8px);
+    }
+
+    25% {
+        transform: translateX(8px);
+    }
+
+    50% {
+        transform: translateX(-8px);
+    }
+
+    75% {
+        transform: translateX(8px);
+    }
+}
+
+.int-area input:focus+label,
+.int-area input:valid+label {
+    top: -2px;
+    font-size: 13px;
+    color: rgb(77, 75, 218);
+    /* 글자 애니메이션 색상 지정 */
+}
+
+
+/* 버튼 */
+.btn-area {
+    margin-top: 30px;
+}
+
+.btn-area button {
+    width: 100%;
+    height: 50px;
+    background: rgb(19, 116, 207);
+    color: white;
+    font-size: 20px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.caption {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.caption a {
+    font-size: 15px;
+    color: gray;
+    text-decoration: none;
+}
+
+.bg-pan-bl {
+    -webkit-animation: bg-pan-bl 8s both;
+    animation: bg-pan-bl 8s both;
+}
+
+@-webkit-keyframes bg-pan-bl {
+    0% {
+        background-position: 100% 0%;
+    }
+
+    100% {
+        background-position: 0% 100%;
+    }
+}
+
+@keyframes bg-pan-bl {
+    0% {
+        background-position: 100% 0%;
+    }
+
+    100% {
+        background-position: 0% 100%;
+    }
+}

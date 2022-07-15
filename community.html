@@ -72,81 +72,85 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbarLight"
-        aria-labelledby="offcanvasNavbarLightLabel">
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasNavbarLightLabel">공원 목록</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">남산공원</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">어린이대공원</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">서울대공원</a>
-            </li>
-          </ul>
-        </div>
+      aria-labelledby="offcanvasNavbarLightLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasNavbarLightLabel">공원 목록</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">남산공원</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">어린이대공원</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">서울대공원</a>
+          </li>
+        </ul>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>
 
-  <!-- 업로드 버튼 -->
-  <button type="button" class="btn btn-primary" id="modal-open">
-    업로드
-  </button>
+<!-- 업로드 버튼 -->
+<button type="button" class="btn btn-primary" id="modal-open">
+  업로드
+</button>
 
-  <!-- 모달 -->
-  <div class="popup-wrap" id="popup">
-    <div class="popup">
-
-      <!-- 업로드 모달 헤더 -->
-      <div class="popup-header">
-        <span></span>
-        <h1>업로드</h1>
-        <div id="close"> X </div>
+<!-- 모달 -->
+<div class="popup-wrap" id="popup">
+  <div class="popup">
+    
+    <!-- 업로드 모달 헤더 -->
+    <div class="popup-header">
+      <span></span>
+      <h1>업로드</h1>
+      <div id="close"> X </div>
+    </div>
+    
+    <!-- 업로드 모달 바디 -->
+    <div class="popup-body">
+      <div class="popup-body-file">
+        <input type="file" accept="image/jpeg,.txt" id="popup-body-file">
       </div>
-
-      <!-- 업로드 모달 바디 -->
-      <div class="popup-body">
-        <div class="popup-body-file">
-          <input type="file" accept="image/jpeg,.txt" id="popup-body-file">
-        </div>
-        <br>
-        <hr>
-
-        <select name="choice" id="popup-body-choice" class="popup-body-choice">
-          <option value="">선택해주세요</option>
-          <option value="1">커뮤니티</option>
-          <option value="2">마켓</option>
-        </select>
-        <hr>
-        <input class="popup-body-title" id="popup-body-title" placeholder="제목"><br>
-        <textarea class="popup-body-content" id="popup-body-content" placeholder="내용"></textarea>
-
-        <!-- 업로드 모달 업로드 -->
-        <div class="popup-upload">
-          <div class="result-btn upload">
-            <button type="button" class="btn btn-dark" onclick="article_post()">업로드</button>
-          </div>
+      <br>
+      <hr>
+      
+      <select name="choice" id="popup-body-choice" class="popup-body-choice">
+        <option value="">선택해주세요</option>
+        <option value="1">커뮤니티</option>
+        <option value="2">마켓</option>
+      </select>
+      <hr>
+      <input class="popup-body-title" id="popup-body-title" placeholder="제목"><br>
+      <textarea class="popup-body-content" id="popup-body-content" placeholder="내용"></textarea>
+      
+      <!-- 업로드 모달 업로드 -->
+      <div class="popup-upload">
+        <div class="result-btn upload">
+          <button type="button" class="btn btn-dark" onclick="article_post()">업로드</button>
         </div>
       </div>
     </div>
   </div>
+</div>
 
 
-  <footer class="py-3 my-4" style="">
-    <ul class="nav justify-content-center pb-3 mb-3">
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Park</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Community</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About 2JYK</a></li>
-    </ul>
-    <!-- <p class="text-center text-muted">© 2022 Company, Inc</p> -->
+<br><br>
+<br><br>
+
+
+<footer class="py-3 my-4" style="background-color: #fafbfc;">
+  <ul class="nav justify-content-center pb-3 mb-3">
+    <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
+    <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Park</a></li>
+    <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Community</a></li>
+    <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About 2JYK</a></li>
+  </ul>
+  <!-- <p class="text-center text-muted">© 2022 Company, Inc</p> -->
     <p class="text-center text-muted">© 2022 IPark mady by 2JYK</p>
     <p class="text-center"><img src="./static/css/img/park-logo.png" alt="mdo" width="150" height="70"></p>
   </footer>

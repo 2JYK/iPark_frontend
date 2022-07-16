@@ -69,3 +69,13 @@ async function handleLogin() {
         alert("잘못된 로그인입니다.", response.status)
     }
 }
+
+
+// 로그아웃 // 
+async function logout() {
+    localStorage.removeItem('payload')
+    localStorage.removeItem('access')
+    localStorage.removeItem('refresh')
+
+    window.location.replace(`${frontend_base_url}login.html`)
+}

@@ -183,3 +183,73 @@ body::before {
         background-position: 0% 100%;
     }
 }
+
+/* 모달 */
+.popup-wrap {
+    background-color: rgba(0, 0, 0, .3);
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    display: none;
+    overflow-y: initial !important;
+    z-index: 2;
+}
+
+.popup {
+    position: relative;
+
+    width: 95%;
+    max-width: 90%;
+    padding: 2%;
+    border-radius: 10px;
+
+    background-color: #fff;
+    box-shadow: 5px 10px 10px 1px rgba(0, 0, 0, .3);
+}
+
+/* 모달창 헤더 */
+.popup-header {
+    display: flex;
+    margin-bottom: 2%;
+
+    justify-content: space-between;
+}
+
+.popup-header>div {
+    font-size: 30px;
+    cursor: pointer;
+    padding-right: 30px;
+}
+
+/* 모달창 바디 */
+.popup-body {
+    /* margin: auto; */
+    text-align: center;
+}
+
+.popup-body-title {
+    width: 40%;
+    height: 50px;
+
+    border-radius: 3px;
+}
+
+.popup-body-content {
+    resize: none;
+
+    width: 40%;
+    height: 150px;
+    border-radius: 3px;
+}
+
+/* 모달창 업로드 */
+.popup-upload button {
+    width: 200px;
+    height: 50px;
+}

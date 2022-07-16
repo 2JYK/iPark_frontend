@@ -128,10 +128,66 @@ async function verifyUser() {
 
   if (response.status == 200) {
     alert("비밀번호 변경 페이지로 이동합니다.")
-    changePassword(response_json)
+    conveyUserData(response_json)
   } else {
     alert("존재하지 않는 사용자의 정보를 입력하였습니다.")
   }
 }
 
 
+// 사용자 정보 전달 //
+function conveyUserData(response_json) {
+  const conveyedData = {
+    username: response_json.username,
+    email: response_json.email
+  }
+
+  return conveyedData
+}
+
+
+// 비밀번호 변경 // 
+async function changePassword() {
+  conveyUserData(response_json)
+
+  const passwordData = {
+    username: conveyUserData(response_json).username,
+    email: conveyUserData(response_json).email,
+    new_password: document.getElementById("popup-body-new-password").value,
+    rewrite_password: document.getElementById("popup-body-rewrite").value
+  }
+
+  const response = await fetch(`${backend_base_url}user/alterpassword/`, {
+    headers: {
+      Accept: "application/json",
+      'Content-type': 'application/json'
+    },
+    method: "PUT",
+    body: JSON.stringify(passwordData)
+  })
+
+  response_password = await response.json()
+
+  if (response.status == 200) {
+    alert("비밀번호 변경이 완료되었습니다! 다시 로그인해주세요.")
+    window.location.replace(`${frontend_base_url}login.html`)
+  } else {
+    alert("두 비밀번호가 일치하지 않거나 비밀번호 양식이 올바르지 않습니다.")
+  }
+}
+
+
+// 비밀번호 변경 모달
+$(function () {
+  $("#modal-open").click(function () {
+    $("#popup").css('display', 'flex').hide().fadeIn();
+  });
+
+  $("#close").click(function () {
+    modalClose();
+  });
+
+  function modalClose() {
+    $("#popup").fadeOut();
+  }
+});

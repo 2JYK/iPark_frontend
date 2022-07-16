@@ -35,6 +35,31 @@
 </head>
 
 <body>
+  <!-- 아이디를 변경하기 위해서는 이메일과 핸드폰 번호를 받아야 함 -->
+  <section class="sign">
+
+    <h1>아이디 찾기</h1>
+    <form action="">
+
+      <!-- 이메일 -->
+      <div class="int-area">
+        <input type="email" name="email" id="inputEmail" autocomplete="off" required />
+        <label for="inputEmail">Email</label>
+        <span style="color:red; font-size:15px;">* naver, google, kakao, daum, nate, outlook만 가능</span>
+      </div>
+
+      <!-- 핸드폰 번호 -->
+      <div class="int-area">
+        <input type="text" name="phone" id="inputPhone" autocomplete="off" required />
+        <label for="inputPhone">Phone (010-0000-0000 형식)</label>
+      </div>
+
+      <!-- 찾기 버튼 -->
+      <div class="btn-area">
+        <button type="button" id="btn" onclick="findUsername()">찾기</button>
+      </div>
+    </form>
+  </section>
 
   <script src="./static/js/user.js"></script>
 

@@ -1,6 +1,3 @@
-const frontend_base_url = "http://127.0.0.1:5500"
-
-
 // 로그인 //
 function kakaoLogin() {
   const kakaoLogin = document.getElementById("kakao-login")
@@ -17,7 +14,7 @@ function kakaoLogin() {
           console.log("성공", response)
           const kakaoUsername = response.id
           const kakaoEmail = response.kakao_account.email
-          
+
           kakaoLogin.style.visibility = "hidden"
           userInfo.style.visibility = "visible"
           makeLoginForm(kakaoUsername, kakaoEmail)

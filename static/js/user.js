@@ -79,3 +79,30 @@ async function logout() {
 
     window.location.replace(`${frontend_base_url}login.html`)
 }
+
+
+// 아이디 찾기 //
+async function findUsername() {
+    const userData = {
+        email: document.getElementById("inputEmail").value,
+        phone: document.getElementById("inputPhone").value
+    }
+
+    const response = await fetch(`${backend_base_url}user/myid/`, {
+        headers: {
+            Accept: "application/json",
+            'Content-type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify(userData)
+    })
+
+    response_json = await response.json()
+
+    if (response.status == 200) {
+        alert("회원님의 아이디는 [ " + response_json.username + " ]입니다.")
+        window.location.replace(`${frontend_base_url}login.html`)
+    } else {
+        alert("존재하지 않는 사용자의 정보를 입력하였습니다.")
+    }
+}

@@ -11,7 +11,6 @@
 
 body {
     display: flex;
-    justify-content: center;
     align-items: center;
     height: 100vh;
     background-color: #ffffff3f;
@@ -44,21 +43,10 @@ body::before {
 
 @media (min-width:1300px) {
     .sign {
-        right: 20%;
-        margin: 50% auto;
+        margin: auto;
     }
 }
 
-@media screen and (max-height:800px) {
-    .sign-logo {
-        bottom: 250px;
-    }
-
-    .sign {
-        top: 250px;
-        resize: 60%;
-    }
-}
 
 .sign h1 {
     font-size: 32px;

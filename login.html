@@ -30,34 +30,6 @@
 </head>
 
 <body>
-  <div class="user-box">
-    <div class="user">
-      <div class="user-info" id="user-info">
-        <div class="username">
-          <input class="input-username" id="username" type="text" placeholder="username" /></input>
-        </div>
-        <div class="password">
-          <input class="input-password" id="password" type="password" placeholder="password" /></input>
-        </div>
-        <div class="email">
-          <input class="input-email" id="email" type="text" placeholder="email" /></input>
-        </div>
-        <div class="fullname">
-          <input class="input-fullname" id="fullname" type="text" placeholder="fullname" /></input>
-        </div>
-        <div class="phone">
-          <input class="input-phone" id="phone" type="text" placeholder="phone" /></input>
-        </div>
-        <div class="birthday">
-          <input class="input-birthday" id="birthday" type="text" placeholder="birthday" /></input>
-        </div>
-        <div class="region">
-          <input class="input-region" id="region" type="text" placeholder="region" /></input>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- 로그인 방식 선택 -->
   <section class="sign">
 
@@ -89,27 +61,111 @@
         <a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
         <a href="./signup.html">회원가입</a>
       </div>
+
+      <!-- 카카오 로그인 -->
       <div>
         <button class="btn-login" type="button" id="kakao-login" onclick="kakaoLogin()">
           <img src="./static/css/img/kakao_login.png" alt="카카오톡">
         </button>
       </div>
-      <!-- 테스트 : 끝나면 위치 옮깁니다 -->
-      <div>
-        <button>
-          <a href="#0" id="kakaoLogout" onclick="kakaoLogout();">로그아웃</a>
-        </button>
-        <button>
-          <a href="#0" id="disconnect" onclick="disconnect();">탈퇴</a>
-        </button>
+      <div class="user-box">
+        <div class="user">
+          <div class="user-info" id="user-info">
+            <h1>회원가입</h1>
+            <form action="">
+              <!-- 아이디 -->
+              <div class="int-area">
+                <input type="text" name="username" id="username" autocomplete="off" required>
+                <label for="username">Username (6자리 이상)</label>
+              </div>
+              <!-- 이메일 -->
+              <div class="int-area">
+                <input type="email" name="email" id="email" autocomplete="off" required>
+                <label for="email">Email</label>
+                <span style="color:red; font-size:15px;">* naver, google, kakao, daum, nate, outlook만 가능</span>
+              </div>
+              <!-- 이름 -->
+              <div class="int-area">
+                <input type="text" name="fullname" id="floatingInputFullname" autocomplete="off" required>
+                <label for="floatingInputFullname">Fullname</label>
+              </div>
+              <!-- 패스워드 -->
+              <div class="int-area">
+                <input type="password" name="password" id="password" autocomplete="off" required>
+                <label for="password">Password (8자리 이상)</label>
+                <span style="color:red; font-size:15px;">* 영어 소문자/숫자/특수문자 필수</span>
+              </div>
+              <!-- 핸드폰 번호 -->
+              <div class="int-area">
+                <input type="text" name="phone" id="floatingPhone" autocomplete="off" required>
+                <label for="floatingPhone">Phone (010-0000-0000 형식)</label>
+              </div>
+              <!-- 생년월일 -->
+              <div class="int-area">
+                <input type="date" name="birthday" id="floatingBirthday" autocomplete="off" required>
+                <label for="floatingBirthday"></label>
+              </div>
+              <br />
+              <br />
+              <!-- 지역구 -->
+              <div>
+                <div valgn="top"> 지역구
+                  <select name="items1" id="floatingRegion">
+                    <option value="1">강남구</option>
+                    <option value="2">강동구</option>
+                    <option value="3">강북구</option>
+                    <option value="4">강서구</option>
+                    <option value="5">관악구</option>
+                    <option value="6">광진구</option>
+                    <option value="7">구로구</option>
+                    <option value="8">금천구</option>
+                    <option value="9">노원구</option>
+                    <option value="10">도봉구</option>
+                    <option value="11">동대문구</option>
+                    <option value="12">동작구</option>
+                    <option value="13">마포구</option>
+                    <option value="14">서대문구</option>
+                    <option value="15">서초구</option>
+                    <option value="16">성동구</option>
+                    <option value="17">성북구</option>
+                    <option value="18">송파구</option>
+                    <option value="19">양천구</option>
+                    <option value="20">영등포구</option>
+                    <option value="21">용산구</option>
+                    <option value="22">은평구</option>
+                    <option value="23">종로구</option>
+                    <option value="24">중구</option>
+                    <option value="25">중랑구</option>
+                  </select>
+                </div>
+              </div>
+              <br />
+              <div class="caption">
+                <button id="signupbtn" style="border-radius:15px;" class="w-50 btn btn-primary" type="button"
+                  onclick="handleSignup()">회원가입</button>
+              </div>
+
+              <!-- 기능확인 후 삭제예정 -->
+              <div>
+                <button>
+                  <a href="#" id="kakaoLogout" onclick="kakaoLogout();">로그아웃</a>
+                </button>
+                <button>
+                  <a href="#" id="disconnect" onclick="disconnect();">탈퇴</a>
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
       </div>
     </form>
   </section>
 
-  <!-- 카카오톡 로그인 -->
   <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
   <script src="../static/js/kakao.js"></script>
   <script src="../static/js/user.js"></script>
+
 </body>
 
 </html>

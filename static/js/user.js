@@ -29,7 +29,7 @@ async function handleSignup() {
   if (response.status == 200) {
     window.location.replace(`${frontend_base_url}login.html`)
   } else {
-    alert("각 항목을 조건에 맞춰 입력해주세요.")
+    alert(response_json["error"]) // phone의 경우, 메세지가 undefined로 출력됨
   }
 }
 
@@ -103,7 +103,7 @@ async function findUsername() {
     alert("회원님의 아이디는 [ " + response_json.username + " ]입니다.")
     window.location.replace(`${frontend_base_url}login.html`)
   } else {
-    alert("존재하지 않는 사용자의 정보를 입력하였습니다.")
+    alert(response_json["message"])
   }
 }
 
@@ -130,7 +130,8 @@ async function verifyUser() {
     alert("비밀번호 변경 페이지로 이동합니다.")
     conveyUserData(response_json)
   } else {
-    alert("존재하지 않는 사용자의 정보를 입력하였습니다.")
+    alert(response_json["message"]) // 현재 모달이 같은 html 파일에 있어 실패해도 모달이 보이게 된다.
+    window.location.replace(`${frontend_base_url}change_password.html`)
   }
 }
 
@@ -169,10 +170,10 @@ async function changePassword() {
   response_password = await response.json()
 
   if (response.status == 200) {
-    alert("비밀번호 변경이 완료되었습니다! 다시 로그인해주세요.")
+    alert(response_password["message"])
     window.location.replace(`${frontend_base_url}login.html`)
   } else {
-    alert("두 비밀번호가 일치하지 않거나 비밀번호 양식이 올바르지 않습니다.")
+    alert(response_password["message"])
   }
 }
 

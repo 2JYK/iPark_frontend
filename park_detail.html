@@ -15,6 +15,12 @@
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 		crossorigin="anonymous"></script>
 
+	<!-- JQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+
 	<!-- 구글폰트 -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,258 +32,90 @@
 </head>
 
 <body>
-	<!-- 첫번째 구간 : 이름, 북마크 -->
-	<div class="park-name-mark">
-		<div>
-			<div class="park-name"></div>
-		</div>
-		<div>
-			<div class="bookmark"></div>
-		</div>
-	</div>
-	<!-- 두번째 구간 : 조회수, 주소  -->
-	<div>
-		<div class="check-count"></div>
-	</div>
-	<div>
-		<div class="addr"></div>
-	</div>
-	<!-- 세번째 구간 : 이미지, 지도-->
-	<div class="park-image-map">
-		<div>
-			<div class="image"></div>
-		</div>
-		<div>
-			<div class="folium-map" id="map_cc438948e3d2987d6030cf0c93c897b8"></div>
-		</div>
-	</div>
-	<!-- 네번째 구간 : 설명  -->
-	<div class="park-description">
-		<div>
-			<div class="list-content"></div>
-		</div>
-		<div>
-			<div class="admintel"></div>
-		</div>
-		<div>
-			<div class="main-equip"></div>
-		</div>
-	</div>
-	<!-- 다섯째 구간 : url, 정보업데이트시간 -->
-	<div class="park-url-updated">
-		<div>
-			<div class="template-url"></div>
-		</div>
-		<div>
-			<div class="updated-at"></div>
-		</div>
-	</div>
-	<!-- 공원 댓글창 : js완성시 정리예정-->
-	<div>
-		<div class="park-comment">
-			<div class="comment-box">
-				<div class="comments">
-					<div class="comment">
-						<div class="comment-username">
-							<p>username</p>
-						</div>
-						<div class="comment-comment">
-							<p>comment</p>
-						</div>
-						<div class="comment-upload-time">
-							<p>time</p>
-						</div>
-						<div class="comment-edit">
-							<button type="button">edit</button>
-						</div>
-						<div class="comment-delete">
-							<button type="button">delete</button>
-						</div>
-					</div>
-					<div class="comment">
-						<div class="comment-username">
-							<p>username</p>
-						</div>
-						<div class="comment-comment">
-							<p>comment</p>
-						</div>
-						<div class="comment-upload-time">
-							<p>time</p>
-						</div>
-						<div class="comment-edit">
-							<button type="button">edit</button>
-						</div>
-						<div class="comment-delete">
-							<button type="button">delete</button>
-						</div>
-					</div>
-					<div class="comment">
-						<div class="comment-username">
-							<p>username</p>
-						</div>
-						<div class="comment-comment">
-							<p>comment</p>
-						</div>
-						<div class="comment-upload-time">
-							<p>time</p>
-						</div>
-						<div class="comment-edit">
-							<button type="button">edit</button>
-						</div>
-						<div class="comment-delete">
-							<button type="button">delete</button>
-						</div>
-					</div>
-					<div class="comment">
-						<div class="comment-username">
-							<p>username</p>
-						</div>
-						<div class="comment-comment">
-							<p>comment</p>
-						</div>
-						<div class="comment-upload-time">
-							<p>time</p>
-						</div>
-						<div class="comment-edit">
-							<button type="button">edit</button>
-						</div>
-						<div class="comment-delete">
-							<button type="button">delete</button>
-						</div>
-					</div>
-					<div class="comment">
-						<div class="comment-username">
-							<p>username</p>
-						</div>
-						<div class="comment-comment">
-							<p>comment</p>
-						</div>
-						<div class="comment-upload-time">
-							<p>time</p>
-						</div>
-						<div class="comment-edit">
-							<button type="button">edit</button>
-						</div>
-						<div class="comment-delete">
-							<button type="button">delete</button>
-						</div>
-					</div>
-					<div class="comment">
-						<div class="comment-username">
-							<p>username</p>
-						</div>
-						<div class="comment-comment">
-							<p>comment</p>
-						</div>
-						<div class="comment-upload-time">
-							<p>time</p>
-						</div>
-						<div class="comment-edit">
-							<button type="button">edit</button>
-						</div>
-						<div class="comment-delete">
-							<button type="button">delete</button>
-						</div>
-					</div>
-					<div class="comment">
-						<div class="comment-username">
-							<p>username</p>
-						</div>
-						<div class="comment-comment">
-							<p>comment</p>
-						</div>
-						<div class="comment-upload-time">
-							<p>time</p>
-						</div>
-						<div class="comment-edit">
-							<button type="button">edit</button>
-						</div>
-						<div class="comment-delete">
-							<button type="button">delete</button>
-						</div>
-					</div>
-					<div class="comment">
-						<div class="comment-username">
-							<p>username</p>
-						</div>
-						<div class="comment-comment">
-							<p>comment</p>
-						</div>
-						<div class="comment-upload-time">
-							<p>time</p>
-						</div>
-						<div class="comment-edit">
-							<button type="button">edit</button>
-						</div>
-						<div class="comment-delete">
-							<button type="button">delete</button>
-						</div>
-					</div>
-					<div class="comment">
-						<div class="comment-username">
-							<p>username</p>
-						</div>
-						<div class="comment-comment">
-							<p>comment</p>
-						</div>
-						<div class="comment-upload-time">
-							<p>time</p>
-						</div>
-						<div class="comment-edit">
-							<button type="button">edit</button>
-						</div>
-						<div class="comment-delete">
-							<button type="button">delete</button>
-						</div>
-					</div>
-					<div class="comment">
-						<div class="comment-username">
-							<p>username</p>
-						</div>
-						<div class="comment-comment">
-							<p>comment</p>
-						</div>
-						<div class="comment-upload-time">
-							<p>time</p>
-						</div>
-						<div class="comment-edit">
-							<button type="button">edit</button>
-						</div>
-						<div class="comment-delete">
-							<button type="button">delete</button>
-						</div>
-					</div>
-				</div>
+
+	<!-- 상단바시작 -->
+	<nav class="navbar" aria-label="Light offcanvas navbar">
+		<div class="container-fluid">
+			<a href="/index.html"><img src="./static/css/img/park-logo.png" alt="mdo" width="150" height="60"></a>
+			<div class="col-2"></div>
+
+			<!-- 검색창 -->
+			<form role="search">
+				<input class="form-control col-4" type="search" placeholder="Search" aria-label="Search">
+			</form>
+			<div class="col-3"></div>
+
+			<!-- 페이지 이동 버튼 -->
+			<div><a href="#" class="nav-link px-2 link-dark">PARK</a></div>
+			<div><a href="/community.html" class="nav-link px-2 link-dark">COMMUNITY</a></div>
+
+			<!-- 프로필 드롭다운 -->
+			<div class="dropdown">
+				<a href="#" class="d-block link text-decoration-none dropdown-toggle" id="dropdownUser1"
+					data-bs-toggle="dropdown" aria-expanded="false" style="color: black;">
+					<img src="./static/css/img/profile.png" alt="mdo" width="40" height="40" class="rounded-circle">
+				</a>
+				<ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+					<li><a class="dropdown-item" href="#">즐겨찾기</a></li>
+					<li><a class="dropdown-item" href="#">내가 쓴 게시물</a></li>
+					<li><a class="dropdown-item" href="./account_management.html">계정관리</a></li>
+					<li>
+						<hr class="dropdown-divider">
+					</li>
+					<li><a class="dropdown-item" href="#" onclick="logout()">로그아웃</a></li>
+				</ul>
 			</div>
-			<!-- 댓글 페이지 네이션 -->
-			<div class="comment-pagenation">
-				<div class="comment-pagenation-left-button">
-					<button type="button">
-						<
-					</button>
+
+			<!-- 공원 목록 토글 -->
+			<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarLight"
+				aria-controls="offcanvasNavbarLight">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<!-- 공원 목록 사이트 바 -->
+			<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbarLight"
+				aria-labelledby="offcanvasNavbarLightLabel">
+				<div class="offcanvas-header">
+					<h5 class="offcanvas-title" id="offcanvasNavbarLightLabel">공원 목록</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 				</div>
-				<div class="comment-pagenation-num">
-					<p>1 2 3</p>
-				</div>
-				<div class="comment-pagenation-right-button">
-					<button type="button">
-						>
-					</button>
-				</div>
-			</div>
-			<!-- 댓글 입력창 -->
-			<div class="comment-input-box">
-				<div class="comment-input-comment">
-					<p>comment-input</p>
-				</div>
-				<div class="comment-input-button">
-					<button type="button">button</button>
+				<div class="offcanvas-body">
+					<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="page" onclick="showPark(1)">남산공원</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="page" href="#">어린이대공원</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="page" href="#">서울대공원</a>
+						</li>
+					</ul>
 				</div>
 			</div>
 		</div>
+	</nav>
+
+	<!-- 공원 상세정보 -->
+	<div id="parkDetail">
+		<!-- tempHtml -->
 	</div>
 
+	<!-- 푸터 -->
+	<footer class="py-3 my-4" style="background-color: #fafbfc;">
+		<ul class="nav justify-content-center pb-3 mb-3">
+			<li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
+			<li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Park</a></li>
+			<li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Community</a></li>
+			<li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About 2JYK</a></li>
+		</ul>
+		<!-- <p class="text-center text-muted">© 2022 Company, Inc</p> -->
+		<p class="text-center text-muted">© 2022 IPark mady by 2JYK</p>
+		<p class="text-center"><img src="./static/css/img/park-logo.png" alt="mdo" width="150" height="70"></p>
+	</footer>
 
+	<script src="../static/js/user.js"></script>
 	<script src="../static/js/api_park.js"></script>
 	<script src="../static/js/park.js"></script>
 

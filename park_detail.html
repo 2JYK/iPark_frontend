@@ -26,7 +26,8 @@
 </head>
 
 <body>
-	<div>
+	<!-- 첫번째 구간 : 이름, 북마크 -->
+	<div class="park-name-mark">
 		<div>
 			<div class="park-name"></div>
 		</div>
@@ -34,15 +35,15 @@
 			<div class="bookmark"></div>
 		</div>
 	</div>
-
+	<!-- 두번째 구간 : 조회수, 주소  -->
 	<div>
 		<div class="check-count"></div>
 	</div>
 	<div>
 		<div class="addr"></div>
 	</div>
-
-	<div>
+	<!-- 세번째 구간 : 이미지, 지도-->
+	<div class="park-image-map">
 		<div>
 			<div class="image"></div>
 		</div>
@@ -50,58 +51,236 @@
 			<div class="folium-map" id="map_cc438948e3d2987d6030cf0c93c897b8"></div>
 		</div>
 	</div>
-
-	<div>
+	<!-- 네번째 구간 : 설명  -->
+	<div class="park-description">
 		<div>
 			<div class="list-content"></div>
 		</div>
 		<div>
 			<div class="admintel"></div>
 		</div>
+		<div>
+			<div class="main-equip"></div>
+		</div>
 	</div>
-
-	<div>
-		<div class="main-equip"></div>
+	<!-- 다섯째 구간 : url, 정보업데이트시간 -->
+	<div class="park-url-updated">
+		<div>
+			<div class="template-url"></div>
+		</div>
+		<div>
+			<div class="updated-at"></div>
+		</div>
 	</div>
-
-	<div>
-		<div class="template-url"></div>
-	</div>
-	<div>
-		<div class="updated-at"></div>
-	</div>
-
+	<!-- 공원 댓글창 : js완성시 정리예정-->
 	<div>
 		<div class="park-comment">
 			<div class="comment-box">
 				<div class="comments">
 					<div class="comment">
-						<p class="comment-username"></p>
-						<p class="comment-comment"></p>
-						<p class="comment-upload-time"></p>
-						<button class="comment-edit"></button>
-						<button class="comment-delete"></button>
+						<div class="comment-username">
+							<p>username</p>
+						</div>
+						<div class="comment-comment">
+							<p>comment</p>
+						</div>
+						<div class="comment-upload-time">
+							<p>time</p>
+						</div>
+						<div class="comment-edit">
+							<button type="button">edit</button>
+						</div>
+						<div class="comment-delete">
+							<button type="button">delete</button>
+						</div>
+					</div>
+					<div class="comment">
+						<div class="comment-username">
+							<p>username</p>
+						</div>
+						<div class="comment-comment">
+							<p>comment</p>
+						</div>
+						<div class="comment-upload-time">
+							<p>time</p>
+						</div>
+						<div class="comment-edit">
+							<button type="button">edit</button>
+						</div>
+						<div class="comment-delete">
+							<button type="button">delete</button>
+						</div>
+					</div>
+					<div class="comment">
+						<div class="comment-username">
+							<p>username</p>
+						</div>
+						<div class="comment-comment">
+							<p>comment</p>
+						</div>
+						<div class="comment-upload-time">
+							<p>time</p>
+						</div>
+						<div class="comment-edit">
+							<button type="button">edit</button>
+						</div>
+						<div class="comment-delete">
+							<button type="button">delete</button>
+						</div>
+					</div>
+					<div class="comment">
+						<div class="comment-username">
+							<p>username</p>
+						</div>
+						<div class="comment-comment">
+							<p>comment</p>
+						</div>
+						<div class="comment-upload-time">
+							<p>time</p>
+						</div>
+						<div class="comment-edit">
+							<button type="button">edit</button>
+						</div>
+						<div class="comment-delete">
+							<button type="button">delete</button>
+						</div>
+					</div>
+					<div class="comment">
+						<div class="comment-username">
+							<p>username</p>
+						</div>
+						<div class="comment-comment">
+							<p>comment</p>
+						</div>
+						<div class="comment-upload-time">
+							<p>time</p>
+						</div>
+						<div class="comment-edit">
+							<button type="button">edit</button>
+						</div>
+						<div class="comment-delete">
+							<button type="button">delete</button>
+						</div>
+					</div>
+					<div class="comment">
+						<div class="comment-username">
+							<p>username</p>
+						</div>
+						<div class="comment-comment">
+							<p>comment</p>
+						</div>
+						<div class="comment-upload-time">
+							<p>time</p>
+						</div>
+						<div class="comment-edit">
+							<button type="button">edit</button>
+						</div>
+						<div class="comment-delete">
+							<button type="button">delete</button>
+						</div>
+					</div>
+					<div class="comment">
+						<div class="comment-username">
+							<p>username</p>
+						</div>
+						<div class="comment-comment">
+							<p>comment</p>
+						</div>
+						<div class="comment-upload-time">
+							<p>time</p>
+						</div>
+						<div class="comment-edit">
+							<button type="button">edit</button>
+						</div>
+						<div class="comment-delete">
+							<button type="button">delete</button>
+						</div>
+					</div>
+					<div class="comment">
+						<div class="comment-username">
+							<p>username</p>
+						</div>
+						<div class="comment-comment">
+							<p>comment</p>
+						</div>
+						<div class="comment-upload-time">
+							<p>time</p>
+						</div>
+						<div class="comment-edit">
+							<button type="button">edit</button>
+						</div>
+						<div class="comment-delete">
+							<button type="button">delete</button>
+						</div>
+					</div>
+					<div class="comment">
+						<div class="comment-username">
+							<p>username</p>
+						</div>
+						<div class="comment-comment">
+							<p>comment</p>
+						</div>
+						<div class="comment-upload-time">
+							<p>time</p>
+						</div>
+						<div class="comment-edit">
+							<button type="button">edit</button>
+						</div>
+						<div class="comment-delete">
+							<button type="button">delete</button>
+						</div>
+					</div>
+					<div class="comment">
+						<div class="comment-username">
+							<p>username</p>
+						</div>
+						<div class="comment-comment">
+							<p>comment</p>
+						</div>
+						<div class="comment-upload-time">
+							<p>time</p>
+						</div>
+						<div class="comment-edit">
+							<button type="button">edit</button>
+						</div>
+						<div class="comment-delete">
+							<button type="button">delete</button>
+						</div>
 					</div>
 				</div>
 			</div>
+			<!-- 댓글 페이지 네이션 -->
 			<div class="comment-pagenation">
-				<div class="comment-pagenation-left-button"></div>
-				<div class="comment-pagenation-num"></div>
-				<div class="comment-pagenation-right-button"></div>
-			</div>
-			<div class="comment-input-box">
-				<div>
-					<p class="comment-input"></p>
+				<div class="comment-pagenation-left-button">
+					<button type="button">
+						<
+					</button>
 				</div>
-				<div>
-					<button class="comment-input-button" type="button"></button>
+				<div class="comment-pagenation-num">
+					<p>1 2 3</p>
+				</div>
+				<div class="comment-pagenation-right-button">
+					<button type="button">
+						>
+					</button>
+				</div>
+			</div>
+			<!-- 댓글 입력창 -->
+			<div class="comment-input-box">
+				<div class="comment-input-comment">
+					<p>comment-input</p>
+				</div>
+				<div class="comment-input-button">
+					<button type="button">button</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	
-	<script src="../static/js/park_detail.js"></script>
+
+	<script src="../static/js/api_park.js"></script>
+	<script src="../static/js/park.js"></script>
+
 </body>
 
 </html>

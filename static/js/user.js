@@ -248,6 +248,40 @@ async function searchUser() {
 }
 
 
+// 계정확인 페이지 : 수정된 데이터 송신 //
+async function changeAccount() {
+
+  const changedData = {
+    username: document.getElementById("accountUsername").value,
+    password: document.getElementById("accountPassword").value,
+    fullname: document.getElementById("accountFullname").value,
+    email: document.getElementById("accountEmail").value,
+    phone: document.getElementById("accountPhone").value,
+    birthday: document.getElementById("accountBirthday").value,
+    region: document.getElementById("accountRegion").value
+  }
+
+  const response = await fetch(`${backend_base_url}user/`, {
+    headers: {
+      Accept: "application/json",
+      'Content-type': 'application/json',
+      'Authorization': 'Bearer ' + localStorage.getItem("access")
+    },
+    method: "PUT",
+    body: JSON.stringify(changedData)
+  })
+
+  account_response = response.json()
+
+  if (response.status == 200) {
+    alert("회원정보 수정이 완료되었습니다.")
+    window.location.replace(`${frontend_base_url}index.html`)
+  } else {
+    alert(account_response["message"])
+  }
+}
+
+
 // 비밀번호 변경 모달
 $(function () {
   $("#modal-open").click(function () {

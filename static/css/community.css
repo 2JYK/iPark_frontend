@@ -67,3 +67,17 @@
   width: 200px;
   height: 50px;
 }
+
+/* 게시글 table */
+.table {
+  width: 70%;
+  margin: auto;
+  text-align: center;
+}
+
+.search {
+  margin: auto;
+  margin-top: 30px;
+  width: 300px;
+  height: 40px;
+}

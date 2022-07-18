@@ -109,6 +109,17 @@
   <button type="button" class="btn btn-primary" id="modal-open">
     업로드
   </button>
+  <div class="btn-group dropend">
+    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      게시판 고르기
+    </button>
+    <ul class="dropdown-menu">
+      <!-- <li><a class="dropdown-item" href="/community/?id=1" id="1" onclick="getArticles(this.id)">커뮤니티</a></li> -->
+      <li><a class="dropdown-item" href="#" id="1" onclick="getArticles(this.id)">커뮤니티</a></li>
+      <li><a class="dropdown-item" href="#" id="2" onclick="getArticles(this.id)">나눔마켓</a></li>
+      <li><a class="dropdown-item" href="#" id="3" onclick="getArticles(this.id)">내가 쓴 게시글</a></li>
+    </ul>
+  </div>
 
   <!-- 모달 -->
   <div class="popup-wrap" id="popup">
@@ -147,6 +158,25 @@
       </div>
     </div>
   </div>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th style="width: 20%;">카테고리</th>
+        <th style="width: 50%;">제목</th>
+        <th style="width: 15;">글쓴이</th>
+        <th style="width: 20%;">등록일</th>
+      </tr>
+    </thead>
+    <tbody id="tbody" class="table-group-divider">
+    </tbody>
+  </table>
+
+  <form class="d-flex search" role="search" action="community/search/?keyword={}" method="POST">
+    <input class="form-control me-2 d-flex" type="search" id="search" name="search" placeholder="Search"
+      aria-label="Search">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+  </form>
 
   <br><br>
   <br><br>

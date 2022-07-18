@@ -1,7 +1,7 @@
 // 로그인 //
 function kakaoLogin() {
-  const kakaoLogin = document.getElementById("kakao-login")
-  const userInfo = document.getElementById("user-info")
+  const kakaoLogin = document.getElementById("kakao")
+  const userInfo = document.getElementById("userInfo")
 
   if (Kakao.isInitialized() == false) {
     Kakao.init("c414e5945e36386b3b383a30f1b31271")
@@ -18,6 +18,7 @@ function kakaoLogin() {
           kakaoLogin.style.visibility = "hidden"
           userInfo.style.visibility = "visible"
           makeLoginForm(kakaoUsername, kakaoEmail)
+          
         },
         fail: function (error) {
           if (!Kakao.Auth.getAccessToken()) {
@@ -66,8 +67,8 @@ function disconnect() {
 
 // 카카오 로그인 성공 -> 받아온 정보값을 회원가입 입력창으로 내용 보내기 (id, email 값) //
 function makeLoginForm(kakaoUsername, kakaoEmail) {
-  const username = document.getElementById("username")
-  const email = document.getElementById("email")
+  const username = document.getElementById("floatingInput")
+  const email = document.getElementById("floatingInputEmail")
 
   username.value = kakaoUsername
   email.value = kakaoEmail

@@ -212,8 +212,8 @@ async function changePassword() {
 // 계정관리 페이지 사용 권한 확인 // 
 async function searchUser() {
   const userData = {
-    username: document.getElementById("accountUsername").value,
-    password: document.getElementById("accountPassword").value
+    username: document.getElementById("checkUsername").value,
+    password: document.getElementById("checkPassword").value
   }
 
   const response = await fetch(`${backend_base_url}user/verification/`, {
@@ -229,12 +229,23 @@ async function searchUser() {
   verification_json = await response.json()
 
   if (response.status == 200) {
-    console.log(verification_json)
+    const popup = document.getElementById("popup")
+    popup.style.visibility = "visible"
+
+    document.getElementById("accountUsername").value = verification_json.username
+    document.getElementById("accountPassword").value = verification_json.password
+    document.getElementById("accountFullname").value = verification_json.fullname
+    document.getElementById("accountEmail").value = verification_json.email
+    document.getElementById("accountPhone").value = verification_json.phone
+    document.getElementById("accountBirthday").value = verification_json.birthday
+    document.getElementById("accountRegion").value = verification_json.region
+
   } else {
     alert(verification_json["message"])
+    const popup = document.getElementById("popup")
+    popup.style.visibility = "hidden"
   }
 }
-
 
 
 // 비밀번호 변경 모달
@@ -251,3 +262,4 @@ $(function () {
     $("#popup").fadeOut();
   }
 });
+

@@ -233,13 +233,11 @@ async function searchUser() {
     popup.style.visibility = "visible"
 
     document.getElementById("accountUsername").value = verification_json.username
-    document.getElementById("accountPassword").value = verification_json.password
     document.getElementById("accountFullname").value = verification_json.fullname
     document.getElementById("accountEmail").value = verification_json.email
     document.getElementById("accountPhone").value = verification_json.phone
     document.getElementById("accountBirthday").value = verification_json.birthday
     document.getElementById("accountRegion").value = verification_json.region
-
   } else {
     alert(verification_json["message"])
     const popup = document.getElementById("popup")
@@ -250,15 +248,27 @@ async function searchUser() {
 
 // 계정확인 페이지 : 수정된 데이터 송신 //
 async function changeAccount() {
+  let changedData
 
-  const changedData = {
-    username: document.getElementById("accountUsername").value,
-    password: document.getElementById("accountPassword").value,
-    fullname: document.getElementById("accountFullname").value,
-    email: document.getElementById("accountEmail").value,
-    phone: document.getElementById("accountPhone").value,
-    birthday: document.getElementById("accountBirthday").value,
-    region: document.getElementById("accountRegion").value
+  if (document.getElementById("accountPassword").value) {
+    changedData = {
+      username: document.getElementById("accountUsername").value,
+      password: document.getElementById("accountPassword").value,
+      fullname: document.getElementById("accountFullname").value,
+      email: document.getElementById("accountEmail").value,
+      phone: document.getElementById("accountPhone").value,
+      birthday: document.getElementById("accountBirthday").value,
+      region: document.getElementById("accountRegion").value
+    }
+  } else {
+    changedData = {
+      username: document.getElementById("accountUsername").value,
+      fullname: document.getElementById("accountFullname").value,
+      email: document.getElementById("accountEmail").value,
+      phone: document.getElementById("accountPhone").value,
+      birthday: document.getElementById("accountBirthday").value,
+      region: document.getElementById("accountRegion").value
+    }
   }
 
   const response = await fetch(`${backend_base_url}user/`, {
@@ -277,7 +287,7 @@ async function changeAccount() {
     alert("회원정보 수정이 완료되었습니다.")
     window.location.replace(`${frontend_base_url}index.html`)
   } else {
-    alert(account_response["message"])
+    alert(account_response.data)
   }
 }
 

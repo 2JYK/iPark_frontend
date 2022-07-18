@@ -188,9 +188,9 @@
         margin: 0px 10px 0px 10px;
 }
 	
-.comment-input-comment{
+.comment-input-comment input{
     background-color: white;
-    width: 570px;
+    width: 510px;
     height: 30px;
     margin-right: 10px;
     overflow: hidden;

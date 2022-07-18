@@ -31,3 +31,42 @@ async function article_post() {
     alert(response_json["message"])
   }
 }
+
+
+// 게시글 GET
+function getArticles(id) {
+  console.log(id)
+  $('#tbody').empty()
+  let query_param = ''
+  if (id != undefined) {
+    query_param = '?id=' + id
+  }
+  $.ajax({
+    type: 'GET',
+    url: `${backend_base_url}community/` + query_param,
+    data: {},
+    success: function (response) {
+      let postings = response
+      console.log(postings)
+      for (let i = 0; i < postings.length; i++) {
+        append_temp_html(
+          postings[i].tag_name,
+          postings[i].title,
+          postings[i].username,
+          postings[i].updated_At,
+        )
+      }
+      function append_temp_html(tag_name, title, username, uptated_at) {
+        temp_html = `      <tr>
+        <td>${tag_name}</td>
+        <td style="text-align: left;">${title}</td>
+        <td>${username}</td>
+        <td>${uptated_at}</td>
+      </tr>`
+
+        $('#tbody').append(temp_html)
+
+      }
+    }
+  });
+} getArticles()

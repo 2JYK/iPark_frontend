@@ -160,10 +160,8 @@ async function verifyUser() {
   if (response.status == 200) {
     alert("비밀번호 변경 페이지로 이동합니다.")
     conveyUserData(response_json)
-
-
   } else {
-    alert(response_json["message"]) 
+    alert(response_json["message"])
     const popup = document.getElementById("popup")
     popup.style.visibility = "hidden"
   }
@@ -184,8 +182,6 @@ function conveyUserData(response_json) {
 // 비밀번호 변경 // 
 async function changePassword() {
   conveyUserData(response_json)
-  
-
   const passwordData = {
     username: conveyUserData(response_json).username,
     email: conveyUserData(response_json).email,
@@ -210,7 +206,35 @@ async function changePassword() {
   } else {
     alert(response_password["message"])
   }
+};
+
+
+// 계정관리 페이지 사용 권한 확인 // 
+async function searchUser() {
+  const userData = {
+    username: document.getElementById("accountUsername").value,
+    password: document.getElementById("accountPassword").value
+  }
+
+  const response = await fetch(`${backend_base_url}user/verification/`, {
+    headers: {
+      Accept: "application/json",
+      'Content-type': 'application/json',
+      'Authorization': 'Bearer ' + localStorage.getItem("access")
+    },
+    method: "POST",
+    body: JSON.stringify(userData)
+  })
+
+  verification_json = await response.json()
+
+  if (response.status == 200) {
+    console.log(verification_json)
+  } else {
+    alert(verification_json["message"])
+  }
 }
+
 
 
 // 비밀번호 변경 모달

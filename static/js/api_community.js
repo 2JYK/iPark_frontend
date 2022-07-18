@@ -14,12 +14,9 @@ async function article_post() {
     formData.append("image", image[0])
   }
   const response = await fetch(`${backend_base_url}community/`, {
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Authorization": "Bearer " + localStorage.getItem("access"),
-    },
     method: "POST",
-    body: formData
+    body: formData,
+    headers: TOKEN
   })
   response_json = await response.json()
   console.log(response_json)
@@ -35,25 +32,43 @@ async function article_post() {
 
 // 게시글 GET
 function getArticles(id) {
-  console.log(id)
   $('#tbody').empty()
   let query_param = ''
   if (id != undefined) {
     query_param = '?id=' + id
   }
+
+  let token = {}
+  if (id == 3) {
+    token = TOKEN
+  }
+
   $.ajax({
     type: 'GET',
     url: `${backend_base_url}community/` + query_param,
     data: {},
+    headers: token,
     success: function (response) {
       let postings = response
-      console.log(postings)
       for (let i = 0; i < postings.length; i++) {
+
+        let time_post = new Date(postings[i].created_at_time)
+        let time_before = time2str(time_post)
+
+        let tag = postings[i].tag
+        let tag_name = postings[i].tag_name
+
+        if (tag == 1) {
+          tag_name = "커뮤니티"
+        } else {
+          tag_name = "나눔마켓"
+        }
+
         append_temp_html(
-          postings[i].tag_name,
+          tag_name,
           postings[i].title,
           postings[i].username,
-          postings[i].updated_At,
+          time_before
         )
       }
       function append_temp_html(tag_name, title, username, uptated_at) {

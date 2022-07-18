@@ -12,7 +12,8 @@
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-  <!-- Bootstrap JS -->
+  
+    <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
     crossorigin="anonymous"></script>
@@ -109,6 +110,7 @@
   <button type="button" class="btn btn-primary" id="modal-open">
     업로드
   </button>
+
   <div class="btn-group dropend">
     <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
       게시판 고르기
@@ -143,7 +145,7 @@
         <select name="choice" id="popup-body-choice" class="popup-body-choice">
           <option value="">선택해주세요</option>
           <option value="1">커뮤니티</option>
-          <option value="2">마켓</option>
+          <option value="2">나눔마켓</option>
         </select>
         <hr>
         <input class="popup-body-title" id="popup-body-title" placeholder="제목"><br>
@@ -162,10 +164,11 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <th style="width: 20%;">카테고리</th>
-        <th style="width: 50%;">제목</th>
-        <th style="width: 15;">글쓴이</th>
-        <th style="width: 20%;">등록일</th>
+        <th style="width: 15%;">카테고리</th>
+        <th style="width: 45%;">제목</th>
+        <th style="width: 15%;">글쓴이</th>
+        <th style="width: 15%;">등록일</th>
+        <th style="width: 15%;">조회수</th>
       </tr>
     </thead>
     <tbody id="tbody" class="table-group-divider">

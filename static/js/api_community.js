@@ -60,7 +60,7 @@ function getArticles(id) {
 
         if (tag == 1) {
           tag_name = "커뮤니티"
-        } else {
+        } else if (tag == 2) {
           tag_name = "나눔마켓"
         }
 
@@ -68,19 +68,24 @@ function getArticles(id) {
           tag_name,
           postings[i].title,
           postings[i].username,
-          time_before
+          time_before,
+          postings[i].check_count
         )
       }
-      function append_temp_html(tag_name, title, username, uptated_at) {
+      function append_temp_html(tag_name, title, username, updated_at, check_count) {
+        let tag = "lightsteelblue";
+        if (tag_name == "커뮤니티") {
+        } else if (tag_name == "나눔마켓") {
+          tag = "lightcoral"
+        }
         temp_html = `      <tr>
-        <td>${tag_name}</td>
+        <td class="${tag}" style="color: ${tag};">${tag_name}</td>
         <td style="text-align: left;">${title}</td>
         <td>${username}</td>
-        <td>${uptated_at}</td>
+        <td>${updated_at}</td>
+        <td>${check_count}</td>
       </tr>`
-
         $('#tbody').append(temp_html)
-
       }
     }
   });
@@ -91,13 +96,10 @@ function getArticles(id) {
 function getSearchArticles() {
   $('#tbody').empty()
   query_param = '?keyword=' + $("#search").val()
-  let token = {}
-
   $.ajax({
     type: 'GET',
     url: `${backend_base_url}community/search/` + query_param,
     data: {},
-    headers: token,
     success: function (response) {
       let postings = response
       for (let i = 0; i < postings.length; i++) {
@@ -118,15 +120,23 @@ function getSearchArticles() {
           tag_name,
           postings[i].title,
           postings[i].username,
-          time_before
+          time_before,
+          postings[i].check_count
         )
       }
-      function append_temp_html(tag_name, title, username, uptated_at) {
+      function append_temp_html(tag_name, title, username, updated_at, check_count) {
+        let tag = "lightsteelblue";
+        if (tag_name == "커뮤니티") {
+        } else if (tag_name == "나눔마켓") {
+          tag = "lightcoral"
+        }
+
         temp_html = `      <tr>
-        <td>${tag_name}</td>
+        <td class="${tag}" style="color: ${tag};">${tag_name}</td>
         <td style="text-align: left;">${title}</td>
         <td>${username}</td>
-        <td>${uptated_at}</td>
+        <td>${updated_at}</td>
+        <td>${check_count}</td>
       </tr>`
 
         $('#tbody').append(temp_html)
@@ -134,4 +144,4 @@ function getSearchArticles() {
       }
     }
   });
-} 
+}

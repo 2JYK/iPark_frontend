@@ -85,3 +85,53 @@ function getArticles(id) {
     }
   });
 } getArticles()
+
+
+// 검색 GET
+function getSearchArticles() {
+  $('#tbody').empty()
+  query_param = '?keyword=' + $("#search").val()
+  let token = {}
+
+  $.ajax({
+    type: 'GET',
+    url: `${backend_base_url}community/search/` + query_param,
+    data: {},
+    headers: token,
+    success: function (response) {
+      let postings = response
+      for (let i = 0; i < postings.length; i++) {
+
+        let time_post = new Date(postings[i].created_at_time)
+        let time_before = time2str(time_post)
+
+        let tag = postings[i].tag
+        let tag_name = postings[i].tag_name
+
+        if (tag == 1) {
+          tag_name = "커뮤니티"
+        } else {
+          tag_name = "나눔마켓"
+        }
+
+        append_temp_html(
+          tag_name,
+          postings[i].title,
+          postings[i].username,
+          time_before
+        )
+      }
+      function append_temp_html(tag_name, title, username, uptated_at) {
+        temp_html = `      <tr>
+        <td>${tag_name}</td>
+        <td style="text-align: left;">${title}</td>
+        <td>${username}</td>
+        <td>${uptated_at}</td>
+      </tr>`
+
+        $('#tbody').append(temp_html)
+
+      }
+    }
+  });
+} 

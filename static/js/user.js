@@ -37,8 +37,8 @@ async function handleSignup() {
 // 로그인 //
 async function handleLogin() {
   const loginData = {
-    username: document.getElementById("floatingInput").value,
-    password: document.getElementById("floatingPassword").value,
+    username: document.getElementById("username").value,
+    password: document.getElementById("password").value,
   }
 
   const response = await fetch(`${backend_base_url}user/api/token/`, {
@@ -67,6 +67,37 @@ async function handleLogin() {
     window.location.replace(`${frontend_base_url}index.html`)
   } else {
     alert("잘못된 로그인입니다.", response.status)
+  }
+}
+
+
+// 카카오로그인 -> 회원가입 // 
+async function kakaoSignup() {
+  const signupData = {
+    username: document.getElementById("floatingInput").value,
+    email: document.getElementById("floatingInputEmail").value,
+    fullname: document.getElementById("floatingInputFullname").value,
+    password: document.getElementById("floatingPassword").value,
+    phone: document.getElementById("floatingPhone").value,
+    birthday: document.getElementById("floatingBirthday").value,
+    region: document.getElementById("floatingRegion").value
+  }
+
+  const response = await fetch(`${backend_base_url}user/`, {
+    headers: {
+      Accept: "application/json",
+      'Content-type': 'application/json'
+    },
+    method: "POST",
+    body: JSON.stringify(signupData)
+  })
+
+  response_json = await response.json()
+
+  if (response.status == 200) {
+    window.location.replace(`${frontend_base_url}index.html`)
+  } else {
+    alert(response_json["error"]) // phone의 경우, 메세지가 undefined로 출력됨
   }
 }
 
@@ -129,9 +160,12 @@ async function verifyUser() {
   if (response.status == 200) {
     alert("비밀번호 변경 페이지로 이동합니다.")
     conveyUserData(response_json)
+
+
   } else {
-    alert(response_json["message"]) // 현재 모달이 같은 html 파일에 있어 실패해도 모달이 보이게 된다.
-    window.location.replace(`${frontend_base_url}change_password.html`)
+    alert(response_json["message"]) 
+    const popup = document.getElementById("popup")
+    popup.style.visibility = "hidden"
   }
 }
 
@@ -150,6 +184,7 @@ function conveyUserData(response_json) {
 // 비밀번호 변경 // 
 async function changePassword() {
   conveyUserData(response_json)
+  
 
   const passwordData = {
     username: conveyUserData(response_json).username,

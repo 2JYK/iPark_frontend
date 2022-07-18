@@ -282,6 +282,32 @@ async function changeAccount() {
 }
 
 
+// 회원 탈퇴 // 
+async function withdrawal() {
+  const response = await fetch(`${backend_base_url}user/`, {
+    headers: {
+      Accept: "application/json",
+      'Content-type': 'application/json',
+      'Authorization': 'Bearer ' + localStorage.getItem("access")
+    },
+    method: "DELETE"
+  })
+
+  withdrawal_json = await response.json()
+
+  if (withdrawal_json.status == 200) {
+    alert(withdrawal_json["message"])
+    localStorage.removeItem('payload')
+    localStorage.removeItem('access')
+    localStorage.removeItem('refresh')
+
+    window.location.replace(`${frontend_base_url}index.html`)
+  } else {
+    alert(withdrawal_json["message"])
+  }
+}
+
+
 // 비밀번호 변경 모달
 $(function () {
   $("#modal-open").click(function () {

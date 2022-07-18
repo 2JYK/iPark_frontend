@@ -55,7 +55,6 @@ body::before {
     margin-bottom: 60px;
 }
 
-
 /* 아이디, 패스워스 박스 */
 .int-area {
     position: relative;
@@ -119,6 +118,11 @@ body::before {
     /* 글자 애니메이션 색상 지정 */
 }
 
+/* 계정관리 모달 내용 중앙정렬 */
+.account-form {
+    display: inline-block;
+    align-items: center;
+}
 
 /* 버튼 */
 .btn-area {

@@ -7,11 +7,12 @@ async function article_post() {
   const content = document.getElementById("popup-body-content").value
   const formData = new FormData()
 
-  formData.append("image", image[0])
   formData.append("tag", tag)
   formData.append("title", title)
   formData.append("content", content)
-
+  if (image.length == 1) {
+    formData.append("image", image[0])
+  }
   const response = await fetch(`${backend_base_url}community/`, {
     headers: {
       "Access-Control-Allow-Origin": "*",

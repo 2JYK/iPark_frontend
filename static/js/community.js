@@ -1,3 +1,10 @@
+// 전역 변수
+TOKEN = {
+  "Access-Control-Allow-Origin": "*",
+  "Authorization": "Bearer " + localStorage.getItem("access"),
+}
+
+
 // 로그인한 user.id 찾는 함수
 function parseJwt(token) {
   var base64Url = localStorage.getItem("access")
@@ -45,3 +52,26 @@ $(function () {
     $("#popup").fadeOut();
   }
 });
+
+
+// 댓글 시간 나타내기 //
+function time2str(date) {
+  let today = new Date()
+  let time = (today - date) / 1000 / 60  // 분
+
+  if (time < 60) {
+      return parseInt(time) + "분 전"
+  }
+  time = time / 60  // 시간
+
+  if (time < 24) {
+      return parseInt(time) + "시간 전"
+  }
+  time = time / 24
+
+  if (time < 7) {
+      return parseInt(time) + "일 전"
+  }
+
+  return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`
+};

@@ -170,11 +170,11 @@ function appendParkHtml(
 
 
 // 공원 상세 정보 보기
-function showParkDetail() {
-	// console.log(parkId)
+function showParkDetail(id) {
+	console.log(id)
 	$.ajax({
 		type: "GET",
-		url: `${backendBaseUrl}park/?park_id=${parkId}/`,
+		url: `${backendBaseUrl}park/${id}/`,
 		beforeSend: function (xhr) {
 			xhr.setRequestHeader("Content-type", "application/json");
 		},
@@ -198,7 +198,7 @@ function showParkDetail() {
 			)
 		}
 	})
-}showParkDetail()
+} showParkDetail()
 
 
 // 로그인하지 않은 유저 댓글 작성 금지
@@ -258,3 +258,33 @@ async function postComment() {
 		alert(response.status)
 	}
 }
+
+
+// 토글에 공원 목록 붙이기 //
+function parkListHtml(id, park_name) {
+	parkListTempHtml = `
+			<li class="nav-item">
+				<button clbuttonss="nav-link active" aria-current="page" style="border: none; background-color: transparent;" onclick="showParkDetail(${id})">${park_name}</button>
+				<hr/>
+			</li>`
+	$("#park-list").append(parkListTempHtml)
+}
+
+
+// 토글 공원 List 로드 //
+function showparkList() {
+	$.ajax({
+		type: "GET",
+		url: `${backendBaseUrl}park/`,
+		success: function (response) {
+			console.log(response)
+			for (let i = 0; i < response.length; i++) {
+				parkListHtml(
+					response[i].id,
+					response[i].park_name
+				)
+			}
+		}
+	})
+}
+showparkList()

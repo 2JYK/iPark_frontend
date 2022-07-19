@@ -1,6 +1,18 @@
+/* 전역 css */
+.text {
+  font-weight: bolder;
+}
+
+.text2 {
+  font-size: 23px;
+  /* font-weight: bolder; */
+  color: gray;
+}
+
+/* 캐러셀 */
 .carousel {
   width: 70%;
-  
+
   margin: auto;
   margin-top: 1%;
 }
@@ -8,3 +20,141 @@
 .carousel-img {
   height: 650px;
 }
+
+/* 캐러셀 아래 구분선 */
+hr[role="tournament1"] {
+  border: 0px solid;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(172, 131, 83, 0.75), rgba(0, 0, 0, 0));
+  margin: 32px 0px;
+  display: block;
+}
+
+hr[role="tournament1"]::before {
+  position: absolute;
+  background-color: #efefef;
+  border: 1px solid;
+  border-color: #AC8353;
+  border-left: 0px solid;
+  border-top: 0px solid;
+  padding: 10px;
+  transform: rotate(45deg);
+  left: 50%;
+  margin: -10px 0px 0px -22px;
+  content: "";
+}
+
+/* 소개글 */
+blockquote{
+  display:block;
+  width:40%;
+  
+  padding: 15px 45px 15px 65px;
+  margin: auto;
+  
+  border-bottom: 3px solid #80808054;
+  text-align: center;
+  align-items: center;
+  
+  font-weight:400;
+  font-size: 16px;
+  color: #293340;
+}
+
+blockquote p, blockquote h1{
+  position:relative;
+  padding:0 1em;
+}
+
+blockquote p{
+  line-height: 1.45;  
+}
+
+blockquote h1{
+  font-family: 'Arvo', serif;
+  color:#B2A4A7;
+  font-size:2em;
+  font-weight:700;
+  text-transform:uppercase;
+  padding-left:0.5em;
+  padding-bottom: 3%;
+}
+
+/* 바디 카드 */
+.body-wrap {
+  margin-top: 4%;
+}
+
+.body-wrap a {
+  color: rgb(158, 144, 144);
+  text-decoration: none;
+}
+
+.body-wrap h1 {
+  margin-bottom: 10%;
+}
+
+.body-wrap a:hover {
+  color: rgb(82, 82, 255);
+  text-decoration: underline;
+}
+
+.body-card{
+  background-color: #fafbfc;
+  padding: 3% 0;
+  margin-bottom: 3%;
+  display: flex;
+  justify-content: center;
+}
+
+.body-card2{
+  background-color: #fafbfc;
+  padding: 3% 0;
+  margin-bottom: 3%;
+  display: flex;
+  justify-content: center;
+}
+
+.body-img {
+  width: 640px;
+  height: 330px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.body-text {
+  padding: 0 3%;
+}
+
+/* 바디 아이콘 */
+.body-last{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 4%;
+}
+
+.body-last a {
+  color: black;
+  text-decoration: none;
+  margin: 0 5%;
+}
+
+.body-last a:hover {
+  color: rgb(0, 128, 68);
+  text-decoration: underline;
+  transition: 0.5s;
+}
+
+.body-icon {
+  width: 100px;
+  height: 100px;
+  font-size: 50px;
+  padding: 10%;
+
+  border: 1px solid rgba(145, 99, 145, 0.226);
+  border-radius: 50%;
+  box-shadow: 5px 5px rgba(145, 99, 145, 0.226);
+}
+
+.body-last-home { padding-left: 30px; }
+.body-last-park { padding-left: 40px; }
+.body-last-commusity { padding-left: 19px; }

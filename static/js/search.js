@@ -6,7 +6,7 @@ document.querySelectorAll(".button").forEach(
 
 // 공원 검색 결과 //
 function get_parks_html(id, park_name, image, check_count) {
-    temp_html = `<div class="park-box" id="park" onclick="showPark(${id})">
+    temp_html = `<div class="park-box" id="park" onclick="showParkDetail(${id})">
                     <div class="park-image">
                         <img src="${image}" alt="" style="width: 310px; height: 300px; margin-right: 10px;"/>
                     </div>
@@ -23,7 +23,7 @@ function get_parks_html(id, park_name, image, check_count) {
 
 // 인기 순 공원 나열 //
 function popular_parks_html(id, park_name, image, check_count) {
-    temp_html = `<div class="park-box" id="park" onclick="showPark(${id})">
+    temp_html = `<div class="park-box" id="park" onclick="showParkDetail(${id})">
                     <div class="park-image">
                         <img src="${image}" alt="" style="width: 310px; height: 300px; margin-right: 10px;"/>
                     </div>

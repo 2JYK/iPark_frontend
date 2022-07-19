@@ -30,6 +30,9 @@ if (parseJwt("access") != null) {
 	console.log("로그인을 하지 않은 상태")
 }
 
+const parkParams = new URLSearchParams(window.location.search);
+const parkId = parkParams.get('park_id');
+
 
 // 공원 상세정보 html 구간
 function appendParkHtml(
@@ -37,7 +40,7 @@ function appendParkHtml(
 	list_content, admintel, main_equip, template_url, updated_at,
 	id, bookmark, username, comments) {
 
-	tempHtml = `
+	parkDetailTempHtml = `
 			<!-- 첫번째 구간 : 이름, 북마크 -->
 			<div class="park-name-mark">
 				<div>
@@ -133,7 +136,7 @@ function appendParkHtml(
 				</div>
 			</div>
 		`
-	$("#parkDetail").append(tempHtml)
+	$("#parkDetail").append(parkDetailTempHtml)
 
 	// 공원 상세보기 댓글
 	for (let j = 0; j < comments.length; j++) {
@@ -167,15 +170,16 @@ function appendParkHtml(
 
 
 // 공원 상세 정보 보기
-window.onload = function showPark(event, park_id = 1) {
-	console.log("공원번호", park_id)
+function showParkDetail() {
+	// console.log(parkId)
 	$.ajax({
 		type: "GET",
-		url: `${backendBaseUrl}park/${park_id}/`,
+		url: `${backendBaseUrl}park/?park_id=${parkId}/`,
 		beforeSend: function (xhr) {
 			xhr.setRequestHeader("Content-type", "application/json");
 		},
 		success: function (response) {
+			console.log("showPark ", response)
 			appendParkHtml(
 				response.park_name,
 				response.addr,
@@ -194,7 +198,7 @@ window.onload = function showPark(event, park_id = 1) {
 			)
 		}
 	})
-}
+}showParkDetail()
 
 
 // 로그인하지 않은 유저 댓글 작성 금지
@@ -231,13 +235,13 @@ function time2str(date) {
 
 
 // 댓글 작성
-async function postComment(park_id = 1) {
+async function postComment() {
 	const comment = document.getElementById("commentInputComment").value
 	const commentData = {
 		"comment": comment
 	}
 
-	const response = await fetch(`${backendBaseUrl}park/${park_id}/comment/`, {
+	const response = await fetch(`${backendBaseUrl}park/?park_id=${parkId}/comment/`, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",

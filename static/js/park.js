@@ -12,15 +12,15 @@ const frontendBaseUrl = "http://127.0.0.1:5500/"
 function parseJwt(token) {
 	var base64Url = localStorage.getItem("access")
 	if (base64Url != null) {
-		base64Url = base64Url.split(".")[1];
-		var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+		base64Url = base64Url.split(".")[1]
+		var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/")
 		var jsonPayload = decodeURIComponent(window.atob(base64).split("").map(
 			function (c) {
-				return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-			}).join(""));
-		return JSON.parse(jsonPayload);
+				return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2)
+			}).join(""))
+		return JSON.parse(jsonPayload)
 	}
-};
+}
 
 
 // 접속 유저 id 확인
@@ -31,11 +31,11 @@ if (parseJwt("access") != null) {
 }
 
 
-// 공원 정보 html 구간
+// 공원 상세정보 html 구간
 function appendParkHtml(
 	park_name, addr, check_count, image, map,
 	list_content, admintel, main_equip, template_url, updated_at,
-	id, bookmark, username, comment) {
+	id, bookmark, username, comments) {
 
 	tempHtml = `
 			<!-- 첫번째 구간 : 이름, 북마크 -->
@@ -44,13 +44,15 @@ function appendParkHtml(
 					<div class="park-name">${park_name}</div>
 				</div>
 				<div>
-					<div class="bookmark">${bookmark}</div>
+					<div class="bookmark">
+						<button type="button">북마크</button>
+					</div>
 				</div>
 			</div>
 
 			<!-- 두번째 구간 : 조회수, 주소  -->
 			<div>
-				<div class="check-count">${check_count.length}</div>
+				<div class="check-count">조회수 : ${check_count}</div>
 			</div>
 			<div>
 				<div class="addr">${addr}</div>
@@ -59,7 +61,9 @@ function appendParkHtml(
 			<!-- 세번째 구간 : 이미지, 지도-->
 			<div class="park-image-map">
 				<div>
-					<div class="image">${image}</div>
+					<div class="image">
+						<img class="img" src="${image}" alt="${park_name}"/>
+					</div>
 				</div>
 				<div>
 					<div class="folium-map" id="map_cc438948e3d2987d6030cf0c93c897b8">${map}</div>
@@ -94,24 +98,8 @@ function appendParkHtml(
 				<div class="park-comment">
 					<form action="POST">
 					<div class="comment-box">
-						<div class="comments" id="comments">
-							<div class="comment">
-								<div class="comment-username">
-									<p>${username}</p>
-								</div>
-								<div class="comment-comment">
-									<p>${comment}</p>
-								</div>
-								<div class="comment-upload-time">
-									<p>${updated_at}</p>
-								</div>
-								<div class="comment-edit">
-									<button type="button onclick="editComment(${id})">edit</button>
-								</div>
-								<div class="comment-delete">
-									<button type="button" onclick="deleteComment(${id})">delete</button>
-								</div>
-							</div>
+						<div class="comments" id="comments${id}">
+							<!-- 공원 상세보기 댓글 : append.html -->
 						</div>
 					</div>
 
@@ -146,39 +134,64 @@ function appendParkHtml(
 			</div>
 		`
 	$("#parkDetail").append(tempHtml)
+
+	// 공원 상세보기 댓글
+	for (let j = 0; j < comments.length; j++) {
+		let time_post = new Date(comments[j].updated_at)
+		let time_before = time2str(time_post)
+		$(`#comments${id}`).append(`
+			<div class="comment">
+				<div class="comment-username">
+					<p>${comments[j].username}</p>
+				</div>
+				<div class="comment-comment">
+					<p>${comments[j].comment}</p>
+				</div>
+				<div class="comment-upload-time">
+					<p>${time_before}</p>
+				</div>
+				<div class="comment-edit">
+					<button type="button onclick="editComment(${comments[j].id})">
+						edit
+					</button>
+				</div>
+				<div class="comment-delete">
+					<button type="button" onclick="deleteComment(${comments[j].id})">
+						<i class="fa-regular fa-trash-can"></i>
+					</button>
+				</div>
+			</div>
+		`)
+	}
 }
 
 
 // 공원 상세 정보 보기
-function showPark(park_id) {
+window.onload = function showPark(event, park_id = 1) {
 	console.log("공원번호", park_id)
 	$.ajax({
 		type: "GET",
-		url: `http://127.0.0.1:8000/park/${park_id}/`,
+		url: `${backendBaseUrl}park/${park_id}/`,
 		beforeSend: function (xhr) {
 			xhr.setRequestHeader("Content-type", "application/json");
 		},
 		success: function (response) {
-			console.log(response) // response 값은 찍히지만 url이 넘어가지 않고, appendParkHtml 붙질 않음
-
-			for (let i = 0; i < response.length; i++) {
-				appendParkHtml(
-					response[i].park_name,
-					response[i].addr,
-					response[i].check_count,
-					response[i].image,
-					response[i].map,
-					response[i].list_content,
-					response[i].admintel,
-					response[i].main_equip,
-					response[i].template_url,
-					response[i].updated_at,
-					response[i].id,
-					response[i].bookmark,
-					response[i].username,
-					response[i].comment
-				)
-			}
+			appendParkHtml(
+				response.park_name,
+				response.addr,
+				response.check_count,
+				response.image,
+				response.map,
+				response.list_content,
+				response.admintel,
+				response.main_equip,
+				response.template_url,
+				response.updated_at,
+				response.id,
+				response.bookmark,
+				response.username,
+				response.comments,
+			)
 		}
 	})
 }
@@ -214,11 +227,11 @@ function time2str(date) {
 	}
 
 	return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`
-};
+}
 
 
 // 댓글 작성
-async function postComment(park_id) {
+async function postComment(park_id = 1) {
 	const comment = document.getElementById("commentInputComment").value
 	const commentData = {
 		"comment": comment
@@ -241,4 +254,3 @@ async function postComment(park_id) {
 		alert(response.status)
 	}
 }
-

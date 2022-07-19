@@ -22,7 +22,7 @@
 /* 두번째 구간 : 조회수, 주소 */
 .check-count{
     background-color: green;
-    width: 50px;
+    width: 100px;
     height: 30px;
     margin: 0px 50px 10px 0px;
 }
@@ -37,7 +37,7 @@
 /* 세번째 구간 : 이미지, 지도 */
 .park-image-map{
     background-color: pink;
-    height: 400px;
+    height: 300px;
     margin: 50px 0px 50px 0px;
     display: flex;
     justify-content: space-between;
@@ -46,14 +46,19 @@
 .image{
     background-color: green;
     width: 400px;
-    height: 400px;
-    margin: 0px 0px 0px 30px;
+    height: 300px;
+    margin: 0px 0px 0px 30px;   
+}
+
+.img{
+    width: 400px;
+    height: 300px;
 }
 
 .folium-map{
     background-color: green;
     width: 400px;
-    height: 400px;
+    height: 300px;
     margin: 0px 30px 0px 0px;
 }
 
@@ -72,7 +77,7 @@
 
 .admintel{
     background-color: green;
-    height: 100px;
+    height: 30px;
     margin-bottom: 10px;
 }
 

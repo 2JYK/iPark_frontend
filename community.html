@@ -65,13 +65,13 @@
           <img src="./static/css/img/profile.png" alt="mdo" width="40" height="40" class="rounded-circle">
         </a>
         <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-          <li><a class="dropdown-item" href="#">즐겨찾기</a></li>
-          <li><a class="dropdown-item" href="#">내가 쓴 게시물</a></li>
-          <li><a class="dropdown-item" href="./account_management.html">계정관리</a></li>
+          <li id="my-favorite"><a class="dropdown-item" href="#">즐겨찾기</a></li>
+          <li id="my-article"><a class="dropdown-item" href="#">내가 쓴 게시물</a></li>
+          <li id="my-account"><a class="dropdown-item" href="./account_management.html">계정관리</a></li>
           <li>
             <hr class="dropdown-divider">
           </li>
-          <li><a class="dropdown-item" href="#" onclick="logout()">로그아웃</a></li>
+          <li><a id="my-login" class="dropdown-item" href="#" onclick="logout()">로그아웃</a></li>
         </ul>
       </div>
 
@@ -175,7 +175,9 @@
     <thead>
       <tr>
         <th style="width: 15%;">카테고리</th>
-        <th style="width: 45%;">제목</th>
+        <th style="width: 45%; text-align: left;">
+          &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 제목
+        </th>
         <th style="width: 15%;">글쓴이</th>
         <th style="width: 15%;">등록일</th>
         <th style="width: 15%;">조회수</th>

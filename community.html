@@ -12,8 +12,8 @@
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-  
-    <!-- Bootstrap JS -->
+
+  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
     crossorigin="anonymous"></script>
@@ -55,7 +55,7 @@
       <div class="col-3"></div>
 
       <!-- 페이지 이동 버튼 -->
-      <div><a href="#" class="nav-link px-2 link-dark">PARK</a></div>
+      <div><a href="/park_detail.html" class="nav-link px-2 link-dark">PARK</a></div>
       <div><a href="/community.html" class="nav-link px-2 link-dark">COMMUNITY</a></div>
 
       <!-- 프로필 드롭다운 -->
@@ -65,13 +65,13 @@
           <img src="./static/css/img/profile.png" alt="mdo" width="40" height="40" class="rounded-circle">
         </a>
         <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-          <li><a class="dropdown-item" href="#">즐겨찾기</a></li>
-          <li><a class="dropdown-item" href="#">내가 쓴 게시물</a></li>
-          <li><a class="dropdown-item" href="./account_management.html">계정관리</a></li>
+          <li id="my-favorite"><a class="dropdown-item" href="#">즐겨찾기</a></li>
+          <li id="my-article"><a class="dropdown-item" href="#">내가 쓴 게시물</a></li>
+          <li id="my-account"><a class="dropdown-item" href="./account_management.html">계정관리</a></li>
           <li>
             <hr class="dropdown-divider">
           </li>
-          <li><a class="dropdown-item" href="#" onclick="logout()">로그아웃</a></li>
+          <li><a id="my-login" class="dropdown-item" href="#" onclick="logout()">로그아웃</a></li>
         </ul>
       </div>
 
@@ -106,21 +106,30 @@
     </div>
   </nav>
 
-  <!-- 업로드 버튼 -->
-  <button type="button" class="btn btn-primary" id="modal-open">
-    업로드
-  </button>
+  <!-- 커뮤니티 헤더 버튼 -->
+  <div class="community-btns">
+    <span></span>
+    <span></span>
+    <div>
 
-  <div class="btn-group dropend">
-    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-      게시판 고르기
-    </button>
-    <ul class="dropdown-menu">
-      <!-- <li><a class="dropdown-item" href="/community/?id=1" id="1" onclick="getArticles(this.id)">커뮤니티</a></li> -->
-      <li><a class="dropdown-item" href="#" id="1" onclick="getArticles(this.id)">커뮤니티</a></li>
-      <li><a class="dropdown-item" href="#" id="2" onclick="getArticles(this.id)">나눔마켓</a></li>
-      <li><a class="dropdown-item" href="#" id="3" onclick="getArticles(this.id)">내가 쓴 게시글</a></li>
-    </ul>
+      <!-- 업로드 버튼 -->
+      <button type="button" class="btn btn-primary" id="modal-open">
+        업로드
+      </button>
+
+      <!-- 게시판 버튼 -->
+      <div class="btn-group dropend">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          게시판 고르기
+        </button>
+        <ul class="dropdown-menu">
+          <!-- <li><a class="dropdown-item" href="/community/?id=1" id="1" onclick="getArticles(this.id)">커뮤니티</a></li> -->
+          <li><a class="dropdown-item" href="#" id="1" onclick="getArticles(this.id)">커뮤니티</a></li>
+          <li><a class="dropdown-item" href="#" id="2" onclick="getArticles(this.id)">나눔마켓</a></li>
+          <li><a class="dropdown-item" href="#" id="3" onclick="getArticles(this.id)">내가 쓴 게시글</a></li>
+        </ul>
+      </div>
+    </div>
   </div>
 
   <!-- 모달 -->
@@ -161,11 +170,14 @@
     </div>
   </div>
 
+  <!-- 게시글 -->
   <table class="table table-hover">
     <thead>
       <tr>
         <th style="width: 15%;">카테고리</th>
-        <th style="width: 45%;">제목</th>
+        <th style="width: 45%; text-align: left;">
+          &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 제목
+        </th>
         <th style="width: 15%;">글쓴이</th>
         <th style="width: 15%;">등록일</th>
         <th style="width: 15%;">조회수</th>
@@ -175,6 +187,7 @@
     </tbody>
   </table>
 
+  <!-- 검색 창 -->
   <form class="d-flex search" role="search" action="">
     <input class="form-control me-2 d-flex" type="search" id="search" name="search" placeholder="Search"
       aria-label="Search">
@@ -184,6 +197,7 @@
   <br><br>
   <br><br>
 
+  <!-- 푸터 -->
   <footer class="py-3 my-4" style="background-color: #fafbfc;">
     <ul class="nav justify-content-center pb-3 mb-3">
       <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>

@@ -15,9 +15,9 @@ function parseJwt(token) {
       function (c) {
         return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
       }).join(""));
-      return JSON.parse(jsonPayload);
-    }
-  };
+    return JSON.parse(jsonPayload);
+  }
+};
 
 
 // 로그인하지 않은 유저 업로드 금지
@@ -60,18 +60,34 @@ function time2str(date) {
   let time = (today - date) / 1000 / 60  // 분
 
   if (time < 60) {
-      return parseInt(time) + "분 전"
+    return parseInt(time) + "분 전"
   }
   time = time / 60  // 시간
 
   if (time < 24) {
-      return parseInt(time) + "시간 전"
+    return parseInt(time) + "시간 전"
   }
   time = time / 24
 
   if (time < 7) {
-      return parseInt(time) + "일 전"
+    return parseInt(time) + "일 전"
   }
 
   return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`
 };
+
+
+// 로그인 여부 확인 후 드롭박스 변경
+const loginbtn = document.getElementById("my-login")
+const favorite = document.getElementById("my-favorite")
+const article = document.getElementById("my-article")
+const account = document.getElementById("my-account")
+
+if (parseJwt("access") != null) {
+  loginbtn.innerText = "로그아웃"
+} else {
+  favorite.style.display = "none"
+  article.style.display = "none"
+  account.style.display = "none"
+  loginbtn.innerText = "로그인"
+}

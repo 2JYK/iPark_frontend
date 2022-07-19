@@ -26,9 +26,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Song+Myung&display=swap" rel="stylesheet">
 
+  <!-- icon -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
   <!-- Add icon library -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://kit.fontawesome.com/0c764fa4c5.js" crossorigin="anonymous"></script>
+
 
   <title>Park Search</title>
 
@@ -73,7 +78,7 @@
 
       <!-- 공원 목록 토글 -->
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarLight"
-        aria-controls="offcanvasNavbarLight">
+        aria-controls="offcanvasNavbarLight" onclick="showparkList()">
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -85,17 +90,8 @@
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">남산공원</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">어린이대공원</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">서울대공원</a>
-            </li>
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3" id="park-list">
+            <!-- 공원 리스트 : parkListTempHtml -->
           </ul>
         </div>
       </div>

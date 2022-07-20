@@ -45,7 +45,7 @@ function kakaoLogout() {
   }
   Kakao.Auth.logout(function (response) {
     alert("로그아웃 성공")
-    window.location.replace(`${frontend_base_url}login.html`)
+    window.location.replace(`${frontendBaseUrl}login.html`)
   })
 }
 
@@ -56,7 +56,7 @@ function disconnect() {
     url: '/v1/user/unlink',
     success: function (response) {
       alert("회원탈퇴 성공")
-      window.location.replace(`${frontend_base_url}login.html`)
+      window.location.replace(`${frontendBaseUrl}login.html`)
     },
     fail: function (error) {
       alert("회원탈퇴가 이미 처리되었습니다")

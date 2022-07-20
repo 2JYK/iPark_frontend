@@ -4,9 +4,6 @@ TOKEN = {
 	"Authorization": "Bearer " + localStorage.getItem("access"),
 }
 
-const backendBaseUrl = "http://127.0.0.1:8000/"
-const frontendBaseUrl = "http://127.0.0.1:5500/"
-
 
 // 로그인한 user.id 찾는 함수
 function parseJwt(token) {
@@ -202,7 +199,7 @@ $(document).ready(function() {
 						 x["username"],
 						 x["comments"]
 				 )
-	sessionStorage.removeItem("park_info")
+	// sessionStorage.removeItem("park_info")
 })
 
 
@@ -240,13 +237,14 @@ function time2str(date) {
 
 
 // 댓글 작성
-async function postComment() {
+async function postComment(id) {
+	console.log(id)
 	const comment = document.getElementById("commentInputComment").value
 	const commentData = {
 		"comment": comment
 	}
 
-	const response = await fetch(`${backendBaseUrl}park/?park_id=${parkId}/comment/`, {
+	const response = await fetch(`${backendBaseUrl}park/${id}/comment/`, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
@@ -256,11 +254,11 @@ async function postComment() {
 	})
 
 	if (response.status == 200) {
-		window.location.reload();
+		console.log(response)
 		return response
 
 	} else {
-		alert(response.status)
+		alert(response["message"])
 	}
 }
 

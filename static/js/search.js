@@ -49,7 +49,7 @@ function getParks(value) {
 
     $.ajax({
         type: "GET",
-        url: `${backend_base_url}park/option/` + query_param,
+        url: `${backendBaseUrl}park/option/` + query_param,
         data: {},
         success: function (response) {
             for (let i = 0; i < response.length; i++) {
@@ -69,7 +69,7 @@ function getParks(value) {
 function getPopularParks() {
     $.ajax({
         type: "GET",
-        url: `${backend_base_url}park/popularity/`,
+        url: `${backendBaseUrl}park/popularity/`,
         data: {},
         success: function (response) {
             for (let i = 0; i < response.length; i++) {

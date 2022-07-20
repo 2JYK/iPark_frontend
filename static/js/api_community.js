@@ -13,7 +13,7 @@ async function article_post() {
   if (image.length == 1) {
     formData.append("image", image[0])
   }
-  const response = await fetch(`${backend_base_url}community/`, {
+  const response = await fetch(`${backendBaseUrl}community/`, {
     method: "POST",
     body: formData,
     headers: TOKEN
@@ -45,7 +45,7 @@ function getArticles(id) {
 
   $.ajax({
     type: 'GET',
-    url: `${backend_base_url}community/` + query_param,
+    url: `${backendBaseUrl}community/` + query_param,
     data: {},
     headers: token,
     success: function (response) {
@@ -98,7 +98,7 @@ function getSearchArticles() {
   query_param = '?keyword=' + $("#search").val()
   $.ajax({
     type: 'GET',
-    url: `${backend_base_url}community/search/` + query_param,
+    url: `${backendBaseUrl}community/search/` + query_param,
     data: {},
     success: function (response) {
       let postings = response

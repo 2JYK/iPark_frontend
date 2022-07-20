@@ -1,6 +1,6 @@
 // 전역 변수 //
-const backend_base_url = 'http://127.0.0.1:8000/'
-const frontend_base_url = 'http://127.0.0.1:5500/'
+const backendBaseUrl = "http://127.0.0.1:8000/"
+const frontendBaseUrl = "http://127.0.0.1:5500/"
 
 
 // 회원가입 // 
@@ -15,10 +15,10 @@ async function handleSignup() {
     region: document.getElementById("floatingRegion").value
   }
 
-  const response = await fetch(`${backend_base_url}user/`, {
+  const response = await fetch(`${backendBaseUrl}user/`, {
     headers: {
       Accept: "application/json",
-      'Content-type': 'application/json'
+      "Content-type": "application/json"
     },
     method: "POST",
     body: JSON.stringify(signupData)
@@ -27,7 +27,7 @@ async function handleSignup() {
   response_json = await response.json()
 
   if (response.status == 200) {
-    window.location.replace(`${frontend_base_url}login.html`)
+    window.location.replace(`${frontendBaseUrl}login.html`)
   } else {
     alert(response_json["error"]) // phone의 경우, 메세지가 undefined로 출력됨
   }
@@ -41,10 +41,10 @@ async function handleLogin() {
     password: document.getElementById("password").value,
   }
 
-  const response = await fetch(`${backend_base_url}user/api/token/`, {
+  const response = await fetch(`${backendBaseUrl}user/api/token/`, {
     headers: {
       Accept: "application/json",
-      'Content-type': 'application/json'
+      "Content-type": "application/json"
     },
     method: "POST",
     body: JSON.stringify(loginData)
@@ -56,15 +56,15 @@ async function handleLogin() {
     localStorage.setItem("access", response_json.access);
     localStorage.setItem("refresh", response_json.refresh);
 
-    const base64Url = response_json.access.split('.')[1];
-    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    const jsonPayload = decodeURIComponent(atob(base64).split('').map(
+    const base64Url = response_json.access.split(".")[1];
+    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    const jsonPayload = decodeURIComponent(atob(base64).split(").map(
       function (c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-      }).join(''));
+        return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join("));
 
     localStorage.setItem("payload", jsonPayload);
-    window.location.replace(`${frontend_base_url}index.html`)
+    window.location.replace(`${frontendBaseUrl}index.html`)
   } else {
     alert("잘못된 로그인입니다.", response.status)
   }
@@ -83,10 +83,10 @@ async function kakaoSignup() {
     region: document.getElementById("floatingRegion").value
   }
 
-  const response = await fetch(`${backend_base_url}user/`, {
+  const response = await fetch(`${backendBaseUrl}user/`, {
     headers: {
       Accept: "application/json",
-      'Content-type': 'application/json'
+      "Content-type": "application/json"
     },
     method: "POST",
     body: JSON.stringify(signupData)
@@ -95,7 +95,7 @@ async function kakaoSignup() {
   response_json = await response.json()
 
   if (response.status == 200) {
-    window.location.replace(`${frontend_base_url}index.html`)
+    window.location.replace(`${frontendBaseUrl}index.html`)
   } else {
     alert(response_json["error"]) // phone의 경우, 메세지가 undefined로 출력됨
   }
@@ -104,11 +104,11 @@ async function kakaoSignup() {
 
 // 로그아웃 // 
 async function logout() {
-  localStorage.removeItem('payload')
-  localStorage.removeItem('access')
-  localStorage.removeItem('refresh')
+  localStorage.removeItem("payload")
+  localStorage.removeItem("access")
+  localStorage.removeItem("refresh")
 
-  window.location.replace(`${frontend_base_url}login.html`)
+  window.location.replace(`${frontendBaseUrl}login.html`)
 }
 
 
@@ -119,10 +119,10 @@ async function findUsername() {
     phone: document.getElementById("inputPhone").value
   }
 
-  const response = await fetch(`${backend_base_url}user/myid/`, {
+  const response = await fetch(`${backendBaseUrl}user/myid/`, {
     headers: {
       Accept: "application/json",
-      'Content-type': 'application/json'
+      "Content-type": "application/json"
     },
     method: "POST",
     body: JSON.stringify(userData)
@@ -132,7 +132,7 @@ async function findUsername() {
 
   if (response.status == 200) {
     alert("회원님의 아이디는 [ " + response_json.username + " ]입니다.")
-    window.location.replace(`${frontend_base_url}login.html`)
+    window.location.replace(`${frontendBaseUrl}login.html`)
   } else {
     alert(response_json["message"])
   }
@@ -146,10 +146,10 @@ async function verifyUser() {
     email: document.getElementById("inputEmail").value
   }
 
-  const response = await fetch(`${backend_base_url}user/alterpassword/`, {
+  const response = await fetch(`${backendBaseUrl}user/alterpassword/`, {
     headers: {
       Accept: "application/json",
-      'Content-type': 'application/json'
+      "Content-type": "application/json"
     },
     method: "POST",
     body: JSON.stringify(userDataForVerify)
@@ -189,10 +189,10 @@ async function changePassword() {
     rewrite_password: document.getElementById("popup-body-rewrite").value
   }
 
-  const response = await fetch(`${backend_base_url}user/alterpassword/`, {
+  const response = await fetch(`${backendBaseUrl}user/alterpassword/`, {
     headers: {
       Accept: "application/json",
-      'Content-type': 'application/json'
+      "Content-type": "application/json"
     },
     method: "PUT",
     body: JSON.stringify(passwordData)
@@ -202,7 +202,7 @@ async function changePassword() {
 
   if (response.status == 200) {
     alert(response_password["message"])
-    window.location.replace(`${frontend_base_url}login.html`)
+    window.location.replace(`${frontendBaseUrl}login.html`)
   } else {
     alert(response_password["message"])
   }
@@ -216,11 +216,11 @@ async function searchUser() {
     password: document.getElementById("checkPassword").value
   }
 
-  const response = await fetch(`${backend_base_url}user/verification/`, {
+  const response = await fetch(`${backendBaseUrl}user/verification/`, {
     headers: {
       Accept: "application/json",
-      'Content-type': 'application/json',
-      'Authorization': 'Bearer ' + localStorage.getItem("access")
+      "Content-type": "application/json",
+      "Authorization": "Bearer " + localStorage.getItem("access")
     },
     method: "POST",
     body: JSON.stringify(userData)
@@ -271,11 +271,11 @@ async function changeAccount() {
     }
   }
 
-  const response = await fetch(`${backend_base_url}user/`, {
+  const response = await fetch(`${backendBaseUrl}user/`, {
     headers: {
       Accept: "application/json",
-      'Content-type': 'application/json',
-      'Authorization': 'Bearer ' + localStorage.getItem("access")
+      "Content-type": "application/json",
+      "Authorization": "Bearer " + localStorage.getItem("access")
     },
     method: "PUT",
     body: JSON.stringify(changedData)
@@ -285,7 +285,7 @@ async function changeAccount() {
 
   if (response.status == 200) {
     alert("회원정보 수정이 완료되었습니다.")
-    window.location.replace(`${frontend_base_url}index.html`)
+    window.location.replace(`${frontendBaseUrl}index.html`)
   } else {
     alert(account_response.data)
   }
@@ -294,11 +294,11 @@ async function changeAccount() {
 
 // 회원 탈퇴 // 
 async function withdrawal() {
-  const response = await fetch(`${backend_base_url}user/`, {
+  const response = await fetch(`${backendBaseUrl}user/`, {
     headers: {
       Accept: "application/json",
-      'Content-type': 'application/json',
-      'Authorization': 'Bearer ' + localStorage.getItem("access")
+      "Content-type": "application/json",
+      "Authorization": "Bearer " + localStorage.getItem("access")
     },
     method: "DELETE"
   })
@@ -307,11 +307,11 @@ async function withdrawal() {
 
   if (withdrawal_json.status == 200) {
     alert(withdrawal_json["message"])
-    localStorage.removeItem('payload')
-    localStorage.removeItem('access')
-    localStorage.removeItem('refresh')
+    localStorage.removeItem("payload")
+    localStorage.removeItem("access")
+    localStorage.removeItem("refresh")
 
-    window.location.replace(`${frontend_base_url}index.html`)
+    window.location.replace(`${frontendBaseUrl}index.html`)
   } else {
     alert(withdrawal_json["message"])
   }
@@ -321,7 +321,7 @@ async function withdrawal() {
 // 비밀번호 변경 모달
 $(function () {
   $("#modal-open").click(function () {
-    $("#popup").css('display', 'flex').hide().fadeIn();
+    $("#popup").css("display", "flex").hide().fadeIn();
   });
 
   $("#close").click(function () {

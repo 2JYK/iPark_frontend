@@ -30,9 +30,6 @@ if (parseJwt("access") != null) {
 	console.log("로그인을 하지 않은 상태")
 }
 
-const parkParams = new URLSearchParams(window.location.search);
-const parkId = parkParams.get('park_id');
-
 
 // 공원 상세정보 html 구간
 function appendParkHtml(
@@ -171,7 +168,7 @@ function appendParkHtml(
 
 // 공원 상세 정보 보기
 function showParkDetail(id) {
-	console.log(id)
+	$('#parkDetail').empty()
 	$.ajax({
 		type: "GET",
 		url: `${backendBaseUrl}park/${id}/`,
@@ -179,26 +176,34 @@ function showParkDetail(id) {
 			xhr.setRequestHeader("Content-type", "application/json");
 		},
 		success: function (response) {
-			console.log("showPark ", response)
-			appendParkHtml(
-				response.park_name,
-				response.addr,
-				response.check_count,
-				response.image,
-				response.map,
-				response.list_content,
-				response.admintel,
-				response.main_equip,
-				response.template_url,
-				response.updated_at,
-				response.id,
-				response.bookmark,
-				response.username,
-				response.comments,
-			)
+			sessionStorage.setItem("park_info", JSON.stringify(response))
+			window.location.replace(`${frontendBaseUrl}park_detail.html`);
 		}
 	})
 } showParkDetail()
+
+
+// 공원 정보를 sessionStorage에 담아 detail 페이지에서 보여주고 sessionStorage 삭제하기
+$(document).ready(function() {
+	var x = JSON.parse(sessionStorage.getItem("park_info"))
+	appendParkHtml(
+						 x["park_name"],
+						 x["addr"],
+						 x["check_count"],
+						 x["image"],
+						 x["map"],
+						 x["list_content"],
+						 x["admintel"],
+						 x["main_equip"],
+						 x["template_url"],
+						 x["updated_at"],
+						 x["id"],
+						 x["bookmark"],
+						 x["username"],
+						 x["comments"]
+				 )
+	sessionStorage.removeItem("park_info")
+})
 
 
 // 로그인하지 않은 유저 댓글 작성 금지
@@ -264,7 +269,7 @@ async function postComment() {
 function parkListHtml(id, park_name) {
 	parkListTempHtml = `
 			<li class="nav-item">
-				<button clbuttonss="nav-link active" aria-current="page" style="border: none; background-color: transparent;" onclick="showParkDetail(${id})">${park_name}</button>
+				<button class="nav-link active" aria-current="page" style="border: none; background-color: transparent;" onclick="showParkDetail(${id})">${park_name}</button>
 				<hr/>
 			</li>`
 	$("#park-list").append(parkListTempHtml)
@@ -277,7 +282,6 @@ function showparkList() {
 		type: "GET",
 		url: `${backendBaseUrl}park/`,
 		success: function (response) {
-			console.log(response)
 			for (let i = 0; i < response.length; i++) {
 				parkListHtml(
 					response[i].id,

@@ -52,7 +52,6 @@ function getParks(value) {
         url: `${backend_base_url}park/option/` + query_param,
         data: {},
         success: function (response) {
-            console.log(response)
             for (let i = 0; i < response.length; i++) {
                 get_parks_html(
                     response[i].id,

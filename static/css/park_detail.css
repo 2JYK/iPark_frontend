@@ -1,33 +1,33 @@
 /* 첫번째 구간 : 이름, 북마크 */
-.park-name-mark{
+.park-name-mark {
     background-color: pink;
     height: 100px;
     margin: 60px 0px 10px 0px;
     display: flex;
 }
 
-.park-name{
+.park-name {
     background-color: green;
     width: 100px;
     height: 100px;
     justify-content: center;
 }
 
-.bookmark{
+.bookmark {
     background-color: green;
     width: 100px;
     height: 100px;
 }
 
 /* 두번째 구간 : 조회수, 주소 */
-.check-count{
+.check-count {
     background-color: green;
     width: 100px;
     height: 30px;
     margin: 0px 50px 10px 0px;
 }
 
-.addr{
+.addr {
     background-color: green;
     width: 300px;
     height: 30px;
@@ -35,7 +35,7 @@
 }
 
 /* 세번째 구간 : 이미지, 지도 */
-.park-image-map{
+.park-image-map {
     background-color: pink;
     height: 300px;
     margin: 50px 0px 50px 0px;
@@ -43,51 +43,49 @@
     justify-content: space-between;
 }
 
-.image{
-    background-color: green;
+.image {
     width: 400px;
     height: 300px;
-    margin: 0px 0px 0px 30px;   
+    margin: 0px 0px 0px 30px;
 }
 
-.img{
+.img {
     width: 400px;
     height: 300px;
 }
 
-.folium-map{
-    background-color: green;
+.map {
     width: 400px;
     height: 300px;
     margin: 0px 30px 0px 0px;
 }
 
 /* 네번째 구간 : 설명 */
-.park-description{
+.park-description {
     background-color: pink;
     height: 320px;
     margin: 0px 0px 10px 0px;
 }
 
-.list-content{
+.list-content {
     background-color: green;
     height: 100px;
     margin-bottom: 10px;
 }
 
-.admintel{
+.admintel {
     background-color: green;
     height: 30px;
     margin-bottom: 10px;
 }
 
-.main-equip{
+.main-equip {
     background-color: green;
     height: 100px;
 }
 
 /* 다섯째 구간 : url, 정보업데이트시간 */
-.park-url-updated{
+.park-url-updated {
     background-color: pink;
     height: 30px;
     margin: 0px 0px 10px 0px;
@@ -95,14 +93,14 @@
     justify-content: space-between;
 }
 
-.template-url{
+.template-url {
     background-color: green;
     width: 400px;
     height: 30px;
     margin: 0px 0px 0px 30px;
 }
 
-.updated-at{
+.updated-at {
     background-color: green;
     width: 100px;
     height: 30px;
@@ -110,7 +108,7 @@
 }
 
 /* 공원 댓글창 */
-.park-comment{
+.park-comment {
     background-color: skyblue;
     width: 600px;
     height: 545px;
@@ -118,21 +116,21 @@
 }
 
 /* 댓글 10개 보여주는 공간 */
-.comment-box{
+.comment-box {
     background-color: green;
     width: 580px;
     height: 465px;
     margin: 0px auto 0px auto;
 }
 
-.comments{
+.comments {
     background-color: lightgreen;
     width: 580px;
     height: 465px;
     padding-top: 15px;
 }
 
-.comment{
+.comment {
     background-color: yellow;
     width: 580px;
     height: 30px;
@@ -141,59 +139,53 @@
     overflow: hidden;
 }
 
-.comment-username{
+.comment-username {
     background-color: white;
     margin-right: 10px;
 }
-			
-.comment-comment{
-    background-color: white;
-    margin-right: 10px;
-}
-				
-.comment-upload-time{
-    background-color: white;
-    margin-right: 10px;
-}
-			
-/* 댓글 수정 삭제 버튼 */
-.comment-edit{
-    margin-right: 10px;
-}
-		
-.comment-delete{
 
+.comment-comment {
+    background-color: white;
+    margin-right: 10px;
 }
+
+.comment-upload-time {
+    background-color: white;
+    margin-right: 10px;
+}
+
+/* 댓글 수정 삭제 버튼 */
+.comment-edit {
+    margin-right: 10px;
+}
+
+.comment-delete {}
 
 /* 댓글 페이지 네이션 */
-.comment-pagenation{
+.comment-pagenation {
     background-color: gray;
     height: 30px;
     margin-bottom: 10px;
     display: flex;
     justify-content: center;
 }
-				
-.comment-pagenation-left-button{
 
-}
+.comment-pagenation-left-button {}
 
-.comment-pagenation-num{
+.comment-pagenation-num {
     margin: 0px 10px 0px 10px;
 }
 
-.comment-pagenation-right-button{
-
-}
+.comment-pagenation-right-button {}
 
 /* 댓글 입력창 */
-.comment-input-box{
+.comment-input-box {
     background-color: gray;
     display: flex;
-        margin: 0px 10px 0px 10px;
+    margin: 0px 10px 0px 10px;
 }
-	
-.comment-input-comment input{
+
+.comment-input-comment input {
     background-color: white;
     width: 510px;
     height: 30px;
@@ -201,6 +193,4 @@
     overflow: hidden;
 }
 
-.comment-input-button{
-
-}
+.comment-input-button {}

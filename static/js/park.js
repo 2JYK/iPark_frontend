@@ -1,40 +1,40 @@
 // 전역 변수
 TOKEN = {
-	"Access-Control-Allow-Origin": "*",
-	"Authorization": "Bearer " + localStorage.getItem("access"),
+  "Access-Control-Allow-Origin": "*",
+  "Authorization": "Bearer " + localStorage.getItem("access"),
 }
 
 
 // 로그인한 user.id 찾는 함수
 function parseJwt(token) {
-	var base64Url = localStorage.getItem("access")
-	if (base64Url != null) {
-		base64Url = base64Url.split(".")[1]
-		var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/")
-		var jsonPayload = decodeURIComponent(window.atob(base64).split("").map(
-			function (c) {
-				return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2)
-			}).join(""))
-		return JSON.parse(jsonPayload)
-	}
+  var base64Url = localStorage.getItem("access")
+  if (base64Url != null) {
+    base64Url = base64Url.split(".")[1]
+    var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/")
+    var jsonPayload = decodeURIComponent(window.atob(base64).split("").map(
+      function (c) {
+        return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2)
+      }).join(""))
+    return JSON.parse(jsonPayload)
+  }
 }
 
 
 // 접속 유저 id 확인
 if (parseJwt("access") != null) {
-	console.log("접속한 user_id : ", parseJwt("access").user_id)
+  console.log("접속한 user_id : ", parseJwt("access").user_id)
 } else {
-	console.log("로그인을 하지 않은 상태")
+  console.log("로그인을 하지 않은 상태")
 }
 
 
 // 공원 상세정보 html 구간
 function appendParkHtml(
-	park_name, addr, check_count, image, map,
-	list_content, admintel, main_equip, template_url, updated_at,
-	id, bookmark, username, comments) {
+  park_name, addr, check_count, image, latitude, longitude,
+  list_content, admintel, main_equip, template_url, updated_at,
+  id, bookmark, username, comments) {
 
-	parkDetailTempHtml = `
+  parkDetailTempHtml = `
 			<!-- 첫번째 구간 : 이름, 북마크 -->
 			<div class="park-name-mark">
 				<div>
@@ -62,8 +62,7 @@ function appendParkHtml(
 						<img class="img" src="${image}" alt="${park_name}"/>
 					</div>
 				</div>
-				<div>
-					<div class="folium-map" id="map_cc438948e3d2987d6030cf0c93c897b8">${map}</div>
+          <div class="map" id="map"></div>
 				</div>
 			</div>
 
@@ -130,13 +129,13 @@ function appendParkHtml(
 				</div>
 			</div>
 		`
-	$("#parkDetail").append(parkDetailTempHtml)
+  $("#parkDetail").append(parkDetailTempHtml)
 
-	// 공원 상세보기 댓글
-	for (let j = 0; j < comments.length; j++) {
-		let time_post = new Date(comments[j].updated_at)
-		let time_before = time2str(time_post)
-		$(`#comments${id}`).append(`
+  // 공원 상세보기 댓글
+  for (let j = 0; j < comments.length; j++) {
+    let time_post = new Date(comments[j].updated_at)
+    let time_before = time2str(time_post)
+    $(`#comments${id}`).append(`
 			<div class="comment">
 				<div class="comment-username">
 					<p>${comments[j].username}</p>
@@ -159,134 +158,146 @@ function appendParkHtml(
 				</div>
 			</div>
 		`)
-	}
+  }
 }
 
 
 // 공원 상세 정보 보기
 function showParkDetail(id) {
-	$("#parkDetail").empty()
-	$.ajax({
-		type: "GET",
-		url: `${backendBaseUrl}park/${id}/`,
-		beforeSend: function (xhr) {
-			xhr.setRequestHeader("Content-type", "application/json");
-		},
-		success: function (response) {
-			sessionStorage.setItem("park_info", JSON.stringify(response))
-			window.location.replace(`${frontendBaseUrl}park_detail.html`);
-		}
-	})
-} showParkDetail()
+  $('#parkDetail').empty()
+  $.ajax({
+    type: "GET",
+    url: `${backendBaseUrl}park/${id}/`,
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader("Content-type", "application/json");
+    },
+    success: function (response) {
+      sessionStorage.setItem("park_info", JSON.stringify(response))
+      window.location.replace(`${frontendBaseUrl}park_detail.html`);
+    }
+  })
+}
+// showParkDetail()
 
 
 // 공원 정보를 sessionStorage에 담아 detail 페이지에서 보여주고 sessionStorage 삭제하기
-$(document).ready(function() {
-	var x = JSON.parse(sessionStorage.getItem("park_info"))
-	appendParkHtml(
-						 x["park_name"],
-						 x["addr"],
-						 x["check_count"],
-						 x["image"],
-						 x["map"],
-						 x["list_content"],
-						 x["admintel"],
-						 x["main_equip"],
-						 x["template_url"],
-						 x["updated_at"],
-						 x["id"],
-						 x["bookmark"],
-						 x["username"],
-						 x["comments"]
-				 )
-	// sessionStorage.removeItem("park_info")
+$(document).ready(function () {
+  var x = JSON.parse(sessionStorage.getItem("park_info"))
+  appendParkHtml(
+    x["park_name"],
+    x["addr"],
+    x["check_count"],
+    x["image"],
+    x["latitude"],
+    x["longitude"],
+    x["list_content"],
+    x["admintel"],
+    x["main_equip"],
+    x["template_url"],
+    x["updated_at"],
+    x["id"],
+    x["bookmark"],
+    x["username"],
+    x["comments"]
+  )
+
+  var map = new naver.maps.Map('map', {
+    center: new naver.maps.LatLng(x["latitude"], x["longitude"]),
+    zoom: 15
+  });
+
+  var marker = new naver.maps.Marker({
+    position: new naver.maps.LatLng(x["latitude"], x["longitude"]),
+    map: map
+  });
+  // sessionStorage.removeItem("park_info")
 })
 
 
 // 로그인하지 않은 유저 댓글 작성 금지
 const commentButton = document.getElementById("commentButton")
 commentButton.addEventListener("click", () => {
-	if (parseJwt("access") == null) {
-		alert("로그인을 해주세요.")
-		location.reload();
-	}
+  if (parseJwt("access") == null) {
+    alert("로그인을 해주세요.")
+    location.reload();
+  }
 })
 
 
 // 댓글 시간 나타내기 
 function time2str(date) {
-	let today = new Date()
-	let time = (today - date) / 1000 / 60  // 분
+  let today = new Date()
+  let time = (today - date) / 1000 / 60  // 분
 
-	if (time < 60) {
-		return parseInt(time) + "분 전"
-	}
-	time = time / 60  // 시간
+  if (time < 60) {
+    return parseInt(time) + "분 전"
+  }
+  time = time / 60  // 시간
 
-	if (time < 24) {
-		return parseInt(time) + "시간 전"
-	}
-	time = time / 24
+  if (time < 24) {
+    return parseInt(time) + "시간 전"
+  }
+  time = time / 24
 
-	if (time < 7) {
-		return parseInt(time) + "일 전"
-	}
+  if (time < 7) {
+    return parseInt(time) + "일 전"
+  }
 
-	return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`
+  return `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일`
 }
 
 
 // 댓글 작성
 async function postComment(id) {
-	console.log(id)
-	const comment = document.getElementById("commentInputComment").value
-	const commentData = {
-		"comment": comment
-	}
+  console.log(id)
+  const comment = document.getElementById("commentInputComment").value
+  const commentData = {
+    "comment": comment
+  }
 
-	const response = await fetch(`${backendBaseUrl}park/${id}/comment/`, {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-			"Authorization": "Bearer " + localStorage.getItem("access")
-		},
-		body: JSON.stringify(commentData)
-	})
+  const response = await fetch(`${backendBaseUrl}park/${id}/comment/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + localStorage.getItem("access")
+    },
+    body: JSON.stringify(commentData)
+  })
 
-	if (response.status == 200) {
-		console.log(response)
-		return response
+  if (response.status == 200) {
+    console.log(response)
+    return response
 
-	} else {
-		alert(response["message"])
-	}
+  } else {
+    alert(response["message"])
+  }
 }
 
 
 // 토글에 공원 목록 붙이기 //
 function parkListHtml(id, park_name) {
-	parkListTempHtml = `
+  parkListTempHtml = `
 			<li class="nav-item">
 				<button class="nav-link active" aria-current="page" style="border: none; background-color: transparent;" onclick="showParkDetail(${id})">${park_name}</button>
 				<hr/>
 			</li>`
-	$("#park-list").append(parkListTempHtml)
+  $("#park-list").append(parkListTempHtml)
 }
 
 
 // 토글 공원 List 로드 //
 function showparkList() {
-	$.ajax({
-		type: "GET",
-		url: `${backendBaseUrl}park/`,
-		success: function (response) {
-			for (let i = 0; i < response.length; i++) {
-				parkListHtml(
-					response[i].id,
-					response[i].park_name
-				)
-			}
-		}
-	})
+  $.ajax({
+    type: "GET",
+    url: `${backendBaseUrl}park/`,
+    success: function (response) {
+      for (let i = 0; i < response.length; i++) {
+        parkListHtml(
+          response[i].id,
+          response[i].park_name
+        )
+      }
+    }
+  })
 }
 showparkList()

@@ -54,7 +54,7 @@ $(function () {
 });
 
 
-// 댓글 시간 나타내기 //
+// 댓글 시간 나타내기
 function time2str(date) {
   let today = new Date()
   let time = (today - date) / 1000 / 60  // 분

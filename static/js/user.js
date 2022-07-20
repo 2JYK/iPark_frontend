@@ -58,10 +58,10 @@ async function handleLogin() {
 
     const base64Url = response_json.access.split(".")[1];
     const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-    const jsonPayload = decodeURIComponent(atob(base64).split(").map(
+    const jsonPayload = decodeURIComponent(atob(base64).split("").map(
       function (c) {
         return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-      }).join("));
+      }).join(""));
 
     localStorage.setItem("payload", jsonPayload);
     window.location.replace(`${frontendBaseUrl}index.html`)

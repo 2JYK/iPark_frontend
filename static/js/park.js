@@ -165,7 +165,7 @@ function appendParkHtml(
 
 // 공원 상세 정보 보기
 function showParkDetail(id) {
-	$('#parkDetail').empty()
+	$("#parkDetail").empty()
 	$.ajax({
 		type: "GET",
 		url: `${backendBaseUrl}park/${id}/`,

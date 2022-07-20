@@ -30,9 +30,9 @@ if (parseJwt("access") != null) {
 
 // 공원 상세정보 html 구간
 function appendParkHtml(
-  park_name, addr, check_count, image, latitude, longitude,
-  list_content, admintel, main_equip, template_url, updated_at,
-  id, bookmark, username, comments) {
+	park_name, addr, check_count, image,
+	list_content, admintel, main_equip, template_url, updated_at,
+	id, bookmark, user, comments) {
 
   parkDetailTempHtml = `
 			<!-- 첫번째 구간 : 이름, 북마크 -->
@@ -57,13 +57,10 @@ function appendParkHtml(
 
 			<!-- 세번째 구간 : 이미지, 지도-->
 			<div class="park-image-map">
-				<div>
-					<div class="image">
-						<img class="img" src="${image}" alt="${park_name}"/>
-					</div>
+				<div class="image">
+					<img class="img" src="${image}" alt="${park_name}"/>
 				</div>
-          <div class="map" id="map"></div>
-				</div>
+				<div class="map" id="map"></div>
 			</div>
 
 			<!-- 네번째 구간 : 설명  -->
@@ -138,7 +135,7 @@ function appendParkHtml(
     $(`#comments${id}`).append(`
 			<div class="comment">
 				<div class="comment-username">
-					<p>${comments[j].username}</p>
+					<p>${comments[j].user}</p>
 				</div>
 				<div class="comment-comment">
 					<p>${comments[j].comment}</p>
@@ -177,7 +174,6 @@ function showParkDetail(id) {
     }
   })
 }
-// showParkDetail()
 
 
 // 공원 정보를 sessionStorage에 담아 detail 페이지에서 보여주고 sessionStorage 삭제하기
@@ -214,16 +210,6 @@ $(document).ready(function () {
 })
 
 
-// 로그인하지 않은 유저 댓글 작성 금지
-const commentButton = document.getElementById("commentButton")
-commentButton.addEventListener("click", () => {
-  if (parseJwt("access") == null) {
-    alert("로그인을 해주세요.")
-    location.reload();
-  }
-})
-
-
 // 댓글 시간 나타내기 
 function time2str(date) {
   let today = new Date()
@@ -249,28 +235,30 @@ function time2str(date) {
 
 // 댓글 작성
 async function postComment(id) {
-  console.log(id)
-  const comment = document.getElementById("commentInputComment").value
-  const commentData = {
-    "comment": comment
-  }
+	const comment = document.getElementById("commentInputComment").value
+	const commentData = {
+		"park": id,
+		"comment": comment
+	}
+	
+	const response = await fetch(`${backendBaseUrl}park/${id}/comment/`, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+			"Authorization": "Bearer " + localStorage.getItem("access")
+		},
+		body: JSON.stringify(commentData)
+	})
 
-  const response = await fetch(`${backendBaseUrl}park/${id}/comment/`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer " + localStorage.getItem("access")
-    },
-    body: JSON.stringify(commentData)
-  })
-
-  if (response.status == 200) {
-    console.log(response)
-    return response
-
-  } else {
-    alert(response["message"])
-  }
+	if (parseJwt("access") == null) {
+		alert("로그인이 필요합니다", response["message"])
+	} else { 
+			if (response.status == 200) {
+			showParkDetail(id)
+		} else {
+			alert("내용을 입력해주세요")
+		}
+	}
 }
 
 
@@ -278,10 +266,12 @@ async function postComment(id) {
 function parkListHtml(id, park_name) {
   parkListTempHtml = `
 			<li class="nav-item">
-				<button class="nav-link active" aria-current="page" style="border: none; background-color: transparent;" onclick="showParkDetail(${id})">${park_name}</button>
+				<button class="nav-link active" aria-current="page" 
+				style="border: none; background-color: transparent;" 
+				onclick="showParkDetail(${id})">${park_name}</button>
 				<hr/>
 			</li>`
-  $("#park-list").append(parkListTempHtml)
+  $("#parkList").append(parkListTempHtml)
 }
 
 

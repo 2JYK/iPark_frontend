@@ -112,9 +112,9 @@
         </button>
         <ul class="dropdown-menu">
           <!-- <li><a class="dropdown-item" href="/community/?id=1" id="1" onclick="getArticles(this.id)">커뮤니티</a></li> -->
-          <li><a class="dropdown-item" href="#" id="1" onclick="getArticles(this.id)">커뮤니티</a></li>
-          <li><a class="dropdown-item" href="#" id="2" onclick="getArticles(this.id)">나눔마켓</a></li>
-          <li><a class="dropdown-item" href="#" id="3" onclick="getArticles(this.id)">내가 쓴 게시글</a></li>
+          <li><a class="dropdown-item" href="#" id="1" onclick="get_pagination_list(this.id)">커뮤니티</a></li>
+          <li><a class="dropdown-item" href="#" id="2" onclick="get_pagination_list(this.id)">나눔마켓</a></li>
+          <li><a class="dropdown-item" href="#" id="3" onclick="get_pagination_list(this.id)">내가 쓴 게시글</a></li>
         </ul>
       </div>
     </div>
@@ -171,20 +171,29 @@
         <th style="width: 15%;">조회수</th>
       </tr>
     </thead>
-    <tbody id="tbody" class="table-group-divider">
-    </tbody>
-  </table>
 
+    <tbody id="tbody" class="tbody table-group-divider">
+      <!-- api_get_append -->
+    </tbody>
+    
+  </table>
+  
   <!-- 검색 창 -->
   <form class="d-flex search" role="search" action="">
     <input class="form-control me-2 d-flex" type="search" id="search" name="search" placeholder="Search"
-      aria-label="Search">
+    aria-label="Search">
     <button class="btn btn-outline-success" onclick="getSearchArticles()" type="button">Search</button>
   </form>
-
+  
+  <!-- 페이지 버튼 -->
+  <div class="page">
+    <div class="previous"></div> <!-- 이전 -->
+    <div class="next"></div>  <!-- 다음 -->
+  </div>
+  
   <br><br>
   <br><br>
-
+  
   <!-- 푸터 -->
   <footer class="py-3 my-4" style="background-color: #fafbfc;">
     <ul class="nav justify-content-center pb-3 mb-3">
@@ -197,7 +206,7 @@
     <p class="text-center text-muted">© 2022 IPark made by 2JYK</p>
     <p class="text-center"><img src="./static/css/img/park-logo.png" alt="mdo" width="150" height="70"></p>
   </footer>
-
+  
   <script src="/static/js/user.js"></script>
   <script src="/static/js/community.js"></script>
   <script src="/static/js/api_community.js"></script>

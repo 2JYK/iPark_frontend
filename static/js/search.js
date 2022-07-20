@@ -64,7 +64,6 @@ function getParks(value) {
         }
     });
 }
-getParks()
 
 
 // 인기가 많은 공원 순 나열 //

@@ -6,19 +6,31 @@ function kakaoLogin() {
   if (Kakao.isInitialized() == false) {
     Kakao.init("c414e5945e36386b3b383a30f1b31271")
   }
+
   Kakao.Auth.login({
-    success: function () {
+    success: function (kakaokey) {
+      console.log("kakaokey : ", kakaokey)
+
       Kakao.API.request({
         url: "/v2/user/me",
         success: function (response) {
-          console.log("성공", response)
           const kakaoUsername = response.id
           const kakaoEmail = response.kakao_account.email
 
           kakaoLogin.style.visibility = "hidden"
           userInfo.style.visibility = "visible"
           makeLoginForm(kakaoUsername, kakaoEmail)
-          
+
+          localStorage.setItem("access", kakaokey.access_token);
+          localStorage.setItem("refresh", kakaokey.refresh_token);
+
+          const base64Url = kakaokey.id_token.split(".")[1];
+          const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+          const jsonPayload = decodeURIComponent(atob(base64).split("").map(
+            function (c) {
+              return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+            }).join(""));
+          localStorage.setItem("payload", jsonPayload);
         },
         fail: function (error) {
           if (!Kakao.Auth.getAccessToken()) {
@@ -40,11 +52,11 @@ function kakaoLogin() {
 
 // 로그아웃 //
 function kakaoLogout() {
-  if (!Kakao.Auth.getAccessToken()) {
-    console.log("토큰확인", Kakao.Auth.getAccessToken())
-  }
-  Kakao.Auth.logout(function (response) {
-    alert("로그아웃 성공")
+  Kakao.Auth.logout(function () {
+    localStorage.removeItem("payload")
+    localStorage.removeItem("access")
+    localStorage.removeItem("refresh")
+
     window.location.replace(`${frontendBaseUrl}login.html`)
   })
 }
@@ -55,7 +67,10 @@ function disconnect() {
   Kakao.API.request({
     url: '/v1/user/unlink',
     success: function (response) {
-      alert("회원탈퇴 성공")
+      localStorage.removeItem("payload")
+      localStorage.removeItem("access")
+      localStorage.removeItem("refresh")
+
       window.location.replace(`${frontendBaseUrl}login.html`)
     },
     fail: function (error) {

@@ -195,16 +195,41 @@ $(document).ready(function () {
     x["comments"]
   )
 
-  var map = new naver.maps.Map('map', {
-    center: new naver.maps.LatLng(x["latitude"], x["longitude"]),
-    zoom: 15
+  var park = new naver.maps.LatLng(x["latitude"], x["longitude"]),
+    map = new naver.maps.Map('map', {
+      center: park.destinationPoint(0, 500),
+      zoom: 15
+    }),
+    marker = new naver.maps.Marker({
+      map: map,
+      position: park
+    });
+
+  var contentString = [
+    '<div class="iw_inner">',
+    '   <h5>' + x["park_name"] + '</h5>',
+    '</div>'
+  ].join('');
+
+  var infowindow = new naver.maps.InfoWindow({
+    content: contentString,
+    maxWidth: 350,
+    backgroundColor: "#eee",
+    borderColor: "#2db400",
+    borderWidth: 3,
+    anchorSize: new naver.maps.Size(30, 30),
+    anchorSkew: true,
+    anchorColor: "#eee",
+    pixelOffset: new naver.maps.Point(20, -20)
   });
 
-  var marker = new naver.maps.Marker({
-    position: new naver.maps.LatLng(x["latitude"], x["longitude"]),
-    map: map
+  naver.maps.Event.addListener(marker, "click", function (e) {
+    if (infowindow.getMap()) {
+      infowindow.close();
+    } else {
+      infowindow.open(map, marker);
+    }
   });
-
   // sessionStorage.removeItem("park_info")
 })
 

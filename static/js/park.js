@@ -208,6 +208,8 @@ $(document).ready(function () {
   var contentString = [
     '<div class="iw_inner">',
     '   <h5>' + x["park_name"] + '</h5>',
+    '   <a href="https://map.naver.com/v5/search/' + x["park_name"] +
+    '?c=14134663.0407597,4519566.6272867,15,0,0,0,dh">길찾기</a>',
     '</div>'
   ].join('');
 

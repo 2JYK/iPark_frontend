@@ -133,23 +133,23 @@ function appendParkHtml(
     let time_post = new Date(comments[j].updated_at)
     let time_before = time2str(time_post)
     $(`#comments${id}`).append(`
-			<div class="comment">
+			<div class="comment" id="comment(${id})">
 				<div class="comment-username">
 					<p>${comments[j].user}</p>
 				</div>
-				<div class="comment-comment">
+				<div class="comment-comment" id="commentContent">
 					<p>${comments[j].comment}</p>
 				</div>
 				<div class="comment-upload-time">
 					<p>${time_before}</p>
 				</div>
 				<div class="comment-edit">
-					<button type="button onclick="editComment(${comments[j].id})">
+					<button type="button" id="updateButton" onclick="editComment(${id})">
 						edit
 					</button>
 				</div>
 				<div class="comment-delete">
-					<button type="button" onclick="deleteComment(${comments[j].id})">
+					<button type="button" onclick="deleteComment(${id})">
 						<i class="fa-regular fa-trash-can"></i>
 					</button>
 				</div>
@@ -159,9 +159,78 @@ function appendParkHtml(
 }
 
 
+// 댓글 수정버튼 -> 수정 상태로 변경 //
+function editComment(id) {
+  const content = document.getElementById("commentContent")
+  content.style.visibility = "hidden"
+  const inputContent = document.createElement("textarea")
+  inputContent.setAttribute("id", "inputContent")
+  inputContent.innerText = content.innerHTML
+
+  const body = document.getElementById(`comment(${id})`)
+  body.insertBefore(inputContent, content)
+
+  const updateButton = document.getElementById("updateButton")
+  updateButton.setAttribute("onclick", "updateComment()")
+}
+
+
+// 댓글 업데이트 정보 전달 //
+async function updateComment() {
+  var inputContent = document.getElementById("inputContent")
+  const comment = await patchComment(id, inputContent.value);
+  inputContent.remove() 
+  const content = document.getElementById("commentContent")
+  content.style.visibility = "visible"
+  updateButton.setAttribute("onclick", "editComment()") 
+}
+
+
+// 댓글 수정 -> 수정 내용 적용 //
+async function patchComment(id, content) {
+  const commentData = {
+      "content": content
+  }
+
+  const response = await fetch(`${backendBaseUrl}park/${park_id}/comment/${comment_id}/`, {
+      method: "PUT",
+      headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + localStorage.getItem("access")
+      },
+      body: JSON.stringify(commentData)
+  }
+  )
+
+  if (response.status == 200) {
+      // window.location.reload();
+  } else {
+      alert("댓글 작성자만 수정 가능합니다.")
+  }
+}
+
+
+// 댓글 삭제 //
+async function deleteComment(id) {
+  const response = await fetch(`${backendBaseUrl}park/${park_id}/comment/${comment_id}/`, {
+    method: "DELETE",
+    headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + localStorage.getItem("access")
+      }
+  })
+
+  if (response.status == 200) {
+      // window.location.reload();
+  } else {
+      alert("댓글 작성자만 삭제 가능합니다.")
+  }
+}
+
+
 // 공원 상세 정보 보기
 function showParkDetail(id) {
-  $('#parkDetail').empty()
+  $("#parkDetail").empty()
   $.ajax({
     type: "GET",
     url: `${backendBaseUrl}park/${id}/`,
@@ -170,7 +239,8 @@ function showParkDetail(id) {
     },
     success: function (response) {
       sessionStorage.setItem("park_info", JSON.stringify(response))
-      window.location.replace(`${frontendBaseUrl}park_detail.html`);
+      window.location.replace(`${frontendBaseUrl}park_detail.html?id=${id}`);
+
     }
   })
 }

@@ -16,3 +16,8 @@ body {
 .link-dark {
   font-weight: bold;
 }
+
+footer a {
+  text-decoration: none;
+  color: rgba(var(--bs-body-color-rgb),.75)!important;
+}

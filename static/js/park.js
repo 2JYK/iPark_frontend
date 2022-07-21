@@ -30,9 +30,9 @@ if (parseJwt("access") != null) {
 
 // 공원 상세정보 html 구간
 function appendParkHtml(
-	park_name, addr, check_count, image,
-	list_content, admintel, main_equip, template_url, updated_at,
-	id, bookmark, user, comments) {
+  park_name, addr, check_count, image,
+  list_content, admintel, main_equip, template_url, updated_at,
+  id, bookmark, user, comments) {
 
   parkDetailTempHtml = `
 			<!-- 첫번째 구간 : 이름, 북마크 -->
@@ -184,8 +184,6 @@ $(document).ready(function () {
     x["addr"],
     x["check_count"],
     x["image"],
-    x["latitude"],
-    x["longitude"],
     x["list_content"],
     x["admintel"],
     x["main_equip"],
@@ -206,6 +204,7 @@ $(document).ready(function () {
     position: new naver.maps.LatLng(x["latitude"], x["longitude"]),
     map: map
   });
+
   // sessionStorage.removeItem("park_info")
 })
 
@@ -235,30 +234,30 @@ function time2str(date) {
 
 // 댓글 작성
 async function postComment(id) {
-	const comment = document.getElementById("commentInputComment").value
-	const commentData = {
-		"park": id,
-		"comment": comment
-	}
-	
-	const response = await fetch(`${backendBaseUrl}park/${id}/comment/`, {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-			"Authorization": "Bearer " + localStorage.getItem("access")
-		},
-		body: JSON.stringify(commentData)
-	})
+  const comment = document.getElementById("commentInputComment").value
+  const commentData = {
+    "park": id,
+    "comment": comment
+  }
 
-	if (parseJwt("access") == null) {
-		alert("로그인이 필요합니다", response["message"])
-	} else { 
-			if (response.status == 200) {
-			showParkDetail(id)
-		} else {
-			alert("내용을 입력해주세요")
-		}
-	}
+  const response = await fetch(`${backendBaseUrl}park/${id}/comment/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + localStorage.getItem("access")
+    },
+    body: JSON.stringify(commentData)
+  })
+
+  if (parseJwt("access") == null) {
+    alert("로그인이 필요합니다", response["message"])
+  } else {
+    if (response.status == 200) {
+      showParkDetail(id)
+    } else {
+      alert("내용을 입력해주세요")
+    }
+  }
 }
 
 

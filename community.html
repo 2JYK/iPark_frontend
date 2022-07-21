@@ -159,60 +159,70 @@
   </div>
 
   <!-- 게시글 -->
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th style="width: 15%;">카테고리</th>
-        <th style="width: 45%; text-align: left;">
-          &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 제목
-        </th>
-        <th style="width: 15%;">글쓴이</th>
-        <th style="width: 15%;">등록일</th>
-        <th style="width: 15%;">조회수</th>
-      </tr>
-    </thead>
+  <div class="airtlce-wrap">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th style="width: 15%;">카테고리</th>
+          <th style="width: 45%; text-align: left;">
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 제목
+          </th>
+          <th style="width: 15%;">글쓴이</th>
+          <th style="width: 15%;">등록일</th>
+          <th style="width: 15%;">조회수</th>
+        </tr>
+      </thead>
 
-    <tbody id="tbody" class="tbody table-group-divider">
-      <!-- api_get_append -->
-    </tbody>
-    
-  </table>
-  
-  <!-- 검색 창 -->
-  <form class="d-flex search" role="search" action="">
-    <input class="form-control me-2 d-flex" type="search" id="search" name="search" placeholder="Search"
-    aria-label="Search">
-    <button class="btn btn-outline-success" onclick="getSearchArticles()" type="button">Search</button>
-  </form>
-  
-  <!-- 페이지 버튼 -->
-  <div class="page">
-    <div class="previous"></div> <!-- 이전 -->
-    
-    <div class="next"></div>  <!-- 다음 -->
+      <tbody id="tbody" class="tbody table-group-divider">
+        <!-- api_get_append -->
+      </tbody>
+
+    </table>
+
+    <!-- 검색 창 -->
+    <form class="d-flex search" role="search" action="">
+      <input class="form-control me-2 d-flex" type="search" id="search" name="search" placeholder="Search"
+        aria-label="Search">
+      <button class="btn btn-outline-success" onclick="getSearchArticles()" type="button">Search</button>
+    </form>
+
+    <!-- 페이지 버튼 -->
+    <div class="page">
+      <div class="previous"></div> <!-- 이전 -->
+      <div class="hr"></div> <!-- 구분선 -->
+      <div class="next"></div> <!-- 다음 -->
+    </div>
   </div>
-  
+
   <br><br>
   <br><br>
-  
-  <!-- 푸터 -->
+
+  <!-- footer 시작 -->
   <footer class="py-3 my-4" style="background-color: #fafbfc;">
+    <p class="text-center"><img src="./static/css/img/park-logo.png" alt="mdo" width="150" height="70"></p>
     <ul class="nav justify-content-center pb-3 mb-3">
       <li class="nav-item"><a href="/" class="nav-link px-2 text-muted">Home</a></li>
       <li class="nav-item"><a href="/park_detail.html" class="nav-link px-2 text-muted">Park</a></li>
       <li class="nav-item"><a href="/community.html" class="nav-link px-2 text-muted">Community</a></li>
-      <li class="nav-item"><a href="https://github.com/2JYK/" class="nav-link px-2 text-muted">About 2JYK</a></li>
+      <li class="nav-item"><a href="mailto:rla04722@naver.com?subject= i Pa|rK 문의" target="_blank" class="nav-link px-2 text-muted">Questions</a></li>
     </ul>
-    <!-- <p class="text-center text-muted">© 2022 Company, Inc</p> -->
-    <p class="text-center text-muted">© 2022 IPark made by 2JYK</p>
-    <p class="text-center"><img src="./static/css/img/park-logo.png" alt="mdo" width="150" height="70"></p>
+    <p class="text-center text-muted">Developers | 
+    <a href="https://github.com/GyeongSuKim1" target="_blank" rel="noopener noreferrer"> 김경수 </a>,  
+    <a href="https://github.com/nicesugi" target="_blank" rel="noopener noreferrer"> 윤슬기 </a>,  
+    <a href="https://github.com/nikevapormax" target="_blank" rel="noopener noreferrer"> 정대근 </a>,  
+    <a href="https://github.com/juhyun1011" target="_blank" rel="noopener noreferrer"> 정주현 </a>
+    </p>
+    <p class="text-center text-muted">Source |
+      <a href="https://github.com/2JYK" target="_blank">https://github.com/2JYK</a>
+    </p>
+    <p class="text-center text-muted">© IPark made by 2JYK</p>
   </footer>
-  
+
   <script src="/static/js/user.js"></script>
   <script src="/static/js/community.js"></script>
   <script src="/static/js/api_community.js"></script>
-  <script src="../static/js/api_park.js"></script>
-  <script src="../static/js/park.js"></script>
+  <!-- <script src="../static/js/api_park.js"></script>
+  <script src="../static/js/park.js"></script> -->
 
 </body>
 

@@ -127,6 +127,9 @@ async function get_pagination_list(id, url) {
   // 다음버튼 생성할 div 선택
   const next_div = document.querySelector(".next")
   next_div.innerHTML = "" // div 내부 초기화
+  // 구분선 생성할 div 선택
+  const hr_div = document.querySelector(".hr")
+  hr_div.innerHTML = "" // 내부 초기화
 
   // 이전 버튼 생성
   if (response_json["previous"] != null) {
@@ -138,9 +141,12 @@ async function get_pagination_list(id, url) {
   }
 
   // 구분선 생성
+  if (response_json["previous"] !=null && response_json["next"] != null){
   const hr = document.createElement("span")
-  hr.innerHTML = ` | `
-  next_div.append(hr)
+  hr.className= "hr";
+  hr.innerHTML = " | "
+  hr_div.append(hr)
+  }
 
   // 다음 버튼 생성
   if (response_json["next"] != null) {

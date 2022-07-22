@@ -38,14 +38,27 @@ function popular_parks_html(id, park_name, image, check_count) {
 }
 
 
-// 쿼리 파라미터를 통한 공원 정보 get //
-function getParks(value) {
-  $("#parks").empty()
+// 옵션값을 여러 개 받음 //
+var values = document.querySelectorAll("#park-option a")
+var valueList = []
+values.forEach(value => {
+  value.addEventListener("click", () => {
+    valueList.push(value.title)
+  })
+})
 
-  let query_param = ""
-  if (value != undefined) {
-    query_param = "?param=" + value
+
+// 쿼리 파라미터를 통한 공원 정보 get //
+function getParks() {
+  $("#parks").empty()
+  console.log(valueList)
+  let query_param = "?"
+  for (let i = 0; i < valueList.length; i++) {
+    if (valueList[i] != undefined) {
+      query_param += "param=" + valueList[i] + "&"
+    }
   }
+  valueList = []
 
   $.ajax({
     type: "GET",

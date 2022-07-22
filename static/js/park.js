@@ -137,14 +137,14 @@ function appendParkHtml(
 				<div class="comment-username">
 					<p>${comments[j].user}</p>
 				</div>
-				<div class="comment-comment" id="commentContent">
-					<p>${comments[j].comment}</p>
-				</div>
+				<div class="comment-comment">
+          <p id="commentContent(${comments[j].id})">${comments[j].comment}</p>
+        </div>
 				<div class="comment-upload-time">
 					<p>${time_before}</p>
 				</div>
 				<div class="comment-edit">
-					<button type="button" id="updateButton" onclick="editComment(${comments[j].id})">
+					<button type="button" id="updateButton(${comments[j].id})" onclick="editComment(${comments[j].id})">
 						edit
 					</button>
 				</div>
@@ -160,17 +160,30 @@ function appendParkHtml(
 
 
 // 댓글 수정버튼 -> 수정 상태로 변경 //
-function editComment(id) {
-  const content = document.getElementById("commentContent")
-  content.style.visibility = "hidden"
+function editComment(comment_id) {
+  // edit 버튼 누르면 submit으로, submit 상태에서는 edit 버튼으로 설정
+  // const editButton = document.getElementById(`updateButton(${comment_id})`)
+  // if (editButton.innerText == 'edit') {
+  //   editButton.innerText= 'submit'
+  //   editButton.setAttribute('onclick', 'putComment()')
+  // } else {
+  //   editButton.innerText= 'edit'
+  //   editButton.setAttribute('onclick', 'editComment()')
+  // }
+
+  const comment = document.getElementById(`commentContent(${comment_id})`)
+  comment.style.visibility = "hidden"
+  console.log("Before >> ", comment)
+
   const inputContent = document.createElement("textarea")
   inputContent.setAttribute("id", "inputContent")
-  inputContent.innerText = content.innerHTML
-
-  const body = document.getElementById(`comment(${id})`)
+  inputContent.innerText = comment.innerHTML
+  console.log("After >> ", inputContent)
+  
+  const body = document.getElementById(`commentContent(${comment_id})`)
   body.insertBefore(inputContent, content)
 
-  const updateButton = document.getElementById("updateButton")
+  const updateButton = document.getElementById(`updateButton(${comment_id})`)
   updateButton.setAttribute("onclick", "updateComment()")
 }
 
@@ -178,7 +191,8 @@ function editComment(id) {
 // 댓글 업데이트 정보 전달 //
 async function updateComment() {
   var inputContent = document.getElementById("inputContent")
-  const comment = await patchComment(id, inputContent.value);
+  const comment = await putComment(id, inputContent.value);
+  console.log("comment>>>>",comment)
   inputContent.remove() 
   const content = document.getElementById("commentContent")
   content.style.visibility = "visible"
@@ -187,12 +201,12 @@ async function updateComment() {
 
 
 // 댓글 수정 -> 수정 내용 적용 //
-async function patchComment(id, content) {
+async function putComment(content, comment_id) {
   const commentData = {
       "content": content
   }
 
-  const response = await fetch(`${backendBaseUrl}park/${park_id}/comment/${comment_id}/`, {
+  const response = await fetch(`${backendBaseUrl}park/comment/${comment_id}/`, {
       method: "PUT",
       headers: {
           "Content-Type": "application/json",
@@ -203,7 +217,7 @@ async function patchComment(id, content) {
   )
 
   if (response.status == 200) {
-      // window.location.reload();
+    alert("성공")
   } else {
       alert("댓글 작성자만 수정 가능합니다.")
   }
@@ -224,8 +238,8 @@ async function deleteComment(comment_id) {
     alert("로그인이 필요합니다", response["message"])
   } else {
     if (response.status == 200) {
-      showParkDetail(id)
-      // location.reload(true);
+      alert("성공")
+      // showParkDetail(id)
     } else {
       alert("본인이 작성한 댓글만 삭제가 가능합니다")
     }

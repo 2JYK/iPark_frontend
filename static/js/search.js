@@ -47,22 +47,38 @@ values.forEach(value => {
   })
 })
 
+var zones = document.querySelectorAll("#park-zone a")
+var zoneList = []
+zones.forEach(zone => {
+  zone.addEventListener("click", () => {
+    valueList.push(zone.title)
+  })
+})
+
 
 // 쿼리 파라미터를 통한 공원 정보 get //
 function getParks() {
   $("#parks").empty()
-  console.log(valueList)
-  let query_param = "?"
+
+  let option_param = ""
   for (let i = 0; i < valueList.length; i++) {
     if (valueList[i] != undefined) {
-      query_param += "param=" + valueList[i] + "&"
+      option_param += "param=" + valueList[i] + "&"
     }
   }
+  let zone_param = ""
+  for (let i = 0; i < zoneList.length; i++) {
+    if (zoneList[i] != undefined) {
+      zone_param += "param=" + zoneList[i] + "&"
+    }
+  }
+
   valueList = []
+  zoneList = []
 
   $.ajax({
     type: "GET",
-    url: `${backendBaseUrl}park/option/` + query_param,
+    url: `${backendBaseUrl}park/option/` + "?" + option_param + zone_param,
     data: {},
     success: function (response) {
       for (let i = 0; i < response.length; i++) {

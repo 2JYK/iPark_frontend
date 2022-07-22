@@ -39,7 +39,7 @@
 
 <body>
 
-  <!-- 상단바시작 -->
+  <!-- 헤더 : 상단바시작 -->
   <nav class="navbar" aria-label="Light offcanvas navbar">
     <div class="container-fluid">
       <a href="/index.html"><img src="./static/css/img/park-logo.png" alt="mdo" width="150" height="60"></a>
@@ -94,6 +94,7 @@
     </div>
   </nav>
 
+  <!-- 바디 : 게시글, 댓글 -->
   <div class="container-fluid">
     <div class="wrap">
       <div class="tag">
@@ -122,21 +123,18 @@
 
       <div class="recommend">추천하기 <i onclick="" class="fa fa-thumbs-up"></i></div>
 
-
-
       <div class="article">
-
 
         <!-- 게시글 사진 -->
         <div class="article-image">
-          <img id="article_image" src="" alt="mdo" width="600" height="500">
+          <img id="article_image" alt="not found" width="600" height="500">
         </div>
+
         <!-- 게시글 내용 -->
         <div class="article-content">
           <span id="article_content"></span>
         </div>
       </div>
-
 
       <!-- 댓글 시작 -->
       <h4 class="comment-start">Comment</h4>
@@ -152,12 +150,13 @@
             4시간 전
           </div>
         </div>
+
         <!-- 댓글 입력 -->
         <div class="comment-input">
           <div class="input-group input-group-sm">
             <input type="text" class="form-control" placeholder="댓글을 입력해주세요..." aria-label="Recipient's username"
-              aria-describedby="button-addon2">
-            <button class="btn btn-outline-secondary" type="button" id="button-addon2">게시</button>
+              aria-describedby="button-addon2" id="comment_post">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="article_comment_post()">게시</button>
           </div>
         </div>
       </div>

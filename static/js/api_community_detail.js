@@ -1,3 +1,4 @@
+// 게시글 상세페이지
 const receivedData = parseInt(location.href.split('?')[1]);
 
 async function getArticlesDetail(receivedData) {
@@ -16,15 +17,12 @@ async function getArticlesDetail(receivedData) {
     headers: token
   })
   response_json = await response.json()
-  console.log(response_json)
   if (response_json.tag == 1) {
     tag_name = "커뮤니티"
   } else {
     tag_name = "나눔마켓"
   }
-
-  console.log(response_json.check_count)
-
+  console.log("User ID :", response_json.id)
   const article_tag = document.getElementById("article_tag")
   article_tag.innerText = tag_name
 
@@ -44,9 +42,48 @@ async function getArticlesDetail(receivedData) {
   const article_content = document.getElementById("article_content")
   article_content.innerText = response_json.content
 
+  if (response_json.image != null) {
   const article_image = document.getElementById("article_image")
   article_image.setAttribute("src", `http://127.0.0.1:8000${response_json.image}`)
-
-
+} else {
+  const article_image = document.getElementById("article_image")
+  article_image.remove();
+}
+  const comment_post = document.getElementById("button-addon2")
+  comment_post.setAttribute("onclick", `article_comment_post(${response_json.id})`)
 } getArticlesDetail(receivedData)
 
+
+// 댓글 POST
+async function article_comment_post(article_id) {
+  const comment = document.getElementById("comment_post").value
+  const commentData = {
+    // "user": parseJwt("access").user_id,
+    // "article": article_id,
+    "comment": comment
+  }
+  console.log("ㅡCommentㅡ", commentData)
+  if (parseJwt("access") != undefined){
+    token = {
+      Accept: "application/json",
+      'content-type': "application/json",
+      "Access-Control-Allow-Origin": "*",
+      "Authorization": "Bearer " + localStorage.getItem("access"),
+    }
+  } else {
+    token = {}
+    alert("로그인 유저만 댓글 작성이 가능합니다.")
+  } 
+
+  const response = await fetch(`${backendBaseUrl}community/${article_id}/comment/`, {
+    method: "POST",
+    body: JSON.stringify(commentData),
+    headers: token,
+  })
+  response_json = await response.json()
+  if (response.status == 200) {
+    alert(response_json["message"])
+  } else if (response.status == 400) {
+    alert(response_json["message"])
+  }
+}

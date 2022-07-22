@@ -47,9 +47,10 @@ async function getArticlesDetail(receivedData) {
   article_image.setAttribute("src", `http://127.0.0.1:8000${response_json.image}`)
 } else {
   const article_image = document.getElementById("article_image")
-  article_image.remove();
+  article_image.remove(); 
 }
-  const comment_post = document.getElementById("button-addon2")
+
+  const comment_post = document.getElementById("button-addon2") // 댓글 onclick안에 article id 값 넣어주기 위해 사용
   comment_post.setAttribute("onclick", `article_comment_post(${response_json.id})`)
 } getArticlesDetail(receivedData)
 
@@ -63,6 +64,8 @@ async function article_comment_post(article_id) {
     "comment": comment
   }
   console.log("ㅡCommentㅡ", commentData)
+
+  // 로그인 유저와 비로그인 유저 판별
   if (parseJwt("access") != undefined){
     token = {
       Accept: "application/json",

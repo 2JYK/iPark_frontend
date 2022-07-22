@@ -97,24 +97,24 @@
   <div class="container-fluid">
     <div class="wrap">
       <div class="tag">
-        <h2>커뮤니티</h2>
+        <h2 id="article_tag"></h2>
       </div>
 
       <!-- 게시글 제목 -->
       <div class="article-title">
         <hr class="title-hr">
-        <h4>7월 21일 저녁에 같이 한강에서 치맥하실 분 찾습니다 ~!~!</h4>
+        <h4 id="article_title"></h4>
         <div class="info">
           <div class="info-name">
-            <span>juhyun4567</span> <span> | </span> <span>2022.07.20</span>
+            <span id="article_user"></span> <span> | </span> <span id="article_date"></span>
           </div>
           <div class="info-count">
             <span>추천 수 :</span>
             <span>00</span>
             <span>조회 수 :</span>
-            <span>00</span>
+            <span id="view_count"></span>
             <span>댓글 수 :</span>
-            <span>00</span>
+            <span id="comment_count">00</span>
           </div>
         </div>
         <hr>
@@ -129,13 +129,11 @@
 
         <!-- 게시글 사진 -->
         <div class="article-image">
-          <img src="./static/css/img/carousel-park.jpg" alt="mdo" width="600" height="500">
+          <img id="article_image" src="" alt="mdo" width="600" height="500">
         </div>
         <!-- 게시글 내용 -->
         <div class="article-content">
-          <span>안녕하세요! 저 이상한 사람 아니구요.<br> 같이 한강에서 여유롭게 치맥하실 분은 아래 번호로 연락주세요.<br>
-            010-1234-5678
-          </span>
+          <span id="article_content"></span>
         </div>
       </div>
 
@@ -193,6 +191,7 @@
     <script src="/static/js/user.js"></script>
     <script src="/static/js/community.js"></script>
     <script src="/static/js/api_community.js"></script>
+    <script src="/static/js/api_community_detail.js"></script>
     <!-- <script src="../static/js/api_park.js"></script>
     <script src="../static/js/park.js"></script> -->
 

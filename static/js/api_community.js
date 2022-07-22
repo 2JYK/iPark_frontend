@@ -78,6 +78,7 @@ async function get_pagination_list(id, url) {
     headers: token
   })
   response_json = await response.json()
+  console.log(response_json)
 
   // 게시물 뿌리는 div 선택
   const tbody = document.querySelector(".tbody");
@@ -113,7 +114,9 @@ async function get_pagination_list(id, url) {
     // innerHTML로 원하는 형태로 데이터 출력
     article.innerHTML = `
       <td class="${tag_color}" style="color: ${tag_color};">${tag_name}</td>
-      <td style="text-align: left;">${data.title}</td>
+      <td style="text-align: left;"> <a class="article-title" href="/community_detail.html?${data.id}">
+      ${data.title}
+      </a> </td>
       <td>${data.username}</td>
       <td>${time_before}</td>
       <td>${data.check_count}</td>
@@ -141,11 +144,11 @@ async function get_pagination_list(id, url) {
   }
 
   // 구분선 생성
-  if (response_json["previous"] !=null && response_json["next"] != null){
-  const hr = document.createElement("span")
-  hr.className= "hr";
-  hr.innerHTML = " | "
-  hr_div.append(hr)
+  if (response_json["previous"] != null && response_json["next"] != null) {
+    const hr = document.createElement("span")
+    hr.className = "hr";
+    hr.innerHTML = " | "
+    hr_div.append(hr)
   }
 
   // 다음 버튼 생성

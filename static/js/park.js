@@ -133,7 +133,7 @@ function appendParkHtml(
     let time_post = new Date(comments[j].updated_at)
     let time_before = time2str(time_post)
     $(`#comments${id}`).append(`
-			<div class="comment" id="comment(${id})">
+			<div class="comment" id="comment(${comments[j].id})">
 				<div class="comment-username">
 					<p>${comments[j].user}</p>
 				</div>
@@ -144,12 +144,12 @@ function appendParkHtml(
 					<p>${time_before}</p>
 				</div>
 				<div class="comment-edit">
-					<button type="button" id="updateButton" onclick="editComment(${id})">
+					<button type="button" id="updateButton" onclick="editComment(${comments[j].id})">
 						edit
 					</button>
 				</div>
 				<div class="comment-delete">
-					<button type="button" onclick="deleteComment(${id})">
+					<button type="button" onclick="deleteComment(${comments[j].id})">
 						<i class="fa-regular fa-trash-can"></i>
 					</button>
 				</div>
@@ -211,8 +211,8 @@ async function patchComment(id, content) {
 
 
 // 댓글 삭제 //
-async function deleteComment(id) {
-  const response = await fetch(`${backendBaseUrl}park/${park_id}/comment/${comment_id}/`, {
+async function deleteComment(comment_id) {
+  const response = await fetch(`${backendBaseUrl}park/comment/${comment_id}/`, {
     method: "DELETE",
     headers: {
           "Content-Type": "application/json",
@@ -220,10 +220,15 @@ async function deleteComment(id) {
       }
   })
 
-  if (response.status == 200) {
-      // window.location.reload();
+  if (parseJwt("access") == null) {
+    alert("로그인이 필요합니다", response["message"])
   } else {
-      alert("댓글 작성자만 삭제 가능합니다.")
+    if (response.status == 200) {
+      showParkDetail(id)
+      // location.reload(true);
+    } else {
+      alert("본인이 작성한 댓글만 삭제가 가능합니다")
+    }
   }
 }
 
@@ -239,7 +244,7 @@ function showParkDetail(id) {
     },
     success: function (response) {
       sessionStorage.setItem("park_info", JSON.stringify(response))
-      window.location.replace(`${frontendBaseUrl}park_detail.html?id=${id}`);
+      window.location.replace(`${frontendBaseUrl}park_detail.html`);
 
     }
   })

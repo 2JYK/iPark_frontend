@@ -93,6 +93,11 @@ body {
   height: 500px;
 }
 
+.article-title {
+  text-decoration: none;
+  color: black;
+}
+
 .search {
   margin: auto;
   margin-top: 30px;

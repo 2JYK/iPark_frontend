@@ -137,8 +137,8 @@ function appendParkHtml(
 				<div class="comment-username">
 					<p>${comments[j].user}</p>
 				</div>
-				<div class="comment-comment">
-          <p id="commentContent(${comments[j].id})">${comments[j].comment}</p>
+				<div class="comment-comment" id="commentContent(${comments[j].id})">
+          ${comments[j].comment}
         </div>
 				<div class="comment-upload-time">
 					<p>${time_before}</p>
@@ -161,65 +161,51 @@ function appendParkHtml(
 
 // 댓글 수정버튼 -> 수정 상태로 변경 //
 function editComment(comment_id) {
-  // edit 버튼 누르면 submit으로, submit 상태에서는 edit 버튼으로 설정
-  // const editButton = document.getElementById(`updateButton(${comment_id})`)
-  // if (editButton.innerText == 'edit') {
-  //   editButton.innerText= 'submit'
-  //   editButton.setAttribute('onclick', 'putComment()')
-  // } else {
-  //   editButton.innerText= 'edit'
-  //   editButton.setAttribute('onclick', 'editComment()')
-  // }
+  const editButton = document.getElementById(`updateButton(${comment_id})`)
 
-  const comment = document.getElementById(`commentContent(${comment_id})`)
-  comment.style.visibility = "hidden"
-  console.log("Before >> ", comment)
+  if (editButton.innerText == "edit") {
+    editButton.innerText = "submit"
+    editButton.setAttribute("onclick", `putComment(${comment_id})`)
 
-  const inputContent = document.createElement("textarea")
-  inputContent.setAttribute("id", "inputContent")
-  inputContent.innerText = comment.innerHTML
-  console.log("After >> ", inputContent)
-  
-  const body = document.getElementById(`commentContent(${comment_id})`)
-  body.insertBefore(inputContent, content)
+    const comment = document.getElementById(`commentContent(${comment_id})`)
+    comment.innerHTML = `<textarea id="inputContent(${comment_id})">${comment.innerText}</textarea>`
 
-  const updateButton = document.getElementById(`updateButton(${comment_id})`)
-  updateButton.setAttribute("onclick", "updateComment()")
+    const updateButton = document.getElementById(`updateComment(${comment_id})`)
+    updateButton.setAttribute("onclick", `putComment(${comment_id})`)
+
+  } else {
+    editButton.innerText = "edit"
+    editButton.setAttribute("onclick", `editComment(${comment_id})`)
+  }
 }
 
 
-// 댓글 업데이트 정보 전달 //
-async function updateComment() {
-  var inputContent = document.getElementById("inputContent")
-  const comment = await putComment(id, inputContent.value);
-  console.log("comment>>>>",comment)
-  inputContent.remove() 
-  const content = document.getElementById("commentContent")
-  content.style.visibility = "visible"
-  updateButton.setAttribute("onclick", "editComment()") 
-}
+// 댓글 수정
+async function putComment(comment_id) {
+  const inputContent = document.getElementById(`inputContent(${comment_id})`)
 
-
-// 댓글 수정 -> 수정 내용 적용 //
-async function putComment(content, comment_id) {
   const commentData = {
-      "content": content
+    "comment": inputContent.value
   }
 
   const response = await fetch(`${backendBaseUrl}park/comment/${comment_id}/`, {
-      method: "PUT",
-      headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer " + localStorage.getItem("access")
-      },
-      body: JSON.stringify(commentData)
-  }
-  )
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + localStorage.getItem("access")
+    },
+    body: JSON.stringify(commentData)
+  })
 
   if (response.status == 200) {
-    alert("성공")
+    const comment = document.getElementById(`commentContent(${comment_id})`)
+    comment.innerHTML = `
+      <div class="comment-comment" id="commentContent(${comment_id})">
+        ${inputContent.value}
+      </div>`
+
   } else {
-      alert("댓글 작성자만 수정 가능합니다.")
+    alert(response["message"])
   }
 }
 
@@ -229,17 +215,19 @@ async function deleteComment(comment_id) {
   const response = await fetch(`${backendBaseUrl}park/comment/${comment_id}/`, {
     method: "DELETE",
     headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer " + localStorage.getItem("access")
-      }
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + localStorage.getItem("access")
+    }
   })
 
   if (parseJwt("access") == null) {
     alert("로그인이 필요합니다", response["message"])
+
   } else {
     if (response.status == 200) {
-      alert("성공")
-      // showParkDetail(id)
+      const comment = document.getElementById(`comment(${comment_id})`)
+      comment.style.display = "none"
+
     } else {
       alert("본인이 작성한 댓글만 삭제가 가능합니다")
     }
@@ -254,11 +242,11 @@ function showParkDetail(id) {
     type: "GET",
     url: `${backendBaseUrl}park/${id}/`,
     beforeSend: function (xhr) {
-      xhr.setRequestHeader("Content-type", "application/json");
+      xhr.setRequestHeader("Content-type", "application/json")
     },
     success: function (response) {
       sessionStorage.setItem("park_info", JSON.stringify(response))
-      window.location.replace(`${frontendBaseUrl}park_detail.html`);
+      window.location.replace(`${frontendBaseUrl}park_detail.html`)
 
     }
   })

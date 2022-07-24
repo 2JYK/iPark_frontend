@@ -63,25 +63,26 @@
 /* 네번째 구간 : 설명 */
 .park-description {
     background-color: pink;
-    height: 320px;
+    height: 520px;
     margin: 0px 0px 10px 0px;
 }
 
 .list-content {
     background-color: green;
-    height: 100px;
-    margin-bottom: 10px;
-}
-
-.admintel {
-    background-color: green;
-    height: 30px;
+    height: 250px;
     margin-bottom: 10px;
 }
 
 .main-equip {
     background-color: green;
-    height: 100px;
+    height: 220px;
+    margin-bottom: 10px;
+}
+
+.admintel {
+    background-color: red;
+    height: 30px;
+
 }
 
 /* 다섯째 구간 : url, 정보업데이트시간 */
@@ -170,13 +171,14 @@
     justify-content: center;
 }
 
-.comment-pagenation-left-button {}
-
 .comment-pagenation-num {
     margin: 0px 10px 0px 10px;
 }
 
-.comment-pagenation-right-button {}
+.cur-page {
+    color: blue;
+    font-weight: 900;
+}
 
 /* 댓글 입력창 */
 .comment-input-box {

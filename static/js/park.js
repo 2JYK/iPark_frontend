@@ -68,11 +68,11 @@ function appendParkHtml(
 					<div class="list-content">${list_content}</div>
 				</div>
 				<div>
-					<div class="admintel">${admintel}</div>
-				</div>
-				<div>
 					<div class="main-equip">${main_equip}</div>
 				</div>
+        <div>
+          <div class="admintel">${admintel}</div>
+        </div>
 			</div>
 
 			<!-- 다섯째 구간 : url, 정보업데이트시간 -->

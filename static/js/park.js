@@ -4,6 +4,13 @@ TOKEN = {
   "Authorization": "Bearer " + localStorage.getItem("access"),
 }
 
+// document.ready 페이지네이션 함수 실행시 주는 인자값에 사용함
+const urlParams = new URLSearchParams(window.location.search)
+let urlParkCommentPageNum = urlParams.get("park_comment_page")
+if (!urlParkCommentPageNum) {
+  urlParkCommentPageNum = 1
+}
+
 
 // 로그인한 user.id 찾는 함수
 function parseJwt(token) {
@@ -17,14 +24,6 @@ function parseJwt(token) {
       }).join(""))
     return JSON.parse(jsonPayload)
   }
-}
-
-
-// 접속 유저 id 확인
-if (parseJwt("access") != null) {
-  console.log("접속한 user_id : ", parseJwt("access").user_id)
-} else {
-  console.log("로그인을 하지 않은 상태")
 }
 
 
@@ -98,19 +97,19 @@ function appendParkHtml(
 
 					<!-- 댓글 페이지 네이션 -->
 					<div class="comment-pagenation">
-						<div class="comment-pagenation-left-button">
+						<!-- <div class="comment-pagenation-left-button">
 							<button type="button">
 								<
 							</button>
+						</div> -->
+						<div class="comment-pagenation-num" id="comment-pagenation-num">
+              <!-- 페이지 네이션 번호 구간 -->
 						</div>
-						<div class="comment-pagenation-num">
-							<p>1 2 3</p>
-						</div>
-						<div class="comment-pagenation-right-button">
+						<!-- <div class="comment-pagenation-right-button">
 							<button type="button">
 								>
 							</button>
-						</div>
+						</div> -->
 					</div>
 
 					<!-- 댓글 입력창 -->
@@ -235,8 +234,12 @@ async function deleteComment(comment_id) {
 }
 
 
-// 공원 상세 정보 보기
-function showParkDetail(id) {
+// 공원 상세 정보 보기 //
+function showParkDetail(id, urlParkCommentPageNum) {
+  if (!urlParkCommentPageNum) {
+    urlParkCommentPageNum = 1
+  }
+
   $("#parkDetail").empty()
   $.ajax({
     type: "GET",
@@ -244,16 +247,41 @@ function showParkDetail(id) {
     beforeSend: function (xhr) {
       xhr.setRequestHeader("Content-type", "application/json")
     },
+    data: { id, urlParkCommentPageNum },
+
     success: function (response) {
       sessionStorage.setItem("park_info", JSON.stringify(response))
-      window.location.replace(`${frontendBaseUrl}park_detail.html`)
-
+      if (urlParkCommentPageNum) {
+        window.location.replace(`${frontendBaseUrl}park_detail.html?park_comment_page=${urlParkCommentPageNum}`)
+      } else {
+        window.location.replace(`${frontendBaseUrl}park_detail.html`)
+      }
     }
   })
 }
 
 
-// 공원 정보를 sessionStorage에 담아 detail 페이지에서 보여주고 sessionStorage 삭제하기
+// 댓글 페이지네이션 //
+function pagenation(commentTotalCount, pagenationSize, listSize, park_comment_page, id) {
+  let totalPageSize = Math.ceil(commentTotalCount / listSize)
+  let firstBottomNumber = park_comment_page - park_comment_page % pagenationSize + 1
+  let lastBottomNumber = park_comment_page - park_comment_page % pagenationSize + pagenationSize
+
+  if (lastBottomNumber > totalPageSize) lastBottomNumber = totalPageSize
+  const pagenationNum = document.querySelector(".comment-pagenation-num")
+
+  for (let i = firstBottomNumber; i <= lastBottomNumber; i++) {
+    if (i == park_comment_page) {
+      pagenationNum.innerHTML += `<span class="comment-pagenation-num cur-page" id="park_comment_page(${i})" onclick="showParkDetail('${id}', '${i}')"> ${i} </span>`
+
+    } else {
+      pagenationNum.innerHTML += `<span class="comment-pagenation-num" id="park_comment_page(${i})" onclick="showParkDetail('${id}', '${i}')"> ${i} </span>`
+    }
+  }
+}
+
+
+// 공원 상세 페이지 로드시 세션스토리지에 담은 park_info 값 html에 적용 //
 $(document).ready(function () {
   var x = JSON.parse(sessionStorage.getItem("park_info"))
   appendParkHtml(
@@ -269,8 +297,12 @@ $(document).ready(function () {
     x["id"],
     x["bookmark"],
     x["username"],
-    x["comments"]
+    x["comments"],
+    x["comment_total_count"]
   )
+
+  // 공원 댓글 페이지네이션 함수 실행 //
+  pagenation(x["comment_total_count"], 10, 10, urlParkCommentPageNum, x["id"])
 
   var park = new naver.maps.LatLng(x["latitude"], x["longitude"]),
     map = new naver.maps.Map('map', {

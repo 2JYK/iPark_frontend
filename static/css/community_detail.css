@@ -53,24 +53,43 @@
 
 .comment-start {
   margin-top: 5%;
-  margin-left: 10%;
+  margin-left: 8%;
   border-bottom: 1px solid;
 }
 
 .comment {
   display: flex;
-  flex-direction: column;
-  margin: auto;
-  align-items: center;
   width: 100%;
   height: 100%;
-  margin-top: 5%;
+  margin: 2% 0%;
+  padding-left: 10%;
+  /* border-bottom: 1px solid gray; */
+}
+
+.username {
+  flex: 1;
+  font-weight: bolder;
+}
+
+.user-comment{
+  flex: 5;
+}
+
+.time {
+  flex: 1;
+  color: gray;
+  font-size: 14px;
+}
+
+.time span{
+  padding-left: 8%;
+  color: rgb(206, 40, 40);
+  cursor: pointer;
 }
 
 .comment-output {
   display: flex;
   width: 60%;
-
 }
 
 .input-group {

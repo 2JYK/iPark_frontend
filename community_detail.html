@@ -95,7 +95,6 @@
   </nav>
 
   <!-- 바디 : 게시글, 댓글 -->
-  <div class="container-fluid">
     <div class="wrap">
       <div class="tag">
         <h2 id="article_tag"></h2>
@@ -137,33 +136,29 @@
       </div>
 
       <!-- 댓글 시작 -->
-      <h4 class="comment-start">Comment</h4>
-      <div class="comment">
-        <div class="comment-output">
-          <div class="col-2">
-            <span>juhyun4567</span>
-          </div>
-          <div class="col-8">
-            오 저도 정말 가고 싶네요!!!
-          </div>
-          <div class="col-2">
-            4시간 전
-          </div>
+      <h3 class="comment-start">Comment</h3>
+
+      <div class="comment-wrap">
+        <div class="comment">
+          <li>
+          <div class="username">Username</div>
+          <div class="user-comment">Commnet</div>
+          <div class="time">DateTime</div>
+        </li>
         </div>
+      </div>
 
         <!-- 댓글 입력 -->
         <div class="comment-input">
-          <div class="input-group input-group-sm">
-            <input type="text" class="form-control" placeholder="댓글을 입력해주세요..." aria-label="Recipient's username"
-              aria-describedby="button-addon2" id="comment_post">
-            <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="article_comment_post()">게시</button>
-          </div>
+        <div class="input-group input-group-sm">
+          <input type="text" class="form-control" placeholder="댓글을 입력해주세요..." aria-label="Recipient's username"
+          aria-describedby="button-addon2" id="comment_post">
+          <button class="btn btn-outline-secondary" type="button" id="button-addon2"
+          onclick="articleCommentPost()">게시</button>
         </div>
       </div>
-    </div>
 
-    <br><br>
-    <br><br>
+    </div>
 
     <!-- footer 시작 -->
     <footer class="py-3 my-4" style="background-color: #fafbfc;">

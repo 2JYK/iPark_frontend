@@ -1,10 +1,4 @@
-// 전역 변수
-TOKEN = {
-  "Access-Control-Allow-Origin": "*",
-  "Authorization": "Bearer " + localStorage.getItem("access"),
-}
-
-// document.ready 페이지네이션 함수 실행시 주는 인자값에 사용함
+// document.ready 페이지네이션 함수 실행시 주는 인자값에 사용함 
 const urlParams = new URLSearchParams(window.location.search)
 let urlParkCommentPageNum = urlParams.get("park_comment_page")
 if (!urlParkCommentPageNum) {
@@ -41,7 +35,7 @@ function appendParkHtml(
 				</div>
 				<div>
 					<div class="bookmark">
-						<button type="button">북마크</button>
+						<button type="button" onclick="postBookmark()">북마크</button>
 					</div>
 				</div>
 			</div>
@@ -158,7 +152,7 @@ function appendParkHtml(
 }
 
 
-// 댓글 수정버튼 -> 수정 상태로 변경 //
+// 댓글 수정버튼 -> 수정 상태로 변경 
 function editComment(comment_id) {
   const editButton = document.getElementById(`updateButton(${comment_id})`)
 
@@ -179,89 +173,7 @@ function editComment(comment_id) {
 }
 
 
-// 댓글 수정
-async function putComment(comment_id) {
-  const inputContent = document.getElementById(`inputContent(${comment_id})`)
-
-  const commentData = {
-    "comment": inputContent.value
-  }
-
-  const response = await fetch(`${backendBaseUrl}park/comment/${comment_id}/`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer " + localStorage.getItem("access")
-    },
-    body: JSON.stringify(commentData)
-  })
-
-  if (response.status == 200) {
-    const comment = document.getElementById(`commentContent(${comment_id})`)
-    comment.innerHTML = `
-      <div class="comment-comment" id="commentContent(${comment_id})">
-        ${inputContent.value}
-      </div>`
-
-  } else {
-    alert(response["message"])
-  }
-}
-
-
-// 댓글 삭제 //
-async function deleteComment(comment_id) {
-  const response = await fetch(`${backendBaseUrl}park/comment/${comment_id}/`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer " + localStorage.getItem("access")
-    }
-  })
-
-  if (parseJwt("access") == null) {
-    alert("로그인이 필요합니다", response["message"])
-
-  } else {
-    if (response.status == 200) {
-      const comment = document.getElementById(`comment(${comment_id})`)
-      comment.style.display = "none"
-
-    } else {
-      alert("본인이 작성한 댓글만 삭제가 가능합니다")
-    }
-  }
-}
-
-
-// 공원 상세 정보 보기 //
-function showParkDetail(id, urlParkCommentPageNum) {
-  if (!urlParkCommentPageNum) {
-    urlParkCommentPageNum = 1
-  }
-
-  $("#parkDetail").empty()
-  $.ajax({
-    type: "GET",
-    url: `${backendBaseUrl}park/${id}/`,
-    beforeSend: function (xhr) {
-      xhr.setRequestHeader("Content-type", "application/json")
-    },
-    data: { id, urlParkCommentPageNum },
-
-    success: function (response) {
-      sessionStorage.setItem("park_info", JSON.stringify(response))
-      if (urlParkCommentPageNum) {
-        window.location.replace(`${frontendBaseUrl}park_detail.html?park_comment_page=${urlParkCommentPageNum}`)
-      } else {
-        window.location.replace(`${frontendBaseUrl}park_detail.html`)
-      }
-    }
-  })
-}
-
-
-// 댓글 페이지네이션 //
+// 댓글 페이지네이션
 function pagenation(commentTotalCount, pagenationSize, listSize, park_comment_page, id) {
   let totalPageSize = Math.ceil(commentTotalCount / listSize)
   let firstBottomNumber = park_comment_page - park_comment_page % pagenationSize + 1
@@ -281,7 +193,7 @@ function pagenation(commentTotalCount, pagenationSize, listSize, park_comment_pa
 }
 
 
-// 공원 상세 페이지 로드시 세션스토리지에 담은 park_info 값 html에 적용 //
+// 공원 상세 페이지 로드시 세션스토리지에 담은 park_info 값 html에 적용 
 $(document).ready(function () {
   var x = JSON.parse(sessionStorage.getItem("park_info"))
   appendParkHtml(
@@ -301,9 +213,10 @@ $(document).ready(function () {
     x["comment_total_count"]
   )
 
-  // 공원 댓글 페이지네이션 함수 실행 //
+  // 공원 댓글 페이지네이션 
   pagenation(x["comment_total_count"], 10, 10, urlParkCommentPageNum, x["id"])
 
+  // 공원 지도 
   var park = new naver.maps.LatLng(x["latitude"], x["longitude"]),
     map = new naver.maps.Map('map', {
       center: park.destinationPoint(0, 500),
@@ -368,36 +281,7 @@ function time2str(date) {
 }
 
 
-// 댓글 작성
-async function postComment(id) {
-  const comment = document.getElementById("commentInputComment").value
-  const commentData = {
-    "park": id,
-    "comment": comment
-  }
-
-  const response = await fetch(`${backendBaseUrl}park/${id}/comment/`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer " + localStorage.getItem("access")
-    },
-    body: JSON.stringify(commentData)
-  })
-
-  if (parseJwt("access") == null) {
-    alert("로그인이 필요합니다", response["message"])
-  } else {
-    if (response.status == 200) {
-      showParkDetail(id)
-    } else {
-      alert("내용을 입력해주세요")
-    }
-  }
-}
-
-
-// 토글에 공원 목록 붙이기 //
+// 토글에 공원 목록 붙이기
 function parkListHtml(id, park_name) {
   parkListTempHtml = `
 			<li class="nav-item">
@@ -410,19 +294,59 @@ function parkListHtml(id, park_name) {
 }
 
 
-// 토글 공원 List 로드 //
-function showparkList() {
-  $.ajax({
-    type: "GET",
-    url: `${backendBaseUrl}park/`,
-    success: function (response) {
-      for (let i = 0; i < response.length; i++) {
-        parkListHtml(
-          response[i].id,
-          response[i].park_name
-        )
-      }
-    }
-  })
+// 공원 옵션 버튼 
+document.querySelectorAll(".button").forEach(
+  button => button.innerHTML = "<div><span>" + button.textContent.trim().split("").join("</span><span>") + "</span></div>"
+);
+
+
+// 공원 검색 결과 
+function get_parks_html(id, park_name, image, check_count) {
+  temp_html = `<div class="park-box" id="park" onclick="showParkDetail(${id})">
+                <div class="park-image">
+                    <img src="${image}" alt="" style="width: 310px; height: 300px; margin-right: 10px;"/>
+                </div>
+                <div class="park-name">
+                    <p>${park_name}</p>
+                </div>
+                <div class="park-check-count">
+                    <p>조회수 : ${check_count}</p>
+                </div>
+              </div>`
+  $("#parks").append(temp_html)
 }
-showparkList()
+
+
+// 인기 순 공원 나열 
+function popular_parks_html(id, park_name, image, check_count) {
+  temp_html = `<div class="park-box" id="park" onclick="showParkDetail(${id})">
+                <div class="park-image">
+                    <img src="${image}" alt="" style="width: 310px; height: 300px; margin-right: 10px;"/>
+                </div>
+                <div class="park-name">
+                    <p>${park_name}</p>
+                </div>
+                <div class="park-check-count">
+                    <p>조회수 : ${check_count}</p>
+                </div>
+              </div>`
+  $("#popular-parks").append(temp_html)
+}
+
+
+// 옵션값을 여러 개 받음 
+var values = document.querySelectorAll("#park-option a")
+var valueList = []
+values.forEach(value => {
+  value.addEventListener("click", () => {
+    valueList.push(value.title)
+  })
+})
+
+var zones = document.querySelectorAll("#park-zone a")
+var zoneList = []
+zones.forEach(zone => {
+  zone.addEventListener("click", () => {
+    valueList.push(zone.title)
+  })
+})

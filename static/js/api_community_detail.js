@@ -135,5 +135,21 @@ async function articleCommentGet(article_id) {
     </li>
     `
     comment_wrap.append(comment)
+
+    if (parseJwt("access") != undefined || token == {}) {
+      if (data.user == parseJwt("access").user_id){
+      const time_div = document.getElementById(`${data.id}`)
+      
+      const put_del = document.createElement("span")
+      put_del.setAttribute("onclick", `data(${data.id})`)
+      put_del.innerHTML = "삭제<br>"
+      time_div.prepend(put_del)
+      
+      const put_span = document.createElement("span")
+      put_span.setAttribute("onclick", `data(${data.id})`)
+      put_span.innerHTML = "수정"
+      time_div.prepend(put_span)
+      } 
+    }
 });
 } articleCommentGet(receivedData)

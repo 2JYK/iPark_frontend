@@ -111,7 +111,7 @@ async function articleCommentGet(article_id) {
   const response = await fetch(`${backendBaseUrl}community/${article_id}/comment/`, {
     method: 'GET',
     headers: token
-  }) 
+  })
   console.log("토큰토큰 ! ", token)
   response_json = await response.json()
   response_json.forEach(data => {
@@ -137,19 +137,37 @@ async function articleCommentGet(article_id) {
     comment_wrap.append(comment)
 
     if (parseJwt("access") != undefined || token == {}) {
-      if (data.user == parseJwt("access").user_id){
-      const time_div = document.getElementById(`${data.id}`)
-      
-      const put_del = document.createElement("span")
-      put_del.setAttribute("onclick", `data(${data.id})`)
-      put_del.innerHTML = "삭제<br>"
-      time_div.prepend(put_del)
-      
-      const put_span = document.createElement("span")
-      put_span.setAttribute("onclick", `data(${data.id})`)
-      put_span.innerHTML = "수정"
-      time_div.prepend(put_span)
-      } 
+      if (data.user == parseJwt("access").user_id) {
+        const time_div = document.getElementById(`${data.id}`)
+
+        const put_del = document.createElement("span")
+        put_del.setAttribute("onclick", `articleCommentDel(${data.id})`)
+        put_del.innerHTML = "삭제<br>"
+        time_div.prepend(put_del)
+
+        const put_span = document.createElement("span")
+        put_span.setAttribute("onclick", `data(${data.id})`)
+        put_span.innerHTML = "수정"
+        time_div.prepend(put_span)
+      }
     }
-});
+  });
 } articleCommentGet(receivedData)
+
+
+// 댓글 삭제
+async function articleCommentDel(comment_id) {
+  const response = await fetch(`${backendBaseUrl}community/comment/${comment_id}/`, {
+    method: "DELETE",
+    headers: TOKEN,
+  })
+  response_json = await response.json()
+
+  if (parseJwt("access") != undefined) {
+    if (response.status == 200) {
+      alert(response_json["message"])
+    } else {
+      alert(response_json["message"])
+    }
+  }
+}

@@ -95,100 +95,116 @@
   </nav>
 
   <!-- 바디 : 게시글, 댓글 -->
-    <div class="wrap">
-      <div class="tag">
-        <h2 id="article_tag"></h2>
-      </div>
+  <div class="wrap">
+    <div class="tag">
+      <h2 id="article_tag"></h2>
+    </div>
 
-      <!-- 게시글 제목 -->
-      <div class="article-title">
-        <hr class="title-hr">
-        <h4 id="article_title"></h4>
-        <div class="info">
-          <div class="info-name">
-            <span id="article_user"></span> <span> | </span> <span id="article_date"></span>
-          </div>
-          <div class="info-count">
-            <span>추천 수 :</span>
-            <span>00</span>
-            <span>조회 수 :</span>
-            <span id="view_count"></span>
-            <span>댓글 수 :</span>
-            <span id="comment_count">00</span>
-          </div>
+    <!-- 게시글 제목 -->
+    <div class="article-title">
+      <hr class="title-hr">
+      <h4 id="article_title"></h4>
+      <div class="info">
+        <div class="info-name">
+          <span id="article_user"></span> <span> | </span> <span id="article_date"></span>
         </div>
-        <hr>
-      </div>
-
-      <div class="recommend">추천하기 <i onclick="" class="fa fa-thumbs-up"></i></div>
-
-      <div class="article">
-
-        <!-- 게시글 사진 -->
-        <div class="article-image">
-          <img id="article_image" alt="not found" width="600" height="500">
-        </div>
-
-        <!-- 게시글 내용 -->
-        <div class="article-content">
-          <span id="article_content"></span>
+        <div class="info-count">
+          <span>추천 수 :</span>
+          <span>00</span>
+          <span>조회 수 :</span>
+          <span id="view_count"></span>
+          <span>댓글 수 :</span>
+          <span id="comment_count">00</span>
         </div>
       </div>
+      <hr>
+    </div>
 
-      <!-- 댓글 시작 -->
-      <h3 class="comment-start">Comment</h3>
+    <div class="recommend">추천하기 <i onclick="" class="fa fa-thumbs-up"></i></div>
 
-      <div class="comment-wrap">
-        <div class="comment">
-          <li>
+    <div class="article">
+
+      <!-- 게시글 사진 -->
+      <div class="article-image">
+        <img id="article_image" alt="not found" width="600" height="500">
+      </div>
+
+      <!-- 게시글 내용 -->
+      <div class="article-content">
+        <span id="article_content"></span>
+      </div>
+    </div>
+
+    <!-- 댓글 시작 -->
+    <h3 class="comment-start">Comment</h3>
+
+    <div class="comment-wrap">
+      <div class="comment">
+        <li>
           <div class="username">Username</div>
           <div class="user-comment">Commnet</div>
           <div class="time">DateTime</div>
         </li>
-        </div>
       </div>
-
-        <!-- 댓글 입력 -->
-        <div class="comment-input">
-        <div class="input-group input-group-sm">
-          <input type="text" class="form-control" placeholder="댓글을 입력해주세요..." aria-label="Recipient's username"
-          aria-describedby="button-addon2" id="comment_post">
-          <button class="btn btn-outline-secondary" type="button" id="button-addon2"
-          onclick="articleCommentPost()">게시</button>
-        </div>
-      </div>
-
     </div>
 
-    <!-- footer 시작 -->
-    <footer class="py-3 my-4" style="background-color: #fafbfc;">
-      <p class="text-center"><img src="./static/css/img/park-logo.png" alt="mdo" width="150" height="70"></p>
-      <ul class="nav justify-content-center pb-3 mb-3">
-        <li class="nav-item"><a href="/" class="nav-link px-2 text-muted">Home</a></li>
-        <li class="nav-item"><a href="/park_detail.html" class="nav-link px-2 text-muted">Park</a></li>
-        <li class="nav-item"><a href="/community.html" class="nav-link px-2 text-muted">Community</a></li>
-        <li class="nav-item"><a href="mailto:rla04722@naver.com?subject= i Pa|rK 문의" target="_blank"
-            class="nav-link px-2 text-muted">Questions</a></li>
-      </ul>
-      <p class="text-center text-muted">Developers |
-        <a href="https://github.com/GyeongSuKim1" target="_blank" rel="noopener noreferrer"> 김경수 </a>,
-        <a href="https://github.com/nicesugi" target="_blank" rel="noopener noreferrer"> 윤슬기 </a>,
-        <a href="https://github.com/nikevapormax" target="_blank" rel="noopener noreferrer"> 정대근 </a>,
-        <a href="https://github.com/juhyun1011" target="_blank" rel="noopener noreferrer"> 정주현 </a>
-      </p>
-      <p class="text-center text-muted">Source |
-        <a href="https://github.com/2JYK" target="_blank">https://github.com/2JYK</a>
-      </p>
-      <p class="text-center text-muted">© IPark made by 2JYK</p>
-    </footer>
+    <!-- 댓글 입력 -->
+    <div class="comment-input">
 
-    <script src="/static/js/user.js"></script>
-    <script src="/static/js/community.js"></script>
-    <script src="/static/js/api_community.js"></script>
-    <script src="/static/js/api_community_detail.js"></script>
-    <!-- <script src="../static/js/api_park.js"></script>
+      <div class="input-group">
+        <textarea name="a" maxlength="200" class="comment-text" placeholder="댓글을 입력해주세요..." aria-label="Recipient's username"
+          aria-describedby="button-addon2" id="comment_post"></textarea>
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2"
+          onclick="articleCommentPost()">게시</button>
+        </div>
+
+        <span style="color: #aaa" id="comment_counter">(0 / 최대 200자)</span>
+    </div>
+
+  </div>
+
+  <!-- footer 시작 -->
+  <footer class="py-3 my-4" style="background-color: #fafbfc;">
+    <p class="text-center"><img src="./static/css/img/park-logo.png" alt="mdo" width="150" height="70"></p>
+    <ul class="nav justify-content-center pb-3 mb-3">
+      <li class="nav-item"><a href="/" class="nav-link px-2 text-muted">Home</a></li>
+      <li class="nav-item"><a href="/park_detail.html" class="nav-link px-2 text-muted">Park</a></li>
+      <li class="nav-item"><a href="/community.html" class="nav-link px-2 text-muted">Community</a></li>
+      <li class="nav-item"><a href="mailto:rla04722@naver.com?subject= i Pa|rK 문의" target="_blank"
+          class="nav-link px-2 text-muted">Questions</a></li>
+    </ul>
+    <p class="text-center text-muted">Developers |
+      <a href="https://github.com/GyeongSuKim1" target="_blank" rel="noopener noreferrer"> 김경수 </a>,
+      <a href="https://github.com/nicesugi" target="_blank" rel="noopener noreferrer"> 윤슬기 </a>,
+      <a href="https://github.com/nikevapormax" target="_blank" rel="noopener noreferrer"> 정대근 </a>,
+      <a href="https://github.com/juhyun1011" target="_blank" rel="noopener noreferrer"> 정주현 </a>
+    </p>
+    <p class="text-center text-muted">Source |
+      <a href="https://github.com/2JYK" target="_blank">https://github.com/2JYK</a>
+    </p>
+    <p class="text-center text-muted">© IPark made by 2JYK</p>
+  </footer>
+
+  <script src="/static/js/user.js"></script>
+  <script src="/static/js/community.js"></script>
+  <script src="/static/js/api_community.js"></script>
+  <script src="/static/js/api_community_detail.js"></script>
+  <!-- <script src="../static/js/api_park.js"></script>
     <script src="../static/js/park.js"></script> -->
 
+  <script>
+    // 댓글 카운팅
+    $(".comment-text").keyup(function (e) {
+      var content = $(this).val();
+      $("#comment_counter").html("(" + content.length + " / 최대 200자)");
+
+      if (content.length > 200) {
+        alert("최대 200자 까지 입력 가능합니다.");
+        $(this).val(content.substring(0, 200));
+        $("#comment_counter").html("(200 / 최대 200자)");
+      }
+    });
+  </script>
 </body>
 
 </html>

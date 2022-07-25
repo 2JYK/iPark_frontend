@@ -1,5 +1,6 @@
 // 게시글 상세페이지
 const receivedData = parseInt(location.href.split('?')[1]);
+console.log("receivedData :", receivedData)
 
 async function getArticlesDetail(receivedData) {
   if (parseJwt("access") != null) {
@@ -22,7 +23,7 @@ async function getArticlesDetail(receivedData) {
   } else {
     tag_name = "나눔마켓"
   }
-  console.log("User ID :", response_json.id)
+  console.log("게시글 ID :", response_json.id)
   const article_tag = document.getElementById("article_tag")
   article_tag.innerText = tag_name
 
@@ -43,20 +44,20 @@ async function getArticlesDetail(receivedData) {
   article_content.innerText = response_json.content
 
   if (response_json.image != null) {
-  const article_image = document.getElementById("article_image")
-  article_image.setAttribute("src", `http://127.0.0.1:8000${response_json.image}`)
-} else {
-  const article_image = document.getElementById("article_image")
-  article_image.remove(); 
-}
+    const article_image = document.getElementById("article_image")
+    article_image.setAttribute("src", `http://127.0.0.1:8000${response_json.image}`)
+  } else {
+    const article_image = document.getElementById("article_image")
+    article_image.remove();
+  }
 
   const comment_post = document.getElementById("button-addon2") // 댓글 onclick안에 article id 값 넣어주기 위해 사용
-  comment_post.setAttribute("onclick", `article_comment_post(${response_json.id})`)
+  comment_post.setAttribute("onclick", `articleCommentPost(${response_json.id})`)
 } getArticlesDetail(receivedData)
 
 
 // 댓글 POST
-async function article_comment_post(article_id) {
+async function articleCommentPost(article_id) {
   const comment = document.getElementById("comment_post").value
   const commentData = {
     // "user": parseJwt("access").user_id,
@@ -66,7 +67,7 @@ async function article_comment_post(article_id) {
   console.log("ㅡCommentㅡ", commentData)
 
   // 로그인 유저와 비로그인 유저 판별
-  if (parseJwt("access") != undefined){
+  if (parseJwt("access") != undefined) {
     token = {
       Accept: "application/json",
       'content-type': "application/json",
@@ -76,7 +77,7 @@ async function article_comment_post(article_id) {
   } else {
     token = {}
     alert("로그인 유저만 댓글 작성이 가능합니다.")
-  } 
+  }
 
   const response = await fetch(`${backendBaseUrl}community/${article_id}/comment/`, {
     method: "POST",
@@ -90,3 +91,65 @@ async function article_comment_post(article_id) {
     alert(response_json["message"])
   }
 }
+
+
+// 댓글 GET
+async function articleCommentGet(article_id) {
+  // 로그인 유저와 비로그인 유저 판별
+  if (parseJwt("access") != undefined) {
+    token = {
+      Accept: "application/json",
+      'content-type': "application/json",
+      "Access-Control-Allow-Origin": "*",
+      "Authorization": "Bearer " + localStorage.getItem("access"),
+    }
+  }
+
+  const comment_wrap = document.querySelector(".comment-wrap")
+  comment_wrap.innerText = ""
+
+  const response = await fetch(`${backendBaseUrl}community/${article_id}/comment/`, {
+    method: 'GET',
+    headers: token
+  }) 
+  console.log("토큰토큰 ! ", token)
+  response_json = await response.json()
+  response_json.forEach(data => {
+
+    // 댓글 올린 시간 설정
+    let created_at = data.created_at.split(".")
+    created_date = created_at[0].replace(/-/g, ".").split("T")
+    created_time = created_date[1].split(":")
+
+    const comment = document.createElement("div")
+    comment.className = 'comment'
+
+    comment.innerHTML = `
+    </li>
+    <div class="username">${data.username}</div>
+    <div class="user-comment">${data.comment}</div>
+    <div class="time" id="${data.id}">
+
+    ${created_date[0]} ${created_time[0]}:${created_time[1]}
+    </div>
+    </li>
+    `
+    comment_wrap.append(comment)
+
+    if (parseJwt("access") != undefined || token == {}) {
+      if (data.user == parseJwt("access").user_id){
+      const time_div = document.getElementById(`${data.id}`)
+      
+      const put_del = document.createElement("span")
+      put_del.setAttribute("onclick", `data(${data.id})`)
+      put_del.innerHTML = "삭제<br>"
+      time_div.prepend(put_del)
+      
+      const put_span = document.createElement("span")
+      put_span.setAttribute("onclick", `data(${data.id})`)
+      put_span.innerHTML = "수정"
+      time_div.prepend(put_span)
+      } 
+    }
+});
+} articleCommentGet(receivedData)

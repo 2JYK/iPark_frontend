@@ -66,6 +66,50 @@ async function handleLogin() {
 }
 
 
+// 카카오 로그인 : 토큰과 페이로드 생성, 회원가입 유도 //
+async function kakaoUserForm(authObj, kakaoData) {
+  const kakaoUserData = Object.assign({}, authObj, kakaoData)
+  
+  const response = await fetch(`${backendBaseUrl}user/kakao/`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(kakaoUserData)
+  })
+
+    .then((res) => {
+      if (res.status === 200) {
+          res.json().then((res) => {
+              localStorage.setItem("access", res.access)
+              localStorage.setItem("refresh", res.refresh)
+              const base64Url = res.access.split(".")[1]
+              const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/")
+              const jsonPayload = decodeURIComponent(atob(base64).split("").map(function (c) {
+                  return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2)
+              }).join(""))
+              localStorage.setItem("payload", jsonPayload)
+              window.location.replace(`${frontendBaseUrl}index.html`)
+          })
+
+      } else if (res.status == 201) {
+        sign.style.display = "none"
+        kakaosignup.style.display = "block"
+
+        const username = document.getElementById("floatingInput") 
+        const email = document.getElementById("floatingInputEmail") 
+        const fullname = document.getElementById("floatingInputFullname") 
+      
+        username.value = kakaoUserData.username
+        email.value = kakaoUserData.email
+        fullname.value = kakaoUserData.fullname
+      }
+    }
+  )
+}
+
+
 // 아이디 찾기 //
 async function findUsername() {
   const userData = {
@@ -272,7 +316,25 @@ async function withdrawal() {
 }
 
 
-// 비밀번호 변경 모달
+// 카카오 회원 탈퇴 //
+// function disconnect() {
+//   Kakao.API.request({
+//     url: '/v1/user/unlink',
+//     success: function (response) {
+//       localStorage.removeItem("payload")
+//       localStorage.removeItem("access")
+//       localStorage.removeItem("refresh")
+
+//       window.location.replace(`${frontendBaseUrl}login.html`)
+//     },
+//     fail: function (error) {
+//       alert("회원탈퇴가 이미 처리되었습니다")
+//     },
+//   })
+// }
+
+
+// 비밀번호 변경 모달 //
 $(function () {
   $("#modal-open").click(function () {
     $("#popup").css("display", "flex").hide().fadeIn();

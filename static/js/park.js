@@ -90,16 +90,16 @@ function appendParkHtml(
 					</div>
 
 					<!-- 댓글 페이지 네이션 -->
-					<div class="comment-pagenation">
-						<!-- <div class="comment-pagenation-left-button">
+					<div class="comment-pagination">
+						<!-- <div class="comment-pagination-left-button">
 							<button type="button">
 								<
 							</button>
 						</div> -->
-						<div class="comment-pagenation-num" id="comment-pagenation-num">
+						<div class="comment-pagination-num" id="comment-pagination-num">
               <!-- 페이지 네이션 번호 구간 -->
 						</div>
-						<!-- <div class="comment-pagenation-right-button">
+						<!-- <div class="comment-pagination-right-button">
 							<button type="button">
 								>
 							</button>
@@ -174,20 +174,20 @@ function editComment(comment_id) {
 
 
 // 댓글 페이지네이션
-function pagenation(commentTotalCount, pagenationSize, listSize, park_comment_page, id) {
+function pagination(commentTotalCount, paginationSize, listSize, park_comment_page, id) {
   let totalPageSize = Math.ceil(commentTotalCount / listSize)
-  let firstBottomNumber = park_comment_page - park_comment_page % pagenationSize + 1
-  let lastBottomNumber = park_comment_page - park_comment_page % pagenationSize + pagenationSize
+  let firstBottomNumber = park_comment_page - park_comment_page % paginationSize + 1
+  let lastBottomNumber = park_comment_page - park_comment_page % paginationSize + paginationSize
 
   if (lastBottomNumber > totalPageSize) lastBottomNumber = totalPageSize
-  const pagenationNum = document.querySelector(".comment-pagenation-num")
+  const paginationNum = document.querySelector(".comment-pagination-num")
 
   for (let i = firstBottomNumber; i <= lastBottomNumber; i++) {
     if (i == park_comment_page) {
-      pagenationNum.innerHTML += `<span class="comment-pagenation-num cur-page" id="park_comment_page(${i})" onclick="showParkDetail('${id}', '${i}')"> ${i} </span>`
+      paginationNum.innerHTML += `<span class="comment-pagination-num cur-page" id="park_comment_page(${i})" onclick="showParkDetail('${id}', '${i}')"> ${i} </span>`
 
     } else {
-      pagenationNum.innerHTML += `<span class="comment-pagenation-num" id="park_comment_page(${i})" onclick="showParkDetail('${id}', '${i}')"> ${i} </span>`
+      paginationNum.innerHTML += `<span class="comment-pagination-num" id="park_comment_page(${i})" onclick="showParkDetail('${id}', '${i}')"> ${i} </span>`
     }
   }
 }
@@ -214,7 +214,7 @@ $(document).ready(function () {
   )
 
   // 공원 댓글 페이지네이션 
-  pagenation(x["comment_total_count"], 10, 10, urlParkCommentPageNum, x["id"])
+  pagination(x["comment_total_count"], 10, 10, urlParkCommentPageNum, x["id"])
 
   // 공원 지도 
   var park = new naver.maps.LatLng(x["latitude"], x["longitude"]),

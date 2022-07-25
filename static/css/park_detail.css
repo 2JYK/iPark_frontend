@@ -163,7 +163,7 @@
 .comment-delete {}
 
 /* 댓글 페이지 네이션 */
-.comment-pagenation {
+.comment-pagination {
     background-color: gray;
     height: 30px;
     margin-bottom: 10px;
@@ -171,7 +171,7 @@
     justify-content: center;
 }
 
-.comment-pagenation-num {
+.comment-pagination-num {
     margin: 0px 10px 0px 10px;
 }
 

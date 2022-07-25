@@ -140,13 +140,14 @@ async function articleCommentGet(article_id) {
       if (data.user == parseJwt("access").user_id) {
         const time_div = document.getElementById(`${data.id}`)
 
-        const put_del = document.createElement("span")
-        put_del.setAttribute("onclick", `articleCommentDel(${data.id})`)
-        put_del.innerHTML = "삭제<br>"
-        time_div.prepend(put_del)
-
+        const del_span = document.createElement("span")
+        del_span.setAttribute("onclick", `articleCommentDel(${data.id})`)
+        del_span.innerHTML = "삭제<br>"
+        time_div.prepend(del_span)
+        
         const put_span = document.createElement("span")
         put_span.setAttribute("onclick", `data(${data.id})`)
+        // del_span.setAttribute("id", `data${data.id}`)
         put_span.innerHTML = "수정"
         time_div.prepend(put_span)
       }
@@ -170,4 +171,10 @@ async function articleCommentDel(comment_id) {
       alert(response_json["message"])
     }
   }
+}
+
+
+// 댓글 수정
+async function articleCommentPut(comment_id) {
+
 }

@@ -31,8 +31,7 @@
 
 <body>
   <!-- 로그인 방식 선택 -->
-  <section class="sign">
-
+  <section class="sign" id="sign">
     <h1>로그인</h1>
     <form action="">
 
@@ -68,102 +67,90 @@
           <img src="./static/css/img/kakao_login.png" alt="카카오톡">
         </button>
       </div>
-      <div class="user-box">
-        <div class="user">
-          <div class="user-info" id="userInfo">
-            <h1>회원가입</h1>
-            <form action="">
-              <!-- 아이디 -->
-              <div class="int-area">
-                <input type="text" name="username" id="floatingInput" autocomplete="off" required>
-                <label for="floatingInput">Username (6자리 이상)</label>
-              </div>
-              <!-- 이메일 -->
-              <div class="int-area">
-                <input type="email" name="email" id="floatingInputEmail" autocomplete="off" required>
-                <label for="floatingInputEmail">Email</label>
-                <span style="color:red; font-size:15px;">* naver, google, kakao, daum, nate, outlook만 가능</span>
-              </div>
-              <!-- 이름 -->
-              <div class="int-area">
-                <input type="text" name="fullname" id="floatingInputFullname" autocomplete="off" required>
-                <label for="floatingInputFullname">Fullname</label>
-              </div>
-              <!-- 패스워드 -->
-              <div class="int-area">
-                <input type="password" name="password" id="floatingPassword" autocomplete="off" required>
-                <label for="floatingPassword">Password (8자리 이상)</label>
-                <span style="color:red; font-size:15px;">* 영어 소문자/숫자/특수문자 필수</span>
-              </div>
-              <!-- 핸드폰 번호 -->
-              <div class="int-area">
-                <input type="text" name="phone" id="floatingPhone" autocomplete="off" required>
-                <label for="floatingPhone">Phone (010-0000-0000 형식)</label>
-              </div>
-              <!-- 생년월일 -->
-              <div class="int-area">
-                <input type="date" name="birthday" id="floatingBirthday" autocomplete="off" required>
-                <label for="floatingBirthday"></label>
-              </div>
-              <br />
-              <br />
-              <!-- 지역구 -->
-              <div>
-                <div valgn="top"> 지역구
-                  <select name="items1" id="floatingRegion">
-                    <option value="1">강남구</option>
-                    <option value="2">강동구</option>
-                    <option value="3">강북구</option>
-                    <option value="4">강서구</option>
-                    <option value="5">관악구</option>
-                    <option value="6">광진구</option>
-                    <option value="7">구로구</option>
-                    <option value="8">금천구</option>
-                    <option value="9">노원구</option>
-                    <option value="10">도봉구</option>
-                    <option value="11">동대문구</option>
-                    <option value="12">동작구</option>
-                    <option value="13">마포구</option>
-                    <option value="14">서대문구</option>
-                    <option value="15">서초구</option>
-                    <option value="16">성동구</option>
-                    <option value="17">성북구</option>
-                    <option value="18">송파구</option>
-                    <option value="19">양천구</option>
-                    <option value="20">영등포구</option>
-                    <option value="21">용산구</option>
-                    <option value="22">은평구</option>
-                    <option value="23">종로구</option>
-                    <option value="24">중구</option>
-                    <option value="25">중랑구</option>
-                  </select>
-                </div>
-              </div>
-              <br />
-              <div class="caption">
-                <button id="signupbtn" style="border-radius:15px;" class="w-50 btn btn-primary" type="button"
-                  onclick="kakaoSignup()">회원가입</button>
-              </div>
-
-              <!-- 기능확인 후 삭제예정 -->
-              <div>
-                <button>
-                  <a href="#" id="kakaoLogout" onclick="kakaoLogout();">로그아웃</a>
-                </button>
-                <button>
-                  <a href="#" id="disconnect" onclick="disconnect();">탈퇴</a>
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
     </form>
   </section>
 
+
+
+  <div class="sign" id="kakaosignup" style="display:none;">
+    <h1>회원가입</h1>
+      <!-- 아이디 -->
+      <div class="int-area">
+        <input type="text" name="username" id="floatingInput" autocomplete="off" required>
+        <label for="floatingInput">Username (6자리 이상)</label>
+      </div>
+      <!-- 이메일 -->
+      <div class="int-area">
+        <input type="email" name="email" id="floatingInputEmail" autocomplete="off" required>
+        <label for="floatingInputEmail">Email</label>
+        <span style="color:red; font-size:15px;">* naver, google, kakao, daum, nate, outlook만 가능</span>
+      </div>
+      <!-- 이름 -->
+      <div class="int-area">
+        <input type="text" name="fullname" id="floatingInputFullname" autocomplete="off" required>
+        <label for="floatingInputFullname">Fullname</label>
+      </div>
+      <!-- 패스워드 -->
+      <div class="int-area">
+        <input type="password" name="password" id="floatingPassword" autocomplete="off" required>
+        <label for="floatingPassword">Password (8자리 이상)</label>
+        <span style="color:red; font-size:15px;">* 영어 소문자/숫자/특수문자 필수</span>
+      </div>
+      <!-- 핸드폰 번호 -->
+      <div class="int-area">
+        <input type="text" name="phone" id="floatingPhone" autocomplete="off" required>
+        <label for="floatingPhone">Phone (010-0000-0000 형식)</label>
+      </div>
+      <!-- 생년월일 -->
+      <div class="int-area">
+        <input type="date" name="birthday" id="floatingBirthday" autocomplete="off" required>
+        <label for="floatingBirthday"></label>
+      </div>
+      <br />
+      <br />
+      <!-- 지역구 -->
+      <div>
+        <div valgn="top"> 선호하는 지역
+          <select name="items1" id="floatingRegion">
+            <option value="1">강남구</option>
+            <option value="2">강동구</option>
+            <option value="3">강북구</option>
+            <option value="4">강서구</option>
+            <option value="5">관악구</option>
+            <option value="6">광진구</option>
+            <option value="7">구로구</option>
+            <option value="8">금천구</option>
+            <option value="9">노원구</option>
+            <option value="10">도봉구</option>
+            <option value="11">동대문구</option>
+            <option value="12">동작구</option>
+            <option value="13">마포구</option>
+            <option value="14">서대문구</option>
+            <option value="15">서초구</option>
+            <option value="16">성동구</option>
+            <option value="17">성북구</option>
+            <option value="18">송파구</option>
+            <option value="19">양천구</option>
+            <option value="20">영등포구</option>
+            <option value="21">용산구</option>
+            <option value="22">은평구</option>
+            <option value="23">종로구</option>
+            <option value="24">중구</option>
+            <option value="25">중랑구</option>
+          </select>
+        </div>
+      </div>
+      <br />
+      <!-- 회원가입 -->
+      <div class="caption">
+        <button id="signupbtn" style="border-radius:15px;" class="w-50 btn btn-primary" type="button"
+          onclick="handleSignup()">회원가입</button>
+      </div>
+  </div>
+
+
   <script src="../static/js/user.js"></script>
   <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-  <script src="../static/js/kakao.js"></script>
   <script src="./static/js/api_user.js"></script>
 
 </body>

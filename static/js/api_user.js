@@ -79,8 +79,10 @@ async function kakaoUserForm(authObj, kakaoData) {
     body: JSON.stringify(kakaoUserData)
   })
 
-    .then((res) => {
-      if (res.status === 200) {
+    .then(async (res) => {
+      const code = await res.json()
+
+      if (res.status == 200 && code.res_code == 2) {
           res.json().then((res) => {
               localStorage.setItem("access", res.access)
               localStorage.setItem("refresh", res.refresh)
@@ -93,7 +95,7 @@ async function kakaoUserForm(authObj, kakaoData) {
               window.location.replace(`${frontendBaseUrl}index.html`)
           })
 
-      } else if (res.status == 201) {
+      } else if (res.status == 200 && code.res_code == 1)   {
         sign.style.display = "none"
         kakaosignup.style.display = "block"
 

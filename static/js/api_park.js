@@ -128,8 +128,6 @@ async function deleteComment(comment_id) {
 }
 
 
-
-
 // 쿼리 파라미터를 통한 공원 정보 get 
 function getParks() {
   var optionButton = document.getElementsByClassName("option")

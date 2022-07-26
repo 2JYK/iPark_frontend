@@ -24,7 +24,7 @@ async function handleSignup() {
   if (response.status == 200) {
     window.location.replace(`${frontendBaseUrl}login.html`)
   } else {
-    alert(response_json["error"]) // phone의 경우, 메세지가 undefined로 출력됨
+    alert(response_json["error"])
   }
 }
 
@@ -69,7 +69,7 @@ async function handleLogin() {
 // 카카오 로그인 : 토큰과 페이로드 생성, 회원가입 유도 //
 async function kakaoUserForm(authObj, kakaoData) {
   const kakaoUserData = Object.assign({}, authObj, kakaoData)
-  
+
   const response = await fetch(`${backendBaseUrl}user/kakao/`, {
     method: "POST",
     headers: {
@@ -83,32 +83,32 @@ async function kakaoUserForm(authObj, kakaoData) {
       const code = await res.json()
 
       if (res.status == 200 && code.res_code == 2) {
-          res.json().then((res) => {
-              localStorage.setItem("access", res.access)
-              localStorage.setItem("refresh", res.refresh)
-              const base64Url = res.access.split(".")[1]
-              const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/")
-              const jsonPayload = decodeURIComponent(atob(base64).split("").map(function (c) {
-                  return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2)
-              }).join(""))
-              localStorage.setItem("payload", jsonPayload)
-              window.location.replace(`${frontendBaseUrl}index.html`)
-          })
+        res.json().then((res) => {
+          localStorage.setItem("access", res.access)
+          localStorage.setItem("refresh", res.refresh)
+          const base64Url = res.access.split(".")[1]
+          const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/")
+          const jsonPayload = decodeURIComponent(atob(base64).split("").map(function (c) {
+            return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2)
+          }).join(""))
+          localStorage.setItem("payload", jsonPayload)
+          window.location.replace(`${frontendBaseUrl}index.html`)
+        })
 
-      } else if (res.status == 200 && code.res_code == 1)   {
+      } else if (res.status == 200 && code.res_code == 1) {
         sign.style.display = "none"
         kakaosignup.style.display = "block"
 
-        const username = document.getElementById("floatingInput") 
-        const email = document.getElementById("floatingInputEmail") 
-        const fullname = document.getElementById("floatingInputFullname") 
-      
+        const username = document.getElementById("floatingInput")
+        const email = document.getElementById("floatingInputEmail")
+        const fullname = document.getElementById("floatingInputFullname")
+
         username.value = kakaoUserData.username
         email.value = kakaoUserData.email
         fullname.value = kakaoUserData.fullname
       }
     }
-  )
+    )
 }
 
 

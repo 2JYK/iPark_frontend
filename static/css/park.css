@@ -184,7 +184,8 @@ body .dribbble img {
 .selection {
   float: right;
   margin-right: 3%;
-  color: #2db43a;
+  color: white;
+  background-color: #2db43a;
 }
 
 /* 버튼 클릭 시 버튼 색상 변경 */

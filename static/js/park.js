@@ -315,40 +315,14 @@ zones.forEach(zone => {
 
 
 // 버튼 클릭 시 색상 변경
-var optionButton = document.getElementsByClassName("park-option");
+var optionButton = document.querySelectorAll("#button, #button div")
 function optionClick(event) {
-  if (event.target.classList[2] == "clicked") {
-    event.target.classList.remove("clicked");
-  } else {
-    for (var i = 0; i < optionButton.length; i++) {
-      optionButton[i].classList.remove("clicked");
-    }
-
-    event.target.classList.add("clicked");
-  }
+  event.target.classList.add("clicked");
 }
+
 function init() {
   for (var i = 0; i < optionButton.length; i++) {
     optionButton[i].addEventListener("click", optionClick);
   }
 }
 init();
-
-var zoneButton = document.getElementsByClassName("park-zone");
-function zoneClick(event) {
-  if (event.target.classList[2] == "clicked") {
-    event.target.classList.remove("clicked");
-  } else {
-    for (var i = 0; i < zoneButton.length; i++) {
-      zoneButton[i].classList.remove("clicked");
-    }
-
-    event.target.classList.add("clicked");
-  }
-}
-function init2() {
-  for (var i = 0; i < zoneButton.length; i++) {
-    zoneButton[i].addEventListener("click", zoneClick);
-  }
-}
-init2();

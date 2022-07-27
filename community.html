@@ -39,7 +39,7 @@
 
 <body>
 
-  <!-- 상단바시작 -->
+  <!-- 헤더 : 상단바시작 -->
   <nav class="navbar" aria-label="Light offcanvas navbar">
     <div class="container-fluid">
       <a href="/index.html"><img src="./static/css/img/park-logo.png" alt="mdo" width="150" height="60"></a>
@@ -49,10 +49,10 @@
       <form role="search">
         <input class="form-control col-4" type="search" placeholder="Search" aria-label="Search">
       </form>
-      <div class="col-3"></div>
+      <div class="col-4"></div>
 
       <!-- 페이지 이동 버튼 -->
-      <div><a href="/community_detail.html" class="nav-link px-2 link-dark">PARK</a></div>
+      <div><a href="/park_detail.html" class="nav-link px-2 link-dark">PARK</a></div>
       <div><a href="/community.html" class="nav-link px-2 link-dark">COMMUNITY</a></div>
 
       <!-- 프로필 드롭다운 -->
@@ -65,7 +65,7 @@
           <li id="my-favorite"><a class="dropdown-item" href="#">즐겨찾기</a></li>
           <li id="my-article"><a class="dropdown-item" href="#">내가 쓴 게시물</a></li>
           <li id="my-account"><a class="dropdown-item" href="./account_management.html">계정관리</a></li>
-          <li>
+          <li id="divider">
             <hr class="dropdown-divider">
           </li>
           <li><a id="my-login" class="dropdown-item" href="#" onclick="logout()">로그아웃</a></li>
@@ -86,7 +86,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3" id="parkList">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3" id="park-list">
             <!-- 공원 리스트 : parkListTempHtml -->
           </ul>
         </div>

@@ -65,7 +65,7 @@
           <li id="my-favorite"><a class="dropdown-item" href="#">즐겨찾기</a></li>
           <li id="my-article"><a class="dropdown-item" href="#">내가 쓴 게시물</a></li>
           <li id="my-account"><a class="dropdown-item" href="./account_management.html">계정관리</a></li>
-          <li>
+          <li id="divider">
             <hr class="dropdown-divider">
           </li>
           <li><a id="my-login" class="dropdown-item" href="#" onclick="logout()">로그아웃</a></li>
@@ -96,14 +96,21 @@
 
   <!-- 바디 : 게시글, 댓글 -->
   <div class="wrap">
-    <div class="tag">
-      <h2 id="article_tag"></h2>
+    <div class="tag" id="tag">
+      
     </div>
 
     <!-- 게시글 제목 -->
     <div class="article-title">
       <hr class="title-hr">
-      <h4 id="article_title"></h4>
+
+      <div class="article-header">
+        <h4 id="article_title"></h4>
+        <div class="article-title-span" id="title-control">
+
+        </div>
+      </div>
+
       <div class="info">
         <div class="info-name">
           <span id="article_user"></span> <span> | </span> <span id="article_date"></span>
@@ -151,12 +158,12 @@
     <!-- 댓글 입력 -->
     <div class="comment-input">
       <div class="input-group">
-        <textarea name="comment-text" maxlength="200" class="comment-text" placeholder="댓글을 입력해주세요..." aria-label="Recipient's username"
-          aria-describedby="button-addon2" id="comment_post"></textarea>
+        <textarea name="comment-text" maxlength="200" class="comment-text" placeholder="댓글을 입력해주세요..."
+          aria-label="Recipient's username" aria-describedby="button-addon2" id="comment_post"></textarea>
         <button class="btn btn-outline-secondary" type="button" id="button-addon2"
           onclick="articleCommentPost()">게시</button>
-        </div>
-        <span style="color: #aaa" id="comment_counter">(0 / 최대 200자)</span>
+      </div>
+      <span style="color: #aaa" id="comment_counter">(0 / 최대 200자)</span>
     </div>
 
   </div>

@@ -7,7 +7,7 @@ const frontendBaseUrl = "http://127.0.0.1:5500/"
 function kakaoLogin() {
   const kakaosignup = document.getElementById("kakaosignup")
   const sign = document.getElementById("sign")
-  
+
   if (Kakao.isInitialized() == false) {
     Kakao.init("c414e5945e36386b3b383a30f1b31271")
   }
@@ -15,7 +15,7 @@ function kakaoLogin() {
   Kakao.Auth.login({
     scope: "profile_nickname, account_email",
     success: function (authObj) {
-      
+
       Kakao.API.request({
         url: "/v2/user/me",
         success: function (kakao) {
@@ -26,7 +26,7 @@ function kakaoLogin() {
           }
           kakaoUserForm(authObj, kakaoData)
         },
-        
+
         fail: function (error) {
           if (!Kakao.Auth.getAccessToken()) {
             alert("로그인상태가 아닙니다")
@@ -87,6 +87,7 @@ function parseJwt(token) {
 const loginbtn = document.getElementById("my-login")
 const favorite = document.getElementById("my-favorite")
 const article = document.getElementById("my-article")
+const divider = document.getElementById("divider")
 const account = document.getElementById("my-account")
 
 if (parseJwt("access") != null) {
@@ -95,6 +96,7 @@ if (parseJwt("access") != null) {
   favorite.style.display = "none"
   article.style.display = "none"
   account.style.display = "none"
+  divider.style.display = "none"
   loginbtn.innerText = "로그인"
 }
 

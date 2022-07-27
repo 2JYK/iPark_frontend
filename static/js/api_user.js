@@ -21,7 +21,7 @@ async function handleSignup() {
 
   response_json = await response.json()
 
-  if (response.status == 200) {
+  if (response.status == 201) {
     window.location.replace(`${frontendBaseUrl}login.html`)
   } else {
     alert(response_json["error"])
@@ -200,7 +200,7 @@ async function changePassword() {
 
   response_password = await response.json()
 
-  if (response.status == 200) {
+  if (response.status == 201) {
     alert(response_password["message"])
     window.location.replace(`${frontendBaseUrl}login.html`)
   } else {
@@ -283,7 +283,7 @@ async function changeAccount() {
 
   account_response = response.json()
 
-  if (response.status == 200) {
+  if (response.status == 201) {
     alert("회원정보 수정이 완료되었습니다.")
     window.location.replace(`${frontendBaseUrl}index.html`)
   } else {

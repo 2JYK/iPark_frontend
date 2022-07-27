@@ -5,7 +5,7 @@
 
 .title-hr {
   border: 0;
-  border-top: 3px solid;
+  border-top: 5px solid green;
 }
 
 .info {
@@ -37,8 +37,18 @@
   font-weight: bolder;
 }
 
+.article-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.article-title-span {
+  cursor: pointer;
+  color: rgb(206, 40, 40);
+}
+
 .article {
-  margin-top: 5%;
+  /* margin-top: 5%; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -47,8 +57,10 @@
 }
 
 .article-content {
-  margin-top: 5%;
+  margin-top: 3%;
   width: 70%;
+  font-size: large;
+  font-weight:500;
 }
 
 .comment-start {

@@ -9,16 +9,12 @@ async function getBookmark() {
     headers: token
   }
   )
-
   response_json = await response.json()
-  console.log(response_json)
 
   const bookmark_boxes = document.querySelector(".boxes")
   bookmark_boxes.innerHTML = ""
 
   response_json.forEach(data => {
-    console.log(data)
-
     const bookmark_box = document.createElement("div")
     bookmark_box.className = 'park-box'
 
@@ -36,7 +32,7 @@ async function getBookmark() {
                   </div>
                   <div class="delete">
                       <br>
-                      <button class="delete-btn">삭제</button>
+                      <button onclick="bookmark(this.id)" id="${data.id}" class="delete-btn">삭제</button>
                   </div>
               </div>
   `
@@ -45,5 +41,29 @@ async function getBookmark() {
   })
 }
 getBookmark()
+
+
+//북마크 등록 및 취소
+async function bookmark(id) {
+  const response = await fetch(`${backendBaseUrl}park/${id}/`, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Authorization': "Bearer " + localStorage.getItem("access")
+    },
+    method: 'POST'
+  }
+  )
+  response_json = await response.json()
+
+  if (response.status == 200) {
+    alert(response_json["message"])
+    window.location.reload()
+  } else {
+    alert("실패!")
+    window.location.reload();
+  }
+}
+
 
 

@@ -333,16 +333,15 @@ zones.forEach(zone => {
 })
 
 
-
 // 버튼 클릭 시 색상 변경
 var optionButton = document.querySelectorAll("#button")
 function optionClick(event) {
-  event.target.classList.add("clicked");
+  event.target.classList.toggle("clicked");
 }
 
-function init() {
+function controlColor() {
   for (var i = 0; i < optionButton.length; i++) {
     optionButton[i].addEventListener("click", optionClick);
   }
 }
-init();
+controlColor();

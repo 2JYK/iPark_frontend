@@ -301,17 +301,37 @@ var values = document.querySelectorAll("#park-option a")
 var valueList = []
 values.forEach(value => {
   value.addEventListener("click", () => {
-    valueList.push(value.title)
+    if (!valueList.includes(value.title)) {
+      valueList.push(value.title)
+    } else {
+      for (let i = 0; i < valueList.length; i++) {
+        if (valueList[i] == value.title) {
+          valueList.splice(i, 1)
+          i--
+        }
+      }
+    }
   })
 })
+
 
 var zones = document.querySelectorAll("#park-zone a")
 var zoneList = []
 zones.forEach(zone => {
   zone.addEventListener("click", () => {
-    valueList.push(zone.title)
+    if (!zoneList.includes(zone.title)) {
+      zoneList.push(zone.title)
+    } else {
+      for (let i = 0; i < zoneList.length; i++) {
+        if (zoneList[i] == zone.title) {
+          zoneList.splice(i, 1)
+          i--
+        }
+      }
+    }
   })
 })
+
 
 
 // 버튼 클릭 시 색상 변경

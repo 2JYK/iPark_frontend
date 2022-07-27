@@ -164,7 +164,7 @@ async function get_pagination_list(id, url) {
 
 // 검색 GET
 function getSearchArticles() {
-  $("#tbody").empty()
+  $("#best").empty()
   const search = document.getElementById("search").value
 
   query_param = `?keyword=${search}`
@@ -212,7 +212,7 @@ function getSearchArticles() {
         <td>${updated_at}</td>
         <td>${check_count}</td>
       </tr>`
-        $('#tbody').append(temp_html)
+        $('#best').append(temp_html)
       }
     }
   });

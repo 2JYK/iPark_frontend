@@ -2,6 +2,7 @@
 const receivedData = parseInt(location.href.split('?')[1]);
 console.log("receivedData :", receivedData)
 
+// 게시글 불러오기
 async function getArticlesDetail(receivedData) {
   if (parseJwt("access") != null) {
     token = {
@@ -54,6 +55,28 @@ async function getArticlesDetail(receivedData) {
   const comment_post = document.getElementById("button-addon2") // 댓글 onclick안에 article id 값 넣어주기 위해 사용
   comment_post.setAttribute("onclick", `articleCommentPost(${response_json.id})`)
 } getArticlesDetail(receivedData)
+
+
+// 게시글 삭제
+async function deleteArticle(receivedData) {
+  const response = await fetch(`${backendBaseUrl}community/${receivedData}/`, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': "Bearer " + localStorage.getItem("access")
+    },
+    method: 'DELETE'
+
+  }
+  )
+
+  if (response.status == 200) {
+    window.location.replace(`${frontendBaseUrl}/community.html`);
+    alert("게시물이 삭제 되었습니다.")
+  } else {
+    alert("게시물 작성자만 삭제 가능합니다.")
+  }
+}
+
 
 
 // 댓글 POST

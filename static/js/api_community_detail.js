@@ -25,8 +25,18 @@ async function getArticlesDetail(receivedData) {
     tag_name = "나눔마켓"
   }
   console.log("게시글 ID :", response_json.id)
-  const article_tag = document.getElementById("article_tag")
-  article_tag.innerText = tag_name
+  const article_tag = document.getElementById("tag")
+  
+  const article_tag_h2 = document.createElement("h2")
+  article_tag_h2.setAttribute("id", `${response_json.tag}`)
+  
+  if (article_tag_h2.id == 1) {
+    article_tag_h2.setAttribute("style", "color: lightsteelblue;")
+  }else {
+    article_tag_h2.setAttribute("style", "color: lightcoral;")
+  }
+  article_tag_h2.innerText = tag_name
+  article_tag.append(article_tag_h2)
 
   const article_title = document.getElementById("article_title")
   article_title.innerText = response_json.title
@@ -41,6 +51,9 @@ async function getArticlesDetail(receivedData) {
   const view_count = document.getElementById("view_count")
   view_count.innerText = response_json.check_count
 
+  const comment_count = document.getElementById("comment_count")
+  comment_count.innerText = response_json.comment_count
+
   const article_content = document.getElementById("article_content")
   article_content.innerText = response_json.content
 
@@ -54,6 +67,22 @@ async function getArticlesDetail(receivedData) {
 
   const comment_post = document.getElementById("button-addon2") // 댓글 onclick안에 article id 값 넣어주기 위해 사용
   comment_post.setAttribute("onclick", `articleCommentPost(${response_json.id})`)
+
+  if (parseJwt("access") != undefined) {
+    if (response_json.user == parseJwt("access").user_id) {
+      const title_div = document.getElementById("title-control")
+
+      const put_span = document.createElement("span")
+      put_span.setAttribute("onclick", ``)
+      put_span.innerHTML = " 수정 "
+      title_div.append(put_span)
+
+      const del_span = document.createElement("span")
+      del_span.setAttribute("onclick", `deleteArticle(${response_json.id})`)
+      del_span.innerHTML = " 삭제 "
+      title_div.append(del_span)
+    }
+  }
 } getArticlesDetail(receivedData)
 
 
@@ -135,7 +164,6 @@ async function articleCommentGet(article_id) {
     method: 'GET',
     headers: token
   })
-  console.log("토큰토큰 ! ", token)
   response_json = await response.json()
   response_json.forEach(data => {
 
@@ -194,10 +222,4 @@ async function articleCommentDel(comment_id) {
       alert(response_json["message"])
     }
   }
-}
-
-
-// 댓글 수정
-async function articleCommentPut(comment_id) {
-
 }

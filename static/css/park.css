@@ -192,3 +192,7 @@ body .dribbble img {
 .clicked {
   background-color: #0a470c;
 }
+
+.child-div {
+  background-color: transparent;
+}

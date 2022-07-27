@@ -258,7 +258,7 @@ function parkListHtml(id, park_name) {
 
 // 공원 옵션 버튼 
 document.querySelectorAll(".button").forEach(
-  button => button.innerHTML = "<div><span>" + button.textContent.trim().split("").join("</span><span>") + "</span></div>"
+  button => button.innerHTML = "<div class='child-div'><span>" + button.textContent.trim().split("").join("</span><span>") + "</span></div>"
 );
 
 
@@ -315,7 +315,7 @@ zones.forEach(zone => {
 
 
 // 버튼 클릭 시 색상 변경
-var optionButton = document.querySelectorAll("#button, #button div")
+var optionButton = document.querySelectorAll("#button")
 function optionClick(event) {
   event.target.classList.add("clicked");
 }

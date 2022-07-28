@@ -12,13 +12,14 @@
 
   display: none;
   overflow-y: initial !important;
-  z-index: 5;
+  z-index: 2;
 }
 
 .popup {
-  position: fixed;
+  position: relative;
 
-  width: 95%;
+  width: 80%;
+  height: auto;
   max-width: 90%;
   padding: 2%;
   border-radius: 10px;
@@ -27,11 +28,12 @@
   box-shadow: 5px 10px 10px 1px rgba(0, 0, 0, .3);
 }
 
+
 /* 모달창 헤더 */
 .popup-header {
   display: flex;
   margin-bottom: 2%;
-
+  
   justify-content: space-between;
 }
 
@@ -42,22 +44,50 @@
 }
 
 /* 모달창 바디 */
+.popup-body-choice {
+width: 40%;
+margin: 1% auto;
+}
+
+.popup-body-choice-hr {
+width: 70%;
+margin: auto;
+color: green;
+}
+
 .popup-body {
-  /* margin: auto; */
+  margin: auto;
   text-align: center;
 }
 
-.popup-body-title {
-  width: 40%;
-  height: 50px;
+.popup-body-preview {
+  width: 300px;
+  height: 300px;
+  background-color: rgb(241, 241, 241);
+  border: 2px dashed rgb(226, 89, 89);
+}
 
+.input-file-button{
+  margin-top: 1%;
+  padding: 10px 50px;
+  background-color: #FF6600;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+}
+
+.popup-body-title {
+  width: 50%;
+  height: 60px;
+  margin: 1% 0;
   border-radius: 3px;
+
 }
 
 .popup-body-content {
   resize: none;
 
-  width: 40%;
+  width: 50%;
   height: 150px;
   border-radius: 3px;
 }

@@ -107,10 +107,14 @@
 
       <!-- 업로드 모달 바디 -->
       <div class="popup-body">
+        <img id="preview" class="popup-body-preview">
         <div class="popup-body-file">
-          <input type="file" accept="image/jpeg" id="popup-body-file">
+          <label class="input-file-button" for="popup-body-file">
+            업로드
+          </label>
+          <input type="file" accept="image/jpeg" id="popup-body-file" style="display:none;" onchange="readURL(this);">
         </div>
-        <br>
+
         <input class="popup-body-title" id="popup-body-title" placeholder="제목"><br>
         <textarea class="popup-body-content" id="popup-body-content" placeholder="내용"></textarea>
 
@@ -123,7 +127,6 @@
       </div>
     </div>
   </div>
-  <!-- 모달 끝-->
 
   <!-- 바디 : 게시글, 댓글 -->
   <div class="wrap">

@@ -12,14 +12,17 @@ async function getBookmark() {
   )
   response_json = await response.json()
 
+  const username = document.getElementById("username")
+  username.innerHTML = response_json["username"]
+
   const bookmark_boxes = document.querySelector(".boxes")
   bookmark_boxes.innerHTML = ""
 
-  response_json.forEach(data => {
+  response_json["bookmark_list"].forEach(data => {
     const bookmark_box = document.createElement("div")
     bookmark_box.className = 'park-box'
     bookmark_box.innerHTML = `
-  <div>
+              <div>
                   <img src="${data.image}" width="200px" height="180px">
               </div>
               <div class="content">

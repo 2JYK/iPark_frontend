@@ -101,7 +101,7 @@
       <!-- 업로드 모달 헤더 -->
       <div class="popup-header">
         <span></span>
-        <h1>업로드</h1>
+        <h1>게시글 수정</h1>
         <div id="close"> X </div>
       </div>
 
@@ -142,19 +142,16 @@
     <!-- 게시글 제목 -->
     <div class="article-title">
       <hr class="title-hr">
-      <!-- <button id="modal-open">test</button> -->
       <div class="article-header">
         <h4 id="article_title"></h4>
         <div class="article-title-span" id="title-control">
-
         </div>
       </div>
-
       <div class="info">
         <div class="info-name">
           <span id="article_user"></span> <span> | </span> <span id="article_date"></span>
         </div>
-        <div class="info-count">
+        <div class="info-count"> 
           <span>추천 수 :</span>
           <span>00</span>
           <span>조회 수 :</span>
@@ -204,7 +201,6 @@
       </div>
       <span style="color: #aaa" id="comment_counter">(0 / 최대 200자)</span>
     </div>
-
   </div>
 
   <!-- footer 시작 -->
@@ -231,8 +227,8 @@
 
   <script src="/static/js/user.js"></script>
   <script src="/static/js/community.js"></script>
-  <script src="/static/js/api_community.js"></script>
   <script src="/static/js/api_community_detail.js"></script>
+  <script src="/static/js/api_community.js"></script>
   <!-- <script src="../static/js/api_park.js"></script>
     <script src="../static/js/park.js"></script> -->
 
@@ -246,21 +242,6 @@
         alert("최대 200자 까지 입력 가능합니다.");
         $(this).val(content.substring(0, 200));
         $("#comment_counter").html("(200 / 최대 200자)");
-      }
-    });
-
-    // 모달
-    $(function () {
-      $("#modal-open").click(function () {
-        $("#popup").css('display', 'flex').hide().fadeIn();
-      });
-
-      $("#close").click(function () {
-        modalClose();
-      });
-
-      function modalClose() {
-        $("#popup").fadeOut();
       }
     });
   </script>

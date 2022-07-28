@@ -37,3 +37,15 @@ $(function () {
     $("#popup").fadeOut();
   }
 });
+
+// 모달 onclick
+function open_modal() {
+  $("#popup").css('display', 'flex').hide().fadeIn();
+
+  $("#close").click(function () {
+    modalClose();
+  });
+  function modalClose() {
+    $("#popup").fadeOut();
+  }
+}

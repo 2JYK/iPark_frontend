@@ -65,7 +65,7 @@ async function getArticlesDetail(receivedData) {
     article_image.remove();
   }
 
-  const comment_post = document.getElementById("button-addon2") // 댓글 onclick안에 article id 값 넣어주기 위해 사용
+  const comment_post = document.getElementById("button-addon2")
   comment_post.setAttribute("onclick", `articleCommentPost(${response_json.id})`)
 
   if (parseJwt("access") != undefined) {
@@ -73,8 +73,8 @@ async function getArticlesDetail(receivedData) {
       const title_div = document.getElementById("title-control")
 
       const put_span = document.createElement("span")
-      put_span.id = 'modal-open';
-      put_span.innerHTML = "수정 "
+      put_span.setAttribute("onclick", "open_modal()")
+      put_span.innerHTML = " 수정 "
       title_div.append(put_span)
 
       const del_span = document.createElement("span")
@@ -103,9 +103,9 @@ async function updateArticle(receivedData) {
   }
 
   const response = await fetch(`${backendBaseUrl}community/${receivedData}/`, {
+    method: "PUT",
     headers: TOKEN,
     body: formData,
-    method: 'PUT'
   }
   )
   response_json = await response.json()

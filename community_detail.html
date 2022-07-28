@@ -94,16 +94,55 @@
     </div>
   </nav>
 
+  <!-- 모달 -->
+  <div class="popup-wrap" id="popup">
+    <div class="popup">
+
+      <!-- 업로드 모달 헤더 -->
+      <div class="popup-header">
+        <span></span>
+        <h1>업로드</h1>
+        <div id="close"> X </div>
+      </div>
+
+      <!-- 업로드 모달 바디 -->
+      <div class="popup-body">
+        <div class="popup-body-file">
+          <input type="file" accept="image/jpeg" id="popup-body-file">
+        </div>
+        <br>
+        <hr>
+
+        <select name="choice" id="popup-body-choice" class="popup-body-choice">
+          <option value="">선택해주세요</option>
+          <option value="1">커뮤니티</option>
+          <option value="2">나눔마켓</option>
+        </select>
+        <hr>
+        <input class="popup-body-title" id="popup-body-title" placeholder="제목"><br>
+        <textarea class="popup-body-content" id="popup-body-content" placeholder="내용"></textarea>
+
+        <!-- 업로드 모달 업로드 -->
+        <div class="popup-upload">
+          <div class="result-btn upload">
+            <button type="button" class="btn btn-dark" onclick="updateArticle(receivedData)">수정하기</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 모달 끝-->
+
   <!-- 바디 : 게시글, 댓글 -->
   <div class="wrap">
     <div class="tag" id="tag">
-      
+
     </div>
 
     <!-- 게시글 제목 -->
     <div class="article-title">
       <hr class="title-hr">
-
+      <!-- <button id="modal-open">test</button> -->
       <div class="article-header">
         <h4 id="article_title"></h4>
         <div class="article-title-span" id="title-control">
@@ -207,6 +246,21 @@
         alert("최대 200자 까지 입력 가능합니다.");
         $(this).val(content.substring(0, 200));
         $("#comment_counter").html("(200 / 최대 200자)");
+      }
+    });
+
+    // 모달
+    $(function () {
+      $("#modal-open").click(function () {
+        $("#popup").css('display', 'flex').hide().fadeIn();
+      });
+
+      $("#close").click(function () {
+        modalClose();
+      });
+
+      function modalClose() {
+        $("#popup").fadeOut();
       }
     });
   </script>

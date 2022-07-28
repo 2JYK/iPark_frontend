@@ -141,8 +141,10 @@
           <input type="file" accept="image/jpeg" id="popup-body-file" style="display:none;" onchange="readURL(this);">
         </div>
 
-        <br> <hr class="popup-body-choice-hr">
-        <select class="form-select popup-body-choice" aria-label="Default select example" name="choice" id="popup-body-choice">
+        <br>
+        <hr class="popup-body-choice-hr">
+        <select class="form-select popup-body-choice" aria-label="Default select example" name="choice"
+          id="popup-body-choice">
           <option selected>선택해주세요</option>
           <option value="1">커뮤니티</option>
           <option value="2">나눔마켓</option>
@@ -190,6 +192,7 @@
 
     <!-- 검색 창 -->
     <form class="d-flex search" role="search" action="">
+      <input style="display: none;">
       <input class="form-control me-2 d-flex" type="search" id="search" name="search" placeholder="Search"
         aria-label="Search">
       <button class="btn btn-outline-success" onclick="getSearchArticles()" type="button">Search</button>

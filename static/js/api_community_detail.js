@@ -26,13 +26,13 @@ async function getArticlesDetail(receivedData) {
   }
   console.log("게시글 ID :", response_json.id)
   const article_tag = document.getElementById("tag")
-  
+
   const article_tag_h2 = document.createElement("h2")
   article_tag_h2.setAttribute("id", `${response_json.tag}`)
-  
+
   if (article_tag_h2.id == 1) {
     article_tag_h2.setAttribute("style", "color: lightsteelblue;")
-  }else {
+  } else {
     article_tag_h2.setAttribute("style", "color: lightcoral;")
   }
   article_tag_h2.innerText = tag_name
@@ -73,8 +73,8 @@ async function getArticlesDetail(receivedData) {
       const title_div = document.getElementById("title-control")
 
       const put_span = document.createElement("span")
-      put_span.setAttribute("onclick", ``)
-      put_span.innerHTML = " 수정 "
+      put_span.id = 'modal-open';
+      put_span.innerHTML = "수정 "
       title_div.append(put_span)
 
       const del_span = document.createElement("span")
@@ -84,6 +84,40 @@ async function getArticlesDetail(receivedData) {
     }
   }
 } getArticlesDetail(receivedData)
+
+
+// 게시글 수정
+async function updateArticle(receivedData) {
+  const image = document.getElementById("popup-body-file").files
+  const select = document.getElementById("popup-body-choice").value
+  tag = parseInt(select)
+  const title = document.getElementById("popup-body-title").value
+  const content = document.getElementById("popup-body-content").value
+  const formData = new FormData()
+
+  formData.append("tag", tag)
+  formData.append("title", title)
+  formData.append("content", content)
+  if (image.length == 1) {
+    formData.append("image", image[0])
+  }
+
+  const response = await fetch(`${backendBaseUrl}community/${receivedData}/`, {
+    headers: TOKEN,
+    body: formData,
+    method: 'PUT'
+  }
+  )
+  response_json = await response.json()
+
+  if (response.status == 200) {
+    alert("게시글 수정 완료")
+    location.reload();
+  }
+  else {
+    alert(response_json["message"])
+  }
+}
 
 
 // 게시글 삭제
@@ -105,7 +139,6 @@ async function deleteArticle(receivedData) {
     alert("게시물 작성자만 삭제 가능합니다.")
   }
 }
-
 
 
 // 댓글 POST
@@ -195,7 +228,7 @@ async function articleCommentGet(article_id) {
         del_span.setAttribute("onclick", `articleCommentDel(${data.id})`)
         del_span.innerHTML = "삭제<br>"
         time_div.prepend(del_span)
-        
+
         const put_span = document.createElement("span")
         put_span.setAttribute("onclick", `data(${data.id})`)
         // del_span.setAttribute("id", `data${data.id}`)

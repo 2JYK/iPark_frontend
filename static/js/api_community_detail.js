@@ -223,14 +223,8 @@ async function articleCommentGet(article_id) {
 
         const del_span = document.createElement("span")
         del_span.setAttribute("onclick", `articleCommentDel(${data.id})`)
-        del_span.innerHTML = "삭제<br>"
-        time_div.prepend(del_span)
-
-        const put_span = document.createElement("span")
-        put_span.setAttribute("onclick", `data(${data.id})`)
-        // del_span.setAttribute("id", `data${data.id}`)
-        put_span.innerHTML = "수정"
-        time_div.prepend(put_span)
+        del_span.innerHTML = " 삭제 "
+        time_div.append(del_span)
       }
     }
   });

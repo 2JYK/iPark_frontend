@@ -42,6 +42,14 @@ $(function () {
 function open_modal() {
   $("#popup").css('display', 'flex').hide().fadeIn();
 
+  //수정 모달 안에 원래 있던 내용 넣어주기
+  const old_title = document.getElementById("article_title")
+  const old_content = document.getElementById("article_content")
+  const input_title = document.getElementById("popup-body-title")
+  const input_content = document.getElementById("popup-body-content")
+  input_title.value = old_title.innerHTML
+  input_content.value = old_content.innerHTML
+
   $("#close").click(function () {
     modalClose();
   });

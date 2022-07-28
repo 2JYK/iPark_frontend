@@ -89,13 +89,10 @@ async function getArticlesDetail(receivedData) {
 // 게시글 수정
 async function updateArticle(receivedData) {
   const image = document.getElementById("popup-body-file").files
-  const select = document.getElementById("popup-body-choice").value
-  tag = parseInt(select)
   const title = document.getElementById("popup-body-title").value
   const content = document.getElementById("popup-body-content").value
   const formData = new FormData()
 
-  formData.append("tag", tag)
   formData.append("title", title)
   formData.append("content", content)
   if (image.length == 1) {

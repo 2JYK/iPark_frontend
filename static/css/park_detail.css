@@ -1,198 +1,247 @@
+.park-detail{
+    max-width: 1000px;
+    margin: auto;
+}
+
+.line {
+    border-bottom: 0.1rem solid green;
+}
 /* 첫번째 구간 : 이름, 북마크 */
 .park-name-mark {
-    background-color: pink;
-    height: 100px;
     margin: 60px 0px 10px 0px;
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 .park-name {
-    background-color: green;
-    width: 100px;
-    height: 100px;
-    justify-content: center;
+    font-weight:500;
+    margin: auto;
 }
 
 .bookmark {
-    background-color: green;
-    width: 100px;
-    height: 100px;
+    margin-right: 0px;
+}
+
+.fa-heart {
+    font-size: 40px;
 }
 
 /* 두번째 구간 : 조회수, 주소 */
+.check-count-addr {
+    display: flex;
+}
 .check-count {
-    background-color: green;
-    width: 100px;
     height: 30px;
-    margin: 0px 50px 10px 0px;
 }
 
 .addr {
-    background-color: green;
-    width: 300px;
     height: 30px;
-    margin: 0px 50px 10px 0px;
+    margin-left: auto;
 }
 
 /* 세번째 구간 : 이미지, 지도 */
 .park-image-map {
-    background-color: pink;
     height: 300px;
-    margin: 50px 0px 50px 0px;
-    display: flex;
-    justify-content: space-between;
+    margin: 50px auto;
+    display: grid;
+    max-width: 1200px;
 }
 
 .image {
     width: 400px;
     height: 300px;
-    margin: 0px 0px 0px 30px;
+    margin: auto;
 }
 
 .img {
     width: 400px;
     height: 300px;
+    margin: auto;
 }
 
 .map {
     width: 400px;
     height: 300px;
-    margin: 0px 30px 0px 0px;
+    margin: auto;
+}
+
+/* 반응형 */
+@media (min-width: 1150px) {
+    .park-image-map {
+        grid-template-columns: repeat(2, 1fr);
+        margin: 30px auto;
+    }
+}
+
+@media (max-width: 1150px) {
+    .park-image-map {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 30px 0px;
+        margin: 30px auto 370px auto;
+    }
 }
 
 /* 네번째 구간 : 설명 */
 .park-description {
-    background-color: pink;
-    height: 520px;
     margin: 0px 0px 10px 0px;
 }
 
 .list-content {
-    background-color: green;
-    height: 250px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .main-equip {
-    background-color: green;
-    height: 220px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .admintel {
-    background-color: red;
     height: 30px;
+}
 
+@media (max-width: 570px) {
+    .park-description {
+        width: 400px;
+        margin: auto;
+    }
+    .updated-at {
+        display: none;
+    }
+    .template-url {
+        margin: auto;
+    }
+}
+
+@media (max-width: 375px) {
+    .park-description {
+        width: 400px;
+    }
 }
 
 /* 다섯째 구간 : url, 정보업데이트시간 */
 .park-url-updated {
-    background-color: pink;
-    height: 30px;
-    margin: 0px 0px 10px 0px;
+    margin: auto auto 10px auto;
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .template-url {
-    background-color: green;
-    width: 400px;
-    height: 30px;
-    margin: 0px 0px 0px 30px;
+    margin-bottom: 30px;
+    overflow-x: auto;
 }
 
 .updated-at {
-    background-color: green;
-    width: 100px;
-    height: 30px;
-    margin: 0px 30px 0px 0px;
+    margin-left: auto;
 }
 
 /* 공원 댓글창 */
 .park-comment {
-    background-color: skyblue;
-    width: 600px;
     height: 545px;
     margin: 30px auto 60px auto;
+
 }
 
 /* 댓글 10개 보여주는 공간 */
 .comment-box {
     background-color: green;
-    width: 580px;
     height: 465px;
     margin: 0px auto 0px auto;
 }
 
 .comments {
-    background-color: lightgreen;
-    width: 580px;
     height: 465px;
     padding-top: 15px;
 }
 
 .comment {
-    background-color: yellow;
-    width: 580px;
     height: 30px;
     display: flex;
     margin: 0px 0px 15px 0px;
     overflow: hidden;
+    padding: 0px 30px;
+}
+
+@media (min-width: 1150px) {
+    .park-comment {
+        width: 800px;
+    }
+    .comment-input-box {
+        width: 700px;
+        margin: auto;
+    }
+    .comment-input-comment input {
+        width: 700px;  
+    }
+}
+
+@media (max-width: 570px) {
+    .park-comment {
+        width: 400px;
+    }
+    .comment-input-box {
+        width: 400px;
+    }
+    .comment-input-comment input {
+        width: 290px;  
+    }
 }
 
 .comment-username {
-    background-color: white;
     margin-right: 10px;
 }
 
 .comment-comment {
-    background-color: white;
     margin-right: 10px;
 }
 
 .comment-upload-time {
-    background-color: white;
     margin-right: 10px;
 }
 
 /* 댓글 수정 삭제 버튼 */
-.comment-edit {
-    margin-right: 10px;
+.comment-buttons {
+    margin-left: auto;
 }
 
-.comment-delete {}
+.comment-buttons button{
+    padding: 0;
+    border: none;
+    background: none;
+}
 
 /* 댓글 페이지 네이션 */
 .comment-pagination {
-    background-color: gray;
     height: 30px;
-    margin-bottom: 10px;
+    margin : 10px;
     display: flex;
     justify-content: center;
 }
 
 .comment-pagination-num {
     margin: 0px 10px 0px 10px;
+    
 }
 
 .cur-page {
     color: blue;
     font-weight: 900;
+    font-size: 18px;
 }
 
 /* 댓글 입력창 */
 .comment-input-box {
-    background-color: gray;
     display: flex;
     margin: 0px 10px 0px 10px;
 }
 
 .comment-input-comment input {
-    background-color: white;
-    width: 510px;
     height: 30px;
     margin-right: 10px;
     overflow: hidden;
+    border-radius: 7px;
+    padding: 1.075rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    vertical-align: middle;
 }
-
-.comment-input-button {}

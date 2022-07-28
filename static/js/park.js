@@ -12,99 +12,87 @@ function appendParkHtml(
   list_content, admintel, main_equip, template_url, updated_at,
   id, bookmark, user, comments) {
 
-  parkDetailTempHtml = `
-			<!-- 첫번째 구간 : 이름, 북마크 -->
-			<div class="park-name-mark">
-				<div>
-					<div class="park-name">${park_name}</div>
-				</div>
-				<div>
-					<div class="bookmark">
-						<button type="button" onclick="postBookmark()">북마크</button>
-					</div>
-				</div>
-			</div>
+    parkDetailTempHtml = `
+    <!-- 첫번째 구간 : 이름, 북마크 -->
+    <div class="park-name-mark">
+      <div class="park-name">
+        <h1>${park_name}</h1>
+      </div>
+      <div class="bookmark">
+        <i class="fa-regular fa-heart" type="button" onclick="postBookmark()"></i>
+      </div>
+    </div>
 
-			<!-- 두번째 구간 : 조회수, 주소  -->
-			<div>
-				<div class="check-count">조회수 : ${check_count}</div>
-			</div>
-			<div>
-				<div class="addr">${addr}</div>
-			</div>
+    <!-- 두번째 구간 : 조회수, 주소  -->
+    <div class="check-count-addr">
+      <p class="check-count">조회수 : ${check_count}</p>
+      <p class="addr">${addr}</p>
+    </div>
+    <div class="line"></div>
 
-			<!-- 세번째 구간 : 이미지, 지도-->
-			<div class="park-image-map">
-				<div class="image">
-					<img class="img" src="${image}" alt="${park_name}"/>
-				</div>
-				<div class="map" id="map"></div>
-			</div>
+    <!-- 세번째 구간 : 이미지, 지도-->
+    <div class="park-image-map">
+      <div class="image">
+        <img class="img" src="${image}" alt="${park_name}"/>
+      </div>
+      <div class="map" id="map"></div>
+    </div>
 
-			<!-- 네번째 구간 : 설명  -->
-			<div class="park-description">
-				<div>
-					<div class="list-content">${list_content}</div>
-				</div>
-				<div>
-					<div class="main-equip">${main_equip}</div>
-				</div>
-        <div>
-          <div class="admintel">${admintel}</div>
+    <!-- 네번째 구간 : 설명  -->
+    <div class="park-description">
+      <div class="list-content">${list_content}</div>
+      <div class="main-equip">${main_equip}</div>
+      <div class="admintel">${admintel}</div>
+    </div>
+
+    <!-- 다섯째 구간 : url, 정보업데이트시간 -->
+    <div class="park-url-updated">
+      <div class="template-url">${template_url}</div>
+      <div class="updated-at">${updated_at}</div>
+    </div>
+    <div class="line"></div>
+
+    <!-- 공원 댓글창 -->
+    <div>
+      <div class="park-comment">
+        <form action="POST">
+        <div class="comment-box">
+          <div class="comments" id="comments${id}">
+            <!-- 공원 상세보기 댓글 : append.html -->
+          </div>
         </div>
-			</div>
 
-			<!-- 다섯째 구간 : url, 정보업데이트시간 -->
-			<div class="park-url-updated">
-				<div>
-					<div class="template-url">${template_url}</div>
-				</div>
-				<div>
-					<div class="updated-at">${updated_at}</div>
-				</div>
-			</div>
+        <!-- 댓글 페이지 네이션 -->
+        <div class="comment-pagination">
+          <!-- <div class="comment-pagination-left-button">
+            <button type="button">
+              <
+            </button>
+          </div> -->
+          <div class="comment-pagination-num" id="commentPaginationNum">
+            <!-- 페이지 네이션 번호 구간 -->
+          </div>
+          <!-- <div class="comment-pagination-right-button">
+            <button type="button">
+              >
+            </button>
+          </div> -->
+        </div>
 
-			<!-- 공원 댓글창 -->
-			<div>
-				<div class="park-comment">
-					<form action="POST">
-					<div class="comment-box">
-						<div class="comments" id="comments${id}">
-							<!-- 공원 상세보기 댓글 : append.html -->
-						</div>
-					</div>
-
-					<!-- 댓글 페이지 네이션 -->
-					<div class="comment-pagination">
-						<!-- <div class="comment-pagination-left-button">
-							<button type="button">
-								<
-							</button>
-						</div> -->
-						<div class="comment-pagination-num" id="comment-pagination-num">
-              <!-- 페이지 네이션 번호 구간 -->
-						</div>
-						<!-- <div class="comment-pagination-right-button">
-							<button type="button">
-								>
-							</button>
-						</div> -->
-					</div>
-
-					<!-- 댓글 입력창 -->
-					<div class="comment-input-box">
-						<div class="comment-input-comment">
-							<input id="commentInputComment" placeholder="댓글을 입력해주세요" /></input>
-						</div>
-						<div class="comment-input-button">
-							<button type="button" id="commentButton" onclick="postComment(${id})">button</button>
-						</div>
-					</div>
-					</form>
-				</div>
-			</div>
-		`
-  $("#parkDetail").append(parkDetailTempHtml)
+        <!-- 댓글 입력창 -->
+        <div class="comment-input-box">
+          <div class="comment-input-comment">
+            <input id="commentInputComment" placeholder="댓글을 입력해주세요" /></input>
+          </div>
+          <div class="comment-input-button">
+            <button class="btn btn-outline-secondary" type="button" id="commentButton" onclick="postComment(${id})">button</button>
+          </div>
+        </div>
+        </form>
+      </div>
+    </div>
+  `
+$("#parkDetail").append(parkDetailTempHtml)
 
   // 공원 상세보기 댓글
   for (let j = 0; j < comments.length; j++) {
@@ -121,16 +109,17 @@ function appendParkHtml(
 				<div class="comment-upload-time">
 					<p>${time_before}</p>
 				</div>
-				<div class="comment-edit">
-					<button type="button" id="updateButton(${comments[j].id})" onclick="editComment(${comments[j].id})">
-						edit
-					</button>
-				</div>
-				<div class="comment-delete">
-					<button type="button" onclick="deleteComment(${comments[j].id})">
-						<i class="fa-regular fa-trash-can"></i>
-					</button>
-				</div>
+        <div class="comment-buttons">
+
+            <button class="comment-edit" type="button" id="updateButton(${comments[j].id})" onclick="editComment(${comments[j].id})">
+              edit
+            </button>
+
+            <button class="comment-delete" type="button" onclick="deleteComment(${comments[j].id})">
+              <i class="fa-regular fa-trash-can"></i>
+            </button>
+
+        </div>
 			</div>
 		`)
   }

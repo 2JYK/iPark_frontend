@@ -133,18 +133,22 @@
 
       <!-- 업로드 모달 바디 -->
       <div class="popup-body">
+        <img id="preview" class="popup-body-preview">
         <div class="popup-body-file">
-          <input type="file" accept="image/jpeg" id="popup-body-file">
+          <label class="input-file-button" for="popup-body-file">
+            업로드
+          </label>
+          <input type="file" accept="image/jpeg" id="popup-body-file" style="display:none;" onchange="readURL(this);">
         </div>
-        <br>
-        <hr>
 
-        <select name="choice" id="popup-body-choice" class="popup-body-choice">
-          <option value="">선택해주세요</option>
+        <br> <hr class="popup-body-choice-hr">
+        <select class="form-select popup-body-choice" aria-label="Default select example" name="choice" id="popup-body-choice">
+          <option selected>선택해주세요</option>
           <option value="1">커뮤니티</option>
           <option value="2">나눔마켓</option>
         </select>
-        <hr>
+        <hr class="popup-body-choice-hr">
+
         <input class="popup-body-title" id="popup-body-title" placeholder="제목"><br>
         <textarea class="popup-body-content" id="popup-body-content" placeholder="내용"></textarea>
 

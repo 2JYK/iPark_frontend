@@ -12,14 +12,14 @@ function appendParkHtml(
   list_content, admintel, main_equip, template_url, updated_at,
   id, bookmark, user, comments) {
 
-    parkDetailTempHtml = `
+  parkDetailTempHtml = `
     <!-- 첫번째 구간 : 이름, 북마크 -->
     <div class="park-name-mark">
       <div class="park-name">
         <h1>${park_name}</h1>
       </div>
       <div class="bookmark">
-        <i class="fa-regular fa-heart" type="button" onclick="postBookmark()"></i>
+        <i id="heart" class="fa-regular fa-heart" type="button" onclick="postBookmark(${id})"></i>
       </div>
     </div>
 
@@ -92,7 +92,7 @@ function appendParkHtml(
       </div>
     </div>
   `
-$("#parkDetail").append(parkDetailTempHtml)
+  $("#parkDetail").append(parkDetailTempHtml)
 
   // 공원 상세보기 댓글
   for (let j = 0; j < comments.length; j++) {
@@ -334,3 +334,23 @@ function controlColor() {
   }
 }
 controlColor();
+
+
+//북마크 여부 확인
+window.onload = function changeBookmark() {
+  const userid = parseJwt("access").user_id
+  const bookmarks = JSON.parse(sessionStorage.getItem("park_info"))["bookmarks"]
+  const userlist = []
+
+  bookmarks.forEach(data => {
+    userlist.push(data["user"])
+  })
+
+  if (userlist.includes(userid)) {
+    const heart = document.getElementById("heart")
+    heart.classList.add('fa-solid');
+  }
+}
+
+
+

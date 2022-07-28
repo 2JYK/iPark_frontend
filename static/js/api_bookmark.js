@@ -1,3 +1,4 @@
+//즐겨찾기 페이지 user별 북마크 불러오기
 async function getBookmark() {
   token = {
     'content-type': "application/json",
@@ -17,7 +18,6 @@ async function getBookmark() {
   response_json.forEach(data => {
     const bookmark_box = document.createElement("div")
     bookmark_box.className = 'park-box'
-
     bookmark_box.innerHTML = `
   <div>
                   <img src="${data.image}" width="200px" height="180px">
@@ -32,7 +32,7 @@ async function getBookmark() {
                   </div>
                   <div class="delete">
                       <br>
-                      <button onclick="bookmark(this.id)" id="${data.id}" class="delete-btn">삭제</button>
+                      <button onclick="postBookmark(this.id)" id="${data.id}" class="delete-btn">삭제</button>
                   </div>
               </div>
   `
@@ -44,7 +44,7 @@ getBookmark()
 
 
 //북마크 등록 및 취소
-async function bookmark(id) {
+async function postBookmark(id) {
   const response = await fetch(`${backendBaseUrl}park/${id}/`, {
     headers: {
       'Content-Type': 'application/json',
@@ -59,8 +59,9 @@ async function bookmark(id) {
   if (response.status == 200) {
     alert(response_json["message"])
     window.location.reload()
+
   } else {
-    alert("실패!")
+    alert("잘못된 로그인 정보입니다.")
     window.location.reload();
   }
 }

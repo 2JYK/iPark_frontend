@@ -100,6 +100,7 @@ async function putComment(comment_id) {
         <div class="comment-comment" id="commentContent(${comment_id})">
           ${inputContent.value}
         </div>`
+    showParkDetail(comment_id)
   } else {
     alert(response_json["message"])
   }
@@ -124,6 +125,7 @@ async function deleteComment(comment_id) {
     if (response.status == 200) {
       const comment = document.getElementById(`comment(${comment_id})`)
       comment.style.display = "none"
+      showParkDetail(comment_id)
     } else {
       alert(response_json["message"])
     }
@@ -204,3 +206,30 @@ function getPopularParks() {
   })
 }
 getPopularParks()
+
+
+//북마크 등록 및 취소
+async function postBookmark(id) {
+  const response = await fetch(`${backendBaseUrl}park/${id}/`, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Authorization': "Bearer " + localStorage.getItem("access")
+    },
+    method: 'POST'
+  }
+  )
+  response_json = await response.json()
+
+  if (response.status == 200) {
+    alert(response_json["message"])
+    showParkDetail(id)
+
+  } else {
+    alert("잘못된 로그인 정보입니다.")
+    showParkDetail(id)
+  }
+}
+
+
+

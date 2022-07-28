@@ -1,4 +1,4 @@
-.park-detail{
+.park-detail {
     max-width: 1000px;
     margin: auto;
 }
@@ -6,6 +6,7 @@
 .line {
     border-bottom: 0.1rem solid green;
 }
+
 /* 첫번째 구간 : 이름, 북마크 */
 .park-name-mark {
     margin: 60px 0px 10px 0px;
@@ -15,7 +16,7 @@
 }
 
 .park-name {
-    font-weight:500;
+    font-weight: 500;
     margin: auto;
 }
 
@@ -25,12 +26,14 @@
 
 .fa-heart {
     font-size: 40px;
+    color: #2db43a;
 }
 
 /* 두번째 구간 : 조회수, 주소 */
 .check-count-addr {
     display: flex;
 }
+
 .check-count {
     height: 30px;
 }
@@ -104,9 +107,11 @@
         width: 400px;
         margin: auto;
     }
+
     .updated-at {
         display: none;
     }
+
     .template-url {
         margin: auto;
     }
@@ -165,12 +170,14 @@
     .park-comment {
         width: 800px;
     }
+
     .comment-input-box {
         width: 700px;
         margin: auto;
     }
+
     .comment-input-comment input {
-        width: 700px;  
+        width: 700px;
     }
 }
 
@@ -178,11 +185,13 @@
     .park-comment {
         width: 400px;
     }
+
     .comment-input-box {
         width: 400px;
     }
+
     .comment-input-comment input {
-        width: 290px;  
+        width: 290px;
     }
 }
 
@@ -203,7 +212,7 @@
     margin-left: auto;
 }
 
-.comment-buttons button{
+.comment-buttons button {
     padding: 0;
     border: none;
     background: none;
@@ -212,14 +221,14 @@
 /* 댓글 페이지 네이션 */
 .comment-pagination {
     height: 30px;
-    margin : 10px;
+    margin: 10px;
     display: flex;
     justify-content: center;
 }
 
 .comment-pagination-num {
     margin: 0px 10px 0px 10px;
-    
+
 }
 
 .cur-page {

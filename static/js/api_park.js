@@ -61,13 +61,15 @@ async function postComment(id) {
     body: JSON.stringify(commentData)
   })
 
+  response_json = await response.json()
+
   if (parseJwt("access") == null) {
-    alert(response["message"])
+    alert(response_json["message"])
   } else {
     if (response.status == 200) {
       showParkDetail(id)
     } else {
-      alert(response["message"])
+      alert(response_json["message"])
     }
   }
 }
@@ -90,15 +92,16 @@ async function putComment(comment_id) {
     body: JSON.stringify(commentData)
   })
 
+  response_json = await response.json()
+
   if (response.status == 200) {
     const comment = document.getElementById(`commentContent(${comment_id})`)
     comment.innerHTML = `
         <div class="comment-comment" id="commentContent(${comment_id})">
           ${inputContent.value}
         </div>`
-
   } else {
-    alert(response["message"])
+    alert(response_json["message"])
   }
 }
 
@@ -113,16 +116,16 @@ async function deleteComment(comment_id) {
     }
   })
 
-  if (parseJwt("access") == null) {
-    alert(response["message"])
+  response_json = await response.json()
 
+  if (parseJwt("access") == null) {
+    alert(response_json["message"])
   } else {
     if (response.status == 200) {
       const comment = document.getElementById(`comment(${comment_id})`)
       comment.style.display = "none"
-
     } else {
-      alert(response["message"])
+      alert(response_json["message"])
     }
   }
 }

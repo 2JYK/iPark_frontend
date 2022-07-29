@@ -2,6 +2,7 @@
 const receivedData = parseInt(location.href.split('?')[1]);
 console.log("receivedData :", receivedData)
 
+
 // 게시글 불러오기
 async function getArticlesDetail(receivedData) {
   if (parseJwt("access") != null) {
@@ -142,11 +143,10 @@ async function deleteArticle(receivedData) {
 async function articleCommentPost(article_id) {
   const comment = document.getElementById("comment_post").value
   const commentData = {
-    // "user": parseJwt("access").user_id,
-    // "article": article_id,
+    "user": parseJwt("access").user_id,
+    "article": article_id,
     "comment": comment
   }
-  console.log("ㅡCommentㅡ", commentData)
 
   // 로그인 유저와 비로그인 유저 판별
   if (parseJwt("access") != undefined) {
@@ -167,8 +167,43 @@ async function articleCommentPost(article_id) {
     headers: token,
   })
   response_json = await response.json()
+  const data = response_json.data
+
   if (response.status == 200) {
     alert(response_json["message"])
+
+    // 댓글 올린 시간 설정
+    let created_at = data.created_at.split(".")
+    created_date = created_at[0].replace(/-/g, ".").split("T")
+    created_time = created_date[1].split(":")
+
+    const comment_wrap = document.querySelector(".comment-wrap")
+    const comment = document.createElement("div")
+
+    comment.className = "comment"
+    comment.id = `del${data.id}`
+    comment.innerHTML = `
+    </li>
+    <div class="username">${data.username}</div>
+    <div class="user-comment">${data.comment}</div>
+    <div class="time" id="${data.id}">
+    ${created_date[0]} ${created_time[0]}:${created_time[1]}
+    </div>
+    </li>
+    `
+    comment_wrap.append(comment)
+
+    if (parseJwt("access") != undefined || token == {}) {
+      if (data.user == parseJwt("access").user_id) {
+        const time_div = document.getElementById(`${data.id}`)
+
+        const del_span = document.createElement("span")
+        del_span.setAttribute("onclick", `articleCommentDel(${data.id})`)
+        del_span.innerHTML = " 삭제 "
+        time_div.append(del_span)
+      }
+    }
+
   } else if (response.status == 400) {
     alert(response_json["message"])
   }
@@ -203,7 +238,8 @@ async function articleCommentGet(article_id) {
     created_time = created_date[1].split(":")
 
     const comment = document.createElement("div")
-    comment.className = 'comment'
+    comment.className = "comment"
+    comment.id = `del${data.id}`
 
     comment.innerHTML = `
     </li>
@@ -238,10 +274,12 @@ async function articleCommentDel(comment_id) {
     headers: TOKEN,
   })
   response_json = await response.json()
-
+  
   if (parseJwt("access") != undefined) {
     if (response.status == 200) {
       alert(response_json["message"])
+      const del_div = document.querySelector(`#del${comment_id}`)
+      del_div.remove()
     } else {
       alert(response_json["message"])
     }

@@ -207,8 +207,56 @@ function getPopularParks() {
 }
 getPopularParks()
 
+//북마크 API 시작
+//즐겨찾기 페이지 user별 북마크 불러오기
+async function getBookmark() {
+  token = {
+    'content-type': "application/json",
+    "Access-Control-Allow-Origin": "*",
+    "Authorization": "Bearer " + localStorage.getItem("access"),
+  }
+  const response = await fetch(`${backendBaseUrl}park/bookmark/`, {
+    method: 'GET',
+    headers: token
+  }
+  )
+  response_json = await response.json()
 
-//북마크 등록 및 취소
+  const username = document.getElementById("username")
+  username.innerHTML = response_json["username"]
+
+  const bookmark_boxes = document.querySelector(".boxes")
+  bookmark_boxes.innerHTML = ""
+
+  response_json["bookmark_list"].forEach(data => {
+    const bookmark_box = document.createElement("div")
+    bookmark_box.className = 'park-box'
+    bookmark_box.innerHTML = `
+              <div>
+                  <img src="${data.image}" width="200px" height="180px">
+              </div>
+              <div class="content">
+                  <div>
+                      <h3>${data.name}</h3>
+                      <br>
+                  </div>
+                  <div>
+                      <span>${data.desc}</span>
+                  </div>
+                  <div class="delete">
+                      <br>
+                      <button onclick="deleteBookmark(this.id)" id="${data.id}" class="delete-btn">삭제</button>
+                  </div>
+              </div>
+  `
+    bookmark_boxes.append(bookmark_box)
+
+  })
+}
+getBookmark()
+
+
+//북마크 등록 및 취소 (공원 상세 페이지)
 async function postBookmark(id) {
   const response = await fetch(`${backendBaseUrl}park/${id}/`, {
     headers: {
@@ -227,7 +275,26 @@ async function postBookmark(id) {
 
   } else {
     alert("잘못된 로그인 정보입니다.")
-    showParkDetail(id)
+    window.location.reload();
+  }
+}
+
+
+//북마크 삭제 (북마크 페이지)
+async function deleteBookmark(id) {
+  const response = await fetch(`${backendBaseUrl}park/bookmark/?id=${id}`, {
+    headers: {
+      'Authorization': "Bearer " + localStorage.getItem("access")
+    },
+    method: 'DELETE'
+  }
+  )
+  response_json = await response.json()
+
+  if (response.status == 200) {
+    alert(response_json["message"])
+    window.location.reload()
+
   }
 }
 

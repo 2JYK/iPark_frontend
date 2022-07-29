@@ -4,7 +4,7 @@ body {
 }
 
 .container {
-    min-height: 70%;
+    min-height: 55%;
 }
 
 .intro {
@@ -35,6 +35,12 @@ body {
 
 .content {
     margin-left: 2%;
+}
+
+.park-img,
+.park-name,
+.park-desc {
+    cursor: pointer;
 }
 
 .delete {

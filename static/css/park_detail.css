@@ -29,6 +29,11 @@
     color: #2db43a;
 }
 
+.bookmark-cnt {
+    font-weight: bold;
+    color: #2db43a;
+}
+
 /* 두번째 구간 : 조회수, 주소 */
 .check-count-addr {
     display: flex;

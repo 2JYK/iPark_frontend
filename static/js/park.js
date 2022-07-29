@@ -6,11 +6,12 @@ if (!urlParkCommentPageNum) {
 }
 
 
+
 // 공원 상세정보 html 구간
 function appendParkHtml(
   park_name, addr, check_count, image,
   list_content, admintel, main_equip, template_url, updated_at,
-  id, bookmark, user, comments) {
+  id, bookmarks, username, comments, comment_total_count) {
 
   parkDetailTempHtml = `
     <!-- 첫번째 구간 : 이름, 북마크 -->
@@ -20,6 +21,7 @@ function appendParkHtml(
       </div>
       <div class="bookmark">
         <i id="heart" class="fa-regular fa-heart" type="button" onclick="postBookmark(${id})"></i>
+        <span class="bookmark-cnt">${bookmarks.length}</span>
       </div>
     </div>
 
@@ -181,12 +183,11 @@ $(document).ready(function () {
     x["template_url"],
     x["updated_at"],
     x["id"],
-    x["bookmark"],
+    x["bookmarks"],
     x["username"],
     x["comments"],
     x["comment_total_count"]
   )
-
   // 공원 댓글 페이지네이션 
   pagination(x["comment_total_count"], 10, 10, urlParkCommentPageNum, x["id"])
 

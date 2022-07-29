@@ -135,16 +135,13 @@ async function deleteComment(comment_id) {
 
 // 쿼리 파라미터를 통한 공원 정보 get 
 function getParks() {
-  var divText = document.querySelectorAll("#button div")
   var optionButton = document.getElementsByClassName("option")
   for (var i = 0; i < optionButton.length; i++) {
-    divText[i].classList.remove("clicked");
     optionButton[i].classList.remove("clicked");
   }
 
   var zoneButton = document.getElementsByClassName("option")
   for (var i = 0; i < zoneButton.length; i++) {
-    divText[i].classList.remove("clicked");
     zoneButton[i].classList.remove("clicked");
   }
 

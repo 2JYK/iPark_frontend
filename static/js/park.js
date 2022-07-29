@@ -246,12 +246,6 @@ function parkListHtml(id, park_name) {
 }
 
 
-// 공원 옵션 버튼 
-document.querySelectorAll(".button").forEach(
-  button => button.innerHTML = "<div class='child-div'><span>" + button.textContent.trim().split("").join("</span><span>") + "</span></div>"
-);
-
-
 // 공원 검색 결과 
 function get_parks_html(id, park_name, image, check_count) {
   temp_html = `<div class="park-box" id="park" onclick="showParkDetail(${id})">
@@ -321,6 +315,12 @@ zones.forEach(zone => {
     }
   })
 })
+
+
+// 공원 옵션 버튼 
+document.querySelectorAll(".button").forEach(
+  button => button.innerHTML = button.textContent
+);
 
 
 // 버튼 클릭 시 색상 변경

@@ -233,19 +233,19 @@ async function getBookmark() {
     bookmark_box.className = 'park-box'
     bookmark_box.innerHTML = `
               <div>
-                  <img src="${data.image}" width="200px" height="180px">
+                  <img class="park-img" onclick="showParkDetail(${data.park_id})" src="${data.image}" width="200px" height="180px">
               </div>
               <div class="content">
                   <div>
-                      <h3>${data.name}</h3>
+                      <h3 class="park-name" onclick="showParkDetail(${data.park_id})">${data.name}</h3>
                       <br>
                   </div>
                   <div>
-                      <span>${data.desc}</span>
+                      <span class="park-desc" onclick="showParkDetail(${data.park_id})">${data.desc}</span>
                   </div>
                   <div class="delete">
                       <br>
-                      <button onclick="deleteBookmark(this.id)" id="${data.id}" class="delete-btn">삭제</button>
+                      <button onclick="deleteBookmark(this.id)" id="${data.bookmark_id}" class="delete-btn">삭제</button>
                   </div>
               </div>
   `
@@ -281,8 +281,8 @@ async function postBookmark(id) {
 
 
 //북마크 삭제 (북마크 페이지)
-async function deleteBookmark(id) {
-  const response = await fetch(`${backendBaseUrl}park/bookmark/?id=${id}`, {
+async function deleteBookmark(bookmark_id) {
+  const response = await fetch(`${backendBaseUrl}park/bookmark/?id=${bookmark_id}`, {
     headers: {
       'Authorization': "Bearer " + localStorage.getItem("access")
     },

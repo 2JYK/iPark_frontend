@@ -198,15 +198,6 @@
     <p class="text-center text-muted">© IPark made by 2JYK</p>
   </footer>
 
-  <script>
-    window.addEventListener("unload", deleteToken)
-    function deleteToken() {
-      localStorage.removeItem("payload")
-      localStorage.removeItem("access")
-      localStorage.removeItem("refresh")
-    }
-  </script>
-
   <script src="./static/js/user.js"></script>
   <script src="./static/js/api_user.js"></script>
   <script src="./static/js/community.js"></script>

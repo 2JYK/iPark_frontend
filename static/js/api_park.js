@@ -230,15 +230,15 @@ async function getBookmark() {
     bookmark_box.className = 'park-box'
     bookmark_box.innerHTML = `
               <div>
-                  <img class="park-img" onclick="showParkDetail(${data.park_id})" src="${data.image}" width="200px" height="180px">
+                  <img class="park-img" onclick="showParkDetail(${data.id})" src="${data.image}" width="200px" height="180px">
               </div>
               <div class="content">
                   <div>
-                      <h3 class="park-name" onclick="showParkDetail(${data.park_id})">${data.name}</h3>
+                      <h3 class="park-name" onclick="showParkDetail(${data.id})">${data.name}</h3>
                       <br>
                   </div>
                   <div>
-                      <span class="park-desc" onclick="showParkDetail(${data.park_id})">${data.desc}</span>
+                      <span class="park-desc" onclick="showParkDetail(${data.id})">${data.desc}</span>
                   </div>
                   <div class="delete">
                       <br>

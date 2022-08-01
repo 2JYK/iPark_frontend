@@ -100,7 +100,7 @@ async function putComment(comment_id) {
         <div class="comment-comment" id="commentContent(${comment_id})">
           ${inputContent.value}
         </div>`
-    showParkDetail(comment_id)
+    showParkDetail(id)
   } else {
     alert(response_json["message"])
   }
@@ -125,7 +125,7 @@ async function deleteComment(comment_id) {
     if (response.status == 200) {
       const comment = document.getElementById(`comment(${comment_id})`)
       comment.style.display = "none"
-      showParkDetail(comment_id)
+      showParkDetail(id)
     } else {
       alert(response_json["message"])
     }

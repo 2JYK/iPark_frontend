@@ -339,14 +339,16 @@ async function withdrawal() {
   })
 
   withdrawal_json = await response.json()
+  console.log(withdrawal_json.status)
 
-  if (withdrawal_json.status == 200) {
+  if (response.status == 200) {
     alert(withdrawal_json["message"])
     localStorage.removeItem("payload")
     localStorage.removeItem("access")
     localStorage.removeItem("refresh")
 
     window.location.replace(`${frontendBaseUrl}index.html`)
+
   } else {
     alert(withdrawal_json["message"])
   }

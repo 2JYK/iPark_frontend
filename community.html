@@ -121,7 +121,6 @@
       <!-- 업로드 모달 헤더 -->
       <div class="popup-header">
         <span></span>
-        <h1>업로드</h1>
         <div id="close"> X </div>
       </div>
 
@@ -129,24 +128,30 @@
       <div class="popup-body">
         <img id="preview" class="popup-body-preview">
         <div class="popup-body-file">
-          <label class="input-file-button" for="popup-body-file">
-            업로드
+          <label class="input-file-button" for="popup_body_file">
+            사진선택
           </label>
-          <input type="file" accept="image/jpeg" id="popup-body-file" style="display:none;" onchange="readURL(this);">
+          <input type="file" accept="image/jpeg" id="popup_body_file" style="display:none;" onchange="readURL(this);">
         </div>
 
         <br>
         <hr class="popup-body-choice-hr">
+        <select class="form-select popup-body-choice popup-body-park" aria-label="Default select example" name="choice"
+          id="popup_body_park">
+          <option selected>선호하는 공원을 선택해주세요</option>
+          <!-- option_values() append -->
+        </select>
+        
         <select class="form-select popup-body-choice" aria-label="Default select example" name="choice"
-          id="popup-body-choice">
-          <option selected>선택해주세요</option>
+          id="popup_body_tag">
+          <option selected>카테고리를 선택해주세요</option>
           <option value="1">커뮤니티</option>
           <option value="2">나눔마켓</option>
         </select>
         <hr class="popup-body-choice-hr">
 
-        <input class="popup-body-title" id="popup-body-title" placeholder="제목"><br>
-        <textarea class="popup-body-content" id="popup-body-content" placeholder="내용"></textarea>
+        <input class="popup-body-title" id="popup_body_title" placeholder="제목"><br>
+        <textarea class="popup-body-content" id="popup_body_content" placeholder="내용"></textarea>
 
         <!-- 업로드 모달 업로드 -->
         <div class="popup-upload">
@@ -174,12 +179,12 @@
       </thead>
       <tbody id="best" class="tbody table-group-divider best">
 
-        <!-- api_get_append -->
-
+        <!-- get_pagination_list() append -->
+        
       </tbody>
       <tbody id="tbody" class="tbody table-group-divider">
-
-        <!-- api_get_append -->
+        
+        <!-- get_pagination_list() append -->
 
       </tbody>
     </table>

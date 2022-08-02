@@ -154,6 +154,7 @@
 
 .updated-at {
     margin-left: auto;
+    color: gray;
 }
 
 /* 공원 댓글창 */
@@ -165,7 +166,8 @@
 
 /* 댓글 10개 보여주는 공간 */
 .comment-box {
-    background-color: green;
+    border: 1px solid #5ea152;
+    border-radius: 10px;
     height: 465px;
     margin: 0px auto 0px auto;
 }
@@ -222,15 +224,28 @@
 }
 
 .comment-username {
-    margin-right: 10px;
+    margin-right: 20px;
+}
+
+.comment-username p {
+    font-weight: 800;
+    color: #198754;
 }
 
 .comment-comment {
-    margin-right: 10px;
+    margin-right: 30px;
+}
+
+.textarea {
+    resize: none;
+    height: 30px;
+    width: 100%;
+    overflow-y: hidden;
 }
 
 .comment-upload-time {
-    margin-right: 10px;
+    color: gray;
+    font-size: 10px;
 }
 
 /* 댓글 수정 삭제 버튼 */
@@ -242,6 +257,8 @@
     padding: 0;
     border: none;
     background: none;
+    color: gray;
+    margin: 5px;
 }
 
 /* 댓글 페이지 네이션 */
@@ -258,7 +275,7 @@
 }
 
 .cur-page {
-    color: blue;
+    color: #2db43a;
     font-weight: 900;
     font-size: 18px;
 }
@@ -285,4 +302,5 @@
 
 .comment-input-button button {
     width: 80px;
+    --bs-btn-hover-bg: #198754;
 }

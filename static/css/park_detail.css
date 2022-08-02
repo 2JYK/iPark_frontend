@@ -1,6 +1,12 @@
+body {
+    margin: 2em auto;
+    right: 0px;
+}
+
 .park-detail {
-    max-width: 1000px;
-    margin: auto;
+    width: 70%;
+    margin: 2em auto;
+    min-width: 320px;
 }
 
 .line {
@@ -37,6 +43,7 @@
 /* 두번째 구간 : 조회수, 주소 */
 .check-count-addr {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .check-count {
@@ -46,6 +53,8 @@
 .addr {
     height: 30px;
     margin-left: auto;
+    flex-basis: 150px;
+    flex-grow: 1;
 }
 
 /* 세번째 구간 : 이미지, 지도 */
@@ -56,38 +65,16 @@
     max-width: 1200px;
 }
 
-.image {
-    width: 400px;
-    height: 300px;
-    margin: auto;
-}
-
 .img {
-    width: 400px;
+    min-width: 320px;
     height: 300px;
     margin: auto;
 }
 
 .map {
-    width: 400px;
+    min-width: 320px;
     height: 300px;
     margin: auto;
-}
-
-/* 반응형 */
-@media (min-width: 1150px) {
-    .park-image-map {
-        grid-template-columns: repeat(2, 1fr);
-        margin: 30px auto;
-    }
-}
-
-@media (max-width: 1150px) {
-    .park-image-map {
-        grid-template-columns: repeat(1, 1fr);
-        gap: 30px 0px;
-        margin: 30px auto 370px auto;
-    }
 }
 
 /* 네번째 구간 : 설명 */
@@ -105,27 +92,6 @@
 
 .admintel {
     height: 30px;
-}
-
-@media (max-width: 570px) {
-    .park-description {
-        width: 400px;
-        margin: auto;
-    }
-
-    .updated-at {
-        display: none;
-    }
-
-    .template-url {
-        margin: auto;
-    }
-}
-
-@media (max-width: 375px) {
-    .park-description {
-        width: 400px;
-    }
 }
 
 /* 다섯째 구간 : url, 정보업데이트시간 */
@@ -161,13 +127,13 @@
 .park-comment {
     height: 545px;
     margin: 30px auto 60px auto;
-
 }
 
 /* 댓글 10개 보여주는 공간 */
 .comment-box {
     border: 1px solid #5ea152;
     border-radius: 10px;
+    width: 100%;
     height: 465px;
     margin: 0px auto 0px auto;
 }
@@ -183,44 +149,6 @@
     margin: 0px 0px 15px 0px;
     overflow: hidden;
     padding: 0px 30px;
-}
-
-@media (min-width: 1150px) {
-    .park-comment {
-        width: 800px;
-    }
-
-    .comment-input-box {
-        width: 700px;
-        margin: auto;
-    }
-
-    .comment-input-comment input {
-        width: 700px;
-    }
-}
-@media (min-width: 570px) {
-    .comment-input-box {
-        width: 700px;
-        margin: auto;
-    }
-
-    .comment-input-comment input {
-        width: 700px;
-    }
-}
-@media (max-width: 570px) {
-    .park-comment {
-        width: 400px;
-    }
-
-    .comment-input-box {
-        width: 380px;
-    }
-
-    .comment-input-comment input {
-        width: 290px;
-    }
 }
 
 .comment-username {
@@ -283,11 +211,16 @@
 /* 댓글 입력창 */
 .comment-input-box {
     display: flex;
-    /* margin: 0px 10px 0px 10px; */
-    margin: auto -1px auto;
+    margin: 0px 10px 0px 10px;
+}
+
+.comment-input-comment {
+    width: 90%;
+    margin-right: 10px;
 }
 
 .comment-input-comment input {
+    width: 100%;
     height: 38px;
     margin-right: 10px;
     overflow: hidden;
@@ -300,7 +233,43 @@
     border: 1px solid #6c757d;
 }
 
+.comment-input-button {
+    margin-left: auto;
+}
+
 .comment-input-button button {
     width: 80px;
     --bs-btn-hover-bg: #198754;
+}
+
+/* 반응형 */
+@media (min-width: 1140px) {
+    .map {
+        width: 400px;
+    }
+    .img{
+        width: 400px;
+    }
+}
+
+@media (min-width: 900px) {
+    .park-image-map {
+        grid-template-columns: repeat(2, 1fr);
+        margin: 30px auto;
+        min-width: 400px;
+    }
+}
+
+@media (max-width: 900px) {
+    .park-image-map {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 30px 0px;
+        margin: 30px auto 370px auto;
+    }
+}
+
+@media (max-width: 670px) {
+    .addr {
+        flex-wrap: wrap;
+    }
 }

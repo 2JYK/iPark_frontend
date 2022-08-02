@@ -33,9 +33,7 @@ function appendParkHtml(
 
     <!-- 세번째 구간 : 이미지, 지도-->
     <div class="park-image-map">
-      <div class="image">
-        <img class="img" src="${image}" alt="${park_name}"/>
-      </div>
+      <img class="img" src="${image}" alt="${park_name}"/>
       <div class="map" id="map"></div>
     </div>
 
@@ -198,7 +196,7 @@ $(document).ready(function () {
 
   // 공원 지도 
   var park = new naver.maps.LatLng(x["latitude"], x["longitude"]),
-    map = new naver.maps.Map('map', {
+    map = new naver.maps.Map("map", {
       center: park.destinationPoint(0, 500),
       zoom: 15
     }),
@@ -213,7 +211,7 @@ $(document).ready(function () {
     '   <a href="https://map.naver.com/v5/search/' + x["park_name"] +
     '?c=14134663.0407597,4519566.6272867,15,0,0,0,dh" style="text-decoration: none; color: green;">길찾기</a>',
     '</div>'
-  ].join('');
+  ].join("");
 
   var infowindow = new naver.maps.InfoWindow({
     content: contentString,
@@ -354,7 +352,7 @@ async function loadBookmark() {
 
   response_json["bookmark_list"].forEach(data => {
     const bookmark_box = document.createElement("div")
-    bookmark_box.className = 'park-box'
+    bookmark_box.className = "park-box"
     bookmark_box.innerHTML = `
               <div>
                   <img class="park-img" onclick="showParkDetail(${data.park_id})" src="${data.image}" width="200px" height="180px">
@@ -391,9 +389,6 @@ window.onload = function changeBookmark() {
 
   if (userlist.includes(userid)) {
     const heart = document.getElementById("heart")
-    heart.classList.add('fa-solid');
+    heart.classList.add("fa-solid");
   }
 }
-
-
-

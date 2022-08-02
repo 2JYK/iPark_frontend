@@ -47,7 +47,7 @@
   <!-- 상단바시작 -->
   <nav class="navbar" aria-label="Light offcanvas navbar">
     <div class="container-fluid">
-      <a href="/index.html"><img src="./static/css/img/park-logo.png" alt="mdo" width="150" height="60"></a>
+      <a href="/index.html"><img src="../static/css/img/park-logo.png" alt="mdo" width="150" height="60"></a>
       <div class="col-8"></div>
 
       <!-- 페이지 이동 버튼 -->
@@ -56,18 +56,18 @@
 
       <!-- 프로필 드롭다운 -->
       <div class="dropdown">
-        <a href="#" class="d-block link text-decoration-none dropdown-toggle" id="dropdownUser1"
+        <a href="" class="d-block link text-decoration-none dropdown-toggle" id="dropdownUser1"
           data-bs-toggle="dropdown" aria-expanded="false" style="color: black;">
-          <img src="./static/css/img/profile.png" alt="mdo" width="40" height="40" class="rounded-circle">
+          <img src="../static/css/img/profile.png" alt="mdo" width="40" height="40" class="rounded-circle">
         </a>
         <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-          <li id="my-favorite"><a class="dropdown-item" href="./bookmark.html">즐겨찾기</a></li>
-          <li id="my-article"><a class="dropdown-item" href="#" onclick="goToMyArticle()">내가 쓴 게시글</a></li>
-          <li id="my-account"><a class="dropdown-item" href="./account_management.html">계정관리</a></li>
+          <li id="myFavorite"><a class="dropdown-item" href="/bookmark.html">즐겨찾기</a></li>
+          <li id="myArticle"><a class="dropdown-item" href="#" onclick="goToMyArticle()">내가 쓴 게시글</a></li>
+          <li id="myAccount"><a class="dropdown-item" href="/account_management.html">계정관리</a></li>
           <li id="divider">
             <hr class="dropdown-divider">
           </li>
-          <li><a id="my-login" class="dropdown-item" href="#" onclick="logout()">로그아웃</a></li>
+          <li><a id="myLogin" class="dropdown-item" href="#" onclick="logout()">로그아웃</a></li>
         </ul>
       </div>
 
@@ -101,28 +101,28 @@
           <p><i class="fa-solid fa-seedling"></i>&ensp;옵션을 선택해 공원을 검색해 보세요!!</p>
         </div>
         <div class="park-options">
-          <div class="park-option" id="park-option">
+          <div class="park-option" id="parkOption">
             <a title="1" class="button option" id="button">조경</a>
           </div>
-          <div class="park-option" id="park-option">
+          <div class="park-option" id="parkOption">
             <a title="2" class="button option" id="button">운동</a>
           </div>
-          <div class="park-option" id="park-option">
+          <div class="park-option" id="parkOption">
             <a title="3" class="button option" id="button">놀이공원</a>
           </div>
-          <div class="park-option" id="park-option">
+          <div class="park-option" id="parkOption">
             <a title="4" class="button option" id="button">역사</a>
           </div>
-          <div class="park-option" id="park-option">
+          <div class="park-option" id="parkOption">
             <a title="5" class="button option" id="button">학습테마</a>
           </div>
-          <div class="park-option" id="park-option">
+          <div class="park-option" id="parkOption">
             <a title="6" class="button option" id="button">교양</a>
           </div>
-          <div class="park-option" id="park-option">
+          <div class="park-option" id="parkOption">
             <a title="7" class="button option" id="button">편익</a>
           </div>
-          <div class="park-option" id="park-option">
+          <div class="park-option" id="parkOption">
             <a title="8" class="button option" id="button">주차장</a>
           </div>
         </div>
@@ -131,82 +131,82 @@
           <p><i class="fa-solid fa-seedling"></i>&ensp;지역을 선택해 공원을 검색해 보세요!!</p>
         </div>
         <div class="park-regions">
-          <div class="park-zone" id="park-option">
+          <div class="park-zone" id="parkOption">
             <a title="강남구" class="button option" id="button">강남구</a>
           </div>
-          <div class="park-zone" id="park-option">
+          <div class="park-zone" id="parkOption">
             <a title="강동구" class="button option" id="button">강동구</a>
           </div>
-          <div class="park-zone" id="park-option">
+          <div class="park-zone" id="parkOption">
             <a title="강북구" class="button option" id="button">강북구</a>
           </div>
-          <div class="park-zone" id="park-option">
+          <div class="park-zone" id="parkOption">
             <a title="강서구" class="button option" id="button">강서구</a>
           </div>
-          <div class="park-zone" id="park-option">
+          <div class="park-zone" id="parkOption">
             <a title="관악구" class="button option" id="button">관악구</a>
           </div>
-          <div class="park-zone" id="park-option">
+          <div class="park-zone" id="parkOption">
             <a title="광진구" class="button option" id="button">광진구</a>
           </div>
-          <div class="park-zone" id="park-option">
+          <div class="park-zone" id="parkOption">
             <a title="구로구" class="button option" id="button">구로구</a>
           </div>
-          <div class="park-zone" id="park-option">
+          <div class="park-zone" id="parkOption">
             <a title="금천구" class="button option" id="button">금천구</a>
           </div>
-          <div class="park-zone" id="park-option">
+          <div class="park-zone" id="parkOption">
             <a title="노원구" class="button option" id="button">노원구</a>
           </div>
-          <div class="park-zone" id="park-option">
+          <div class="park-zone" id="parkOption">
             <a title="도봉구" class="button option" id="button">도봉구</a>
           </div>
-          <div class="park-zone" id="park-option">
+          <div class="park-zone" id="parkOption">
             <a title="동대문구" class="button option" id="button">동대문구</a>
           </div>
-          <div class="park-zone" id="park-option">
+          <div class="park-zone" id="parkOption">
             <a title="동작구" class="button option" id="button">동작구</a>
           </div>
-          <div class="park-zone" id="park-option">
+          <div class="park-zone" id="parkOption">
             <a title="마포구" class="button option" id="button">마포구</a>
           </div>
-          <div class="park-zone" id="park-option">
+          <div class="park-zone" id="parkOption">
             <a title="서대문구" class="button option" id="button">서대문구</a>
           </div>
-          <div class="park-zone" id="park-option">
+          <div class="park-zone" id="parkOption">
             <a title="서초구" class="button option" id="button">서초구</a>
           </div>
-          <div class="park-zone" id="park-option">
+          <div class="park-zone" id="parkOption">
             <a title="성동구" class="button option" id="button">성동구</a>
           </div>
-          <div class="park-zone" id="park-option">
+          <div class="park-zone" id="parkOption">
             <a title="성북구" class="button option" id="button">성북구</a>
           </div>
-          <div class="park-zone" id="park-option">
+          <div class="park-zone" id="parkOption">
             <a title="송파구" class="button option" id="button">송파구</a>
           </div>
-          <div class="park-zone" id="park-option">
+          <div class="park-zone" id="parkOption">
             <a title="양천구" class="button option" id="button">양천구</a>
           </div>
-          <div class="park-zone" id="park-option">
+          <div class="park-zone" id="parkOption">
             <a title="영등포구" class="button option" id="button">영등포구</a>
           </div>
-          <div class="park-zone" id="park-option">
+          <div class="park-zone" id="parkOption">
             <a title="용산구" class="button option" id="button">용산구</a>
           </div>
-          <div class="park-zone" id="park-option">
+          <div class="park-zone" id="parkOption">
             <a title="은평구" class="button option" id="button">은평구</a>
           </div>
-          <div class="park-zone" id="park-option">
+          <div class="park-zone" id="parkOption">
             <a title="종로구" class="button option" id="button">종로구</a>
           </div>
-          <div class="park-zone" id="park-option">
+          <div class="park-zone" id="parkOption">
             <a title="중구" class="button option" id="button">중구</a>
           </div>
-          <div class="park-zone" id="park-option">
+          <div class="park-zone" id="parkOption">
             <a title="중랑구" class="button option" id="button">중랑구</a>
           </div>
-          <div class="park-zone" id="park-option">
+          <div class="park-zone" id="parkOption">
             <a title="과천시" class="button option" id="button">과천시</a>
           </div>
         </div>
@@ -230,7 +230,7 @@
       <div class="park-rating">
         <h2 class="rating-results"><i class="fa-solid fa-star"></i>&nbsp; 인기가 많은 공원</h2>
       </div>
-      <div class="popular-parks" id="popular-parks">
+      <div class="popular-parks" id="popularParks">
         <!-- html 할 구간 -->
       </div>
   </div>
@@ -238,7 +238,7 @@
 
   <!-- footer 시작 -->
   <footer class="py-3 my-4" style="background-color: #fafbfc;">
-    <p class="text-center"><img src="./static/css/img/park-logo.png" alt="mdo" width="150" height="70"></p>
+    <p class="text-center"><img src="../static/css/img/park-logo.png" alt="mdo" width="150" height="70"></p>
     <ul class="nav justify-content-center pb-3 mb-3">
       <li class="nav-item"><a href="/" class="nav-link px-2 text-muted">Home</a></li>
       <li class="nav-item"><a href="/park_search.html" class="nav-link px-2 text-muted">Park</a></li>

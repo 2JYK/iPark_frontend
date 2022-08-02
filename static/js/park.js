@@ -88,8 +88,8 @@ function appendParkHtml(
 
   // 공원 상세보기 댓글
   for (let j = 0; j < comments.length; j++) {
-    let time_post = new Date(comments[j].updated_at)
-    let time_before = time2str(time_post)
+    let timePost = new Date(comments[j].updated_at)
+    let timeBefore = time2str(timePost)
 
     // 댓글 작성자인지를 확인하여 수정,삭제 버튼이 보이게하기 위함
     if (comments[j].user_id != parseJwt("access").user_id) {
@@ -102,7 +102,7 @@ function appendParkHtml(
             ${comments[j].comment}
           </div>
           <div class="comment-upload-time">
-            <p>${time_before}</p>
+            <p>${timeBefore}</p>
           </div>
         </div>
       `)
@@ -116,7 +116,7 @@ function appendParkHtml(
           ${comments[j].comment}
         </div>
 				<div class="comment-upload-time">
-					<p>${time_before}</p>
+					<p>${timeBefore}</p>
 				</div>
         <div class="comment-buttons" id="parkCommentButtons">
           <button class="comment-edit" type="button" id="updateButton(${comments[j].id})" onclick="editComment(${comments[j].id})">
@@ -203,15 +203,15 @@ $(document).ready(function () {
     marker = new naver.maps.Marker({
       map: map,
       position: park
-    });
+    })
 
   var contentString = [
-    '<div class="iw_inner">',
+    '<div class="iw-inner">',
     '   <h5 style="color: green;">' + x["park_name"] + '</h5>',
     '   <a href="https://map.naver.com/v5/search/' + x["park_name"] +
     '?c=14134663.0407597,4519566.6272867,15,0,0,0,dh" style="text-decoration: none; color: green;">길찾기</a>',
     '</div>'
-  ].join("");
+  ].join("")
 
   var infowindow = new naver.maps.InfoWindow({
     content: contentString,
@@ -223,15 +223,15 @@ $(document).ready(function () {
     anchorSkew: true,
     anchorColor: "#eee",
     pixelOffset: new naver.maps.Point(20, -20)
-  });
+  })
 
   naver.maps.Event.addListener(marker, "click", function (e) {
     if (infowindow.getMap()) {
-      infowindow.close();
+      infowindow.close()
     } else {
-      infowindow.open(map, marker);
+      infowindow.open(map, marker)
     }
-  });
+  })
   // sessionStorage.removeItem("park_info")
 })
 
@@ -253,7 +253,7 @@ function parkListHtml(id, park_name) {
 function get_parks_html(id, park_name, image, check_count) {
   temp_html = `<div class="park-box" id="park" onclick="showParkDetail(${id})">
                 <div class="park-image">
-                    <img src="${image}" alt="" style="width: 190px; height: 180px; margin-right: 10px;"/>
+                    <img src="${image}" alt="${park_name}" style="width: 190px; height: 180px; margin-right: 10px;"/>
                 </div>
                 <div class="park-name">
                     <p>${park_name}</p>
@@ -270,7 +270,7 @@ function get_parks_html(id, park_name, image, check_count) {
 function popular_parks_html(id, park_name, image, check_count) {
   temp_html = `<div class="park-box" id="park" onclick="showParkDetail(${id})">
                 <div class="park-image">
-                    <img src="${image}" alt="" style="width: 190px; height: 180px; margin-right: 10px;"/>
+                    <img src="${image}" alt="${park_name}" style="width: 190px; height: 180px; margin-right: 10px;"/>
                 </div>
                 <div class="park-name">
                     <p>${park_name}</p>
@@ -279,12 +279,12 @@ function popular_parks_html(id, park_name, image, check_count) {
                     <p>조회수 : ${check_count}</p>
                 </div>
               </div>`
-  $("#popular-parks").append(temp_html)
+  $("#popularParks").append(temp_html)
 }
 
 
 // 옵션값을 여러 개 받음 
-var values = document.querySelectorAll("#park-option a")
+var values = document.querySelectorAll("#parkOption a")
 var valueList = []
 values.forEach(value => {
   value.addEventListener("click", () => {
@@ -302,7 +302,7 @@ values.forEach(value => {
 })
 
 
-var zones = document.querySelectorAll("#park-zone a")
+var zones = document.querySelectorAll(".park-zone a")
 var zoneList = []
 zones.forEach(zone => {
   zone.addEventListener("click", () => {
@@ -323,7 +323,7 @@ zones.forEach(zone => {
 // 공원 옵션 버튼 
 document.querySelectorAll(".button").forEach(
   button => button.innerHTML = button.textContent
-);
+)
 
 
 // 버튼 클릭 시 색상 변경
@@ -337,25 +337,25 @@ function controlColor() {
     optionButton[i].addEventListener("click", optionClick);
   }
 }
-controlColor();
+controlColor()
 
 
 //북마크 페이지 게시글 로드
 async function loadBookmark() {
-  const response_json = await getBookmark()
+  const responseJson = await getBookmark()
 
   const username = document.getElementById("username")
-  username.innerHTML = response_json["username"]
+  username.innerHTML = responseJson["username"]
 
-  const bookmark_boxes = document.querySelector(".boxes")
-  bookmark_boxes.innerHTML = ""
+  const bookmarkBoxes = document.querySelector(".boxes")
+  bookmarkBoxes.innerHTML = ""
 
-  response_json["bookmark_list"].forEach(data => {
-    const bookmark_box = document.createElement("div")
-    bookmark_box.className = "park-box"
-    bookmark_box.innerHTML = `
+  responseJson["bookmark_list"].forEach(data => {
+    const bookmarkBox = document.createElement("div")
+    bookmarkBox.className = "park-box"
+    bookmarkBox.innerHTML = `
               <div>
-                  <img class="park-img" onclick="showParkDetail(${data.park_id})" src="${data.image}" width="200px" height="180px">
+                  <img class="park-img" alt="${park_name}" onclick="showParkDetail(${data.park_id})" src="${data.image}" width="200px" height="180px">
               </div>
               <div class="content">
                   <div>
@@ -371,7 +371,7 @@ async function loadBookmark() {
                   </div>
               </div>
   `
-    bookmark_boxes.append(bookmark_box)
+    bookmarkBoxes.append(bookmarkBox)
   })
 }
 loadBookmark()
@@ -389,6 +389,6 @@ window.onload = function changeBookmark() {
 
   if (userlist.includes(userid)) {
     const heart = document.getElementById("heart")
-    heart.classList.add("fa-solid");
+    heart.classList.add("fa-solid")
   }
 }

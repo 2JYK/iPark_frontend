@@ -176,6 +176,20 @@ body::before {
     }
 }
 
+.kakao-login {
+    display: block;
+    margin: auto;
+    border:none;
+    width: 400px;
+    border-radius: 50px;
+    margin-top: 20px;
+}
+.kakao-login img {
+    width: 400px;
+    height: 50px;
+    border-radius: 50px;
+}
+
 /* 모달 */
 .popup-wrap {
     background-color: rgba(0, 0, 0, .3);

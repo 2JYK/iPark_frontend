@@ -21,7 +21,6 @@ async function article_post() {
     headers: TOKEN
   })
   response_json = await response.json()
-  console.log(response_json)
   if (response.status == 200) {
     alert("게시글 작성 완료")
     location.reload();
@@ -38,7 +37,7 @@ async function article_post() {
 function option_values() {
   $.ajax({
     type: "GET",
-    url: `${backendBaseUrl}community/option/`,
+    url: `${backendBaseUrl}community/park_option/`,
     data: {},
     success: function (response) {
       park_id = response
@@ -50,7 +49,7 @@ function option_values() {
       }
     }
   });
-}option_values()
+} option_values()
 
 
 // 게시글 get
@@ -78,15 +77,6 @@ async function get_pagination_list(id, url) {
     }
   }
 
-  // 다음 페이지로 넘어갈때 토큰값이 추가가 안됨 넘어오지 않음.
-  // 넘어오는 값이 http로 넘어와서 http가 있으면 토큰을 넣어줌.
-  // id 가 3이 아니라 http로 넘어옴 그래서 토큰값을 보낼수 있게 조건을 추가
-  // 헤더에 토큰값이 있어야 인증이 가능함.
-  console.log("ID Tpye :", typeof (id))
-  console.log("ID 값 :", id)
-  // 조건이 없을 시 : 60~63번 코드가 실행 x
-  // 조건이 있을 시 : 60~63번 코드가 실행 o
-
   let token = {}
   if (id == 3 || String(id).indexOf("http") == 0) {
     token = {
@@ -108,16 +98,12 @@ async function get_pagination_list(id, url) {
     headers: token
   })
   response_json = await response.json()
-  console.log(response_json)
 
   // 게시물 뿌리는 div 선택
   const tbody = document.querySelector(".tbody");
   tbody.innerHTML = "" // 기존내용 초기화
 
-  // forEach문 돌려서 게시물 결과들 출력
-  // console.log("ㄴresultsㄱ :", response_json["results"])
   response_json["results"].forEach(data => {
-
     let time_post = new Date(data.created_at_time)
     let time_before = time2str(time_post)
 

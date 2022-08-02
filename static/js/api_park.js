@@ -219,36 +219,7 @@ async function getBookmark() {
   )
   response_json = await response.json()
 
-  const username = document.getElementById("username")
-  username.innerHTML = response_json["username"]
-
-  const bookmark_boxes = document.querySelector(".boxes")
-  bookmark_boxes.innerHTML = ""
-
-  response_json["bookmark_list"].forEach(data => {
-    const bookmark_box = document.createElement("div")
-    bookmark_box.className = 'park-box'
-    bookmark_box.innerHTML = `
-              <div>
-                  <img class="park-img" onclick="showParkDetail(${data.id})" src="${data.image}" width="200px" height="180px">
-              </div>
-              <div class="content">
-                  <div>
-                      <h3 class="park-name" onclick="showParkDetail(${data.id})">${data.name}</h3>
-                      <br>
-                  </div>
-                  <div>
-                      <span class="park-desc" onclick="showParkDetail(${data.id})">${data.desc}</span>
-                  </div>
-                  <div class="delete">
-                      <br>
-                      <button onclick="deleteBookmark(this.id)" id="${data.bookmark_id}" class="delete-btn">삭제</button>
-                  </div>
-              </div>
-  `
-    bookmark_boxes.append(bookmark_box)
-
-  })
+  return response_json
 }
 getBookmark()
 

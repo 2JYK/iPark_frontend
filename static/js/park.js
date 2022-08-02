@@ -337,6 +337,43 @@ function controlColor() {
 controlColor();
 
 
+//북마크 페이지 게시글 로드
+async function loadBookmark() {
+  const response_json = await getBookmark()
+
+  const username = document.getElementById("username")
+  username.innerHTML = response_json["username"]
+
+  const bookmark_boxes = document.querySelector(".boxes")
+  bookmark_boxes.innerHTML = ""
+
+  response_json["bookmark_list"].forEach(data => {
+    const bookmark_box = document.createElement("div")
+    bookmark_box.className = 'park-box'
+    bookmark_box.innerHTML = `
+              <div>
+                  <img class="park-img" onclick="showParkDetail(${data.park_id})" src="${data.image}" width="200px" height="180px">
+              </div>
+              <div class="content">
+                  <div>
+                      <h3 class="park-name" onclick="showParkDetail(${data.park_id})">${data.name}</h3>
+                      <br>
+                  </div>
+                  <div>
+                      <span class="park-desc" onclick="showParkDetail(${data.park_id})">${data.desc}</span>
+                  </div>
+                  <div class="delete">
+                      <br>
+                      <button onclick="deleteBookmark(this.id)" id="${data.bookmark_id}" class="delete-btn">삭제</button>
+                  </div>
+              </div>
+  `
+    bookmark_boxes.append(bookmark_box)
+  })
+}
+loadBookmark()
+
+
 //북마크 여부 확인
 window.onload = function changeBookmark() {
   const userid = parseJwt("access").user_id

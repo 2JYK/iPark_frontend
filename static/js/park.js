@@ -74,7 +74,7 @@ function appendParkHtml(
         <!-- 댓글 입력창 -->
         <div class="comment-input-box">
           <div class="comment-input-comment">
-            <input id="commentInputComment" placeholder="댓글을 입력해주세요" /></input>
+            <input type="text" id="commentInputComment" placeholder="댓글을 입력해주세요" required /></input>
           </div>
           <div class="comment-input-button">
             <button class="btn btn-outline-secondary" type="button" id="commentButton" onclick="postComment(${id})">등록</button>
@@ -243,7 +243,7 @@ function parkListHtml(id, park_name) {
 				<button class="nav-link active" aria-current="page" 
 				style="border: none; background-color: transparent;" 
 				onclick="showParkDetail(${id})">${park_name}</button>
-				<hr/>
+				<hr>
 			</li>`
   $("#parkList").append(parkListTempHtml)
 }

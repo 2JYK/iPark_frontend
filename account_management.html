@@ -38,24 +38,24 @@
     <form id="account">
       <!-- 아이디 -->
       <div class="int-area">
-        <input type="text" name="username" id="checkUsername" autocomplete="off" required>
+        <input type="text" name="username" id="checkUsername" autocomplete="off" required />
         <label for="checkUsername">Username (6자리 이상)</label>
       </div>
       <!-- 패스워드 -->
       <div class="int-area">
-        <input type="password" name="password" id="checkPassword" autocomplete="off" required>
+        <input type="password" name="password" id="checkPassword" autocomplete="off" required />
         <label for="checkPassword">Password (8자리 이상)</label>
         <span style="color:red; font-size:15px;">* 영어 소문자/숫자/특수문자 필수</span>
       </div>
-      <br />
+      <br>
       <!-- 조회 버튼 -->
       <div class="caption">
-        <button id="modal-open" style="border-radius:15px;" class="w-50 btn btn-primary" type="button"
+        <button id="modalOpen" style="border-radius:15px;" class="w-50 btn btn-primary" type="button"
           onclick="searchUser()">조회하기</button>
-        <br />
-        <br />
+        <br>
+        <br>
         <button id="signupbtn1" style="border-radius:15px;" class="w-50 btn btn-primary" type="button"
-          onclick="location.href='./index.html'">돌아가기</button>
+          onclick="location.href='/index.html'">돌아가기</button>
       </div>
     </form>
   </section>
@@ -82,38 +82,38 @@
         <form class="account-form" action="">
           <!-- 아이디 -->
           <div class="int-area">
-            <input type="text" name="username" id="accountUsername" autocomplete="off" required>
+            <input type="text" name="username" id="accountUsername" autocomplete="off" required />
             <label for="accountUsername">Username (6자리 이상)</label>
           </div>
           <!-- 이메일 -->
           <div class="int-area">
-            <input type="email" name="email" id="accountEmail" autocomplete="off" required>
+            <input type="email" name="email" id="accountEmail" autocomplete="off" required />
             <label for="accountEmail">Email</label>
             <span style="color:red; font-size:15px;">* naver, google, kakao, daum, nate, outlook만 가능</span>
           </div>
           <!-- 이름 -->
           <div class="int-area">
-            <input type="text" name="fullname" id="accountFullname" autocomplete="off" required>
+            <input type="text" name="fullname" id="accountFullname" autocomplete="off" required />
             <label for="accountFullname">Fullname</label>
           </div>
           <!-- 패스워드 -->
           <div class="int-area">
-            <input type="password" name="password" id="accountPassword" autocomplete="off" required>
+            <input type="password" name="password" id="accountPassword" autocomplete="off" required />
             <label for="accountPassword">Password (8자리 이상)</label>
             <span style="color:red; font-size:15px;">* 영어 소문자/숫자/특수문자 필수</span>
           </div>
           <!-- 핸드폰 번호 -->
           <div class="int-area">
-            <input type="text" name="phone" id="accountPhone" autocomplete="off" required>
+            <input type="text" name="phone" id="accountPhone" autocomplete="off" required />
             <label for="accountPhone">Phone (010-0000-0000 형식)</label>
           </div>
           <!-- 생년월일 -->
           <div class="int-area">
-            <input type="date" name="birthday" id="accountBirthday" autocomplete="off" required>
+            <input type="date" name="birthday" id="accountBirthday" autocomplete="off" required />
             <label for="accountBirthday"></label>
           </div>
-          <br />
-          <br />
+          <br>
+          <br>
           <!-- 지역구 -->
           <div>
             <div valgn="top"> 선호하는 지역
@@ -146,7 +146,7 @@
               </select>
             </div>
           </div>
-          <br />
+          <br>
         </form>
         </section>
 
@@ -165,7 +165,7 @@
   </div>
 
   <script src="../static/js/user.js"></script>
-  <script src="./static/js/api_user.js"></script>
+  <script src="../static/js/api_user.js"></script>
 
 </body>
 

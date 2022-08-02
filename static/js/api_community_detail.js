@@ -1,6 +1,5 @@
 // 게시글 상세페이지
 const receivedData = parseInt(location.href.split('?')[1]);
-console.log("receivedData :", receivedData)
 
 
 // 게시글 불러오기
@@ -25,7 +24,6 @@ async function getArticlesDetail(receivedData) {
   } else {
     tag_name = "나눔마켓"
   }
-  console.log("게시글 ID :", response_json.id)
   const article_tag = document.getElementById("tag")
 
   const article_tag_h2 = document.createElement("h2")

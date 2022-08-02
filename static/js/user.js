@@ -190,3 +190,8 @@ window.addEventListener("unload", function (e) {
     toDoWhenClosing();
   }
 });
+
+function goToMyArticle() {
+  sessionStorage.setItem("id", 3);
+  window.location.href = "./community.html"
+}

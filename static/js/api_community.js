@@ -33,6 +33,13 @@ async function article_post() {
 // 게시글 get
 async function get_pagination_list(id, url) {
 
+  //내가 쓴 게시물 클릭 시 id=3 지정
+  three = sessionStorage.getItem("id")
+  if (three == 3) {
+    id = three
+  }
+  sessionStorage.removeItem("id")
+
   let tag_param = ""
   if (id !== undefined) {
     tag_param = "id=" + id

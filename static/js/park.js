@@ -10,7 +10,7 @@ if (!urlParkCommentPageNum) {
 function appendParkHtml(
   park_name, addr, check_count, image,
   list_content, admintel, main_equip, template_url, updated_at,
-  id, bookmarks, username, comments, comment_total_count) {
+  id, bookmarks, comments) {
 
   parkDetailTempHtml = `
     <!-- 첫번째 구간 : 이름, 북마크 -->
@@ -87,7 +87,7 @@ function appendParkHtml(
     </div>
   `
   $("#parkDetail").append(parkDetailTempHtml)
-  
+
   // 공원 상세보기 댓글
   for (let j = 0; j < comments.length; j++) {
     let time_post = new Date(comments[j].updated_at)
@@ -109,7 +109,7 @@ function appendParkHtml(
         </div>
       `)
     } else {
-    $(`#comments${id}`).append(`
+      $(`#comments${id}`).append(`
 			<div class="comment" id="comment(${comments[j].id})">
 				<div class="comment-username">
 					<p>${comments[j].user}</p>
@@ -122,7 +122,7 @@ function appendParkHtml(
 				</div>
         <div class="comment-buttons" id="parkCommentButtons">
           <button class="comment-edit" type="button" id="updateButton(${comments[j].id})" onclick="editComment(${comments[j].id})">
-            edit
+            <i class="fa-solid fa-pencil"></i>
           </button>
           <button class="comment-delete" type="button" onclick="deleteComment(${comments[j].id})">
             <i class="fa-regular fa-trash-can"></i>
@@ -134,43 +134,41 @@ function appendParkHtml(
   }
 }
 
-
-// 댓글 수정버튼 -> 수정 상태로 변경 
+// 댓글 수정버튼 클릭 -> 수정 상태로 변경 //
 function editComment(comment_id) {
   const editButton = document.getElementById(`updateButton(${comment_id})`)
 
-  if (editButton.innerText == "edit") {
-    editButton.innerText = "submit"
+  if (editButton.innerHTML == `<i class="fa-solid fa-pencil"></i>`) {
+    editButton.innerHTML = `<i class="fa-solid fa-check"></i>`
     editButton.setAttribute("onclick", `putComment(${comment_id})`)
 
     const comment = document.getElementById(`commentContent(${comment_id})`)
-    comment.innerHTML = `<textarea id="inputContent(${comment_id})">${comment.innerText}</textarea>`
+    comment.innerHTML = `<textarea class="textarea" id="inputContent(${comment_id})">${comment.innerText}</textarea>`
 
     const updateButton = document.getElementById(`updateComment(${comment_id})`)
     updateButton.setAttribute("onclick", `putComment(${comment_id})`)
 
   } else {
-    editButton.innerText = "edit"
+    editButton.innerHTML = `<i class="fa-solid fa-pencil"></i>`
     editButton.setAttribute("onclick", `editComment(${comment_id})`)
   }
 }
 
-
-// 댓글 페이지네이션
-function pagination(commentTotalCount, paginationSize, listSize, park_comment_page, id) {
+// 댓글 페이지네이션 //
+function pagination(commentTotalCount, paginationSize, listSize, parkCommentPage, id) {
   let totalPageSize = Math.ceil(commentTotalCount / listSize)
-  let firstBottomNumber = park_comment_page - park_comment_page % paginationSize + 1
-  let lastBottomNumber = park_comment_page - park_comment_page % paginationSize + paginationSize
+  let firstBottomNumber = parkCommentPage - parkCommentPage % paginationSize + 1
+  let lastBottomNumber = parkCommentPage - parkCommentPage % paginationSize + paginationSize
 
   if (lastBottomNumber > totalPageSize) lastBottomNumber = totalPageSize
   const paginationNum = document.querySelector(".comment-pagination-num")
 
   for (let i = firstBottomNumber; i <= lastBottomNumber; i++) {
-    if (i == park_comment_page) {
-      paginationNum.innerHTML += `<span class="comment-pagination-num cur-page" id="park_comment_page(${i})" onclick="showParkDetail('${id}', '${i}')"> ${i} </span>`
+    if (i == parkCommentPage) {
+      paginationNum.innerHTML += `<span class="comment-pagination-num cur-page" id="parkCommentPage(${i})" onclick="showParkDetail('${id}', '${i}')"> ${i} </span>`
 
     } else {
-      paginationNum.innerHTML += `<span class="comment-pagination-num" id="park_comment_page(${i})" onclick="showParkDetail('${id}', '${i}')"> ${i} </span>`
+      paginationNum.innerHTML += `<span class="comment-pagination-num" id="parkCommentPage(${i})" onclick="showParkDetail('${id}', '${i}')"> ${i} </span>`
     }
   }
 }
@@ -192,11 +190,9 @@ $(document).ready(function () {
     x["updated_at"],
     x["id"],
     x["bookmarks"],
-    x["username"],
     x["comments"],
-    x["comment_total_count"]
   )
-  
+
   // 공원 댓글 페이지네이션 
   pagination(x["comment_total_count"], 10, 10, urlParkCommentPageNum, x["id"])
 

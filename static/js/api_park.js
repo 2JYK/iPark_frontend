@@ -97,10 +97,15 @@ async function putComment(comment_id) {
   if (response.status == 200) {
     const comment = document.getElementById(`commentContent(${comment_id})`)
     comment.innerHTML = `
-        <div class="comment-comment" id="commentContent(${comment_id})">
-          ${inputContent.value}
-        </div>`
+      <div class="comment-comment" id="commentContent(${comment_id})">
+        ${inputContent.value}
+      </div>`
+
+    const editButton = document.getElementById(`updateButton(${comment_id})`)
+    editButton.innerHTML = `<i class="fa-solid fa-pencil"></i>`
+
     showParkDetail(id)
+
   } else {
     alert(response_json["message"])
   }

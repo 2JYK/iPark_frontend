@@ -161,6 +161,11 @@ $(document).on('keydown', function (e) {
   }
 });
 
+// 페이지 새로고침 시 토큰값 삭제 방지
+$(document).location.reload(function () {
+  closing_window = false;
+});
+
 // a 링크를 눌렀을 때 토큰값 삭제 방지
 $(document).on("click", "a", function () {
   closing_window = false;

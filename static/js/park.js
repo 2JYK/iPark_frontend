@@ -6,7 +6,6 @@ if (!urlParkCommentPageNum) {
 }
 
 
-
 // 공원 상세정보 html 구간
 function appendParkHtml(
   park_name, addr, check_count, image,
@@ -69,19 +68,9 @@ function appendParkHtml(
 
         <!-- 댓글 페이지 네이션 -->
         <div class="comment-pagination">
-          <!-- <div class="comment-pagination-left-button">
-            <button type="button">
-              <
-            </button>
-          </div> -->
           <div class="comment-pagination-num" id="commentPaginationNum">
             <!-- 페이지 네이션 번호 구간 -->
           </div>
-          <!-- <div class="comment-pagination-right-button">
-            <button type="button">
-              >
-            </button>
-          </div> -->
         </div>
 
         <!-- 댓글 입력창 -->
@@ -98,11 +87,28 @@ function appendParkHtml(
     </div>
   `
   $("#parkDetail").append(parkDetailTempHtml)
-
+  
   // 공원 상세보기 댓글
   for (let j = 0; j < comments.length; j++) {
     let time_post = new Date(comments[j].updated_at)
     let time_before = time2str(time_post)
+
+    // 댓글 작성자인지를 확인하여 수정,삭제 버튼이 보이게하기 위함
+    if (comments[j].user_id != parseJwt("access").user_id) {
+      $(`#comments${id}`).append(`
+        <div class="comment" id="comment(${comments[j].id})">
+          <div class="comment-username">
+            <p>${comments[j].user}</p>
+          </div>
+          <div class="comment-comment" id="commentContent(${comments[j].id})">
+            ${comments[j].comment}
+          </div>
+          <div class="comment-upload-time">
+            <p>${time_before}</p>
+          </div>
+        </div>
+      `)
+    } else {
     $(`#comments${id}`).append(`
 			<div class="comment" id="comment(${comments[j].id})">
 				<div class="comment-username">
@@ -114,19 +120,17 @@ function appendParkHtml(
 				<div class="comment-upload-time">
 					<p>${time_before}</p>
 				</div>
-        <div class="comment-buttons">
-
-            <button class="comment-edit" type="button" id="updateButton(${comments[j].id})" onclick="editComment(${comments[j].id})">
-              edit
-            </button>
-
-            <button class="comment-delete" type="button" onclick="deleteComment(${comments[j].id})">
-              <i class="fa-regular fa-trash-can"></i>
-            </button>
-
-        </div>
+        <div class="comment-buttons" id="parkCommentButtons">
+          <button class="comment-edit" type="button" id="updateButton(${comments[j].id})" onclick="editComment(${comments[j].id})">
+            edit
+          </button>
+          <button class="comment-delete" type="button" onclick="deleteComment(${comments[j].id})">
+            <i class="fa-regular fa-trash-can"></i>
+          </button>
+        </div> 
 			</div>
 		`)
+    }
   }
 }
 
@@ -175,6 +179,7 @@ function pagination(commentTotalCount, paginationSize, listSize, park_comment_pa
 // 공원 상세 페이지 로드시 세션스토리지에 담은 park_info 값 html에 적용 
 $(document).ready(function () {
   var x = JSON.parse(sessionStorage.getItem("park_info"))
+
   appendParkHtml(
     x["park_name"],
     x["addr"],
@@ -191,6 +196,7 @@ $(document).ready(function () {
     x["comments"],
     x["comment_total_count"]
   )
+  
   // 공원 댓글 페이지네이션 
   pagination(x["comment_total_count"], 10, 10, urlParkCommentPageNum, x["id"])
 

@@ -96,13 +96,13 @@ function appendParkHtml(
       $(`#comments${id}`).append(`
         <div class="comment" id="comment(${comments[j].id})">
           <div class="comment-username">
-            <p>${comments[j].user}</p>
+            ${comments[j].user}
           </div>
           <div class="comment-comment" id="commentContent(${comments[j].id})">
             ${comments[j].comment}
           </div>
           <div class="comment-upload-time">
-            <p>${timeBefore}</p>
+            ${timeBefore}
           </div>
         </div>
       `)
@@ -110,13 +110,13 @@ function appendParkHtml(
       $(`#comments${id}`).append(`
 			<div class="comment" id="comment(${comments[j].id})">
 				<div class="comment-username">
-					<p>${comments[j].user}</p>
+					${comments[j].user}
 				</div>
 				<div class="comment-comment" id="commentContent(${comments[j].id})">
           ${comments[j].comment}
         </div>
 				<div class="comment-upload-time">
-					<p>${timeBefore}</p>
+					${timeBefore}
 				</div>
         <div class="comment-buttons" id="parkCommentButtons">
           <button class="comment-edit" type="button" id="updateButton(${comments[j].id})" onclick="editComment(${comments[j].id})">

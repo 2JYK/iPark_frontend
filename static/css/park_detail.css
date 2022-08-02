@@ -149,6 +149,7 @@ body {
     margin: 0px 0px 15px 0px;
     overflow: hidden;
     padding: 0px 30px;
+    align-items: center;
 }
 
 .comment-username {

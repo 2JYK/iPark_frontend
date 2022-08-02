@@ -42,6 +42,9 @@ async function getArticlesDetail(receivedData) {
   const article_title = document.getElementById("article_title")
   article_title.innerText = response_json.title
 
+  const article_park = document.getElementById("article_park")
+  article_park.innerText = response_json.park_name
+
   const article_user = document.getElementById("article_user")
   article_user.innerText = response_json.username
 
@@ -143,8 +146,8 @@ async function deleteArticle(receivedData) {
 async function articleCommentPost(article_id) {
   const comment = document.getElementById("comment_post").value
   const commentData = {
-    "user": parseJwt("access").user_id,
-    "article": article_id,
+    // "user": parseJwt("access").user_id,
+    // "article": article_id,
     "comment": comment
   }
 

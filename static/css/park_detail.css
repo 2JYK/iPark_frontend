@@ -130,14 +130,26 @@
 
 /* 다섯째 구간 : url, 정보업데이트시간 */
 .park-url-updated {
-    margin: auto auto 10px auto;
+    margin: auto auto 30px auto;
     display: flex;
     flex-wrap: wrap;
 }
 
 .template-url {
-    margin-bottom: 30px;
     overflow-x: auto;
+    color: black;
+    text-decoration: none;
+}
+
+.template-url:hover {
+    color: #5ea152; 
+}
+
+.fa-hand-point-right {
+    --button-active-background: var(--example-color-alt); 
+    --button-hover-background: var(--example-color);
+    color: #5ea152; 
+    --fa-animation-duration: 2s;
 }
 
 .updated-at {
@@ -185,14 +197,23 @@
         width: 700px;
     }
 }
+@media (min-width: 570px) {
+    .comment-input-box {
+        width: 700px;
+        margin: auto;
+    }
 
+    .comment-input-comment input {
+        width: 700px;
+    }
+}
 @media (max-width: 570px) {
     .park-comment {
         width: 400px;
     }
 
     .comment-input-box {
-        width: 400px;
+        width: 380px;
     }
 
     .comment-input-comment input {
@@ -245,11 +266,12 @@
 /* 댓글 입력창 */
 .comment-input-box {
     display: flex;
-    margin: 0px 10px 0px 10px;
+    /* margin: 0px 10px 0px 10px; */
+    margin: auto -1px auto;
 }
 
 .comment-input-comment input {
-    height: 30px;
+    height: 38px;
     margin-right: 10px;
     overflow: hidden;
     border-radius: 7px;
@@ -258,4 +280,9 @@
     font-weight: 400;
     line-height: 1.5;
     vertical-align: middle;
+    border: 1px solid #6c757d;
+}
+
+.comment-input-button button {
+    width: 80px;
 }

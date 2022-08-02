@@ -49,7 +49,10 @@ function appendParkHtml(
 
     <!-- 다섯째 구간 : url, 정보업데이트시간 -->
     <div class="park-url-updated">
-      <div class="template-url">${template_url}</div>
+      <div class="template-url">
+        <a href="${template_url}" class="template-url"><i class="fas fa-hand-point-right fa-fw fa-1x fa-beat-fade"></i>
+        ${park_name} 홈페이지 </a>
+      </div>
       <div class="updated-at">${updated_at}</div>
     </div>
     <div class="line"></div>
@@ -87,7 +90,7 @@ function appendParkHtml(
             <input id="commentInputComment" placeholder="댓글을 입력해주세요" /></input>
           </div>
           <div class="comment-input-button">
-            <button class="btn btn-outline-secondary" type="button" id="commentButton" onclick="postComment(${id})">button</button>
+            <button class="btn btn-outline-secondary" type="button" id="commentButton" onclick="postComment(${id})">등록</button>
           </div>
         </div>
         </form>

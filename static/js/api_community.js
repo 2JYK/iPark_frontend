@@ -182,7 +182,6 @@ function getSearchArticles() {
     data: {},
     success: function (response) {
       let postings = response
-      console.log("서치 :", postings)
       for (let i = 0; i < postings.length; i++) {
 
         let time_post = new Date(postings[i].created_at_time)
@@ -197,7 +196,14 @@ function getSearchArticles() {
           tag_name = "나눔마켓"
         }
 
+        if (tag_name == "커뮤니티") {
+          tag_color = "lightsteelblue";
+        } else if (tag_name == "나눔마켓") {
+          tag_color = "lightcoral"
+        }
+
         append_temp_html(
+          postings[i].id,
           tag_name,
           postings[i].title,
           postings[i].username,
@@ -205,20 +211,23 @@ function getSearchArticles() {
           postings[i].check_count
         )
       }
-      function append_temp_html(tag_name, title, username, updated_at, check_count) {
+      function append_temp_html(id, tag_name, title, username, updated_at, check_count) {
         let tag = "lightsteelblue";
         if (tag_name == "커뮤니티") {
         } else if (tag_name == "나눔마켓") {
           tag = "lightcoral"
         }
 
-        temp_html = `      <tr>
-        <td class="${tag}" style="color: ${tag};">${tag_name}</td>
-        <td style="text-align: left;">${title}</td>
-        <td>${username}</td>
-        <td>${updated_at}</td>
-        <td>${check_count}</td>
-      </tr>`
+        temp_html = `<tr>
+                      <td class="${tag_color}" style="color: ${tag_color};">${tag_name}</td>
+                      <td style="text-align: left;">
+                      <a class="article-title" href="/community_detail.html?${id}">
+                      ${title}</a>
+                      </td>
+                      <td>${username}</td>
+                      <td>${updated_at}</td>
+                      <td>${check_count}</td>
+                    </tr>`
         $('#best').append(temp_html)
       }
     }

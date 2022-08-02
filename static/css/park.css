@@ -1,11 +1,26 @@
 /* 검색페이지 */
-.park-options {
-  display: flex;
-  width: fit-content;
+.park-option-box {
+  margin-top: 2%;
 }
 
-.park-options-button {
+.park-options {
   display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.park-option {
+  margin-bottom: 1%;
+}
+
+.park-regions {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.park-zone {
+  margin-bottom: 1%;
 }
 
 /* 버튼 */
@@ -37,6 +52,7 @@
   box-shadow: var(--shadow);
   transform: translateY(var(--y)) translateZ(0);
   transition: transform var(--duration) ease, box-shadow var(--duration) ease;
+  cursor: pointer;
 }
 
 .button div {
@@ -163,6 +179,14 @@ body .dribbble img {
   overflow-x: scroll;
 }
 
+.search-results {
+  margin-bottom: 30px;
+}
+
+.park-image {
+  cursor: pointer;
+}
+
 /* 인기 순 공원 가로 나열 */
 .popular-parks {
   display: flex;
@@ -174,18 +198,30 @@ body .dribbble img {
   overflow-x: scroll;
 }
 
+.rating-results {
+  margin-bottom: 30px;
+}
+
 /* 선택 버튼 div*/
 .selection-part {
+  display: flex;
+  margin-top: 5%;
   margin-bottom: 3%;
   align-content: center;
+  justify-content: center;
 }
 
 /* 공원 옵션 선택 버튼 */
 .selection {
-  float: right;
-  margin-right: 3%;
+  border: #0a470c solid 1px;
+  border-radius: 5px;
+  color: black;
+  background-color: transparent;
+}
+
+.selection:hover {
+  background-color: #0a470c;
   color: white;
-  background-color: #2db43a;
 }
 
 /* 버튼 클릭 시 버튼 색상 변경 */
@@ -195,4 +231,39 @@ body .dribbble img {
 
 .child-div {
   background-color: transparent;
+}
+
+/* 스크롤바 */
+.parks::-webkit-scrollbar {
+  width: 10px;
+}
+
+.parks::-webkit-scrollbar-thumb {
+  background-color: #2f3542;
+  border-radius: 10px;
+  background-clip: padding-box;
+  border: 2px solid transparent;
+}
+
+.parks::-webkit-scrollbar-track {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 5px white;
+}
+
+.popular-parks::-webkit-scrollbar {
+  width: 10px;
+}
+
+.popular-parks::-webkit-scrollbar-thumb {
+  background-color: #2f3542;
+  border-radius: 10px;
+  background-clip: padding-box;
+  border: 2px solid transparent;
+}
+
+.popular-parks::-webkit-scrollbar-track {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: inset 0px 0px 5px white;
 }

@@ -94,173 +94,174 @@
   </nav>
 
   <!-- 공원 옵션 선택 구간 -->
-  <form class="park-option-form">
-    <div class="park-option-box">
-      <div>
-        <p>옵션을 선택해 공원을 검색해 보세요!!</p>
+  <div class="container">
+    <form class="park-option-form">
+      <div class="park-option-box">
+        <div>
+          <p><i class="fa-solid fa-seedling"></i>&ensp;옵션을 선택해 공원을 검색해 보세요!!</p>
+        </div>
+        <div class="park-options">
+          <div class="park-option" id="park-option">
+            <a title="1" class="button option" id="button">조경</a>
+          </div>
+          <div class="park-option" id="park-option">
+            <a title="2" class="button option" id="button">운동</a>
+          </div>
+          <div class="park-option" id="park-option">
+            <a title="3" class="button option" id="button">놀이공원</a>
+          </div>
+          <div class="park-option" id="park-option">
+            <a title="4" class="button option" id="button">역사</a>
+          </div>
+          <div class="park-option" id="park-option">
+            <a title="5" class="button option" id="button">학습테마</a>
+          </div>
+          <div class="park-option" id="park-option">
+            <a title="6" class="button option" id="button">교양</a>
+          </div>
+          <div class="park-option" id="park-option">
+            <a title="7" class="button option" id="button">편익</a>
+          </div>
+          <div class="park-option" id="park-option">
+            <a title="8" class="button option" id="button">주차장</a>
+          </div>
+        </div>
+        <br>
+        <div>
+          <p><i class="fa-solid fa-seedling"></i>&ensp;지역을 선택해 공원을 검색해 보세요!!</p>
+        </div>
+        <div class="park-regions">
+          <div class="park-zone" id="park-option">
+            <a title="강남구" class="button option" id="button">강남구</a>
+          </div>
+          <div class="park-zone" id="park-option">
+            <a title="강동구" class="button option" id="button">강동구</a>
+          </div>
+          <div class="park-zone" id="park-option">
+            <a title="강북구" class="button option" id="button">강북구</a>
+          </div>
+          <div class="park-zone" id="park-option">
+            <a title="강서구" class="button option" id="button">강서구</a>
+          </div>
+          <div class="park-zone" id="park-option">
+            <a title="관악구" class="button option" id="button">관악구</a>
+          </div>
+          <div class="park-zone" id="park-option">
+            <a title="광진구" class="button option" id="button">광진구</a>
+          </div>
+          <div class="park-zone" id="park-option">
+            <a title="구로구" class="button option" id="button">구로구</a>
+          </div>
+          <div class="park-zone" id="park-option">
+            <a title="금천구" class="button option" id="button">금천구</a>
+          </div>
+          <div class="park-zone" id="park-option">
+            <a title="노원구" class="button option" id="button">노원구</a>
+          </div>
+          <div class="park-zone" id="park-option">
+            <a title="도봉구" class="button option" id="button">도봉구</a>
+          </div>
+          <div class="park-zone" id="park-option">
+            <a title="동대문구" class="button option" id="button">동대문구</a>
+          </div>
+          <div class="park-zone" id="park-option">
+            <a title="동작구" class="button option" id="button">동작구</a>
+          </div>
+          <div class="park-zone" id="park-option">
+            <a title="마포구" class="button option" id="button">마포구</a>
+          </div>
+          <div class="park-zone" id="park-option">
+            <a title="서대문구" class="button option" id="button">서대문구</a>
+          </div>
+          <div class="park-zone" id="park-option">
+            <a title="서초구" class="button option" id="button">서초구</a>
+          </div>
+          <div class="park-zone" id="park-option">
+            <a title="성동구" class="button option" id="button">성동구</a>
+          </div>
+          <div class="park-zone" id="park-option">
+            <a title="성북구" class="button option" id="button">성북구</a>
+          </div>
+          <div class="park-zone" id="park-option">
+            <a title="송파구" class="button option" id="button">송파구</a>
+          </div>
+          <div class="park-zone" id="park-option">
+            <a title="양천구" class="button option" id="button">양천구</a>
+          </div>
+          <div class="park-zone" id="park-option">
+            <a title="영등포구" class="button option" id="button">영등포구</a>
+          </div>
+          <div class="park-zone" id="park-option">
+            <a title="용산구" class="button option" id="button">용산구</a>
+          </div>
+          <div class="park-zone" id="park-option">
+            <a title="은평구" class="button option" id="button">은평구</a>
+          </div>
+          <div class="park-zone" id="park-option">
+            <a title="종로구" class="button option" id="button">종로구</a>
+          </div>
+          <div class="park-zone" id="park-option">
+            <a title="중구" class="button option" id="button">중구</a>
+          </div>
+          <div class="park-zone" id="park-option">
+            <a title="중랑구" class="button option" id="button">중랑구</a>
+          </div>
+          <div class="park-zone" id="park-option">
+            <a title="과천시" class="button option" id="button">과천시</a>
+          </div>
+        </div>
+        <div class="selection-part">
+          <!-- <button class="selection" type="button" onclick="getParks()">검색 결과 확인하기</button> -->
+          <button class="btn selection" type="button" onclick="getParks()">
+            <i class="fa-solid fa-magnifying-glass"></i>&ensp; 검색 결과 확인하기</button>
+        </div>
       </div>
-      <div class="park-options">
-        <div class="park-option" id="park-option">
-          <a title="1" class="button option" id="button">조경</a>
+      <hr>
+      <!-- 공원 옵션 선택 결과 보여주는 구간 -->
+      <div style="height: 412px;">
+        <div>
+          <h2 class="search-results"><i class="fa-solid fa-map-location-dot"></i>&nbsp; 검색 결과</h2>
         </div>
-        <div class="park-option" id="park-option">
-          <a title="2" class="button option" id="button">운동</a>
-        </div>
-        <div class="park-option" id="park-option">
-          <a title="3" class="button option" id="button">놀이공원</a>
-        </div>
-        <div class="park-option" id="park-option">
-          <a title="4" class="button option" id="button">역사</a>
-        </div>
-        <div class="park-option" id="park-option">
-          <a title="5" class="button option" id="button">학습테마</a>
-        </div>
-        <div class="park-option" id="park-option">
-          <a title="6" class="button option" id="button">교양</a>
-        </div>
-        <div class="park-option" id="park-option">
-          <a title="7" class="button option" id="button">편익</a>
-        </div>
-        <div class="park-option" id="park-option">
-          <a title="8" class="button option" id="button">주차장</a>
+        <div class="parks" id="parks">
+          <!-- html 할 구간 -->
         </div>
       </div>
-      <br>
-      <div>
-        <p>지역을 선택해 공원을 검색해 보세요!!</p>
+      <hr>
+      <div class="park-rating">
+        <h2 class="rating-results"><i class="fa-solid fa-star"></i>&nbsp; 인기가 많은 공원</h2>
       </div>
-      <div class="park-options">
-        <div class="park-zone" id="park-option">
-          <a title="강남구" class="button option" id="button">강남구</a>
-        </div>
-        <div class="park-zone" id="park-option">
-          <a title="강동구" class="button option" id="button">강동구</a>
-        </div>
-        <div class="park-zone" id="park-option">
-          <a title="강북구" class="button option" id="button">강북구</a>
-        </div>
-        <div class="park-zone" id="park-option">
-          <a title="강서구" class="button option" id="button">강서구</a>
-        </div>
-        <div class="park-zone" id="park-option">
-          <a title="관악구" class="button option" id="button">관악구</a>
-        </div>
-        <div class="park-zone" id="park-option">
-          <a title="광진구" class="button option" id="button">광진구</a>
-        </div>
-        <div class="park-zone" id="park-option">
-          <a title="구로구" class="button option" id="button">구로구</a>
-        </div>
-        <div class="park-zone" id="park-option">
-          <a title="금천구" class="button option" id="button">금천구</a>
-        </div>
-        <div class="park-zone" id="park-option">
-          <a title="노원구" class="button option" id="button">노원구</a>
-        </div>
-        <div class="park-zone" id="park-option">
-          <a title="도봉구" class="button option" id="button">도봉구</a>
-        </div>
-        <div class="park-zone" id="park-option">
-          <a title="동대문구" class="button option" id="button">동대문구</a>
-        </div>
-        <div class="park-zone" id="park-option">
-          <a title="동작구" class="button option" id="button">동작구</a>
-        </div>
-        <div class="park-zone" id="park-option">
-          <a title="마포구" class="button option" id="button">마포구</a>
-        </div>
-        <div class="park-zone" id="park-option">
-          <a title="서대문구" class="button option" id="button">서대문구</a>
-        </div>
-      </div>
-      <br />
-      <div class="park-options">
-        <div class="park-zone" id="park-option">
-          <a title="서초구" class="button option" id="button">서초구</a>
-        </div>
-        <div class="park-zone" id="park-option">
-          <a title="성동구" class="button option" id="button">성동구</a>
-        </div>
-        <div class="park-zone" id="park-option">
-          <a title="성북구" class="button option" id="button">성북구</a>
-        </div>
-        <div class="park-zone" id="park-option">
-          <a title="송파구" class="button option" id="button">송파구</a>
-        </div>
-        <div class="park-zone" id="park-option">
-          <a title="양천구" class="button option" id="button">양천구</a>
-        </div>
-        <div class="park-zone" id="park-option">
-          <a title="영등포구" class="button option" id="button">영등포구</a>
-        </div>
-        <div class="park-zone" id="park-option">
-          <a title="용산구" class="button option" id="button">용산구</a>
-        </div>
-        <div class="park-zone" id="park-option">
-          <a title="은평구" class="button option" id="button">은평구</a>
-        </div>
-        <div class="park-zone" id="park-option">
-          <a title="종로구" class="button option" id="button">종로구</a>
-        </div>
-        <div class="park-zone" id="park-option">
-          <a title="중구" class="button option" id="button">중구</a>
-        </div>
-        <div class="park-zone" id="park-option">
-          <a title="중랑구" class="button option" id="button">중랑구</a>
-        </div>
-        <div class="park-zone" id="park-option">
-          <a title="과천시" class="button option" id="button">과천시</a>
-        </div>
-      </div>
-      <div class="selection-part">
-        <button class="selection" type="button" onclick="getParks()">선택</button>
-      </div>
-    </div>
-
-    <!-- 공원 옵션 선택 결과 보여주는 구간 -->
-    <div style="height: 436px;">
-      <div>
-        <h1 class="search-results">검색 결과</h1>
-      </div>
-      <div class="parks" id="parks">
+      <div class="popular-parks" id="popular-parks">
         <!-- html 할 구간 -->
       </div>
-    </div>
+  </div>
 
 
-    <div class="park-rating">
-      <h1 class="rating-results">인기가 많은 공원</h1>
-    </div>
-    <div class="popular-parks" id="popular-parks">
-      <!-- html 할 구간 -->
-    </div>
+  <!-- footer 시작 -->
+  <footer class="py-3 my-4" style="background-color: #fafbfc;">
+    <p class="text-center"><img src="./static/css/img/park-logo.png" alt="mdo" width="150" height="70"></p>
+    <ul class="nav justify-content-center pb-3 mb-3">
+      <li class="nav-item"><a href="/" class="nav-link px-2 text-muted">Home</a></li>
+      <li class="nav-item"><a href="/park_search.html" class="nav-link px-2 text-muted">Park</a></li>
+      <li class="nav-item"><a href="/community.html" class="nav-link px-2 text-muted">Community</a></li>
+      <li class="nav-item"><a href="mailto:rla04722@naver.com?subject= i Pa|rK 문의" target="_blank"
+          class="nav-link px-2 text-muted">Questions</a></li>
+    </ul>
+    <p class="text-center text-muted">Developers |
+      <a href="https://github.com/GyeongSuKim1" target="_blank" rel="noopener noreferrer"> 김경수 </a>,
+      <a href="https://github.com/nicesugi" target="_blank" rel="noopener noreferrer"> 윤슬기 </a>,
+      <a href="https://github.com/nikevapormax" target="_blank" rel="noopener noreferrer"> 정대근 </a>,
+      <a href="https://github.com/juhyun1011" target="_blank" rel="noopener noreferrer"> 정주현 </a>
+    </p>
+    <p class="text-center text-muted">Source |
+      <a href="https://github.com/2JYK" target="_blank">https://github.com/2JYK</a>
+    </p>
+    <p class="text-center text-muted">© IPark made by 2JYK</p>
+  </footer>
 
-    <!-- footer 시작 -->
-    <footer class="py-3 my-4" style="background-color: #fafbfc;">
-      <p class="text-center"><img src="./static/css/img/park-logo.png" alt="mdo" width="150" height="70"></p>
-      <ul class="nav justify-content-center pb-3 mb-3">
-        <li class="nav-item"><a href="/" class="nav-link px-2 text-muted">Home</a></li>
-        <li class="nav-item"><a href="/park_search.html" class="nav-link px-2 text-muted">Park</a></li>
-        <li class="nav-item"><a href="/community.html" class="nav-link px-2 text-muted">Community</a></li>
-        <li class="nav-item"><a href="mailto:rla04722@naver.com?subject= i Pa|rK 문의" target="_blank"
-            class="nav-link px-2 text-muted">Questions</a></li>
-      </ul>
-      <p class="text-center text-muted">Developers |
-        <a href="https://github.com/GyeongSuKim1" target="_blank" rel="noopener noreferrer"> 김경수 </a>,
-        <a href="https://github.com/nicesugi" target="_blank" rel="noopener noreferrer"> 윤슬기 </a>,
-        <a href="https://github.com/nikevapormax" target="_blank" rel="noopener noreferrer"> 정대근 </a>,
-        <a href="https://github.com/juhyun1011" target="_blank" rel="noopener noreferrer"> 정주현 </a>
-      </p>
-      <p class="text-center text-muted">Source |
-        <a href="https://github.com/2JYK" target="_blank">https://github.com/2JYK</a>
-      </p>
-      <p class="text-center text-muted">© IPark made by 2JYK</p>
-    </footer>
-
-    <script src="../static/js/user.js"></script>
-    <script src="../static/js/api_user.js"></script>
-    <script src="../static/js/api_park.js"></script>
-    <script src="../static/js/park.js"></script>
+  <script src="../static/js/user.js"></script>
+  <script src="../static/js/api_user.js"></script>
+  <script src="../static/js/api_park.js"></script>
+  <script src="../static/js/park.js"></script>
 
 </body>
 

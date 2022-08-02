@@ -253,7 +253,7 @@ function parkListHtml(id, park_name) {
 function get_parks_html(id, park_name, image, check_count) {
   temp_html = `<div class="park-box" id="park" onclick="showParkDetail(${id})">
                 <div class="park-image">
-                    <img src="${image}" alt="" style="width: 310px; height: 300px; margin-right: 10px;"/>
+                    <img src="${image}" alt="" style="width: 190px; height: 180px; margin-right: 10px;"/>
                 </div>
                 <div class="park-name">
                     <p>${park_name}</p>
@@ -270,7 +270,7 @@ function get_parks_html(id, park_name, image, check_count) {
 function popular_parks_html(id, park_name, image, check_count) {
   temp_html = `<div class="park-box" id="park" onclick="showParkDetail(${id})">
                 <div class="park-image">
-                    <img src="${image}" alt="" style="width: 310px; height: 300px; margin-right: 10px;"/>
+                    <img src="${image}" alt="" style="width: 190px; height: 180px; margin-right: 10px;"/>
                 </div>
                 <div class="park-name">
                     <p>${park_name}</p>

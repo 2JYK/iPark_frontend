@@ -1,13 +1,15 @@
 // 게시글 POST
 async function article_post() {
-  const image = document.getElementById("popup-body-file").files
-  const select = document.getElementById("popup-body-choice").value
+  const image = document.getElementById("popup_body_file").files
+  const select = document.getElementById("popup_body_tag").value
+  const park = document.getElementById("popup_body_park").value
   tag = parseInt(select)
-  const title = document.getElementById("popup-body-title").value
-  const content = document.getElementById("popup-body-content").value
+  const title = document.getElementById("popup_body_title").value
+  const content = document.getElementById("popup_body_content").value
   const formData = new FormData()
 
   formData.append("tag", tag)
+  formData.append("park", park)
   formData.append("title", title)
   formData.append("content", content)
   if (image.length == 1) {
@@ -23,11 +25,32 @@ async function article_post() {
   if (response.status == 200) {
     alert("게시글 작성 완료")
     location.reload();
+  }else if (title.length > 35){
+    alert("제목은 35자 이하로 작성해주세요.")
   }
   else {
     alert(response_json["message"])
   }
 }
+
+
+// 공원 선택옵션
+function option_values() {
+  $.ajax({
+    type: "GET",
+    url: `${backendBaseUrl}community/option/`,
+    data: {},
+    success: function (response) {
+      park_id = response
+      for(let i = 0; i < park_id.length; i++) {
+        temp_html = `
+        <option value="${park_id[i].id}">${park_id[i].park_name}</option>
+        `
+        $(".popup-body-park").append(temp_html)
+      }
+    }
+  });
+}option_values()
 
 
 // 게시글 get

@@ -12,7 +12,7 @@
 
   display: none;
   overflow-y: initial !important;
-  z-index: 2;
+  z-index: 4;
 }
 
 .popup {
@@ -102,6 +102,10 @@ color: green;
 .wrap {
   width: 70%;
   margin: auto;
+}
+
+.article-park {
+  color: gray;
 }
 
 .title-hr {

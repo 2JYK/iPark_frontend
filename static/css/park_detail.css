@@ -289,6 +289,10 @@
   color: #2db43a;
 }
 
+.parking-span {
+  color: #2db43a;
+  font-size: 8pt;
+}
 
 /* 반응형 */
 @media (max-width: 1300px) {

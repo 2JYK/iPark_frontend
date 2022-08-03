@@ -57,9 +57,12 @@ function appendParkHtml(
     <div class="line"></div>
 
     <!-- 주차장 추천 -->
+    <br>
+    <h6>공원 근처 주차장 <span class="parking-span">* 서울시 공영 주차장 기반 자료입니다.</span></h6>
     <div class="parking-box">
       <div class="parking-lots"></div>
     </div>
+    <br>
     <div class="line"></div>
 
     <!-- 공원 댓글창 -->

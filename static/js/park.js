@@ -234,7 +234,6 @@ $(document).ready(function () {
                     <span class="parking-tel">${x["parking"][i]["tel"]}</span>
                     <br>
                     <span class="parking-operation-rule-nm">${x["parking"][i]["operation_rule_nm"]}</span>
-                    
                  </div>`
     $(".parking-lots").append(temp_html)
   }

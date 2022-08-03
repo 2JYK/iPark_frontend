@@ -172,6 +172,7 @@ async function articleCommentPost(article_id) {
 
   if (response.status == 200) {
     alert(response_json["message"])
+    document.getElementById("commentPost").value = ""
 
     // 댓글 올린 시간 설정
     let createdAt = data.created_at.split(".")

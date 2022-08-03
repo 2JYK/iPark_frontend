@@ -4,6 +4,16 @@ body {
   height: 100%;
 }
 
+body {
+  margin: 2em auto;
+  right: 0px;
+  min-width: 320px;
+}
+
+.navbar {
+  margin: 0px 30px 0px 30px;
+}
+
 .form-control {
   width: 250px;
   height: 40px;

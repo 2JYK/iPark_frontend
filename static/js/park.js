@@ -230,7 +230,6 @@ $(document).ready(function () {
     $(".parking-box").append(temp_html)
     $(".parking-box").css({ "justify-content": "center" })
   }
-
   for (let i = 0; i < x["parking"].length; i++) {
     temp_html = `<div class="parking-lot">
                     <span class="parking-name">${x["parking"][i]["parking_name"]}</span>
@@ -240,6 +239,8 @@ $(document).ready(function () {
                     <span class="parking-tel">${x["parking"][i]["tel"]}</span>
                     <br>
                     <span class="parking-operation-rule-nm">${x["parking"][i]["operation_rule_nm"]}</span>
+                    <br>
+                    <span class="parking-distance">${x["parking"][i]["distance"].toFixed(3)} km</sapn>
                  </div>`
     $(".parking-lots").append(temp_html)
   }

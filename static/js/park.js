@@ -240,7 +240,7 @@ $(document).ready(function () {
                     <br>
                     <span class="parking-operation-rule-nm">${x["parking"][i]["operation_rule_nm"]}</span>
                     <br>
-                    <span class="parking-distance">${x["parking"][i]["distance"].toFixed(3)} km</sapn>
+                    <span class="parking-distance">약 ${x["parking"][i]["distance"].toFixed(3)} km</sapn>
                  </div>`
     $(".parking-lots").append(temp_html)
   }

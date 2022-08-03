@@ -1,6 +1,7 @@
 body {
     margin: 2em auto;
     right: 0px;
+    min-width: 320px;
 }
 
 .park-detail {
@@ -53,8 +54,6 @@ body {
 .addr {
     height: 30px;
     margin-left: auto;
-    flex-basis: 150px;
-    flex-grow: 1;
 }
 
 /* 세번째 구간 : 이미지, 지도 */
@@ -67,6 +66,7 @@ body {
 
 .img {
     min-width: 320px;
+    width: 300px;
     height: 300px;
     margin: auto;
 }
@@ -79,7 +79,7 @@ body {
 
 /* 네번째 구간 : 설명 */
 .park-description {
-    margin: 0px 0px 10px 0px;
+    margin: 0px 0px 30px 0px;
 }
 
 .list-content {
@@ -144,6 +144,7 @@ body {
 }
 
 .comment {
+    width: 100%;
     height: 30px;
     display: flex;
     margin: 0px 0px 15px 0px;
@@ -154,9 +155,6 @@ body {
 
 .comment-username {
     margin-right: 20px;
-}
-
-.comment-username p {
     font-weight: 800;
     color: #198754;
 }
@@ -170,6 +168,7 @@ body {
     height: 30px;
     width: 100%;
     overflow-y: hidden;
+    display: block;
 }
 
 .comment-upload-time {
@@ -180,6 +179,7 @@ body {
 /* 댓글 수정 삭제 버튼 */
 .comment-buttons {
     margin-left: auto;
+    display: flex;
 }
 
 .comment-buttons button {
@@ -188,6 +188,9 @@ body {
     background: none;
     color: gray;
     margin: 5px;
+}
+.comment-delete {
+    display: none;
 }
 
 /* 댓글 페이지 네이션 */
@@ -257,7 +260,7 @@ body {
     .park-image-map {
         grid-template-columns: repeat(2, 1fr);
         margin: 30px auto;
-        min-width: 400px;
+        min-width: 320px;
     }
 }
 
@@ -272,5 +275,15 @@ body {
 @media (max-width: 670px) {
     .addr {
         flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 545px) {
+    .comment-buttons {
+        font-size : 10px;
+    }
+
+    .comment-buttons button {
+        margin: 1px;
     }
 }

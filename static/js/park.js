@@ -33,7 +33,9 @@ function appendParkHtml(
 
     <!-- 세번째 구간 : 이미지, 지도-->
     <div class="park-image-map">
-      <img class="img" src="${image}" alt="${park_name}"/>
+      <div class="img">
+        <img class="img" src="${image}" alt="${park_name}"/>
+      </div>
       <div class="map" id="map"></div>
     </div>
 

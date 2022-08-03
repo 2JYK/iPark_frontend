@@ -175,6 +175,12 @@ function getParks() {
     url: `${backendBaseUrl}park/option/` + "?" + option_param + zone_param,
     data: {},
 
+    error: function () {
+      temp_html = `<span>조건에 맞는 검색결과가 없습니다.</span>`
+      $(".parks").append(temp_html)
+      $(".parks").css({ "justify-content": "center" })
+    },
+
     success: function (response) {
       for (let i = 0; i < response.length; i++) {
         get_parks_html(

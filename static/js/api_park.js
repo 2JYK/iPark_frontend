@@ -211,26 +211,7 @@ function getPopularParks() {
 getPopularParks()
 
 
-//북마크 API 시작
-//즐겨찾기 페이지 user별 북마크 불러오기
-async function getBookmark() {
-  token = {
-    "content-type": "application/json",
-    "Access-Control-Allow-Origin": "*",
-    "Authorization": "Bearer " + localStorage.getItem("access"),
-  }
-  const response = await fetch(`${backendBaseUrl}park/bookmark/`, {
-    method: "GET",
-    headers: token
-  })
-
-  response_json = await response.json()
-  return response_json
-}
-getBookmark()
-
-
-//북마크 등록 및 취소 (공원 상세 페이지)
+// 북마크 등록 및 취소 (공원 상세 페이지)
 async function postBookmark(id) {
   const response = await fetch(`${backendBaseUrl}park/${id}/`, {
     method: "POST",
@@ -253,18 +234,3 @@ async function postBookmark(id) {
 }
 
 
-//북마크 삭제 (북마크 페이지)
-async function deleteBookmark(bookmark_id) {
-  const response = await fetch(`${backendBaseUrl}park/bookmark/?id=${bookmark_id}`, {
-    method: "DELETE",
-    headers: {
-      "Authorization": "Bearer " + localStorage.getItem("access")
-    }
-  })
-
-  response_json = await response.json()
-  if (response.status == 200) {
-    alert(response_json["message"])
-    window.location.reload()
-  }
-}

@@ -199,5 +199,5 @@ window.addEventListener("unload", function (e) {
 
 function goToMyArticle() {
   sessionStorage.setItem("id", 3)
-  window.location.href = "/community.html"
+  window.location.href = "./community.html"
 }

@@ -340,44 +340,7 @@ function controlColor() {
 controlColor()
 
 
-//북마크 페이지 게시글 로드
-async function loadBookmark() {
-  const responseJson = await getBookmark()
-
-  const username = document.getElementById("username")
-  username.innerHTML = responseJson["username"]
-
-  const bookmarkBoxes = document.querySelector(".boxes")
-  bookmarkBoxes.innerHTML = ""
-
-  responseJson["bookmark_list"].forEach(data => {
-    const bookmarkBox = document.createElement("div")
-    bookmarkBox.className = "park-box"
-    bookmarkBox.innerHTML = `
-              <div>
-                  <img class="park-img" alt="${park_name}" onclick="showParkDetail(${data.park_id})" src="${data.image}" width="200px" height="180px">
-              </div>
-              <div class="content">
-                  <div>
-                      <h3 class="park-name" onclick="showParkDetail(${data.park_id})">${data.name}</h3>
-                      <br>
-                  </div>
-                  <div>
-                      <span class="park-desc" onclick="showParkDetail(${data.park_id})">${data.desc}</span>
-                  </div>
-                  <div class="delete">
-                      <br>
-                      <button onclick="deleteBookmark(this.id)" id="${data.bookmark_id}" class="delete-btn">삭제</button>
-                  </div>
-              </div>
-  `
-    bookmarkBoxes.append(bookmarkBox)
-  })
-}
-loadBookmark()
-
-
-//북마크 여부 확인
+// 북마크 여부 확인
 window.onload = function changeBookmark() {
   const userid = parseJwt("access").user_id
   const bookmarks = JSON.parse(sessionStorage.getItem("park_info"))["bookmarks"]

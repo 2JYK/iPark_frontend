@@ -281,6 +281,7 @@
   background-color: rgba(233, 232, 232, 0.471);
   min-width: 230px;
   max-width: fit-content;
+  height: fit-content;
   margin: 3% auto 3% auto;
   padding: 5% 5%;
 }

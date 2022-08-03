@@ -25,7 +25,7 @@ if (parseJwt("access") != null) {
 
 // 모달
 $(function () {
-  const body = document.querySelector('body');
+  const body = document.querySelector("body");
   $("#modalOpen").click(function () {
     body.style.overflow = "hidden"  // 스크롤 방지
     $("#popup").css('display', 'flex').hide().fadeIn();
@@ -44,9 +44,9 @@ $(function () {
 
 // 모달 onclick
 function openModal() {
-  const body = document.querySelector('body');
+  const body = document.querySelector("body");
   body.style.overflow = "hidden"  // 스크롤 방지
-  $("#popup").css('display', 'flex').hide().fadeIn();
+  $("#popup").css("display", "flex").hide().fadeIn();
 
   //수정 모달 안에 원래 있던 내용 넣어주기
   const oldTitle = document.getElementById("articleTitle")

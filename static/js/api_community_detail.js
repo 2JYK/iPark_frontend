@@ -227,7 +227,7 @@ async function articleCommentGet(article_id) {
   commentWrap.innerText = ""
 
   const response = await fetch(`${backendBaseUrl}community/${article_id}/comment/`, {
-    method: 'GET',
+    method: "GET",
     headers: token
   })
   response_json = await response.json()

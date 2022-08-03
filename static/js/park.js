@@ -56,6 +56,12 @@ function appendParkHtml(
     </div>
     <div class="line"></div>
 
+    <!-- 주차장 추천 -->
+    <div class="parking-box">
+      <div class="parking-lots"></div>
+    </div>
+    <div class="line"></div>
+    
     <!-- 공원 댓글창 -->
     <div>
       <div class="park-comment">
@@ -214,6 +220,17 @@ $(document).ready(function () {
     x["bookmarks"],
     x["comments"],
   )
+
+  // 주차장
+  for (let i = 0; i < x["parking"].length; i++) {
+    temp_html = `<div class="parking-lot">
+                    <p class="parking-name">${x["parking"][i]["parking_name"]}</p>
+                    <p class="parking-addr">${x["parking"][i]["addr"]}</p>
+                    <p class="parking-tel">${x["parking"][i]["tel"]}</p>
+                    <p class="parking-operation-rule-nm">${x["parking"][i]["operation_rule_nm"]}</p>
+                 </div>`
+    $(".parking-lots").append(temp_html)
+  }
 
   // 공원 댓글 페이지네이션 
   pagination(x["comment_total_count"], 10, 10, urlParkCommentPageNum, x["id"])

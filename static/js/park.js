@@ -91,22 +91,25 @@ function appendParkHtml(
     let timePost = new Date(comments[j].updated_at)
     let timeBefore = time2str(timePost)
 
-    // 댓글 작성자인지를 확인하여 수정,삭제 버튼이 보이게하기 위함
-    if (comments[j].user_id != parseJwt("access").user_id) {
-      $(`#comments${id}`).append(`
-        <div class="comment" id="comment(${comments[j].id})">
-          <div class="comment-username">
-            ${comments[j].user}
+    // 사용자가 댓글 작성자인지를 확인하여 수정,삭제 버튼이 보이게하기 위함
+    if (comments[j].user_id) {
+      if(parseJwt("access") == null) {
+        $(`#comments${id}`).append(`
+          <div class="comment" id="comment">
+            <div class="comment-username">
+              ${comments[j].user}
+            </div>
+            <div class="comment-comment" id="commentContent">
+              ${comments[j].comment}
+            </div>
+            <div class="comment-upload-time" id="commentUploadTime">
+              ${timeBefore}
+            </div>
           </div>
-          <div class="comment-comment" id="commentContent(${comments[j].id})">
-            ${comments[j].comment}
-          </div>
-          <div class="comment-upload-time">
-            ${timeBefore}
-          </div>
-        </div>
-      `)
-    } else {
+        `)
+      }
+
+    } else if (comments[j].user_id == parseJwt("access").user_id) {
       $(`#comments${id}`).append(`
 			<div class="comment" id="comment(${comments[j].id})">
 				<div class="comment-username">
@@ -115,20 +118,35 @@ function appendParkHtml(
 				<div class="comment-comment" id="commentContent(${comments[j].id})">
           ${comments[j].comment}
         </div>
-				<div class="comment-upload-time">
+				<div class="comment-upload-time" id="commentUploadTime(${comments[j].id})">
 					${timeBefore}
 				</div>
         <div class="comment-buttons" id="parkCommentButtons">
           <button class="comment-edit" type="button" id="updateButton(${comments[j].id})" onclick="editComment(${comments[j].id})">
             <i class="fa-solid fa-pencil"></i>
           </button>
-          <button class="comment-delete" type="button" onclick="deleteComment(${comments[j].id})">
+          <button class="comment-delete" type="button" id="deleteButton(${comments[j].id})" onclick="deleteComment(${comments[j].id})">
             <i class="fa-regular fa-trash-can"></i>
           </button>
         </div> 
 			</div>
 		`)
-    }
+
+    } else if (comments[j].user_id != parseJwt("access").user_id) {
+      $(`#comments${id}`).append(`
+        <div class="comment" id="comment">
+          <div class="comment-username">
+            ${comments[j].user}
+          </div>
+          <div class="comment-comment" id="commentContent">
+            ${comments[j].comment}
+          </div>
+          <div class="comment-upload-time" id="commentUploadTime">
+            ${timeBefore}
+          </div>
+        </div>
+      `)
+    } 
   }
 }
 
@@ -139,6 +157,9 @@ function editComment(comment_id) {
   if (editButton.innerHTML == `<i class="fa-solid fa-pencil"></i>`) {
     editButton.innerHTML = `<i class="fa-solid fa-check"></i>`
     editButton.setAttribute("onclick", `putComment(${comment_id})`)
+
+    document.getElementById(`deleteButton(${comment_id})`).style.display = 'block'
+    document.getElementById(`commentUploadTime(${comment_id})`).style.display = 'none'
 
     const comment = document.getElementById(`commentContent(${comment_id})`)
     comment.innerHTML = `<textarea class="textarea" id="inputContent(${comment_id})">${comment.innerText}</textarea>`

@@ -243,13 +243,13 @@
 
 /* 주차장 */
 .parking-box {
-  background-color: pink;
   width: 100%;
-  height: 200px;
+  height: 250px;
   overflow-x: hidden;
   overflow-y: auto;
   white-space: nowrap;
   overflow-y: scroll;
+  display: grid;
 }
 
 /* 스크롤바 */
@@ -272,12 +272,16 @@
 
 .parking-lots {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   text-align: center;
+  justify-items: center;
 }
 
 .parking-lot {
-  border: 1px solid #2db43a;
+  border: 1px solid black;
+  min-width: 230px;
+  max-width: fit-content;
+  margin: 3% 0 3% 0;
 }
 
 /* 반응형 */

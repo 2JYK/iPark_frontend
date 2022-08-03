@@ -95,7 +95,7 @@ function appendParkHtml(
 
     // 사용자가 댓글 작성자인지를 확인하여 수정,삭제 버튼이 보이게하기 위함
     if (comments[j].user_id) {
-      if(parseJwt("access") == null) {
+      if (parseJwt("access") == null) {
         $(`#comments${id}`).append(`
           <div class="comment" id="comment">
             <div class="comment-username">
@@ -111,8 +111,8 @@ function appendParkHtml(
         `)
       }
 
-    } else if (comments[j].user_id == parseJwt("access").user_id) {
-      $(`#comments${id}`).append(`
+      else if (comments[j].user_id == parseJwt("access").user_id) {
+        $(`#comments${id}`).append(`
 			<div class="comment" id="comment(${comments[j].id})">
 				<div class="comment-username">
 					${comments[j].user}
@@ -134,8 +134,8 @@ function appendParkHtml(
 			</div>
 		`)
 
-    } else if (comments[j].user_id != parseJwt("access").user_id) {
-      $(`#comments${id}`).append(`
+      } else if (comments[j].user_id != parseJwt("access").user_id) {
+        $(`#comments${id}`).append(`
         <div class="comment" id="comment">
           <div class="comment-username">
             ${comments[j].user}
@@ -148,7 +148,8 @@ function appendParkHtml(
           </div>
         </div>
       `)
-    } 
+      }
+    }
   }
 }
 

@@ -15,7 +15,6 @@ body {
     height: 100vh;
     background-color: #ffffff3f;
 
-    background: url(../css/img/bg.jpg) no-repeat;
     background-size: cover;
     /* background-position: center; */
 }
@@ -179,11 +178,12 @@ body::before {
 .kakao-login {
     display: block;
     margin: auto;
-    border:none;
+    border: none;
     width: 400px;
     border-radius: 50px;
     margin-top: 20px;
 }
+
 .kakao-login img {
     width: 400px;
     height: 50px;

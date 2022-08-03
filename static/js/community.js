@@ -6,7 +6,7 @@ TOKEN = {
 
 
 // 로그인하지 않은 유저 업로드 금지
-const modal = document.getElementById("modal-open")
+const modal = document.getElementById("modalOpen")
 modal.addEventListener('click', () => {
   if (parseJwt("access") == null) {
     alert("로그인을 해주세요.")
@@ -26,7 +26,7 @@ if (parseJwt("access") != null) {
 // 모달
 $(function () {
   const body = document.querySelector('body');
-  $("#modal-open").click(function () {
+  $("#modalOpen").click(function () {
     body.style.overflow = "hidden"  // 스크롤 방지
     $("#popup").css('display', 'flex').hide().fadeIn();
   });
@@ -43,20 +43,20 @@ $(function () {
 
 
 // 모달 onclick
-function open_modal() {
+function openModal() {
   const body = document.querySelector('body');
   body.style.overflow = "hidden"  // 스크롤 방지
   $("#popup").css('display', 'flex').hide().fadeIn();
 
   //수정 모달 안에 원래 있던 내용 넣어주기
-  const old_title = document.getElementById("article_title")
-  const old_content = document.getElementById("article_content")
-  const input_title = document.getElementById("popup-body-title")
-  const input_content = document.getElementById("popup-body-content")
-  input_title.value = old_title.innerHTML
-  input_content.value = old_content.innerHTML
+  const oldTitle = document.getElementById("articleTitle")
+  const oldContent = document.getElementById("articleContent")
+  const inputTitle = document.getElementById("popupBodyTitle")
+  const inputContent = document.getElementById("popupBodyContent")
+  inputTitle.value = oldTitle.innerHTML
+  inputContent.value = oldContent.innerHTML
 
-  document.getElementById("preview").src = document.getElementById("article_image").src;
+  document.getElementById("preview").src = document.getElementById("articleImage").src;
 
   $("#close").click(function () {
     body.style.overflow = "initial" // 스크롤 방지 해제

@@ -56,9 +56,9 @@
           <img src="./static/css/img/profile.png" alt="mdo" width="40" height="40" class="rounded-circle">
         </a>
         <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-          <li id="my-favorite"><a class="dropdown-item" href="./bookmark.html">즐겨찾기</a></li>
-          <li id="my-article"><a class="dropdown-item" href="#" onclick="goToMyArticle()">내가 쓴 게시글</a></li>
-          <li id="my-account"><a class="dropdown-item" href="./account_management.html">계정관리</a></li>
+          <li id="myFavorite"><a class="dropdown-item" href="./bookmark.html">즐겨찾기</a></li>
+          <li id="myArticle"><a class="dropdown-item" href="#" onclick="goToMyArticle()">내가 쓴 게시글</a></li>
+          <li id="myAccount"><a class="dropdown-item" href="./account_management.html">계정관리</a></li>
           <li id="divider">
             <hr class="dropdown-divider">
           </li>
@@ -109,8 +109,8 @@
           <input type="file" accept="image/jpeg" id="popup-body-file" style="display:none;" onchange="readURL(this);">
         </div>
 
-        <input class="popup-body-title" id="popup-body-title" placeholder="제목"><br>
-        <textarea class="popup-body-content" id="popup-body-content" placeholder="내용"></textarea>
+        <input class="popup-body-title" id="popupBodyTitle" placeholder="제목"><br>
+        <textarea class="popup-body-content" id="popupBodyContent" placeholder="내용"></textarea>
 
         <!-- 업로드 모달 업로드 -->
         <div class="popup-upload">
@@ -132,20 +132,20 @@
     <div class="article-title">
       <hr class="title-hr">
       <div class="article-header">
-        <h4 id="article_title"></h4>
-        <div class="article-title-span" id="title-control">
+        <h4 id="articleTitle"></h4>
+        <div class="article-title-span" id="titleControl">
         </div>
       </div>
-      <div class="article-park" id="article_park"></div>
+      <div class="article-park" id="articlePark"></div>
       <div class="info">
         <div class="info-name">
-          <span id="article_user"></span> <span> | </span> <span id="article_date"></span>
+          <span id="articleUser"></span> <span> | </span> <span id="articleDate"></span>
         </div>
         <div class="info-count">
           <span>조회 수 :</span>
-          <span id="view_count"></span>
+          <span id="viewCount"></span>
           <span>댓글 수 :</span>
-          <span id="comment_count">00</span>
+          <span id="commentCount">00</span>
         </div>
       </div>
       <hr>
@@ -155,12 +155,12 @@
 
       <!-- 게시글 사진 -->
       <div class="article-image">
-        <img id="article_image" alt="not found" width="600" height="500">
+        <img id="articleImage" alt="not found" width="600" height="500">
       </div>
 
       <!-- 게시글 내용 -->
       <div class="article-content">
-        <span id="article_content"></span>
+        <span id="articleContent"></span>
       </div>
     </div>
 
@@ -181,11 +181,11 @@
     <div class="comment-input">
       <div class="input-group">
         <textarea name="comment-text" maxlength="200" class="comment-text" placeholder="댓글을 입력해주세요..."
-          aria-label="Recipient's username" aria-describedby="button-addon2" id="comment_post"></textarea>
+          aria-label="Recipient's username" aria-describedby="button-addon2" id="commentPost"></textarea>
         <button class="btn btn-outline-secondary" type="button" id="button-addon2"
           onclick="articleCommentPost()">게시</button>
       </div>
-      <span style="color: #aaa" id="comment_counter">(0 / 최대 200자)</span>
+      <span style="color: #aaa" id="commentCounter">(0 / 최대 200자)</span>
     </div>
   </div>
 
@@ -223,12 +223,12 @@
     // 댓글 카운팅
     $(".comment-text").keyup(function (e) {
       var content = $(this).val();
-      $("#comment_counter").html("(" + content.length + " / 최대 200자)");
+      $("#commentCounter").html("(" + content.length + " / 최대 200자)");
 
       if (content.length > 200) {
         alert("최대 200자 까지 입력 가능합니다.");
         $(this).val(content.substring(0, 200));
-        $("#comment_counter").html("(200 / 최대 200자)");
+        $("#commentCounter").html("(200 / 최대 200자)");
       }
     });
   </script>

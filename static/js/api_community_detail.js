@@ -20,69 +20,69 @@ async function getArticlesDetail(receivedData) {
   })
   response_json = await response.json()
   if (response_json.tag == 1) {
-    tag_name = "커뮤니티"
+    tagName = "커뮤니티"
   } else {
-    tag_name = "나눔마켓"
+    tagName = "나눔마켓"
   }
-  const article_tag = document.getElementById("tag")
+  const articleTag = document.getElementById("tag")
 
-  const article_tag_h2 = document.createElement("h2")
-  article_tag_h2.setAttribute("id", `${response_json.tag}`)
+  const articleTagH2 = document.createElement("h2")
+  articleTagH2.setAttribute("id", `${response_json.tag}`)
 
-  if (article_tag_h2.id == 1) {
-    article_tag_h2.setAttribute("style", "color: lightsteelblue;")
+  if (articleTagH2.id == 1) {
+    articleTagH2.setAttribute("style", "color: lightsteelblue;")
   } else {
-    article_tag_h2.setAttribute("style", "color: lightcoral;")
+    articleTagH2.setAttribute("style", "color: lightcoral;")
   }
-  article_tag_h2.innerText = tag_name
-  article_tag.append(article_tag_h2)
+  articleTagH2.innerText = tagName
+  articleTag.append(articleTagH2)
 
-  const article_title = document.getElementById("article_title")
-  article_title.innerText = response_json.title
+  const articleTitle = document.getElementById("articleTitle")
+  articleTitle.innerText = response_json.title
 
-  const article_park = document.getElementById("article_park")
-  article_park.innerText = response_json.park_name
+  const articlePark = document.getElementById("articlePark")
+  articlePark.innerText = response_json.park_name
 
-  const article_user = document.getElementById("article_user")
-  article_user.innerText = response_json.username
+  const articleUser = document.getElementById("articleUser")
+  articleUser.innerText = response_json.username
 
-  const article_date = document.getElementById("article_date")
+  const articleDate = document.getElementById("articleDate")
   const date = response_json.created_at.split("T")[0]
-  article_date.innerText = date
+  articleDate.innerText = date
 
-  const view_count = document.getElementById("view_count")
-  view_count.innerText = response_json.check_count
+  const viewCount = document.getElementById("viewCount")
+  viewCount.innerText = response_json.check_count
 
-  const comment_count = document.getElementById("comment_count")
-  comment_count.innerText = response_json.comment_count
+  const commentCount = document.getElementById("commentCount")
+  commentCount.innerText = response_json.comment_count
 
-  const article_content = document.getElementById("article_content")
-  article_content.innerText = response_json.content
+  const articleContent = document.getElementById("articleContent")
+  articleContent.innerText = response_json.content
 
   if (response_json.image != null) {
-    const article_image = document.getElementById("article_image")
-    article_image.setAttribute("src", `http://127.0.0.1:8000${response_json.image}`)
+    const articleImage = document.getElementById("articleImage")
+    articleImage.setAttribute("src", `http://127.0.0.1:8000${response_json.image}`)
   } else {
-    const article_image = document.getElementById("article_image")
-    article_image.remove();
+    const articleImage = document.getElementById("articleImage")
+    articleImage.remove();
   }
 
-  const comment_post = document.getElementById("button-addon2")
-  comment_post.setAttribute("onclick", `articleCommentPost(${response_json.id})`)
+  const commentPost = document.getElementById("button-addon2")
+  commentPost.setAttribute("onclick", `articleCommentPost(${response_json.id})`)
 
   if (parseJwt("access") != undefined) {
     if (response_json.user == parseJwt("access").user_id) {
-      const title_div = document.getElementById("title-control")
+      const titleDiv = document.getElementById("titleControl")
 
-      const put_span = document.createElement("span")
-      put_span.setAttribute("onclick", "open_modal()")
-      put_span.innerHTML = " 수정 "
-      title_div.append(put_span)
+      const putSpan = document.createElement("span")
+      putSpan.setAttribute("onclick", "openModal()")
+      putSpan.innerHTML = " 수정 "
+      titleDiv.append(putSpan)
 
-      const del_span = document.createElement("span")
-      del_span.setAttribute("onclick", `deleteArticle(${response_json.id})`)
-      del_span.innerHTML = " 삭제 "
-      title_div.append(del_span)
+      const delSpan = document.createElement("span")
+      delSpan.setAttribute("onclick", `deleteArticle(${response_json.id})`)
+      delSpan.innerHTML = " 삭제 "
+      titleDiv.append(delSpan)
     }
   }
 } getArticlesDetail(receivedData)
@@ -91,8 +91,8 @@ async function getArticlesDetail(receivedData) {
 // 게시글 수정
 async function updateArticle(receivedData) {
   const image = document.getElementById("popup-body-file").files
-  const title = document.getElementById("popup-body-title").value
-  const content = document.getElementById("popup-body-content").value
+  const title = document.getElementById("popupBodyTitle").value
+  const content = document.getElementById("popupBodyContent").value
   const formData = new FormData()
 
   formData.append("title", title)
@@ -142,7 +142,7 @@ async function deleteArticle(receivedData) {
 
 // 댓글 POST
 async function articleCommentPost(article_id) {
-  const comment = document.getElementById("comment_post").value
+  const comment = document.getElementById("commentPost").value
   const commentData = {
     // "user": parseJwt("access").user_id,
     // "article": article_id,
@@ -174,11 +174,11 @@ async function articleCommentPost(article_id) {
     alert(response_json["message"])
 
     // 댓글 올린 시간 설정
-    let created_at = data.created_at.split(".")
-    created_date = created_at[0].replace(/-/g, ".").split("T")
-    created_time = created_date[1].split(":")
+    let createdAt = data.created_at.split(".")
+    createdDate = createdAt[0].replace(/-/g, ".").split("T")
+    createdTime = createdDate[1].split(":")
 
-    const comment_wrap = document.querySelector(".comment-wrap")
+    const commentWrap = document.querySelector(".comment-wrap")
     const comment = document.createElement("div")
 
     comment.className = "comment"
@@ -188,20 +188,20 @@ async function articleCommentPost(article_id) {
     <div class="username">${data.username}</div>
     <div class="user-comment">${data.comment}</div>
     <div class="time" id="${data.id}">
-    ${created_date[0]} ${created_time[0]}:${created_time[1]}
+    ${createdDate[0]} ${createdTime[0]}:${createdTime[1]}
     </div>
     </li>
     `
-    comment_wrap.append(comment)
+    commentWrap.append(comment)
 
     if (parseJwt("access") != undefined || token == {}) {
       if (data.user == parseJwt("access").user_id) {
-        const time_div = document.getElementById(`${data.id}`)
+        const timeDiv = document.getElementById(`${data.id}`)
 
-        const del_span = document.createElement("span")
-        del_span.setAttribute("onclick", `articleCommentDel(${data.id})`)
-        del_span.innerHTML = " 삭제 "
-        time_div.append(del_span)
+        const delSpan = document.createElement("span")
+        delSpan.setAttribute("onclick", `articleCommentDel(${data.id})`)
+        delSpan.innerHTML = " 삭제 "
+        timeDiv.append(delSpan)
       }
     }
 
@@ -223,8 +223,8 @@ async function articleCommentGet(article_id) {
     }
   }
 
-  const comment_wrap = document.querySelector(".comment-wrap")
-  comment_wrap.innerText = ""
+  const commentWrap = document.querySelector(".comment-wrap")
+  commentWrap.innerText = ""
 
   const response = await fetch(`${backendBaseUrl}community/${article_id}/comment/`, {
     method: 'GET',
@@ -236,7 +236,7 @@ async function articleCommentGet(article_id) {
     // 댓글 올린 시간 설정
     let created_at = data.created_at.split(".")
     created_date = created_at[0].replace(/-/g, ".").split("T")
-    created_time = created_date[1].split(":")
+    createdTime = created_date[1].split(":")
 
     const comment = document.createElement("div")
     comment.className = "comment"
@@ -248,20 +248,20 @@ async function articleCommentGet(article_id) {
     <div class="user-comment">${data.comment}</div>
     <div class="time" id="${data.id}">
 
-    ${created_date[0]} ${created_time[0]}:${created_time[1]}
+    ${created_date[0]} ${createdTime[0]}:${createdTime[1]}
     </div>
     </li>
     `
-    comment_wrap.append(comment)
+    commentWrap.append(comment)
 
     if (parseJwt("access") != undefined || token == {}) {
       if (data.user == parseJwt("access").user_id) {
-        const time_div = document.getElementById(`${data.id}`)
+        const timeDiv = document.getElementById(`${data.id}`)
 
-        const del_span = document.createElement("span")
-        del_span.setAttribute("onclick", `articleCommentDel(${data.id})`)
-        del_span.innerHTML = " 삭제 "
-        time_div.append(del_span)
+        const delSpan = document.createElement("span")
+        delSpan.setAttribute("onclick", `articleCommentDel(${data.id})`)
+        delSpan.innerHTML = " 삭제 "
+        timeDiv.append(delSpan)
       }
     }
   });
@@ -275,7 +275,7 @@ async function articleCommentDel(comment_id) {
     headers: TOKEN,
   })
   response_json = await response.json()
-  
+
   if (parseJwt("access") != undefined) {
     if (response.status == 200) {
       alert(response_json["message"])

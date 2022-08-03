@@ -36,7 +36,7 @@ function showParkDetail(id, urlParkCommentPageNum) {
       sessionStorage.setItem("park_info", JSON.stringify(response))
       if (urlParkCommentPageNum) {
         window.location.replace(`${frontendBaseUrl}park_detail.html?park_comment_page=${urlParkCommentPageNum}`)
-        
+
       } else {
         window.location.replace(`${frontendBaseUrl}park_detail.html`)
       }
@@ -141,12 +141,12 @@ async function deleteComment(comment_id) {
 
 // 쿼리 파라미터를 통한 공원 정보 get 
 function getParks() {
-  var optionButton = document.getElementsByClassName("option")
+  var optionButton = document.getElementsByclassName("option")
   for (var i = 0; i < optionButton.length; i++) {
     optionButton[i].classList.remove("clicked")
   }
 
-  var zoneButton = document.getElementsByClassName("option")
+  var zoneButton = document.getElementsByclassName("option")
   for (var i = 0; i < zoneButton.length; i++) {
     zoneButton[i].classList.remove("clicked")
   }

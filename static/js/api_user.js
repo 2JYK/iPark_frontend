@@ -1,3 +1,19 @@
+// 비밀번호 변경 모달
+$(function () {
+  $("#modalOpen").click(function () {
+    $("#popup").css("display", "flex").hide().fadeIn();
+  })
+
+  $("#close").click(function () {
+    modalClose();
+  })
+
+  function modalClose() {
+    $("#popup").fadeOut();
+  }
+})
+
+
 // 회원가입 
 async function handleSignup() {
   const signupData = {
@@ -134,7 +150,7 @@ async function kakaoUserForm(authObj, kakaoData) {
         fullname.value = kakaoUserData.fullname
       }
     }
-  )
+    )
 }
 
 
@@ -185,7 +201,10 @@ async function verifyUser() {
   response_json = await response.json()
   if (response.status == 200) {
     alert("비밀번호 변경 페이지로 이동합니다.")
+    const popup = document.getElementById("popup")
+    popup.style.visibility = "visible"
     conveyUserData(response_json)
+
 
   } else {
     alert(response_json["message"])
@@ -360,20 +379,3 @@ async function withdrawal() {
 //     },
 //   })
 // }
-
-
-// 비밀번호 변경 모달
-$(function () {
-  $("#modalOpen").click(function () {
-    $("#popup").css("display", "flex").hide().fadeIn();
-  })
-
-  $("#close").click(function () {
-    modalClose();
-  })
-
-  function modalClose() {
-    $("#popup").fadeOut();
-  }
-})
-

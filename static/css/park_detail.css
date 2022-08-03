@@ -272,19 +272,32 @@
 
 .parking-lots {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
   text-align: center;
   justify-items: center;
 }
 
 .parking-lot {
-  border: 1px solid black;
+  background-color: rgba(233, 232, 232, 0.471);
   min-width: 230px;
   max-width: fit-content;
-  margin: 3% 0 3% 0;
+  margin: 3% auto 3% auto;
+  padding: 5% 5%;
 }
 
+.parking-name {
+  color: #2db43a;
+}
+
+
 /* 반응형 */
+@media (max-width: 1300px) {
+  .parking-lots {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+
 @media (min-width: 1140px) {
   .map {
     width: 400px;
@@ -292,6 +305,12 @@
 
   .img {
     width: 400px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .parking-lots {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -314,6 +333,10 @@
 @media (max-width: 670px) {
   .addr {
     flex-wrap: wrap;
+  }
+
+  .parking-lots {
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 

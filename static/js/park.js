@@ -225,6 +225,12 @@ $(document).ready(function () {
   )
 
   // 주차장
+  if (x["parking"] == "") {
+    temp_html = `<span>주차장 데이터가 없습니다.</span>`
+    $(".parking-box").append(temp_html)
+    $(".parking-box").css({ "justify-content": "center" })
+  }
+
   for (let i = 0; i < x["parking"].length; i++) {
     temp_html = `<div class="parking-lot">
                     <span class="parking-name">${x["parking"][i]["parking_name"]}</span>

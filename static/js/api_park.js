@@ -141,12 +141,12 @@ async function deleteComment(comment_id) {
 
 // 쿼리 파라미터를 통한 공원 정보 get 
 function getParks() {
-  var optionButton = document.getElementsByclassName("option")
+  var optionButton = document.getElementsByClassName("option")
   for (var i = 0; i < optionButton.length; i++) {
     optionButton[i].classList.remove("clicked")
   }
 
-  var zoneButton = document.getElementsByclassName("option")
+  var zoneButton = document.getElementsByClassName("option")
   for (var i = 0; i < zoneButton.length; i++) {
     zoneButton[i].classList.remove("clicked")
   }

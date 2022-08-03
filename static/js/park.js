@@ -61,7 +61,7 @@ function appendParkHtml(
       <div class="parking-lots"></div>
     </div>
     <div class="line"></div>
-    
+
     <!-- 공원 댓글창 -->
     <div>
       <div class="park-comment">
@@ -224,10 +224,14 @@ $(document).ready(function () {
   // 주차장
   for (let i = 0; i < x["parking"].length; i++) {
     temp_html = `<div class="parking-lot">
-                    <p class="parking-name">${x["parking"][i]["parking_name"]}</p>
-                    <p class="parking-addr">${x["parking"][i]["addr"]}</p>
-                    <p class="parking-tel">${x["parking"][i]["tel"]}</p>
-                    <p class="parking-operation-rule-nm">${x["parking"][i]["operation_rule_nm"]}</p>
+                    <span class="parking-name">${x["parking"][i]["parking_name"]}</span>
+                    <br>
+                    <span class="parking-addr">${x["parking"][i]["addr"]}</span>
+                    <br>
+                    <span class="parking-tel">${x["parking"][i]["tel"]}</span>
+                    <br>
+                    <span class="parking-operation-rule-nm">${x["parking"][i]["operation_rule_nm"]}</span>
+                    
                  </div>`
     $(".parking-lots").append(temp_html)
   }

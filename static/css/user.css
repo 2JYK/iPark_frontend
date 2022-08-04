@@ -14,6 +14,10 @@ body {
     align-items: center;
     height: 100vh;
     background-color: #ffffff3f;
+    background: url(./img/tree_img.png) no-repeat;
+    background-size: cover;
+    /* position: absolute; */
+    min-width: 320px;
 }
 
 body::before {
@@ -30,6 +34,8 @@ body::before {
 .sign {
     z-index: 2;
     padding: 50px;
+    border-radius: 30px;
+    background-color: #8fcb6f95;
 }
 
 @media screen and (max-width:1300px) {
@@ -44,10 +50,15 @@ body::before {
     }
 }
 
+.int-area label {
+    /* color: white; */
+    font-weight: 700;
+}
 
 .sign h1 {
     font-size: 32px;
-    color: black;
+    font-weight: 700;
+    color: darkgreen;
     text-align: center;
     margin-bottom: 60px;
 }
@@ -79,7 +90,7 @@ body::before {
     left: 10px;
     top: 15px;
     font-size: 18px;
-    color: gray;
+    color: darkgreen;
     transition: all .5s ease;
 }
 
@@ -107,12 +118,17 @@ body::before {
     }
 }
 
+.change-password-info {
+    text-align: center;
+}
+
+/* 글자 애니메이션 색상 지정 */
 .int-area input:focus+label,
 .int-area input:valid+label {
     top: -2px;
-    font-size: 13px;
-    color: rgb(77, 75, 218);
-    /* 글자 애니메이션 색상 지정 */
+    font-size: 15px;
+    color: rgb(0, 174, 0);
+    font-weight: 450;
 }
 
 /* 계정관리 모달 내용 중앙정렬 */
@@ -124,28 +140,58 @@ body::before {
 /* 버튼 */
 .btn-area {
     margin-top: 30px;
+    /* margin-top: 20px; */
+    text-align: center;
+    justify-content: space-between;
 }
 
 .btn-area button {
-    width: 100%;
+    /* width: 100%; */
     height: 50px;
-    background: rgb(19, 116, 207);
-    color: white;
+    background-color: #fae100;
+    color: black;
+    font-weight: 500;
     font-size: 20px;
     border: none;
     border-radius: 50px;
     cursor: pointer;
 }
 
+.btn-area button:hover {
+    background-color: #198754;
+    --bs-btn-hover-bg: #198754;
+}
+
 .caption {
     margin-top: 20px;
     text-align: center;
+    justify-content: space-between;
 }
 
 .caption a {
     font-size: 15px;
-    color: gray;
+    font-weight: 700;
+    background-color: darkgreen;
+    color: white;
     text-decoration: none;
+    margin-right: 4px;
+}
+
+.caption button {
+    width: 100%;
+    height: 50px;
+    background-color: darkgreen;
+    color: white;
+    font-weight: 500;
+    font-size: 20px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.caption button:hover {
+    background-color: #fae100;
+    --bs-btn-hover-bg: #fae100;
 }
 
 .bg-pan-bl {
@@ -177,15 +223,20 @@ body::before {
     display: block;
     margin: auto;
     border: none;
-    width: 400px;
+    /* width: 50px; */
     border-radius: 50px;
     margin-top: 20px;
 }
 
 .kakao-login img {
-    width: 400px;
-    height: 50px;
+    display: block;
+    margin: auto;
+    border: none;
+    /* width: 50px; */
     border-radius: 50px;
+    /* width: 50px;  */
+    height: 50px;
+    /* border-radius: 50px; */
 }
 
 /* 모달 */

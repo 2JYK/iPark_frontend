@@ -155,7 +155,7 @@ async function getPaginationList(id, url) {
     const previousBtn = document.createElement("span")
     previousBtn.className = "previousBtn";
     previousBtn.innerHTML = `
-          <button type="button" onclick="getPaginationList("${response_json["previous"]}")"> ◀ Prev </button>`;
+          <button type="button" onclick='getPaginationList("${response_json["previous"]}")'> ◀ Prev </button>`;
     previousDiv.append(previousBtn)
   }
 
@@ -172,7 +172,7 @@ async function getPaginationList(id, url) {
     const nextBtn = document.createElement("span")
     nextBtn.className = "nextBtn";
     nextBtn.innerHTML = `
-          <button type="button" onclick="getPaginationList("${response_json["next"]}")"> Next ▶ </button>`;
+          <button type="button" onclick='getPaginationList("${response_json["next"]}")'> Next ▶ </button>`;
     nextDiv.append(nextBtn)
   }
 } getPaginationList()

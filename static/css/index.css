@@ -158,3 +158,73 @@ blockquote h1{
 .body-last-home { padding-left: 30px; }
 .body-last-park { padding-left: 40px; }
 .body-last-commusity { padding-left: 19px; }
+
+@media (max-width: 1200px) {
+  blockquote {
+    font-size: 15px;
+    width: auto;
+  }
+}
+
+@media (max-width: 500px) { 
+  blockquote {
+    width: auto;
+  }
+  blockquote > h1 {
+    font-size: 20px;
+  }
+
+  .body-card{
+    width: auto;
+    margin-bottom: 15%;
+  }
+
+  .body-text {
+    padding: 0 5%;
+  }
+
+  .text {
+    font-size: 13px;
+  }
+  
+  .body-img {
+    width: 500px;
+    height: 300px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .body-icon {
+    width: 50px;
+    height: 50px;
+    padding: 10%;
+  
+    border: 1px solid rgba(145, 99, 145, 0.226);
+    border-radius: 50%;
+    box-shadow: 5px 5px rgba(145, 99, 145, 0.226);
+  }
+
+  .body-last .text2 {
+    font-size: 15px;
+  }
+
+.body-last-home { padding-left: 10px; }
+.body-last-park { padding-left: 20px; }
+.body-last-commusity { padding-left: 7px; }
+}
+
+@media (max-width: 400px) { 
+  blockquote {
+    width: auto;
+  }
+
+  .carousel {
+    width: 90%;
+  
+    margin: auto;
+    margin-top: 1%;
+  }
+  
+  .carousel-img {
+    height: 400px;
+  }
+}

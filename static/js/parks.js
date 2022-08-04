@@ -297,5 +297,5 @@ $(document).ready(function () {
       infowindow.open(map, marker)
     }
   })
-  sessionStorage.removeItem("park_info")
+  // sessionStorage.removeItem("park_info")
 })

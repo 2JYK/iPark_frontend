@@ -5,12 +5,12 @@ body {
 }
 
 body {
-  margin: 2em auto;
   right: 0px;
   min-width: 320px;
 }
 
 .container-fluid {
+  margin: 2em auto;
   display: flex;
   flex-wrap: wrap;
 }

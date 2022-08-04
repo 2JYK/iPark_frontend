@@ -25,7 +25,7 @@ async function getArticlesDetail(receivedData) {
   } else {
     tagName = "나눔마켓"
   }
-  
+
   const articleTag = document.getElementById("tag")
 
   const articleTagH2 = document.createElement("h2")
@@ -64,7 +64,7 @@ async function getArticlesDetail(receivedData) {
 
   if (response_json.image != null) {
     const articleImage = document.getElementById("articleImage")
-    articleImage.setAttribute("src", `${backendBaseUrl}/${response_json.image}`)
+    articleImage.setAttribute("src", `${backendBaseUrl}${response_json.image}`)
   } else {
     const articleImage = document.getElementById("articleImage")
     articleImage.remove()

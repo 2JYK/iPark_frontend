@@ -6,19 +6,6 @@ if (!urlParkCommentPageNum) {
 }
 
 
-// 토글에 공원 목록 붙이기
-function parkListHtml(id, park_name) {
-  parkListTempHtml = `
-            <li class="nav-item">
-                <button class="nav-link active" aria-current="page" 
-                style="border: none; background-color: transparent;" 
-                onclick="showParkDetail(${id})">${park_name}</button>
-                <hr>
-            </li>`
-  $("#parkList").append(parkListTempHtml)
-}
-
-
 // 공원 상세정보 html 구간
 function appendParkHtml(
   park_name, addr, check_count, image,
@@ -119,43 +106,40 @@ function appendParkHtml(
     if (comments[j].user_id) {
       if (parseJwt("access") == null) {
         $(`#comments${id}`).append(`
-          <div class="comment" id="comment">
-            <div class="comment-username">
-              ${comments[j].user}
-            </div>
-            <div class="comment-comment" id="commentContent">
-              ${comments[j].comment}
-            </div>
-            <div class="comment-upload-time" id="commentUploadTime">
-              ${timeBefore}
-            </div>
+        <div class="comment" id="comment">
+          <div class="comment-username">
+            ${comments[j].user}
           </div>
-        `)
-      }
-
-      else if (comments[j].user_id == parseJwt("access").user_id) {
-        $(`#comments${id}`).append(`
-			<div class="comment" id="comment(${comments[j].id})">
-				<div class="comment-username">
-					${comments[j].user}
-				</div>
-				<div class="comment-comment" id="commentContent(${comments[j].id})">
-          ${comments[j].comment}
+          <div class="comment-comment" id="commentContent">
+            ${comments[j].comment}
+          </div>
+          <div class="comment-upload-time" id="commentUploadTime">
+            ${timeBefore}
+          </div>
         </div>
-				<div class="comment-upload-time" id="commentUploadTime(${comments[j].id})">
-					${timeBefore}
-				</div>
-        <div class="comment-buttons" id="parkCommentButtons">
-          <button class="comment-edit" type="button" id="updateButton(${comments[j].id})" onclick="editComment(${comments[j].id})">
-            <i class="fa-solid fa-pencil"></i>
-          </button>
-          <button class="comment-delete" type="button" id="deleteButton(${comments[j].id})" onclick="deleteComment(${comments[j].id})">
-            <i class="fa-regular fa-trash-can"></i>
-          </button>
-        </div> 
-			</div>
-		`)
-
+      `)
+      } else if (comments[j].user_id == parseJwt("access").user_id) {
+        $(`#comments${id}`).append(`
+        <div class="comment" id="comment(${comments[j].id})">
+          <div class="comment-username">
+            ${comments[j].user}
+          </div>
+          <div class="comment-comment" id="commentContent(${comments[j].id})">
+            ${comments[j].comment}
+          </div>
+          <div class="comment-upload-time" id="commentUploadTime(${comments[j].id})">
+            ${timeBefore}
+          </div>
+          <div class="comment-buttons" id="parkCommentButtons">
+            <button class="comment-edit" type="button" id="updateButton(${comments[j].id})" onclick="editComment(${comments[j].id})">
+              <i class="fa-solid fa-pencil"></i>
+            </button>
+            <button class="comment-delete" type="button" id="deleteButton(${comments[j].id})" onclick="deleteComment(${comments[j].id})">
+              <i class="fa-regular fa-trash-can"></i>
+            </button>
+          </div> 
+        </div>
+      `)
       } else if (comments[j].user_id != parseJwt("access").user_id) {
         $(`#comments${id}`).append(`
         <div class="comment" id="comment">
@@ -175,22 +159,20 @@ function appendParkHtml(
   }
 }
 
-// 댓글 수정버튼 클릭 -> 수정 상태로 변경 //
+// 댓글 수정버튼 클릭 -> 수정 상태로 변경
 function editComment(comment_id) {
   const editButton = document.getElementById(`updateButton(${comment_id})`)
 
   if (editButton.innerHTML == `<i class="fa-solid fa-pencil"></i>`) {
     editButton.innerHTML = `<i class="fa-solid fa-check"></i>`
-    editButton.setAttribute("onclick", `putComment(${comment_id})`)
+
 
     document.getElementById(`deleteButton(${comment_id})`).style.display = 'block'
     document.getElementById(`commentUploadTime(${comment_id})`).style.display = 'none'
 
     const comment = document.getElementById(`commentContent(${comment_id})`)
     comment.innerHTML = `<textarea class="textarea" id="inputContent(${comment_id})">${comment.innerText}</textarea>`
-
-    const updateButton = document.getElementById(`updateComment(${comment_id})`)
-    updateButton.setAttribute("onclick", `putComment(${comment_id})`)
+    editButton.setAttribute("onclick", `putComment(${comment_id})`)
 
   } else {
     editButton.innerHTML = `<i class="fa-solid fa-pencil"></i>`
@@ -198,7 +180,7 @@ function editComment(comment_id) {
   }
 }
 
-// 댓글 페이지네이션 //
+// 댓글 페이지네이션 
 function pagination(commentTotalCount, paginationSize, listSize, parkCommentPage, id) {
   let totalPageSize = Math.ceil(commentTotalCount / listSize)
   let firstBottomNumber = parkCommentPage - parkCommentPage % paginationSize + 1
@@ -222,7 +204,6 @@ function pagination(commentTotalCount, paginationSize, listSize, parkCommentPage
 $(document).ready(function () {
   var x = JSON.parse(sessionStorage.getItem("park_info"))
 
-
   appendParkHtml(
     x["park_name"],
     x["addr"],
@@ -239,9 +220,9 @@ $(document).ready(function () {
   )
 
   // 북마크 여부 확인
-  if (x["bookmarks"] !== "") {
+  window.onload = function changeBookmark() {
     const userid = parseJwt("access").user_id
-    const bookmarks = x["bookmarks"]
+    const bookmarks = JSON.parse(sessionStorage.getItem("park_info"))["bookmarks"]
     const userlist = []
 
     bookmarks.forEach(data => {

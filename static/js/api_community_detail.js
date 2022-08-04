@@ -1,5 +1,5 @@
 // 게시글 상세페이지
-const receivedData = parseInt(location.href.split('?')[1]);
+const receivedData = parseInt(location.href.split('?')[1])
 
 
 // 게시글 불러오기
@@ -18,12 +18,14 @@ async function getArticlesDetail(receivedData) {
     method: 'GET',
     headers: token
   })
+
   response_json = await response.json()
   if (response_json.tag == 1) {
     tagName = "커뮤니티"
   } else {
     tagName = "나눔마켓"
   }
+  
   const articleTag = document.getElementById("tag")
 
   const articleTagH2 = document.createElement("h2")
@@ -34,6 +36,7 @@ async function getArticlesDetail(receivedData) {
   } else {
     articleTagH2.setAttribute("style", "color: lightcoral;")
   }
+
   articleTagH2.innerText = tagName
   articleTag.append(articleTagH2)
 
@@ -64,7 +67,7 @@ async function getArticlesDetail(receivedData) {
     articleImage.setAttribute("src", `${backendBaseUrl}/${response_json.image}`)
   } else {
     const articleImage = document.getElementById("articleImage")
-    articleImage.remove();
+    articleImage.remove()
   }
 
   const commentPost = document.getElementById("button-addon2")
@@ -105,15 +108,14 @@ async function updateArticle(receivedData) {
     method: "PUT",
     headers: TOKEN,
     body: formData,
-  }
-  )
+  })
+
   response_json = await response.json()
 
   if (response.status == 200) {
     alert("게시글 수정 완료")
-    location.reload();
-  }
-  else {
+    location.reload()
+  } else {
     alert(response_json["message"])
   }
 }
@@ -127,12 +129,10 @@ async function deleteArticle(receivedData) {
       'Authorization': "Bearer " + localStorage.getItem("access")
     },
     method: 'DELETE'
-
-  }
-  )
+  })
 
   if (response.status == 200) {
-    window.location.replace(`${frontendBaseUrl}/community.html`);
+    window.location.replace(`${frontendBaseUrl}/community.html`)
     alert("게시물이 삭제 되었습니다.")
   } else {
     alert("게시물 작성자만 삭제 가능합니다.")
@@ -167,6 +167,7 @@ async function articleCommentPost(article_id) {
     body: JSON.stringify(commentData),
     headers: token,
   })
+
   response_json = await response.json()
   const data = response_json.data
 
@@ -185,13 +186,13 @@ async function articleCommentPost(article_id) {
     comment.className = "comment"
     comment.id = `del${data.id}`
     comment.innerHTML = `
-    </li>
-    <div class="username">${data.username}</div>
-    <div class="user-comment">${data.comment}</div>
-    <div class="time" id="${data.id}">
-    ${createdDate[0]} ${createdTime[0]}:${createdTime[1]}
-    </div>
-    </li>
+      </li>
+        <div class="username">${data.username}</div>
+        <div class="user-comment">${data.comment}</div>
+        <div class="time" id="${data.id}">
+        ${createdDate[0]} ${createdTime[0]}:${createdTime[1]}
+        </div>
+      </li>
     `
     commentWrap.append(comment)
 
@@ -205,7 +206,6 @@ async function articleCommentPost(article_id) {
         timeDiv.append(delSpan)
       }
     }
-
   } else if (response.status == 400) {
     alert(response_json["message"])
   }
@@ -231,6 +231,7 @@ async function articleCommentGet(article_id) {
     method: "GET",
     headers: token
   })
+
   response_json = await response.json()
   response_json.forEach(data => {
 
@@ -244,14 +245,13 @@ async function articleCommentGet(article_id) {
     comment.id = `del${data.id}`
 
     comment.innerHTML = `
-    </li>
-    <div class="username">${data.username}</div>
-    <div class="user-comment">${data.comment}</div>
-    <div class="time" id="${data.id}">
-
-    ${created_date[0]} ${createdTime[0]}:${createdTime[1]}
-    </div>
-    </li>
+      </li>
+        <div class="username">${data.username}</div>
+        <div class="user-comment">${data.comment}</div>
+        <div class="time" id="${data.id}">
+        ${created_date[0]} ${createdTime[0]}:${createdTime[1]}
+        </div>
+      </li>
     `
     commentWrap.append(comment)
 
@@ -265,7 +265,7 @@ async function articleCommentGet(article_id) {
         timeDiv.append(delSpan)
       }
     }
-  });
+  })
 } articleCommentGet(receivedData)
 
 

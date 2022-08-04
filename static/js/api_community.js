@@ -12,22 +12,24 @@ async function articlePost() {
   formData.append("park", park)
   formData.append("title", title)
   formData.append("content", content)
+
   if (image.length == 1) {
     formData.append("image", image[0])
   }
+
   const response = await fetch(`${backendBaseUrl}/community/`, {
     method: "POST",
     body: formData,
     headers: TOKEN
   })
+
   response_json = await response.json()
   if (response.status == 200) {
     alert("게시글 작성 완료")
     location.reload();
   } else if (title.length > 35) {
     alert("제목은 35자 이하로 작성해주세요.")
-  }
-  else {
+  } else {
     alert(response_json["message"])
   }
 }
@@ -48,7 +50,7 @@ function optionValues() {
         $(".popup-body-park").append(temp_html)
       }
     }
-  });
+  })
 } optionValues()
 
 
@@ -89,7 +91,7 @@ async function getPaginationList(id, url) {
     }
     if (parseJwt("access") == undefined && id == 3) {
       alert("로그인을 해주세요.")
-      location.reload();
+      location.reload()
     }
   }
 
@@ -100,7 +102,7 @@ async function getPaginationList(id, url) {
   response_json = await response.json()
 
   // 게시물 뿌리는 div 선택
-  const tbody = document.querySelector(".tbody");
+  const tbody = document.querySelector(".tbody")
   tbody.innerHTML = "" // 기존내용 초기화
 
   response_json["results"].forEach(data => {
@@ -119,10 +121,10 @@ async function getPaginationList(id, url) {
     // append를 이용하기 위해서 div 생성
     const article = document.createElement("tr")
     // class 명 지정
-    article.className = "item-mygallery";
+    article.className = "item-mygallery"
 
     if (tagName == "커뮤니티") {
-      tagColor = "lightsteelblue";
+      tagColor = "lightsteelblue"
     } else if (tagName == "나눔마켓") {
       tagColor = "lightcoral"
     }
@@ -153,7 +155,7 @@ async function getPaginationList(id, url) {
   // 이전 버튼 생성
   if (response_json["previous"] != null) {
     const previousBtn = document.createElement("span")
-    previousBtn.className = "previousBtn";
+    previousBtn.className = "previousBtn"
     previousBtn.innerHTML = `
           <button type="button" onclick='getPaginationList("${response_json["previous"]}")'> ◀ Prev </button>`;
     previousDiv.append(previousBtn)
@@ -162,7 +164,7 @@ async function getPaginationList(id, url) {
   // 구분선 생성
   if (response_json["previous"] != null && response_json["next"] != null) {
     const hr = document.createElement("span")
-    hr.className = "hr";
+    hr.className = "hr"
     hr.innerHTML = " | "
     hrDiv.append(hr)
   }
@@ -170,7 +172,7 @@ async function getPaginationList(id, url) {
   // 다음 버튼 생성
   if (response_json["next"] != null) {
     const nextBtn = document.createElement("span")
-    nextBtn.className = "nextBtn";
+    nextBtn.className = "nextBtn"
     nextBtn.innerHTML = `
           <button type="button" onclick='getPaginationList("${response_json["next"]}")'> Next ▶ </button>`;
     nextDiv.append(nextBtn)
@@ -206,7 +208,7 @@ function getSearchArticles() {
         }
 
         if (tagName == "커뮤니티") {
-          tagColor = "lightsteelblue";
+          tagColor = "lightsteelblue"
         } else if (tagName == "나눔마켓") {
           tagColor = "lightcoral"
         }
@@ -221,7 +223,7 @@ function getSearchArticles() {
         )
       }
       function append_temp_html(id, tagName, title, username, updated_at, check_count) {
-        let tag = "lightsteelblue";
+        let tag = "lightsteelblue"
         if (tagName == "커뮤니티") {
         } else if (tagName == "나눔마켓") {
           tag = "lightcoral"
@@ -240,5 +242,5 @@ function getSearchArticles() {
         $('#best').append(temp_html)
       }
     }
-  });
+  })
 } 

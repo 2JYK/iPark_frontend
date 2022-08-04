@@ -3,7 +3,7 @@ const modal = document.getElementById("modalOpen")
 modal.addEventListener('click', () => {
   if (parseJwt("access") == null) {
     alert("로그인을 해주세요.")
-    location.reload();
+    location.reload()
   }
 })
 
@@ -14,24 +14,24 @@ $(function () {
   $("#modalOpen").click(function () {
     body.style.overflow = "hidden"  // 스크롤 방지
     $("#popup").css('display', 'flex').hide().fadeIn();
-  });
+  })
 
   $("#close").click(function () {
     body.style.overflow = "initial" // 스크롤 방지 해제
     modalClose();
-  });
+  })
 
   function modalClose() {
     $("#popup").fadeOut();
   }
-});
+})
 
 
 // 모달 onclick
 function openModal() {
-  const body = document.querySelector("body");
+  const body = document.querySelector("body")
   body.style.overflow = "hidden"  // 스크롤 방지
-  $("#popup").css("display", "flex").hide().fadeIn();
+  $("#popup").css("display", "flex").hide().fadeIn()
 
   //수정 모달 안에 원래 있던 내용 넣어주기
   const oldTitle = document.getElementById("articleTitle")
@@ -41,26 +41,26 @@ function openModal() {
   inputTitle.value = oldTitle.innerHTML
   inputContent.value = oldContent.innerHTML
 
-  document.getElementById("preview").src = document.getElementById("articleImage").src;
+  document.getElementById("preview").src = document.getElementById("articleImage").src
 
   $("#close").click(function () {
     body.style.overflow = "initial" // 스크롤 방지 해제
-    modalClose();
-  });
+    modalClose()
+  })
   function modalClose() {
-    $("#popup").fadeOut();
+    $("#popup").fadeOut()
   }
 }
 
 
 function readURL(input) {
   if (input.files && input.files[0]) {
-    var reader = new FileReader();
+    var reader = new FileReader()
     reader.onload = function (e) {
-      document.getElementById("preview").src = e.target.result;
-    };
-    reader.readAsDataURL(input.files[0]);
+      document.getElementById("preview").src = e.target.result
+    }
+    reader.readAsDataURL(input.files[0])
   } else {
-    document.getElementById("preview").src = "";
+    document.getElementById("preview").src = ""
   }
 }

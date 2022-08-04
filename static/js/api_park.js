@@ -1,51 +1,3 @@
-// 토글 공원 List 로드 
-function showparkList() {
-  $.ajax({
-    type: "GET",
-    url: `${backendBaseUrl}/park/`,
-
-    success: function (response) {
-      for (let i = 0; i < response.length; i++) {
-        parkListHtml(
-          response[i].id,
-          response[i].park_name
-        )
-      }
-    }
-  })
-}
-showparkList()
-
-
-// 공원 상세 정보 보기 
-function showParkDetail(id, urlParkCommentPageNum) {
-  if (!urlParkCommentPageNum) {
-    urlParkCommentPageNum = 1
-  }
-
-  $("#parkDetail").empty()
-  $.ajax({
-    type: "GET",
-    url: `${backendBaseUrl}/park/${id}/`,
-    beforeSend: function (xhr) {
-      xhr.setRequestHeader("Content-type", "application/json")
-    },
-    data: { id, urlParkCommentPageNum },
-
-    success: function (response) {
-      sessionStorage.setItem("park_info", JSON.stringify(response))
-
-      if (urlParkCommentPageNum) {
-        window.location.replace(`${frontendBaseUrl}/park_detail.html?park_comment_page=${urlParkCommentPageNum}`)
-
-      } else {
-        window.location.replace(`${frontendBaseUrl}/park_detail.html`)
-      }
-    }
-  })
-}
-
-
 // 댓글 작성 
 async function postComment(id) {
   const comment = document.getElementById("commentInputComment").value
@@ -66,11 +18,9 @@ async function postComment(id) {
   response_json = await response.json()
   if (parseJwt("access") == null) {
     alert(response_json["message"])
-
   } else {
     if (response.status == 200) {
       showParkDetail(id)
-
     } else {
       alert(response_json["message"])
     }
@@ -101,12 +51,10 @@ async function putComment(comment_id) {
     comment.innerHTML = `
       <div class="comment-comment" id="commentContent(${comment_id})">
         ${inputContent.value}
-      </div>`
-
+      </div>
+    `
     const editButton = document.getElementById(`updateButton(${comment_id})`)
     editButton.innerHTML = `<i class="fa-solid fa-pencil"></i>`
-    showParkDetail(id)
-
   } else {
     alert(response_json["message"])
   }
@@ -126,13 +74,10 @@ async function deleteComment(comment_id) {
   response_json = await response.json()
   if (parseJwt("access") == null) {
     alert(response_json["message"])
-
   } else {
     if (response.status == 200) {
       const comment = document.getElementById(`comment(${comment_id})`)
       comment.style.display = "none"
-      showParkDetail(id)
-
     } else {
       alert(response_json["message"])
     }
@@ -155,11 +100,8 @@ async function postBookmark(id) {
   if (response.status == 200) {
     alert(response_json["message"])
     showParkDetail(id)
-
   } else {
     alert("잘못된 로그인 정보입니다.")
     window.location.reload()
   }
 }
-
-

@@ -71,47 +71,17 @@ async function handleLogin() {
       function (c) {
         return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2)
       }).join(""))
-    localStorage.setItem("payload", jsonPayload);
+    localStorage.setItem("payload", jsonPayload)
     window.location.replace(`${frontendBaseUrl}/index.html`)
 
   } else {
-    alert("잘못된 로그인입니다.", response.status)
+    alert("잘못된 로그인입니다.")
   }
 }
 
 
-// refresh token으로 access token 발급
-function refreshToken() {
-  const payload = JSON.parse(localStorage.getItem("payload"))
 
-  if (payload.exp > (Date.now() / 1000)) {
-    return
-
-  } else {
-    const requestRefreshToken = async (url) => {
-      const response = await fetch(url, {
-        headers: {
-          "Content-Type": "application/json"
-        },
-        method: "POST",
-        body: JSON.stringify({
-          "refresh": localStorage.getItem("refresh")
-        })
-      }
-      )
-      return response.json();
-    }
-
-    requestRefreshToken(`${backendBaseUrl}/user/api/token/refresh/`).then((data) => {
-      const accessToken = data.access
-      localStorage.setItem("access", accessToken);
-    })
-  }
-}
-refreshToken()
-
-
-// 카카오 로그인 : 토큰과 페이로드 생성, 회원가입 유도 //
+// 카카오 로그인 : 토큰과 페이로드 생성, 회원가입 유도
 async function kakaoUserForm(authObj, kakaoData) {
   const kakaoUserData = Object.assign({}, authObj, kakaoData)
 
@@ -150,7 +120,7 @@ async function kakaoUserForm(authObj, kakaoData) {
         fullname.value = kakaoUserData.fullname
       }
     }
-    )
+  )
 }
 
 
@@ -176,7 +146,6 @@ async function verifyUser() {
     const popup = document.getElementById("popup")
     popup.style.visibility = "visible"
     conveyUserData(response_json)
-
 
   } else {
     alert(response_json["message"])

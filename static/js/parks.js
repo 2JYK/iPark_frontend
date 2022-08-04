@@ -238,6 +238,22 @@ $(document).ready(function () {
     x["comments"],
   )
 
+  // 북마크 여부 확인
+  if (x["bookmarks"] !== "") {
+    const userid = parseJwt("access").user_id
+    const bookmarks = x["bookmarks"]
+    const userlist = []
+
+    bookmarks.forEach(data => {
+      userlist.push(data["user"])
+    })
+
+    if (userlist.includes(userid)) {
+      const heart = document.getElementById("heart")
+      heart.classList.add("fa-solid")
+    }
+  }
+
   // 주차장
   if (x["parking"] == "") {
     temp_html = `<span>주차장 데이터가 없습니다.</span>`
@@ -302,20 +318,3 @@ $(document).ready(function () {
   })
   sessionStorage.removeItem("park_info")
 })
-
-
-// 북마크 여부 확인
-window.onload = function changeBookmark() {
-  const userid = parseJwt("access").user_id
-  const bookmarks = JSON.parse(sessionStorage.getItem("park_info"))["bookmarks"]
-  const userlist = []
-
-  bookmarks.forEach(data => {
-    userlist.push(data["user"])
-  })
-
-  if (userlist.includes(userid)) {
-    const heart = document.getElementById("heart")
-    heart.classList.add("fa-solid")
-  }
-}

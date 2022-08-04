@@ -13,6 +13,7 @@ body {
   background-color: rgba(0, 0, 0, .3);
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 
   position: fixed;
   top: 0;
@@ -157,4 +158,36 @@ color: green;
   color: rgb(0, 55, 128);
   text-decoration: underline;
   transition: 0.5s;
+}
+
+@media (max-width:760px) {
+  footer {
+    display: none;
+  }
+}
+
+@media (max-width: 550px) {
+  .popup-body-preview {
+    width: 150px;
+    height: 150px;
+  }
+
+  .popup {
+    width: 90%;
+    height: auto;
+  }
+
+  .popup-body-choice {
+    width: 80%;
+    margin: 5% auto;
+    }
+
+  .popup-body-choice-hr {
+    margin: 10px auto;
+    }
+
+  .popup-body-title, .popup-body-content{
+    width: 90%;
+    height: auto;
+  }
 }

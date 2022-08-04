@@ -14,9 +14,6 @@ body {
     align-items: center;
     height: 100vh;
     background-color: #ffffff3f;
-
-    background-size: cover;
-    /* background-position: center; */
 }
 
 body::before {
@@ -32,6 +29,7 @@ body::before {
 
 .sign {
     z-index: 2;
+    padding: 50px;
 }
 
 @media screen and (max-width:1300px) {

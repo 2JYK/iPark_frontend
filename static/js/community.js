@@ -1,10 +1,3 @@
-// 전역 변수
-TOKEN = {
-  "Access-Control-Allow-Origin": "*",
-  "Authorization": "Bearer " + localStorage.getItem("access"),
-}
-
-
 // 로그인하지 않은 유저 업로드 금지
 const modal = document.getElementById("modalOpen")
 modal.addEventListener('click', () => {
@@ -13,14 +6,6 @@ modal.addEventListener('click', () => {
     location.reload();
   }
 })
-
-
-// 접속 유저 id 확인
-if (parseJwt("access") != null) {
-  console.log("접속한 user_id : ", parseJwt("access").user_id)
-} else {
-  console.log("로그인을 하지 않은 상태")
-}
 
 
 // 모달

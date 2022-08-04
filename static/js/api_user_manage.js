@@ -5,7 +5,7 @@ async function findUsername() {
       phone: document.getElementById("inputPhone").value
     }
   
-    const response = await fetch(`${backendBaseUrl}user/myid/`, {
+    const response = await fetch(`${backendBaseUrl}/user/myid/`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -18,7 +18,7 @@ async function findUsername() {
   
     if (response.status == 200) {
       alert("회원님의 아이디는 [ " + response_json.username + " ]입니다.")
-      window.location.replace(`${frontendBaseUrl}login.html`)
+      window.location.replace(`${frontendBaseUrl}/login.html`)
   
     } else {
       alert(response_json["message"])
@@ -33,7 +33,7 @@ async function searchUser() {
       password: document.getElementById("checkPassword").value
     }
   
-    const response = await fetch(`${backendBaseUrl}user/verification/`, {
+    const response = await fetch(`${backendBaseUrl}/user/verification/`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -88,7 +88,7 @@ async function searchUser() {
       }
     }
   
-    const response = await fetch(`${backendBaseUrl}user/`, {
+    const response = await fetch(`${backendBaseUrl}/user/`, {
       method: "PUT",
       headers: {
         Accept: "application/json",
@@ -101,7 +101,7 @@ async function searchUser() {
     account_response = response.json()
     if (response.status == 201) {
       alert("회원정보 수정이 완료되었습니다.")
-      window.location.replace(`${frontendBaseUrl}index.html`)
+      window.location.replace(`${frontendBaseUrl}/index.html`)
   
     } else {
       alert(account_response.data)
@@ -111,7 +111,7 @@ async function searchUser() {
   
   // 회원 탈퇴
   async function withdrawal() {
-    const response = await fetch(`${backendBaseUrl}user/`, {
+    const response = await fetch(`${backendBaseUrl}/user/`, {
       method: "DELETE",
       headers: {
         Accept: "application/json",
@@ -126,7 +126,7 @@ async function searchUser() {
       localStorage.removeItem("payload")
       localStorage.removeItem("access")
       localStorage.removeItem("refresh")
-      window.location.replace(`${frontendBaseUrl}index.html`)
+      window.location.replace(`${frontendBaseUrl}/index.html`)
   
     } else {
       alert(withdrawal_json["message"])
@@ -143,7 +143,7 @@ async function searchUser() {
   //       localStorage.removeItem("access")
   //       localStorage.removeItem("refresh")
   
-  //       window.location.replace(`${frontendBaseUrl}login.html`)
+  //       window.location.replace(`${frontendBaseUrl}/login.html`)
   //     },
   //     fail: function (error) {
   //       alert("회원탈퇴가 이미 처리되었습니다")

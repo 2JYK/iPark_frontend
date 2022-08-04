@@ -14,7 +14,7 @@ async function getArticlesDetail(receivedData) {
     token = {}
   }
 
-  const response = await fetch(`${backendBaseUrl}community/${receivedData}/`, {
+  const response = await fetch(`${backendBaseUrl}/community/${receivedData}/`, {
     method: 'GET',
     headers: token
   })
@@ -61,7 +61,7 @@ async function getArticlesDetail(receivedData) {
 
   if (response_json.image != null) {
     const articleImage = document.getElementById("articleImage")
-    articleImage.setAttribute("src", `https://www.ilovepark.net${response_json.image}`)
+    articleImage.setAttribute("src", `${backendBaseUrl}/${response_json.image}`)
   } else {
     const articleImage = document.getElementById("articleImage")
     articleImage.remove();
@@ -101,7 +101,7 @@ async function updateArticle(receivedData) {
     formData.append("image", image[0])
   }
 
-  const response = await fetch(`${backendBaseUrl}community/${receivedData}/`, {
+  const response = await fetch(`${backendBaseUrl}/community/${receivedData}/`, {
     method: "PUT",
     headers: TOKEN,
     body: formData,
@@ -121,7 +121,7 @@ async function updateArticle(receivedData) {
 
 // 게시글 삭제
 async function deleteArticle(receivedData) {
-  const response = await fetch(`${backendBaseUrl}community/${receivedData}/`, {
+  const response = await fetch(`${backendBaseUrl}/community/${receivedData}/`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': "Bearer " + localStorage.getItem("access")
@@ -162,7 +162,7 @@ async function articleCommentPost(article_id) {
     alert("로그인 유저만 댓글 작성이 가능합니다.")
   }
 
-  const response = await fetch(`${backendBaseUrl}community/${article_id}/comment/`, {
+  const response = await fetch(`${backendBaseUrl}/community/${article_id}/comment/`, {
     method: "POST",
     body: JSON.stringify(commentData),
     headers: token,
@@ -227,7 +227,7 @@ async function articleCommentGet(article_id) {
   const commentWrap = document.querySelector(".comment-wrap")
   commentWrap.innerText = ""
 
-  const response = await fetch(`${backendBaseUrl}community/${article_id}/comment/`, {
+  const response = await fetch(`${backendBaseUrl}/community/${article_id}/comment/`, {
     method: "GET",
     headers: token
   })
@@ -271,7 +271,7 @@ async function articleCommentGet(article_id) {
 
 // 댓글 삭제
 async function articleCommentDel(comment_id) {
-  const response = await fetch(`${backendBaseUrl}community/comment/${comment_id}/`, {
+  const response = await fetch(`${backendBaseUrl}/community/comment/${comment_id}/`, {
     method: "DELETE",
     headers: TOKEN,
   })

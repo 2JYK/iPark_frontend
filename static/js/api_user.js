@@ -26,7 +26,7 @@ async function handleSignup() {
     region: document.getElementById("floatingRegion").value
   }
 
-  const response = await fetch(`${backendBaseUrl}user/`, {
+  const response = await fetch(`${backendBaseUrl}/user/`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -37,7 +37,7 @@ async function handleSignup() {
 
   response_json = await response.json()
   if (response.status == 201) {
-    window.location.replace(`${frontendBaseUrl}login.html`)
+    window.location.replace(`${frontendBaseUrl}/login.html`)
 
   } else {
     alert(response_json["error"])
@@ -52,7 +52,7 @@ async function handleLogin() {
     password: document.getElementById("password").value
   }
 
-  const response = await fetch(`${backendBaseUrl}user/api/token/`, {
+  const response = await fetch(`${backendBaseUrl}/user/api/token/`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -72,7 +72,7 @@ async function handleLogin() {
         return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2)
       }).join(""))
     localStorage.setItem("payload", jsonPayload);
-    window.location.replace(`${frontendBaseUrl}index.html`)
+    window.location.replace(`${frontendBaseUrl}/index.html`)
 
   } else {
     alert("잘못된 로그인입니다.", response.status)
@@ -102,7 +102,7 @@ function refreshToken() {
       return response.json();
     }
 
-    requestRefreshToken(`${backendBaseUrl}user/api/token/refresh/`).then((data) => {
+    requestRefreshToken(`${backendBaseUrl}/user/api/token/refresh/`).then((data) => {
       const accessToken = data.access
       localStorage.setItem("access", accessToken);
     })
@@ -115,7 +115,7 @@ refreshToken()
 async function kakaoUserForm(authObj, kakaoData) {
   const kakaoUserData = Object.assign({}, authObj, kakaoData)
 
-  const response = await fetch(`${backendBaseUrl}user/kakao/`, {
+  const response = await fetch(`${backendBaseUrl}/user/kakao/`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -136,7 +136,7 @@ async function kakaoUserForm(authObj, kakaoData) {
             return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2)
           }).join(""))
           localStorage.setItem("payload", jsonPayload)
-          window.location.replace(`${frontendBaseUrl}index.html`)
+          window.location.replace(`${frontendBaseUrl}/index.html`)
         })
 
       } else if (res.status == 200 && code.res_code == 1) {
@@ -161,7 +161,7 @@ async function verifyUser() {
     email: document.getElementById("inputEmail").value
   }
 
-  const response = await fetch(`${backendBaseUrl}user/alterpassword/`, {
+  const response = await fetch(`${backendBaseUrl}/user/alterpassword/`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -207,7 +207,7 @@ async function changePassword() {
     rewrite_password: document.getElementById("popupBodyRewrite").value
   }
 
-  const response = await fetch(`${backendBaseUrl}user/alterpassword/`, {
+  const response = await fetch(`${backendBaseUrl}/user/alterpassword/`, {
     method: "PUT",
     headers: {
       Accept: "application/json",
@@ -219,7 +219,7 @@ async function changePassword() {
   response_password = await response.json()
   if (response.status == 201) {
     alert(response_password["message"])
-    window.location.replace(`${frontendBaseUrl}login.html`)
+    window.location.replace(`${frontendBaseUrl}/login.html`)
 
   } else {
     alert(response_password["message"])

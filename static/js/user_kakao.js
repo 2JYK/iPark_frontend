@@ -48,6 +48,6 @@ function kakaoLogin() {
   //     localStorage.removeItem("access")
   //     localStorage.removeItem("refresh")
   
-  //     window.location.replace(`${frontendBaseUrl}login.html`)
+  //     window.location.replace(`${frontendBaseUrl}/login.html`)
   //   })
   // }

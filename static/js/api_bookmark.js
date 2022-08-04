@@ -5,7 +5,7 @@ async function getBookmark() {
         "Access-Control-Allow-Origin": "*",
         "Authorization": "Bearer " + localStorage.getItem("access"),
     }
-    const response = await fetch(`${backendBaseUrl}park/bookmark/`, {
+    const response = await fetch(`${backendBaseUrl}/park/bookmark/`, {
         method: "GET",
         headers: token
     })
@@ -55,7 +55,7 @@ loadBookmark()
 
 // 북마크 삭제
 async function deleteBookmark(bookmark_id) {
-    const response = await fetch(`${backendBaseUrl}park/bookmark/?id=${bookmark_id}`, {
+    const response = await fetch(`${backendBaseUrl}/park/bookmark/?id=${bookmark_id}`, {
         method: "DELETE",
         headers: {
             "Authorization": "Bearer " + localStorage.getItem("access")

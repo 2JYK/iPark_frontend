@@ -2,7 +2,7 @@
 function showparkList() {
   $.ajax({
     type: "GET",
-    url: `${backendBaseUrl}park/`,
+    url: `${backendBaseUrl}/park/`,
 
     success: function (response) {
       for (let i = 0; i < response.length; i++) {
@@ -26,7 +26,7 @@ function showParkDetail(id, urlParkCommentPageNum) {
   $("#parkDetail").empty()
   $.ajax({
     type: "GET",
-    url: `${backendBaseUrl}park/${id}/`,
+    url: `${backendBaseUrl}/park/${id}/`,
     beforeSend: function (xhr) {
       xhr.setRequestHeader("Content-type", "application/json")
     },
@@ -36,10 +36,10 @@ function showParkDetail(id, urlParkCommentPageNum) {
       sessionStorage.setItem("park_info", JSON.stringify(response))
 
       if (urlParkCommentPageNum) {
-        window.location.replace(`${frontendBaseUrl}park_detail.html?park_comment_page=${urlParkCommentPageNum}`)
+        window.location.replace(`${frontendBaseUrl}/park_detail.html?park_comment_page=${urlParkCommentPageNum}`)
 
       } else {
-        window.location.replace(`${frontendBaseUrl}park_detail.html`)
+        window.location.replace(`${frontendBaseUrl}/park_detail.html`)
       }
     }
   })
@@ -54,7 +54,7 @@ async function postComment(id) {
     "comment": comment
   }
 
-  const response = await fetch(`${backendBaseUrl}park/${id}/comment/`, {
+  const response = await fetch(`${backendBaseUrl}/park/${id}/comment/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -86,7 +86,7 @@ async function putComment(comment_id) {
     "comment": inputContent.value
   }
 
-  const response = await fetch(`${backendBaseUrl}park/comment/${comment_id}/`, {
+  const response = await fetch(`${backendBaseUrl}/park/comment/${comment_id}/`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -115,7 +115,7 @@ async function putComment(comment_id) {
 
 // 댓글 삭제 
 async function deleteComment(comment_id) {
-  const response = await fetch(`${backendBaseUrl}park/comment/${comment_id}/`, {
+  const response = await fetch(`${backendBaseUrl}/park/comment/${comment_id}/`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -142,7 +142,7 @@ async function deleteComment(comment_id) {
 
 // 북마크 등록 및 취소 (공원 상세 페이지)
 async function postBookmark(id) {
-  const response = await fetch(`${backendBaseUrl}park/${id}/`, {
+  const response = await fetch(`${backendBaseUrl}/park/${id}/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

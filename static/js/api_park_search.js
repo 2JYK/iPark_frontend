@@ -31,7 +31,7 @@ function getParks() {
   
     $.ajax({
       type: "GET",
-      url: `${backendBaseUrl}park/option/` + "?" + option_param + zone_param,
+      url: `${backendBaseUrl}/park/option/` + "?" + option_param + zone_param,
       data: {},
   
       error: function () {
@@ -58,7 +58,7 @@ function getParks() {
   function getPopularParks() {
     $.ajax({
       type: "GET",
-      url: `${backendBaseUrl}park/popularity/`,
+      url: `${backendBaseUrl}/park/popularity/`,
       data: {},
   
       success: function (response) {

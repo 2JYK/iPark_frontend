@@ -15,7 +15,7 @@ async function articlePost() {
   if (image.length == 1) {
     formData.append("image", image[0])
   }
-  const response = await fetch(`${backendBaseUrl}community/`, {
+  const response = await fetch(`${backendBaseUrl}/community/`, {
     method: "POST",
     body: formData,
     headers: TOKEN
@@ -37,7 +37,7 @@ async function articlePost() {
 function optionValues() {
   $.ajax({
     type: "GET",
-    url: `${backendBaseUrl}community/park_option/`,
+    url: `${backendBaseUrl}/community/park_option/`,
     data: {},
     success: function (response) {
       park_id = response
@@ -71,7 +71,7 @@ async function getPaginationList(id, url) {
 
   // url 판별, 이전, 다음 버튼 눌렀을 때 해당하는 url 받아오고 최초접속, 1페이지 인 경우 null
   if (url == null) {
-    url = `${backendBaseUrl}community/?page_size=13&${tag_param}`
+    url = `${backendBaseUrl}/community/?page_size=13&${tag_param}`
     if (String(id).indexOf("http") == 0) {
       url = id
     }
@@ -187,7 +187,7 @@ function getSearchArticles() {
 
   $.ajax({
     type: "GET",
-    url: `${backendBaseUrl}community/search/${query_param}`,
+    url: `${backendBaseUrl}/community/search/${query_param}`,
     data: {},
     success: function (response) {
       let postings = response

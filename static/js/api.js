@@ -4,10 +4,10 @@ TOKEN = {
   "Authorization": "Bearer " + localStorage.getItem("access"),
 }
 // 전역 변수
-const backendBaseUrl = "http://127.0.0.1:8000/"
-const frontendBaseUrl = "http://127.0.0.1:5500/"
-// const backendBaseUrl = "https://www.ilovepark.net/"
-// const frontendBaseUrl = "https://front.ilovepark.net/"
+const backendBaseUrl = "http://127.0.0.1:8000"
+const frontendBaseUrl = "http://127.0.0.1:5500"
+// const backendBaseUrl = "https://www.ilovepark.net"
+// const frontendBaseUrl = "https://front.ilovepark.net"
 
 
 // 로그인한 user.id 찾는 함수
@@ -151,5 +151,5 @@ async function logout() {
   localStorage.removeItem("access")
   localStorage.removeItem("refresh")
 
-  window.location.replace(`${frontendBaseUrl}login.html`)
+  window.location.replace(`${frontendBaseUrl}/login.html`)
 }

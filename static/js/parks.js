@@ -220,9 +220,9 @@ $(document).ready(function () {
   )
 
   // 북마크 여부 확인
-  window.onload = function changeBookmark() {
+  if (x["bookmarks"] !== "") {
     const userid = parseJwt("access").user_id
-    const bookmarks = JSON.parse(sessionStorage.getItem("park_info"))["bookmarks"]
+    const bookmarks = x["bookmarks"]
     const userlist = []
 
     bookmarks.forEach(data => {

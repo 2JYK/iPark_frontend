@@ -267,3 +267,7 @@ body .dribbble img {
   border-radius: 10px;
   box-shadow: inset 0px 0px 5px white;
 }
+
+.search {
+  display: flex;
+}

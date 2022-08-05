@@ -141,7 +141,6 @@ async function verifyUser() {
 
   response_json = await response.json()
   if (response.status == 200) {
-    alert("비밀번호 변경 페이지로 이동합니다.")
     const popup = document.getElementById("popup")
     popup.style.visibility = "visible"
     conveyUserData(response_json)

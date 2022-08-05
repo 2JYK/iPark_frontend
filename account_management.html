@@ -45,16 +45,16 @@
       <div class="int-area">
         <input type="password" name="password" id="checkPassword" autocomplete="off" required />
         <label for="checkPassword">Password (8자리 이상)</label>
-        <span style="color:red; font-size:15px;">* 영어 소문자/숫자/특수문자 필수</span>
+        <span>* 영어 소문자/숫자/특수문자 필수</span>
       </div>
       <br>
       <!-- 조회 버튼 -->
       <div class="caption">
-        <button id="modalOpen" style="border-radius:15px;" class="w-50 btn btn-primary" type="button"
+        <button id="modalOpen" class="w-50 btn" type="button"
           onclick="searchUser()">조회하기</button>
         <br>
         <br>
-        <button id="signupbtn1" style="border-radius:15px;" class="w-50 btn btn-primary" type="button"
+        <button id="signupbtn1" class="w-50 btn" type="button"
           onclick="location.href='/index.html'">돌아가기</button>
       </div>
     </form>
@@ -76,8 +76,7 @@
         <div>
           <h3>수정할 개인정보를 입력해 주세요</h3>
         </div>
-        <br>
-        <hr>
+        <div class="line"></div>
 
         <form class="account-form" action="">
           <!-- 아이디 -->
@@ -89,7 +88,7 @@
           <div class="int-area">
             <input type="email" name="email" id="accountEmail" autocomplete="off" required />
             <label for="accountEmail">Email</label>
-            <span style="color:red; font-size:15px;">* naver, google, kakao, daum, nate, outlook만 가능</span>
+            <span>* naver, google, kakao, daum, nate, outlook만 가능</span>
           </div>
           <!-- 이름 -->
           <div class="int-area">
@@ -100,12 +99,12 @@
           <div class="int-area">
             <input type="password" name="password" id="accountPassword" autocomplete="off" required />
             <label for="accountPassword">Password (8자리 이상)</label>
-            <span style="color:red; font-size:15px;">* 영어 소문자/숫자/특수문자 필수</span>
+            <span>* 영어 소문자/숫자/특수문자 필수</span>
           </div>
           <!-- 핸드폰 번호 -->
           <div class="int-area">
             <input type="text" name="phone" id="accountPhone" autocomplete="off" required />
-            <label for="accountPhone">Phone (010-0000-0000 형식)</label>
+            <label for="accountPhone">Phone</label>
           </div>
           <!-- 생년월일 -->
           <div class="int-area">
@@ -153,11 +152,11 @@
         <!-- 회원정보 변경 모달 변경하기 버튼 -->
         <div class="popup-upload">
           <div class="result-btn upload">
-            <button type="button" class="btn btn-dark" onclick="changeAccount()">변경하기</button>
+            <button type="button" class="btn" onclick="changeAccount()">변경하기</button>
           </div>
           <div class="caption">
             회원 탈퇴를 원하시나요??
-            <a style="font-weight:bold; cursor:pointer;" onclick="withdrawal()">회원탈퇴</a>
+            <a onclick="withdrawal()">회원탈퇴</a>
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 // 쿼리 파라미터를 통한 공원 정보 get 
-function getParks() {
+function getParkByName() {
   var optionButton = document.getElementsByClassName("option")
   for (var i = 0; i < optionButton.length; i++) {
     optionButton[i].classList.remove("clicked")

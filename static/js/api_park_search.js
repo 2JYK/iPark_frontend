@@ -33,7 +33,7 @@ function getParks() {
 
   $.ajax({
     type: "GET",
-    url: `${backendBaseUrl}/park/option/` + "?" + parkName + option_param + zone_param,
+    url: `${backendBaseUrl}/park/option/` + "?" + option_param + zone_param + parkName,
     data: {},
 
     error: function () {

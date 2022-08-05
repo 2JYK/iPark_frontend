@@ -89,7 +89,7 @@ async function getPaginationList(id, url) {
       token = {}
     }
     if (parseJwt("access") == undefined && id == 3) {
-      alert("로그인을 해주세요.")
+      alert("로그인한 사용자만 이용할 수 있습니다")
       location.reload()
     }
   }

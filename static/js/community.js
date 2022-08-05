@@ -2,7 +2,7 @@
 const modal = document.getElementById("modalOpen")
 modal.addEventListener('click', () => {
   if (parseJwt("access") == null) {
-    alert("로그인을 해주세요.")
+    alert("로그인한 사용자만 이용할 수 있습니다")
     location.reload()
   }
 })

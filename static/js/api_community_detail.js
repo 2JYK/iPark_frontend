@@ -157,7 +157,7 @@ async function articleCommentPost(article_id) {
     }
   } else {
     token = {}
-    alert("로그인 유저만 댓글 작성이 가능합니다.")
+    alert("로그인한 사용자만 이용할 수 있습니다")
   }
 
   const response = await fetch(`${backendBaseUrl}/community/${article_id}/comment/`, {

@@ -16,14 +16,12 @@ async function postComment(id) {
   })
 
   response_json = await response.json()
-  if (parseJwt("access") == null) {
+  if (response.status == 200) {
+    showParkDetail(id)
+  } else if (response.status == 400) {
     alert(response_json["message"])
   } else {
-    if (response.status == 200) {
-      showParkDetail(id)
-    } else {
-      alert(response_json["message"])
-    }
+    alert("로그인한 사용자만 이용할 수 있습니다")
   }
 }
 
@@ -53,8 +51,8 @@ async function putComment(comment_id) {
         ${inputContent.value}
       </div>
     `
-    const editButton = document.getElementById(`updateButton(${comment_id})`)
-    editButton.innerHTML = `<i class="fa-solid fa-pencil"></i>`
+    document.getElementById(`updateButton(${comment_id})`).innerHTML = `<i class="fa-solid fa-pencil"></i>`
+    document.getElementById(`deleteButton(${comment_id})`).style.display = 'none'
   } else {
     alert(response_json["message"])
   }
@@ -63,6 +61,7 @@ async function putComment(comment_id) {
 
 // 댓글 삭제 
 async function deleteComment(comment_id) {
+  // ${frontendBaseUrl}/park_detail.html?park_comment_page=${urlParkCommentPageNum}
   const response = await fetch(`${backendBaseUrl}/park/comment/${comment_id}/`, {
     method: "DELETE",
     headers: {
@@ -72,15 +71,14 @@ async function deleteComment(comment_id) {
   })
 
   response_json = await response.json()
-  if (parseJwt("access") == null) {
+  if (response.status == 200) {
+    const comment = document.getElementById(`comment(${comment_id})`)
+    comment.style.display = "none"
+  } else if (response.status == 400) {
     alert(response_json["message"])
   } else {
-    if (response.status == 200) {
-      const comment = document.getElementById(`comment(${comment_id})`)
-      comment.style.display = "none"
-    } else {
-      alert(response_json["message"])
-    }
+    console.log(response_json)
+    alert("로그인한 사용자만 이용할 수 있습니다")
   }
 }
 
@@ -98,10 +96,9 @@ async function postBookmark(id) {
 
   response_json = await response.json()
   if (response.status == 200) {
-    alert(response_json["message"])
     showParkDetail(id)
   } else {
-    alert("잘못된 로그인 정보입니다.")
+    alert("로그인한 사용자만 이용할 수 있습니다")
     window.location.reload()
   }
 }

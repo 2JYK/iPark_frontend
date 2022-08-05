@@ -3,8 +3,6 @@
   background-color: rgba(0, 0, 0, .3);
   justify-content: center;
   align-items: center;
-  overflow: hidden;
-
   position: fixed;
   top: 0;
   left: 0;
@@ -13,28 +11,24 @@
 
   display: none;
   overflow-y: initial !important;
-  z-index: 2;
+  z-index: 4;
 }
 
 .popup {
   position: relative;
-
   width: 80%;
   height: auto;
   max-width: 90%;
   padding: 2%;
   border-radius: 10px;
-
   background-color: #fff;
   box-shadow: 5px 10px 10px 1px rgba(0, 0, 0, .3);
 }
-
 
 /* 모달창 헤더 */
 .popup-header {
   display: flex;
   margin-bottom: 2%;
-
   justify-content: space-between;
 }
 
@@ -43,6 +37,7 @@
   cursor: pointer;
   padding-right: 30px;
 }
+
 
 /* 모달창 바디 */
 .popup-body-choice {
@@ -82,29 +77,24 @@
   height: 60px;
   margin: 1% 0;
   border-radius: 3px;
-
 }
 
 .popup-body-content {
   resize: none;
-
   width: 50%;
   height: 150px;
   border-radius: 3px;
 }
 
 /* 모달창 업로드 */
-.popup-upload button {
-  width: 200px;
+.modal-btn {
+  width: 150px;
   height: 50px;
+  margin: auto;
 }
 
-.modalbtn {
-  width: 200px;
-  height: 50px;
-  background-color: rgb(24, 24, 24);
-  color: white;
-  border-radius: 10px;
+.modal-btn button {
+  width: 100%;
 }
 
 /* 게시물 페이지 시작 */
@@ -272,7 +262,7 @@
   }
 
   .article-title-span {
-    font-size: 5px;
+    font-size: 10px;
   }
 
   .article-park,
@@ -307,12 +297,10 @@
   .commentbtn {
     font-size: 10px;
   }
-}
 
-@media (max-width: 767px) {
   .popup-body-preview {
-    width: 80%;
-    height: auto;
+    width: 150px;
+    height: 150px;
   }
 
   .popup {
@@ -320,28 +308,19 @@
     height: auto;
   }
 
-  .popup div {
-    font-size: 15px;
+  .popup-body-choice {
+    width: 80%;
+    margin: 5% auto;
   }
 
-  .input-file-button {
-    margin-top: 2%;
-    width: 150px;
-    height: 30px;
-    font-size: 2px;
+  .popup-body-choice-hr {
+    margin: 10px auto;
   }
 
   .popup-body-title,
   .popup-body-content {
     width: 90%;
     height: auto;
-    font-size: 12px;
-  }
-
-  .modalbtn {
-    width: 100px;
-    height: 30px;
-    font-size: 2px;
   }
 
   footer {

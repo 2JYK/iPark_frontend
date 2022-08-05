@@ -92,13 +92,12 @@
   <!-- 모달 -->
   <div class="popup-wrap" id="popup">
     <div class="popup">
-
       <!-- 업로드 모달 헤더 -->
       <div class="popup-header">
-        <span class="col-9"></span>
-        <div class="col-1" id="close"> X </div>
+        <span></span>
+        <h1>게시글 수정</h1>
+        <div id="close"> X </div>
       </div>
-
       <!-- 업로드 모달 바디 -->
       <div class="popup-body">
         <img id="preview" class="popup-body-preview">
@@ -108,19 +107,20 @@
           </label>
           <input type="file" accept="image/jpeg" id="popup-body-file" style="display:none;" onchange="readURL(this);">
         </div>
-
         <input class="popup-body-title" id="popupBodyTitle" placeholder="제목"><br>
         <textarea class="popup-body-content" id="popupBodyContent" placeholder="내용"></textarea>
-
         <!-- 업로드 모달 업로드 -->
         <div class="popup-upload">
           <div class="result-btn upload">
-            <button type="button" class="modalbtn" onclick="updateArticle(receivedData)">수정하기</button>
+            <div class="modal-btn">
+              <button type="button" class="btn btn-dark" onclick="updateArticle(receivedData)">수정하기</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
 
   <!-- 바디 : 게시글, 댓글 -->
   <div class="wrap">

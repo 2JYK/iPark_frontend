@@ -10,7 +10,7 @@ body {
 }
 
 .container-fluid {
-  margin: 2em auto;
+  margin-bottom: 2em;
   display: flex;
   flex-wrap: wrap;
 }

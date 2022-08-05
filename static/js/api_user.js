@@ -22,7 +22,6 @@ async function handleSignup() {
     fullname: document.getElementById("floatingInputFullname").value,
     password: document.getElementById("floatingPassword").value,
     phone: document.getElementById("floatingPhone").value,
-    birthday: document.getElementById("floatingBirthday").value,
     region: document.getElementById("floatingRegion").value
   }
 
@@ -120,7 +119,7 @@ async function kakaoUserForm(authObj, kakaoData) {
         fullname.value = kakaoUserData.fullname
       }
     }
-  )
+    )
 }
 
 

@@ -9,7 +9,7 @@ body {
 
 .intro {
     margin-top: 2%;
-    margin-bottom: 2%;
+    margin-bottom: 5%;
     text-align: center;
 }
 
@@ -21,20 +21,40 @@ body {
 }
 
 .park-box {
-    background-color: lightgrey;
+    background-color: rgb(247, 247, 247);
 
     width: 80%;
-    padding: 1%;
-    border-radius: 10px;
+
+    border-radius: 5px;
     margin-bottom: 3%;
 
     display: flex;
+    text-align: center;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
 }
 
+.wrap {
+    padding: 2%;
+}
+
 .content {
+    display: flex;
+    text-align: justify;
+    align-items: center;
+}
+
+.park-name {
+    margin-bottom: 2%;
+}
+
+.park-desc {
     margin-left: 2%;
+}
+
+image {
+    border-radius: 7%;
 }
 
 .park-img,
@@ -48,7 +68,46 @@ body {
 }
 
 .delete-btn {
+    color: rgb(240, 12, 12);
     background-color: transparent;
-    border: 1px solid;
+    border: 1px solid black;
     border-radius: 5px;
+}
+
+
+@media (max-width: 767px) {
+
+    .intro {
+        font-size: 10px;
+        margin-bottom: 10%;
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        text-align: justify;
+        justify-content: center;
+    }
+
+    .park-box {
+        padding-top: 2%;
+        width: 70%;
+    }
+
+    .park-name {
+        font-size: 17px;
+    }
+
+    .park-img {
+        margin: 5% 0 5% 0;
+    }
+
+    .park-desc {
+        display: none;
+    }
+
+    .delete {
+        font-size: 10px;
+    }
+
 }

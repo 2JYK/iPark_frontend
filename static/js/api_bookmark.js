@@ -30,21 +30,23 @@ async function loadBookmark() {
 		const bookmarkBox = document.createElement("div")
 		bookmarkBox.className = "park-box"
 		bookmarkBox.innerHTML = `
-			<div>
-					<img class="park-img" alt="mdo" onclick="showParkDetail(${data.park_id})" src="${data.image}" width="200px" height="180px">
-			</div>
-			<div class="content">
-					<div>
-							<h3 class="park-name" onclick="showParkDetail(${data.park_id})">${data.name}</h3>
-							<br>
+			
+			<div class="wrap">
+				<div>
+					<h4 class="park-name" onclick="showParkDetail(${data.park_id})">${data.name}</h4>
+				</div>
+				<div class="content">
+					<div class="park-img">
+						<img alt="mdo" class="image" onclick="showParkDetail(${data.park_id})" src="${data.image}" 
+						width="200px" height="180px" style="border-radius:5%;">
 					</div>
-					<div>
-							<span class="park-desc" onclick="showParkDetail(${data.park_id})">${data.desc}</span>
+					<div class="park-desc">
+						<span onclick="showParkDetail(${data.park_id})">${data.desc}</span>
 					</div>
-					<div class="delete">
-							<br>
-							<button onclick="deleteBookmark(this.id)" id="${data.bookmark_id}" class="delete-btn">삭제</button>
-					</div>
+				</div>
+				<div class="delete">
+					<button onclick="deleteBookmark(this.id)" id="${data.bookmark_id}" class="delete-btn">삭제</button>
+				</div>	
 			</div>
     `
 		bookmarkBoxes.append(bookmarkBox)
@@ -64,7 +66,6 @@ async function deleteBookmark(bookmark_id) {
 
 	response_json = await response.json()
 	if (response.status == 200) {
-		alert(response_json["message"])
 		window.location.reload()
 	}
 }

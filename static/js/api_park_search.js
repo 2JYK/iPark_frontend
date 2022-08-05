@@ -1,7 +1,5 @@
 // 쿼리 파라미터를 통한 공원 정보 get 
 function getParks() {
-  const parkName = "param=" + document.getElementById("search").value
-
   var optionButton = document.getElementsByClassName("option")
   for (var i = 0; i < optionButton.length; i++) {
     optionButton[i].classList.remove("clicked")
@@ -33,7 +31,35 @@ function getParks() {
 
   $.ajax({
     type: "GET",
-    url: `${backendBaseUrl}/park/option/` + "?" + option_param + zone_param + parkName,
+    url: `${backendBaseUrl}/park/option/` + "?" + option_param + zone_param,
+    data: {},
+
+    error: function () {
+      temp_html = `<span>조건에 맞는 검색결과가 없습니다.</span>`
+      $(".parks").append(temp_html)
+      $(".parks").css({ "justify-content": "center" })
+    },
+
+    success: function (response) {
+      for (let i = 0; i < response.length; i++) {
+        get_parks_html(
+          response[i].id,
+          response[i].park_name,
+          response[i].image,
+          response[i].check_count
+        )
+      }
+    }
+  })
+}
+
+
+function getParkByName() {
+  const parkName = "param=" + document.getElementById("search").value + "&"
+
+  $.ajax({
+    type: "GET",
+    url: `${backendBaseUrl}/park/option/` + "?" + parkName,
     data: {},
 
     error: function () {

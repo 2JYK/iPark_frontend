@@ -25,7 +25,6 @@ async function articlePost() {
 
   response_json = await response.json()
   if (response.status == 200) {
-    alert("게시글 작성 완료")
     location.reload();
   } else if (title.length > 35) {
     alert("제목은 35자 이하로 작성해주세요.")

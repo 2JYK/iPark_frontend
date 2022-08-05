@@ -113,7 +113,6 @@ async function updateArticle(receivedData) {
   response_json = await response.json()
 
   if (response.status == 200) {
-    alert("게시글 수정 완료")
     location.reload()
   } else {
     alert(response_json["message"])
@@ -133,7 +132,6 @@ async function deleteArticle(receivedData) {
 
   if (response.status == 200) {
     window.location.replace(`${frontendBaseUrl}/community.html`)
-    alert("게시물이 삭제 되었습니다.")
   } else {
     alert("게시물 작성자만 삭제 가능합니다.")
   }
@@ -172,7 +170,6 @@ async function articleCommentPost(article_id) {
   const data = response_json.data
 
   if (response.status == 200) {
-    alert(response_json["message"])
     document.getElementById("commentPost").value = ""
 
     // 댓글 올린 시간 설정
@@ -279,7 +276,6 @@ async function articleCommentDel(comment_id) {
 
   if (parseJwt("access") != undefined) {
     if (response.status == 200) {
-      alert(response_json["message"])
       const del_div = document.querySelector(`#del${comment_id}`)
       del_div.remove()
     } else {

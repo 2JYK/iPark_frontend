@@ -30,6 +30,8 @@ async function getArticlesDetail(receivedData) {
 
   const articleTagH2 = document.createElement("h2")
   articleTagH2.setAttribute("id", `${response_json.tag}`)
+  articleTagH2.classList.add("tag-name")
+
 
   if (articleTagH2.id == 1) {
     articleTagH2.setAttribute("style", "color: lightsteelblue;")
@@ -64,7 +66,8 @@ async function getArticlesDetail(receivedData) {
 
   if (response_json.image != null) {
     const articleImage = document.getElementById("articleImage")
-    articleImage.setAttribute("src", `https://front.ilovepark.net${response_json.image}`)
+    articleImage.setAttribute("src", `https://front.ilovepark.net${response_json.image}`)  //
+    // articleImage.setAttribute("src", `http://127.0.0.1:8000${response_json.image}`)
   } else {
     const articleImage = document.getElementById("articleImage")
     articleImage.remove()

@@ -95,9 +95,8 @@
 
       <!-- 업로드 모달 헤더 -->
       <div class="popup-header">
-        <span></span>
-        <h1>게시글 수정</h1>
-        <div id="close"> X </div>
+        <span class="col-9"></span>
+        <div class="col-1" id="close"> X </div>
       </div>
 
       <!-- 업로드 모달 바디 -->
@@ -105,7 +104,7 @@
         <img id="preview" class="popup-body-preview">
         <div class="popup-body-file">
           <label class="input-file-button" for="popup-body-file">
-            업로드
+            사진 선택
           </label>
           <input type="file" accept="image/jpeg" id="popup-body-file" style="display:none;" onchange="readURL(this);">
         </div>
@@ -116,7 +115,7 @@
         <!-- 업로드 모달 업로드 -->
         <div class="popup-upload">
           <div class="result-btn upload">
-            <button type="button" class="btn btn-dark" onclick="updateArticle(receivedData)">수정하기</button>
+            <button type="button" class="modalbtn" onclick="updateArticle(receivedData)">수정하기</button>
           </div>
         </div>
       </div>
@@ -126,16 +125,15 @@
   <!-- 바디 : 게시글, 댓글 -->
   <div class="wrap">
     <div class="tag" id="tag">
-
     </div>
 
     <!-- 게시글 제목 -->
     <div class="article-title">
       <hr class="title-hr">
+      <div class="article-title-span" id="titleControl">
+      </div>
       <div class="article-header">
-        <h4 id="articleTitle"></h4>
-        <div class="article-title-span" id="titleControl">
-        </div>
+        <h4 id="articleTitle" class="realtitle"></h4>
       </div>
       <div class="article-park" id="articlePark"></div>
       <div class="info">
@@ -156,7 +154,7 @@
 
       <!-- 게시글 사진 -->
       <div class="article-image">
-        <img id="articleImage" alt="not found" width="600" height="500">
+        <img class="img" id="articleImage" alt="not found" style="max-width:100%; height:auto;">
       </div>
 
       <!-- 게시글 내용 -->
@@ -166,27 +164,31 @@
     </div>
 
     <!-- 댓글 시작 -->
-    <h3 class="comment-start">Comment</h3>
+    <div class="all-comment">
+      <h3 class="comment-start">Comment</h3>
 
-    <div class="comment-wrap">
-      <div class="comment">
-        <li>
-          <div class="username">Username</div>
-          <div class="user-comment">Commnet</div>
-          <div class="time">DateTime</div>
-        </li>
+      <div class="comment-wrap">
+        <div class="comment">
+          <li>
+            <div class="username">Username</div>
+            <div class="user-comment">Commnet</div>
+            <div class="time">DateTime</div>
+          </li>
+        </div>
       </div>
     </div>
 
+
     <!-- 댓글 입력 -->
     <div class="comment-input">
-      <div class="input-group">
+      <div class="comment-group">
         <textarea name="comment-text" maxlength="200" class="comment-text" placeholder="댓글을 입력해주세요..."
-          aria-label="Recipient's username" aria-describedby="button-addon2" id="commentPost"></textarea>
-        <button class="btn btn-outline-secondary" type="button" id="button-addon2"
-          onclick="articleCommentPost()">게시</button>
+          aria-describedby="button-addon2" id="commentPost"></textarea>
       </div>
-      <span style="color: #aaa" id="commentCounter">(0 / 최대 200자)</span>
+      <div class="comment-post">
+        <span style="color: #aaa" id="commentCounter">(0 / 최대 200자)</span>
+        <button class="commentbtn" type="button" id="button-addon2" onclick="articleCommentPost()">게시</button>
+      </div>
     </div>
   </div>
 

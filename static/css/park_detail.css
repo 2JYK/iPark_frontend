@@ -10,14 +10,14 @@
 
 /* 첫번째 구간 : 이름, 북마크 */
 .park-name-mark {
-  margin: 60px 0px 10px 0px;
+  margin: -30px 0px 10px 0px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
 }
 
 .park-name {
-  font-weight: 500;
+  font-weight: 700;
   margin: auto;
 }
 
@@ -39,6 +39,7 @@
 .check-count-addr {
   display: flex;
   flex-wrap: wrap;
+  color: gray;
 }
 
 .check-count {
@@ -349,5 +350,20 @@
 
   .comment-buttons button {
     margin: 1px;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .comment {
+    flex-wrap: wrap;
+  }
+
+  .comment-comment {
+    margin-right: 10px;
+    }
+
+  .check-count-addr p {
+    margin: 3px; 
+    margin-right: auto; 
   }
 }

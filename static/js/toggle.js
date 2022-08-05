@@ -1,5 +1,6 @@
 // 토글 공원 List 로드 
 function showparkList() {
+	$("#parkList").empty()
 	$.ajax({
 		type: "GET",
 		url: `${backendBaseUrl}/park/`,

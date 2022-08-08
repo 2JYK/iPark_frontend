@@ -274,7 +274,7 @@ $(document).ready(function () {
     '<div class="iw-inner">',
     '   <h5 style="color: green;">' + x["park_name"] + '</h5>',
     '   <a href="https://map.naver.com/v5/search/' + x["park_name"] +
-    '?c=14134663.0407597,4519566.6272867,15,0,0,0,dh" style="text-decoration: none; color: green;">길찾기</a>',
+    '?c=14134663.0407597,4519566.6272867,15,0,0,0,dh" style="text-decoration: none; color: green;" target="_blank">길찾기</a>',
     '</div>'
   ].join("")
 

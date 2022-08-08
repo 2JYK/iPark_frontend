@@ -18,7 +18,7 @@ $(function () {
 async function handleSignup() {
   const signupData = {
     username: document.getElementById("floatingInput").value,
-    email: document.getElementById("floatingInputEmail").value,
+    email: document.getElementById("floatingInputEmail").value + document.getElementById("emailSection").value,
     fullname: document.getElementById("floatingInputFullname").value,
     password: document.getElementById("floatingPassword").value,
     phone: document.getElementById("floatingPhone").value,
@@ -37,9 +37,55 @@ async function handleSignup() {
   response_json = await response.json()
   if (response.status == 201) {
     window.location.replace(`${frontendBaseUrl}/login.html`)
-
   } else {
-    alert(response_json["error"])
+    const key = Object.keys(response_json)
+    const error = Object.values(response_json)
+
+    for (let i = 0; i < key.length; i++) {
+      switch (key[i]) {
+        case "username":
+          const err_username = document.getElementById("username-field")
+          err_username.removeChild(err_username.lastChild)
+          var new_span = document.createElement("span")
+          new_span.setAttribute("id", "error")
+          new_span.innerText = error[i]
+          console.log(new_span)
+          err_username.appendChild(new_span)
+          break
+        case "email":
+          const err_email = document.getElementById("email-field")
+          err_email.removeChild(err_email.lastChild)
+          var new_span = document.createElement("span")
+          new_span.setAttribute("id", "error")
+          new_span.innerText = error[i]
+          err_email.appendChild(new_span)
+          break
+        case "fullname":
+          const err_fullname = document.getElementById("fullname-field")
+          err_fullname.removeChild(err_fullname.lastChild)
+          var new_span = document.createElement("span")
+          new_span.setAttribute("id", "error")
+          new_span.innerText = error[i]
+          err_fullname.appendChild(new_span)
+          break
+        case "password":
+          const err_password = document.getElementById("password-field")
+          err_password.removeChild(err_password.lastChild)
+          var new_span = document.createElement("span")
+          new_span.setAttribute("id", "error")
+          new_span.innerText = error[i]
+          err_password.appendChild(new_span)
+          break
+        case "phone":
+          const err_phone = document.getElementById("phone-field")
+          err_phone.removeChild(err_phone.lastChild)
+          var new_span = document.createElement("span")
+          new_span.setAttribute("id", "error")
+          new_span.innerText = error[i]
+          err_phone.appendChild(new_span)
+          break
+      }
+    }
   }
 }
 

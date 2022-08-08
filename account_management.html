@@ -25,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Song+Myung&display=swap" rel="stylesheet">
-  
+
   <!-- Add icon library -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://kit.fontawesome.com/0c764fa4c5.js" crossorigin="anonymous"></script>
@@ -84,31 +84,38 @@
 
           <form class="account-form" action="">
             <!-- 아이디 -->
-            <div class="int-area">
+            <div class="int-area" id="username-field">
               <input type="text" name="username" id="accountUsername" autocomplete="off" required />
-              <label for="accountUsername">Username (6자리 이상)</label>
+              <label for="floatingInput">Username (6자리 이상)</label>
             </div>
             <!-- 이메일 -->
-            <div class="int-area">
-              <input type="email" name="email" id="accountEmail" autocomplete="off" required />
-              <label for="accountEmail">Email</label>
-              <span>* naver, google, kakao, daum, nate, outlook만 가능</span>
+            <div class="int-area" id="email-field">
+              <input type="text" name="email" id="accountEmail" autocomplete="off" required />
+              <label for="floatingInputEmail">Email</label>
+              <select id="emailSection">
+                <option value="@naver.com">@naver.com</option>
+                <option value="@gmail.com">@gmail.com</option>
+                <option value="@kakao.com">@kakao.com</option>
+                <option value="@daum.com">@daum.com</option>
+                <option value="@nate.com">@nate.com</option>
+                <option value="@outlook.com">@outlook.com</option>
+              </select>
             </div>
             <!-- 이름 -->
-            <div class="int-area">
+            <div class="int-area" id="fullname-field">
               <input type="text" name="fullname" id="accountFullname" autocomplete="off" required />
-              <label for="accountFullname">Fullname</label>
+              <label for="floatingInputFullname">Fullname</label>
             </div>
             <!-- 패스워드 -->
-            <div class="int-area">
+            <div class="int-area" id="password-field">
               <input type="password" name="password" id="accountPassword" autocomplete="off" required />
-              <label for="accountPassword">Password (8자리 이상)</label>
-              <span>* 영어 소문자/숫자/특수문자 (@$!%*#?&) 필수</span>
+              <label for="floatingPassword">Password (8자리 이상)</label>
+              <span style="color: darkgreen">* 영어 소문자/숫자/특수문자 (@$!%*#?&) 필수</span><br>
             </div>
             <!-- 핸드폰 번호 -->
-            <div class="int-area">
+            <div class="int-area" id="phone-field">
               <input type="text" name="phone" id="accountPhone" autocomplete="off" required />
-              <label for="accountPhone">Phone</label>
+              <label for="floatingPhone">Phone</label>
             </div>
 
             <!-- 지역구 -->

@@ -77,7 +77,7 @@
 
         <!-- 공원 목록 토글 -->
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarLight"
-          aria-controls="offcanvasNavbarLight" onclick="showparkList()">
+          aria-controls="offcanvasNavbarLight">
           <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -89,8 +89,32 @@
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body">
-            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3" id="parkList">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
               <!-- 공원 리스트 : parkListTempHtml -->
+              <input type="button" id="parkCategory" value="ㄱ" onclick="showparkList(1, 'ㄱ')">
+              <div id="parkList1"></div>
+              <input type="button" id="parkCategory" value="ㄴ" onclick="showparkList(2, 'ㄴ')">
+              <div id="parkList2"></div>
+              <input type="button" id="parkCategory" value="ㄷ" onclick="showparkList(3, 'ㄷ')">
+              <div id="parkList3"></div>
+              <input type="button" id="parkCategory" value="ㅁ" onclick="showparkList(4, 'ㅁ')">
+              <div id="parkList4"></div>
+              <input type="button" id="parkCategory" value="ㅂ" onclick="showparkList(5, 'ㅂ')">
+              <div id="parkList5"></div>
+              <input type="button" id="parkCategory" value="ㅅ" onclick="showparkList(6, 'ㅅ')">
+              <div id="parkList6"></div>
+              <input type="button" id="parkCategory" value="ㅇ" onclick="showparkList(7, 'ㅇ')">
+              <div id="parkList7"></div>
+              <input type="button" id="parkCategory" value="ㅈ" onclick="showparkList(8, 'ㅈ')">
+              <div id="parkList8"></div>
+              <input type="button" id="parkCategory" value="ㅊ" onclick="showparkList(9, 'ㅊ')">
+              <div id="parkList9"></div>
+              <input type="button" id="parkCategory" value="ㅌ" onclick="showparkList(10, 'ㅌ')">
+              <div id="parkList10"></div>
+              <input type="button" id="parkCategory" value="ㅍ" onclick="showparkList(11, 'ㅍ')">
+              <div id="parkList11"></div>
+              <input type="button" id="parkCategory" value="ㅎ" onclick="showparkList(12, 'ㅎ')">
+              <div id="parkList12"></div>
             </ul>
           </div>
         </div>

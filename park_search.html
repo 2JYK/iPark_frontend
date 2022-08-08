@@ -60,19 +60,19 @@
             <img src="./static/css/img/profile.png" alt="mdo" width="40" height="40" class="rounded-circle">
           </a>
           <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-            <li id="myFavorite"><a class="dropdown-item" href="./bookmark.html">즐겨찾기</a></li>
-            <li id="myArticle"><a class="dropdown-item" href="#" onclick="goToMyArticle()">내가 쓴 게시글</a></li>
-            <li id="myAccount"><a class="dropdown-item" href="./account_management.html">계정관리</a></li>
-            <li id="divider">
+            <div id="myFavorite"><a class="dropdown-item" href="./bookmark.html">즐겨찾기</a></div>
+            <div id="myArticle"><a class="dropdown-item" href="#" onclick="goToMyArticle()">내가 쓴 게시글</a></div>
+            <div id="myAccount"><a class="dropdown-item" href="./account_management.html">계정관리</a></div>
+            <div id="divider">
               <hr class="dropdown-divider">
-            </li>
-            <li><a id="myLogin" class="dropdown-item" href="#" onclick="logout()">로그아웃</a></li>
+            </div>
+            <div><a id="myLogin" class="dropdown-item" href="#" onclick="logout()">로그아웃</a></div>
           </ul>
         </div>
 
         <!-- 공원 목록 토글 -->
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarLight"
-          aria-controls="offcanvasNavbarLight" onclick="showparkList()">
+          aria-controls="offcanvasNavbarLight">
           <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -84,8 +84,32 @@
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body">
-            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3" id="parkList">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
               <!-- 공원 리스트 : parkListTempHtml -->
+              <input type="button" id="parkCategory" value="ㄱ" onclick="showparkList(1, 'ㄱ')">
+              <div id="parkList1"></div>
+              <input type="button" id="parkCategory" value="ㄴ" onclick="showparkList(2, 'ㄴ')">
+              <div id="parkList2"></div>
+              <input type="button" id="parkCategory" value="ㄷ" onclick="showparkList(3, 'ㄷ')">
+              <div id="parkList3"></div>
+              <input type="button" id="parkCategory" value="ㅁ" onclick="showparkList(4, 'ㅁ')">
+              <div id="parkList4"></div>
+              <input type="button" id="parkCategory" value="ㅂ" onclick="showparkList(5, 'ㅂ')">
+              <div id="parkList5"></div>
+              <input type="button" id="parkCategory" value="ㅅ" onclick="showparkList(6, 'ㅅ')">
+              <div id="parkList6"></div>
+              <input type="button" id="parkCategory" value="ㅇ" onclick="showparkList(7, 'ㅇ')">
+              <div id="parkList7"></div>
+              <input type="button" id="parkCategory" value="ㅈ" onclick="showparkList(8, 'ㅈ')">
+              <div id="parkList8"></div>
+              <input type="button" id="parkCategory" value="ㅊ" onclick="showparkList(9, 'ㅊ')">
+              <div id="parkList9"></div>
+              <input type="button" id="parkCategory" value="ㅌ" onclick="showparkList(10, 'ㅌ')">
+              <div id="parkList10"></div>
+              <input type="button" id="parkCategory" value="ㅍ" onclick="showparkList(11, 'ㅍ')">
+              <div id="parkList11"></div>
+              <input type="button" id="parkCategory" value="ㅎ" onclick="showparkList(12, 'ㅎ')">
+              <div id="parkList12"></div>
             </ul>
           </div>
         </div>
@@ -249,11 +273,11 @@
   <footer class="py-3 my-4" style="background-color: #fafbfc;">
     <p class="text-center"><img src="./static/css/img/park-logo.png" alt="mdo" width="150" height="70"></p>
     <ul class="nav justify-content-center pb-3 mb-3">
-      <li class="nav-item"><a href="/" class="nav-link px-2 text-muted">Home</a></li>
-      <li class="nav-item"><a href="./park_search.html" class="nav-link px-2 text-muted">Park</a></li>
-      <li class="nav-item"><a href="./community.html" class="nav-link px-2 text-muted">Community</a></li>
-      <li class="nav-item"><a href="mailto:rla04722@naver.com?subject= i Pa|rK 문의" target="_blank"
-          class="nav-link px-2 text-muted">Questions</a></li>
+      <div class="nav-item"><a href="/" class="nav-link px-2 text-muted">Home</a></div>
+      <div class="nav-item"><a href="./park_search.html" class="nav-link px-2 text-muted">Park</a></div>
+      <div class="nav-item"><a href="./community.html" class="nav-link px-2 text-muted">Community</a></div>
+      <div class="nav-item"><a href="mailto:rla04722@naver.com?subject= i Pa|rK 문의" target="_blank"
+          class="nav-link px-2 text-muted">Questions</a></div>
     </ul>
     <p class="text-center text-muted">Developers |
       <a href="https://github.com/GyeongSuKim1" target="_blank" rel="noopener noreferrer"> 김경수 </a>,

@@ -140,6 +140,7 @@ body::before {
 .btn-area button:hover {
     background-color: #198754;
     --bs-btn-hover-bg: #198754;
+    color: white;
 }
 
 .kakao-login {
@@ -177,6 +178,12 @@ body::before {
     padding: 6px;
 }
 
+.caption a:hover {
+    background-color: #fae100;
+    --bs-btn-hover-bg: #fae100;
+    color: black;
+}
+
 /* 이메일 패스워드 안내 : 빨간글씨*/
 .int-area span {
     color: red;
@@ -198,6 +205,7 @@ body::before {
 .caption button:hover {
     background-color: darkgreen;
     --bs-btn-hover-bg: darkgreen;
+    color: white;
 }
 
 /* 비밀번호 찾기 페이지 : 안내문구, 팝업 */
@@ -245,10 +253,12 @@ body::before {
 }
 
 /* 모달창 바디 */
-.popup-body {
+/* .popup-body {
+    
+} */
+.popup-change-body {
     text-align: center;
 }
-
 .popup-body h3 {
     font-size: 15px;
     font-weight: 500;
@@ -270,6 +280,7 @@ body::before {
 
 .popup-upload button {
     background-color: #198754;
+    color: white;
     width: 30%;
     height: 50px;
     border-radius: 15px;
@@ -279,6 +290,7 @@ body::before {
 .popup-upload button:hover {
     background-color: #fae100;
     --bs-btn-hover-bg: #fae100;
+    color: black;
 }
 
 .line {
@@ -317,6 +329,12 @@ body::before {
     border-radius: 8px;
     cursor: pointer;
     padding: 12px;
+}
+
+.to-login a:hover {
+    background-color: #fae100;
+    --bs-btn-hover-bg: #fae100;
+    color: black;
 }
 
 /* 반응형 */

@@ -42,10 +42,17 @@
         <label for="floatingInput">Username (6자리 이상)</label>
       </div>
       <!-- 이메일 -->
-      <div class="int-area">
-        <input type="email" name="email" id="floatingInputEmail" autocomplete="off" required />
+      <div class="int-area email-field">
+        <input type="text" name="email" id="floatingInputEmail" autocomplete="off" required />
         <label for="floatingInputEmail">Email</label>
-        <span>* naver, google, kakao, daum, nate, outlook만 가능</span>
+        <select id="emailSection">
+          <option value="@naver.com">@naver.com</option>
+          <option value="@gmail.com">@gmail.com</option>
+          <option value="@kakao.com">@kakao.com</option>
+          <option value="@daum.com">@daum.com</option>
+          <option value="@nate.com">@nate.com</option>
+          <option value="@outlook만.com">@outlook.com</option>
+        </select>
       </div>
       <!-- 이름 -->
       <div class="int-area">
@@ -65,36 +72,36 @@
       </div>
       <!-- 지역구 -->
       <div class="int-region">
-      <div valgn="top">
-        <span class="region">선호하는 지역구</span>
-        <select name="items1" id="floatingRegion">
-          <option value="1">강남구</option>
-          <option value="2">강동구</option>
-          <option value="3">강북구</option>
-          <option value="4">강서구</option>
-          <option value="5">관악구</option>
-          <option value="6">광진구</option>
-          <option value="7">구로구</option>
-          <option value="8">금천구</option>
-          <option value="9">노원구</option>
-          <option value="10">도봉구</option>
-          <option value="11">동대문구</option>
-          <option value="12">동작구</option>
-          <option value="13">마포구</option>
-          <option value="14">서대문구</option>
-          <option value="15">서초구</option>
-          <option value="16">성동구</option>
-          <option value="17">성북구</option>
-          <option value="18">송파구</option>
-          <option value="19">양천구</option>
-          <option value="20">영등포구</option>
-          <option value="21">용산구</option>
-          <option value="22">은평구</option>
-          <option value="23">종로구</option>
-          <option value="24">중구</option>
-          <option value="25">중랑구</option>
-        </select>
-      </div>
+        <div valgn="top">
+          <span class="region">선호하는 지역구</span>
+          <select name="items1" id="floatingRegion">
+            <option value="1">강남구</option>
+            <option value="2">강동구</option>
+            <option value="3">강북구</option>
+            <option value="4">강서구</option>
+            <option value="5">관악구</option>
+            <option value="6">광진구</option>
+            <option value="7">구로구</option>
+            <option value="8">금천구</option>
+            <option value="9">노원구</option>
+            <option value="10">도봉구</option>
+            <option value="11">동대문구</option>
+            <option value="12">동작구</option>
+            <option value="13">마포구</option>
+            <option value="14">서대문구</option>
+            <option value="15">서초구</option>
+            <option value="16">성동구</option>
+            <option value="17">성북구</option>
+            <option value="18">송파구</option>
+            <option value="19">양천구</option>
+            <option value="20">영등포구</option>
+            <option value="21">용산구</option>
+            <option value="22">은평구</option>
+            <option value="23">종로구</option>
+            <option value="24">중구</option>
+            <option value="25">중랑구</option>
+          </select>
+        </div>
       </div>
 
       <!-- 회원가입 -->

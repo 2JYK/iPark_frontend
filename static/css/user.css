@@ -13,7 +13,7 @@ body {
     background-color: #ffffff3f;
     background: url(./img/tree_img.png) no-repeat;
     background-size: cover;
-    background-color:#a8ce67;
+    background-color: #a8ce67;
     background-position: center bottom;
 }
 
@@ -24,6 +24,12 @@ body::before {
     bottom: 0;
     left: 0;
 }
+
+/*이메일 입력*/
+.email-field {
+    display: flex;
+}
+
 /* 연초록색박스 */
 .sign {
     z-index: 2;
@@ -162,7 +168,7 @@ body::before {
 
 /* 이메일 패스워드 안내 : 빨간글씨*/
 .int-area span {
-    color: red; 
+    color: red;
     font-size: 15px;
 }
 
@@ -221,10 +227,10 @@ body::before {
 }
 
 .popup-header h1 {
-color: darkgreen;
-font-size: 20px;
-font-weight: 700;
-margin: 25px;
+    color: darkgreen;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 25px;
 }
 
 /* 모달창 바디 */
@@ -325,6 +331,7 @@ margin: 25px;
     .sign h3 {
         font-size: 12px;
     }
+
     .int-area {
         width: 300px;
     }
@@ -336,7 +343,7 @@ margin: 25px;
     .int-area label {
         font-size: 14px;
     }
-    
+
     .int-area input:focus+label,
     .int-area input:valid+label {
         top: -1px;
@@ -352,7 +359,7 @@ margin: 25px;
         height: 50px;
     }
 
-    .kakao-login img{
+    .kakao-login img {
         width: 100%;
     }
 

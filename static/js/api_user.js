@@ -49,7 +49,6 @@ async function handleSignup() {
           var new_span = document.createElement("span")
           new_span.setAttribute("id", "error")
           new_span.innerText = error[i]
-          console.log(new_span)
           err_username.appendChild(new_span)
           break
         case "email":

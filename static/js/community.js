@@ -36,12 +36,15 @@ function openModal() {
   //수정 모달 안에 원래 있던 내용 넣어주기
   const oldTitle = document.getElementById("articleTitle")
   const oldContent = document.getElementById("articleContent")
+  const oldImage = document.getElementById("articleImage")
   const inputTitle = document.getElementById("popupBodyTitle")
   const inputContent = document.getElementById("popupBodyContent")
+
   inputTitle.value = oldTitle.innerHTML
   inputContent.value = oldContent.innerHTML
-
-  document.getElementById("preview").src = document.getElementById("articleImage").src
+  if (oldImage) {
+  document.getElementById("preview").src = oldImage.src
+  }
 
   $("#close").click(function () {
     body.style.overflow = "initial" // 스크롤 방지 해제

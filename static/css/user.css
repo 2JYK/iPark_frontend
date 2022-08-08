@@ -61,6 +61,7 @@ body::before {
 .int-area {
     position: relative;
     width: 400px;
+    align-items: baseline;
 }
 
 .int-area input {
@@ -245,7 +246,7 @@ body::before {
 
 /* 모달창 바디 */
 .popup-body {
-
+    text-align: center;
 }
 
 .popup-body h3 {
@@ -356,7 +357,7 @@ body::before {
     }
 
     .int-area input {
-        margin: 5px auto;
+        margin: 7px auto;
     }
 
     .int-area label {

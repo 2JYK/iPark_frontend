@@ -27,6 +27,13 @@ $(function () {
 })
 
 
+//HTML 정규식
+function removeHTML(text) {
+  text = text.innerHTML.replace(/<[^>]*>?/ig, '\n');
+  return text
+}
+
+
 // 모달 onclick
 function openModal() {
   const body = document.querySelector("body")
@@ -36,12 +43,14 @@ function openModal() {
   //수정 모달 안에 원래 있던 내용 넣어주기
   const oldTitle = document.getElementById("articleTitle")
   const oldContent = document.getElementById("articleContent")
+  const putContent = removeHTML(oldContent)
   const oldImage = document.getElementById("articleImage")
   const inputTitle = document.getElementById("popupBodyTitle")
   const inputContent = document.getElementById("popupBodyContent")
 
   inputTitle.value = oldTitle.innerHTML
-  inputContent.value = oldContent.innerHTML
+  inputContent.value = putContent
+
   if (oldImage) {
   document.getElementById("preview").src = oldImage.src
   }

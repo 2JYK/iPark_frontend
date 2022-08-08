@@ -74,7 +74,6 @@ async function changeAccount() {
       fullname: document.getElementById("accountFullname").value,
       email: document.getElementById("accountEmail").value,
       phone: document.getElementById("accountPhone").value,
-      birthday: document.getElementById("accountBirthday").value,
       region: document.getElementById("accountRegion").value
     }
   } else {
@@ -83,7 +82,6 @@ async function changeAccount() {
       fullname: document.getElementById("accountFullname").value,
       email: document.getElementById("accountEmail").value,
       phone: document.getElementById("accountPhone").value,
-      birthday: document.getElementById("accountBirthday").value,
       region: document.getElementById("accountRegion").value
     }
   }

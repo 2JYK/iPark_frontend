@@ -47,12 +47,13 @@ async function searchUser() {
   if (response.status == 200) {
     const popup = document.getElementById("popup")
     popup.style.visibility = "visible"
-
+    console.log(document.querySelector("#email-field select option"))
     document.getElementById("accountUsername").value = verification_json.username
     document.getElementById("accountFullname").value = verification_json.fullname
-    document.getElementById("accountEmail").value = verification_json.email
+    document.getElementById("accountEmail").value = verification_json.email.split("@")[0]
+    document.querySelector("#email-field select option").value = "@" + verification_json.email.split("@")[1]
+    document.querySelector("#email-field select option").innerHTML = "@" + verification_json.email.split("@")[1]
     document.getElementById("accountPhone").value = verification_json.phone
-    document.getElementById("accountBirthday").value = verification_json.birthday
     document.getElementById("accountRegion").value = verification_json.region
 
   } else {
@@ -72,7 +73,7 @@ async function changeAccount() {
       username: document.getElementById("accountUsername").value,
       password: document.getElementById("accountPassword").value,
       fullname: document.getElementById("accountFullname").value,
-      email: document.getElementById("accountEmail").value,
+      email: document.getElementById("accountEmail").value + document.querySelector("#email-field select option").value,
       phone: document.getElementById("accountPhone").value,
       region: document.getElementById("accountRegion").value
     }
@@ -80,7 +81,7 @@ async function changeAccount() {
     changedData = {
       username: document.getElementById("accountUsername").value,
       fullname: document.getElementById("accountFullname").value,
-      email: document.getElementById("accountEmail").value,
+      email: document.getElementById("accountEmail").value + document.querySelector("#email-field select option").value,
       phone: document.getElementById("accountPhone").value,
       region: document.getElementById("accountRegion").value
     }

@@ -35,32 +35,33 @@
 </head>
 
 <body>
+  <div class="logo"><a href="./index.html"><img src="./static/css/img/park-logo.png" alt="logo" class="logo"></a></div>
   <!-- 아이디를 변경하기 위해서는 이메일과 핸드폰 번호를 받아야 함 -->
-  <section class="sign">
-    <h1>아이디 찾기</h1>
-    <form action="">
-      <!-- 이메일 -->
-      <div class="int-area">
-        <input type="email" name="email" id="inputEmail" autocomplete="off" required />
-        <label for="inputEmail">Email</label>
-        <span>* naver, google, kakao, daum, nate, outlook만 가능</span>
-      </div>
-      <!-- 핸드폰 번호 -->
-      <div class="int-area">
-        <input type="text" name="phone" id="inputPhone" autocomplete="off" required />
-        <label for="inputPhone">Phone</label>
-      </div>
-      <!-- 찾기 버튼 -->
-      <div class="caption">
-        <button class="w-50 btn" type="button" id="btn"
-          onclick="findUsername()">조회</button>
-        <br>
-        <br>
-        <button class="w-50 btn" type="button"
-          onclick="location.href='/login.html'">돌아가기</button>
-      </div>
-    </form>
-  </section>
+  <div class="sign">
+    <section>
+      <h1>아이디 찾기</h1>
+      <form action="">
+        <!-- 이메일 -->
+        <div class="int-area">
+          <input type="email" name="email" id="inputEmail" autocomplete="off" required />
+          <label for="inputEmail">Email</label>
+          <span>* naver, google, kakao, daum, nate, outlook만 가능</span>
+        </div>
+        <!-- 핸드폰 번호 -->
+        <div class="int-area">
+          <input type="text" name="phone" id="inputPhone" autocomplete="off" required />
+          <label for="inputPhone">Phone</label>
+        </div>
+        <!-- 찾기 버튼 -->
+        <div class="caption">
+          <button class="w-50 btn" type="button" id="btn" onclick="findUsername()">조회</button>
+          <br>
+          <br>
+          <button class="w-50 btn" type="button" onclick="location.href='/login.html'">돌아가기</button>
+        </div>
+      </form>
+    </section>
+  </div>
 
   <script src="./static/js/api.js"></script>
   <script src="./static/js/api_user_manage.js"></script>

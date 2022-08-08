@@ -23,45 +23,47 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Song+Myung&display=swap" rel="stylesheet">
-  
+
   <title>iPark | Login</title>
 
   <link rel="stylesheet" href="./static/css/user.css" />
-  <!-- <link rel="stylesheet" href="./static/css/nav.css" /> -->
   <link rel="icon" href="./static/css/img/favicon.png" />
 </head>
 
 <body>
+  <div class="logo"><a href="./index.html"><img src="./static/css/img/park-logo.png" alt="logo" class="logo"></a></div>
   <!-- 로그인 방식 선택 -->
-  <section class="sign" id="sign">
-    <h1>로그인</h1>
-    <form action="">
-      <!-- 아이디 -->
-      <div class="int-area">
-        <input type="text" name="username" id="username" autocomplete="off" required />
-        <label for="username">Username</label>
-      </div>
-      <!-- 패스워드 -->
-      <div class="int-area">
-        <input type="password" name="password" id="password" autocomplete="off" required />
-        <label for="password">Password</label>
-      </div>
-      <!-- 로그인 -->
-      <div class="btn-area">
-        <button type="button" id="btn" class="w-50 btn" onclick="handleLogin()">로그인</button>
-        <!-- 카카오 로그인 -->
-        <button  class="kakao-login" type="button" id="kakao" onClick="kakaoLogin()">
-          <img src="./static/css/img/kakao_login.png" alt="카카오톡">
-        </button>
-      </div>
-      <!-- 회원가입 -->
-      <div class="caption">
-        <a href="./find_username.html">아이디 찾기</a>
-        <a href="./change_password.html">비밀번호 찾기</a>
-        <a href="./signup.html">회원가입</a>
-      </div>
-    </form>
-  </section>
+  <div class="sign">
+    <section id="sign">
+      <h1>로그인</h1>
+      <form action="">
+        <!-- 아이디 -->
+        <div class="int-area">
+          <input type="text" name="username" id="username" autocomplete="off" required />
+          <label for="username">Username</label>
+        </div>
+        <!-- 패스워드 -->
+        <div class="int-area">
+          <input type="password" name="password" id="password" autocomplete="off" required />
+          <label for="password">Password</label>
+        </div>
+        <!-- 로그인 -->
+        <div class="btn-area">
+          <button type="button" id="btn" class="w-50 btn" onclick="handleLogin()">로그인</button>
+          <!-- 카카오 로그인 -->
+          <button class="kakao-login" type="button" id="kakao" onClick="kakaoLogin()">
+            <img src="./static/css/img/kakao_login.png" alt="카카오톡">
+          </button>
+        </div>
+        <!-- 회원가입 -->
+        <div class="caption">
+          <a href="./find_username.html">아이디 찾기</a>
+          <a href="./change_password.html">비밀번호 찾기</a>
+          <a href="./signup.html">회원가입</a>
+        </div>
+      </form>
+    </section>
+  </div>
 
   <!-- 카카오 회원가입 -->
   <div class="sign" id="kakaosignup" style="display:none;">
@@ -98,7 +100,7 @@
       <br>
       <!-- 지역구 -->
       <div class="int-region">
-        <div valgn="top"> 
+        <div valgn="top">
           <span class="region">선호하는 지역구</span>
           <select name="items1" id="floatingRegion">
             <option value="1">강남구</option>
@@ -132,19 +134,18 @@
       <br>
       <!-- 회원가입 -->
       <div class="caption">
-        <button id="signupbtn" class="w-50 btn" type="button"
-          onclick="handleSignup()">회원가입</button>
+        <button id="signupbtn" class="w-50 btn" type="button" onclick="handleSignup()">회원가입</button>
       </div>
       <div class="to-login">
         <span>이미 계정이 있으신가요?</span>
         <a href="./login.html">로그인</a>
       </div>
     </form>
-    
-  <script src="./static/js/api.js"></script>
-  <script src="./static/js/api_user.js"></script>
-  <script src="./static/js/user_kakao.js"></script>
-  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
+    <script src="./static/js/api.js"></script>
+    <script src="./static/js/api_user.js"></script>
+    <script src="./static/js/user_kakao.js"></script>
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 </body>
 
 </html>

@@ -5,7 +5,6 @@
 }
 
 body {
-    display: flex;
     align-items: center;
     height: 100vh;
     min-width: 300px;
@@ -30,11 +29,22 @@ body::before {
     display: flex;
 }
 
+.logo {
+    width: 100px;
+    margin: 10px auto;
+}
+
+.close-button {
+    cursor: pointer;
+}
 /* 연초록색박스 */
 .sign {
+    display: flex;
     z-index: 2;
-    background-color: #8fcb6f95;
+    background-color: white;
+    border: 1px solid #a8ce67;
     border-radius: 30px;
+    width: 500px;
     height: auto;
     padding: 50px;
 }
@@ -51,7 +61,6 @@ body::before {
 .int-area {
     position: relative;
     width: 400px;
-    margin-top: 20px;
 }
 
 .int-area input {
@@ -63,6 +72,7 @@ body::before {
     font-size: 18px;
     color: black;
     outline: none;
+    margin: 20px auto;
 }
 
 /* 스페이스홀더 이동,색상 지정 */
@@ -190,7 +200,7 @@ body::before {
 }
 
 /* 비밀번호 찾기 페이지 : 안내문구, 팝업 */
-.change-password-info {
+.popup-info {
     text-align: center;
     font-size: 15px;
 }
@@ -235,7 +245,7 @@ body::before {
 
 /* 모달창 바디 */
 .popup-body {
-    text-align: center;
+
 }
 
 .popup-body h3 {
@@ -253,11 +263,16 @@ body::before {
 }
 
 /* 모달창 업로드 */
+.popup-upload {
+    text-align: center;
+}
+
 .popup-upload button {
     background-color: #198754;
     width: 30%;
     height: 50px;
     border-radius: 15px;
+    margin: auto;
 }
 
 .popup-upload button:hover {
@@ -287,7 +302,7 @@ body::before {
 }
 
 .to-login span {
-    color: white;
+    color: black;
     font-weight: 700;
 }
 
@@ -314,6 +329,10 @@ body::before {
     .sign {
         margin: auto;
     }
+
+    .int-area {
+        margin-top: 20px;
+    }
 }
 
 @media screen and (max-width: 414px) {
@@ -323,13 +342,13 @@ body::before {
     }
 
     .sign h1 {
-        font-size: 20px;
+        font-size: 18px;
         font-weight: 700;
-        margin: 25px;
+        margin: 10px;
     }
 
     .sign h3 {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .int-area {
@@ -337,11 +356,11 @@ body::before {
     }
 
     .int-area input {
-        margin: auto;
+        margin: 5px auto;
     }
 
     .int-area label {
-        font-size: 14px;
+        font-size: 12px;
     }
 
     .int-area input:focus+label,
@@ -368,6 +387,23 @@ body::before {
     }
 
     .int-region {
-        margin-top: 10px;
+        margin: 10px 10px auto;
+        font-size: 12px;
+    }
+
+    .region {
+        font-weight: 700;
+        font-size: 14px;
+        color: darkgreen;
+    }
+
+    .to-login span {
+        font-size: 14px;
+    }
+
+    .to-login a {
+        font-size: 14px;
+        margin-left: 10px;
+        padding: 10px;
     }
 }

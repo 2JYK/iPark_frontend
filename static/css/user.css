@@ -37,6 +37,7 @@ body::before {
 .close-button {
     cursor: pointer;
 }
+
 /* 연초록색박스 */
 .sign {
     display: flex;
@@ -253,12 +254,10 @@ body::before {
 }
 
 /* 모달창 바디 */
-/* .popup-body {
-    
-} */
 .popup-change-body {
     text-align: center;
 }
+
 .popup-body h3 {
     font-size: 15px;
     font-weight: 500;

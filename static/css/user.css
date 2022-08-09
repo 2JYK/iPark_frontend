@@ -186,7 +186,7 @@ body::before {
 }
 
 /* 이메일 패스워드 안내 : 빨간글씨*/
-.int-area span {
+.red-font {
     color: red;
     font-size: 15px;
 }
@@ -321,8 +321,8 @@ body::before {
 .to-login a {
     font-size: 15px;
     font-weight: 700;
-    background-color: #198754;
-    color: white;
+    background-color: #fae100;
+    color: black;
     text-decoration: none;
     margin-left: 10px;
     border-radius: 8px;
@@ -331,9 +331,9 @@ body::before {
 }
 
 .to-login a:hover {
-    background-color: #fae100;
-    --bs-btn-hover-bg: #fae100;
-    color: black;
+    background-color: darkgreen;
+    --bs-btn-hover-bg:darkgreen;
+    color: white;
 }
 
 /* 반응형 */

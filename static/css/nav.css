@@ -60,7 +60,7 @@ footer a {
 @media (max-width: 375px) {
   .nav-right-buttons {
     min-width: 280px;
-    margin-right: 50px;
+    /* margin-right: 50px; */
   }
   
   .nav-right-buttons a {

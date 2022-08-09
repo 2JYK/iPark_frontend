@@ -320,8 +320,16 @@
 @media (min-width: 900px) {
   .park-image-map {
     grid-template-columns: repeat(2, 1fr);
-    margin: 30px auto;
+    margin: 50px auto 30px auto;
     min-width: 320px;
+  }
+
+  .map-maker-info {
+    margin: auto auto 50px auto;
+    text-align-last: end;
+    padding-right: 18%;
+    color: royalblue;
+    font-weight: 700;
   }
 }
 
@@ -330,6 +338,15 @@
     grid-template-columns: repeat(1, 1fr);
     gap: 30px 0px;
     margin: 30px auto 370px auto;
+  }
+
+  .map-maker-info {
+    margin: auto auto 40px auto;
+    text-align-last: end;
+    padding-right: 10%;
+    color: royalblue;
+    font-weight: 700;
+    font-size: 13px;
   }
 }
 

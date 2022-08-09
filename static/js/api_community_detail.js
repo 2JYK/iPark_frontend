@@ -98,11 +98,13 @@ async function getArticlesDetail(receivedData) {
 async function updateArticle(receivedData) {
   const image = document.getElementById("popupBodyFile").files
   const title = document.getElementById("popupBodyTitle").value
+  const titleHTML = removeHTMLText(title)
   const content = document.getElementById("popupBodyContent").value
+  const contentHTML = removeHTMLText(content)
   const formData = new FormData()
 
-  formData.append("title", title)
-  formData.append("content", content)
+  formData.append("title", titleHTML)
+  formData.append("content", contentHTML)
   if (image.length == 1) {
     formData.append("image", image[0])
   }
@@ -286,10 +288,10 @@ async function articleCommentDel(comment_id) {
     if (response.status == 200) {
       const del_div = document.querySelector(`#del${comment_id}`)
       del_div.remove()
-    
+
       // 댓글수 카운트
-    const commentCount = document.querySelector("#commentCount")
-    commentCount.innerHTML = parseInt(commentCount.innerHTML) - 1
+      const commentCount = document.querySelector("#commentCount")
+      commentCount.innerHTML = parseInt(commentCount.innerHTML) - 1
     } else {
       alert(response_json["message"])
     }

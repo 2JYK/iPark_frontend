@@ -43,7 +43,6 @@ function showParkDetail(id, urlParkCommentPageNum) {
     data: { id, urlParkCommentPageNum },
 
     success: function (response) {
-      console.log("response")
       sessionStorage.setItem("park_info", JSON.stringify(response))
 
       if (urlParkCommentPageNum) {

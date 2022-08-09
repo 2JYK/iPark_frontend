@@ -130,7 +130,7 @@ async function handleLogin() {
 async function kakaoUserForm(authObj, kakaoData) {
   const kakaoUserData = Object.assign({}, authObj, kakaoData)
 
-  const response = await fetch(`${backendBaseUrl}/user/kakao/`, {
+  const res = await fetch(`${backendBaseUrl}/user/kakao/`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -141,18 +141,17 @@ async function kakaoUserForm(authObj, kakaoData) {
 
     .then(async (res) => {
       const code = await res.json()
+
       if (res.status == 200 && code.res_code == 2) {
-        res.json().then((res) => {
-          localStorage.setItem("access", res.access)
-          localStorage.setItem("refresh", res.refresh)
-          const base64Url = res.access.split(".")[1]
+          localStorage.setItem("access", code.access)
+          localStorage.setItem("refresh", code.refresh)
+          const base64Url = code.access.split(".")[1]
           const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/")
           const jsonPayload = decodeURIComponent(atob(base64).split("").map(function (c) {
             return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2)
           }).join(""))
           localStorage.setItem("payload", jsonPayload)
           window.location.replace(`${frontendBaseUrl}/index.html`)
-        })
 
       } else if (res.status == 200 && code.res_code == 1) {
         sign.style.display = "none"

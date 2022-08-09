@@ -77,7 +77,6 @@ async function deleteComment(comment_id) {
   } else if (response.status == 400) {
     alert(response_json["message"])
   } else {
-    console.log(response_json)
     alert("로그인한 사용자만 이용할 수 있습니다")
   }
 }

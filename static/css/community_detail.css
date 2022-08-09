@@ -122,6 +122,7 @@
 
 .info {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
 }
 
@@ -269,6 +270,17 @@
   .info,
   .article-content {
     font-size: 10px;
+  }
+
+  .info {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .info-name,
+  .info-count {
+    flex-direction: row;
+    justify-content: flex-start;
   }
 
   .comment-start {

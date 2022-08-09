@@ -97,7 +97,7 @@ async function handleLogin() {
     password: document.getElementById("password").value
   }
 
-  const response = await fetch(`${backendBaseUrl}/user/api/token/`, {
+  const response = await fetch(`${backendBaseUrl}/user/api/ipark/token/`, {
     method: "POST",
     headers: {
       Accept: "application/json",

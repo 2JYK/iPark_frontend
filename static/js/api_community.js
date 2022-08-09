@@ -5,12 +5,13 @@ async function articlePost() {
   const park = document.getElementById("popupBodyPark").value
   tag = parseInt(select)
   const title = document.getElementById("popupBodyTitle").value
+  const titleHTML = removeHTMLText(title)
   const content = document.getElementById("popupBodyContent").value
   const formData = new FormData()
 
   formData.append("tag", tag)
   formData.append("park", park)
-  formData.append("title", title)
+  formData.append("title", titleHTML)
   formData.append("content", content)
 
   if (image.length == 1) {

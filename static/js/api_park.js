@@ -1,9 +1,10 @@
 // 댓글 작성 
 async function postComment(id) {
   const comment = document.getElementById("commentInputComment").value
+  const commentHTML = removeHTMLText(comment)
   const commentData = {
     "park": id,
-    "comment": comment
+    "comment": commentHTML
   }
 
   const response = await fetch(`${backendBaseUrl}/park/${id}/comment/`, {

@@ -144,10 +144,11 @@ async function deleteArticle(receivedData) {
 // 댓글 POST
 async function articleCommentPost(article_id) {
   const comment = document.getElementById("commentPost").value
+  const commentHTML = removeHTMLText(comment)
   const commentData = {
     // "user": parseJwt("access").user_id,
     // "article": article_id,
-    "comment": comment
+    "comment": commentHTML
   }
 
   // 로그인 유저와 비로그인 유저 판별

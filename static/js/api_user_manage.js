@@ -155,25 +155,28 @@ async function changeAccount() {
 
 // 회원 탈퇴
 async function withdrawal() {
-  const response = await fetch(`${backendBaseUrl}/user/`, {
-    method: "DELETE",
-    headers: {
-      Accept: "application/json",
-      "Content-type": "application/json",
-      "Authorization": "Bearer " + localStorage.getItem("access")
+  var delConfirm = confirm("정말 회원 탈퇴를 진행하시겠습니까?")
+  if (delConfirm) {
+    const response = await fetch(`${backendBaseUrl}/user/`, {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        "Content-type": "application/json",
+        "Authorization": "Bearer " + localStorage.getItem("access")
+      }
+    })
+
+    withdrawal_json = await response.json()
+    if (response.status == 200) {
+      alert(withdrawal_json["message"])
+      localStorage.removeItem("payload")
+      localStorage.removeItem("access")
+      localStorage.removeItem("refresh")
+      window.location.replace(`${frontendBaseUrl}/index.html`)
+
+    } else {
+      alert(withdrawal_json["message"])
     }
-  })
-
-  withdrawal_json = await response.json()
-  if (response.status == 200) {
-    alert(withdrawal_json["message"])
-    localStorage.removeItem("payload")
-    localStorage.removeItem("access")
-    localStorage.removeItem("refresh")
-    window.location.replace(`${frontendBaseUrl}/index.html`)
-
-  } else {
-    alert(withdrawal_json["message"])
   }
 }
 

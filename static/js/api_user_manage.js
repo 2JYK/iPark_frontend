@@ -55,8 +55,8 @@ async function searchUser() {
     document.getElementById("accountUsername").value = verification_json.username
     document.getElementById("accountFullname").value = verification_json.fullname
     document.getElementById("accountEmail").value = verification_json.email.split("@")[0]
-    document.querySelector("#email-field select option").value = "@" + verification_json.email.split("@")[1]
-    document.querySelector("#email-field select option").innerHTML = "@" + verification_json.email.split("@")[1]
+    document.querySelector("#emailField select option").value = "@" + verification_json.email.split("@")[1]
+    document.querySelector("#emailField select option").innerHTML = "@" + verification_json.email.split("@")[1]
     document.getElementById("accountPhone").value = verification_json.phone
     document.getElementById("accountRegion").value = verification_json.region
 
@@ -83,7 +83,7 @@ async function changeAccount() {
       username: document.getElementById("accountUsername").value,
       password: document.getElementById("accountPassword").value,
       fullname: document.getElementById("accountFullname").value,
-      email: document.getElementById("accountEmail").value + document.querySelector("#email-field select option").value,
+      email: document.getElementById("accountEmail").value + document.querySelector("#emailField select option").value,
       phone: document.getElementById("accountPhone").value,
       region: document.getElementById("accountRegion").value
     }
@@ -91,7 +91,7 @@ async function changeAccount() {
     changedData = {
       username: document.getElementById("accountUsername").value,
       fullname: document.getElementById("accountFullname").value,
-      email: document.getElementById("accountEmail").value + document.querySelector("#email-field select option").value,
+      email: document.getElementById("accountEmail").value + document.querySelector("#emailField select option").value,
       phone: document.getElementById("accountPhone").value,
       region: document.getElementById("accountRegion").value
     }
@@ -119,35 +119,35 @@ async function changeAccount() {
     for (let i = 0; i < key.length; i++) {
       switch (key[i]) {
         case "username":
-          const err_username = document.getElementById("username-field")
+          const err_username = document.getElementById("usernameField")
           var new_span = document.createElement("span")
           new_span.setAttribute("id", "error")
           new_span.innerText = error[i]
           err_username.appendChild(new_span)
           break
         case "email":
-          const err_email = document.getElementById("email-field")
+          const err_email = document.getElementById("emailField")
           var new_span = document.createElement("span")
           new_span.setAttribute("id", "error")
           new_span.innerText = error[i]
           err_email.appendChild(new_span)
           break
         case "fullname":
-          const err_fullname = document.getElementById("fullname-field")
+          const err_fullname = document.getElementById("fullnameField")
           var new_span = document.createElement("span")
           new_span.setAttribute("id", "error")
           new_span.innerText = error[i]
           err_fullname.appendChild(new_span)
           break
         case "password":
-          const err_password = document.getElementById("password-field")
+          const err_password = document.getElementById("passwordField")
           var new_span = document.createElement("span")
           new_span.setAttribute("id", "error")
           new_span.innerText = error[i]
           err_password.appendChild(new_span)
           break
         case "phone":
-          const err_phone = document.getElementById("phone-field")
+          const err_phone = document.getElementById("phoneField")
           var new_span = document.createElement("span")
           new_span.setAttribute("id", "error")
           new_span.innerText = error[i]

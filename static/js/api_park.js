@@ -52,7 +52,7 @@ async function putComment(comment_id) {
       </div>
     `
     document.getElementById(`updateButton(${comment_id})`).innerHTML = `<i class="fa-solid fa-pencil"></i>`
-    document.getElementById(`deleteButton(${comment_id})`).style.display = 'none'
+    document.getElementById(`deleteButton(${comment_id})`).style.display = "none"
   } else {
     alert(response_json["message"])
   }

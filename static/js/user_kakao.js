@@ -15,7 +15,7 @@ function kakaoLogin() {
         url: "/v2/user/me",
         success: function (kakao) {
           const kakaoData = {
-            username: kakao.kakao_account.email.split('@')[0],
+            username: kakao.kakao_account.email.split("@")[0],
             email: kakao.kakao_account.email,
             fullname: kakao.kakao_account.profile.nickname
           }

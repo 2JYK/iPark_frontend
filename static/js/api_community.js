@@ -81,7 +81,7 @@ async function getPaginationList(id, url) {
   let token = {}
   if (id == 3 || String(id).indexOf("http") == 0) {
     token = {
-      'content-type': "application/json",
+      "content-type": "application/json",
       "Access-Control-Allow-Origin": "*",
       "Authorization": "Bearer " + localStorage.getItem("access"),
     }
@@ -238,7 +238,7 @@ function getSearchArticles() {
                       <td>${updated_at}</td>
                       <td>${check_count}</td>
                     </tr>`
-        $('#best').append(temp_html)
+        $("#best").append(temp_html)
       }
     }
   })

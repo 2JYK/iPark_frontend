@@ -1,6 +1,6 @@
 // 로그인하지 않은 유저 업로드 금지
 const modal = document.getElementById("modalOpen")
-modal.addEventListener('click', () => {
+modal.addEventListener("click", () => {
   if (parseJwt("access") == null) {
     alert("로그인한 사용자만 이용할 수 있습니다")
     location.reload()
@@ -13,7 +13,7 @@ $(function () {
   const body = document.querySelector("body");
   $("#modalOpen").click(function () {
     body.style.overflow = "hidden"  // 스크롤 방지
-    $("#popup").css('display', 'flex').hide().fadeIn();
+    $("#popup").css("display", "flex").hide().fadeIn();
   })
 
   $("#close").click(function () {
@@ -29,11 +29,11 @@ $(function () {
 
 // HTML 정규식
 function removeHTML(text) {
-  text = text.innerHTML.replace(/<[^>]*>?/ig, '\n');  // <br> 태그 변환
+  text = text.innerHTML.replace(/<[^>]*>?/ig, "\n");  // <br> 태그 변환
   // <, >, & 역정규식 변환
-  text = text.replaceAll("&lt;", '<')
-  text = text.replaceAll("&gt;", '>')
-  text = text.replaceAll("&amp;", '&')
+  text = text.replaceAll("&lt;", "<")
+  text = text.replaceAll("&gt;", ">")
+  text = text.replaceAll("&amp;", "&")
 
   return text
 }

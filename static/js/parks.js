@@ -166,8 +166,8 @@ function editComment(comment_id) {
   if (editButton.innerHTML == `<i class="fa-solid fa-pencil"></i>`) {
     editButton.innerHTML = `<i class="fa-solid fa-check"></i>`
 
-    document.getElementById(`deleteButton(${comment_id})`).style.display = 'block'
-    document.getElementById(`commentUploadTime(${comment_id})`).style.display = 'none'
+    document.getElementById(`deleteButton(${comment_id})`).style.display = "block"
+    document.getElementById(`commentUploadTime(${comment_id})`).style.display = "none"
 
     const comment = document.getElementById(`commentContent(${comment_id})`)
     comment.innerHTML = `<textarea class="textarea" id="inputContent(${comment_id})">${comment.innerText}</textarea>`
@@ -184,8 +184,8 @@ function pagination(commentTotalCount, paginationSize, listSize, parkCommentPage
   // 댓글이 없을 시 댓글박스 숨김처리
   if (commentTotalCount <= 0) {
     document.getElementById("commnetInputBox").innerHTML = `<input type="text" id="commentInputComment" placeholder="첫 댓글을 입력해주세요" required=""></input>`
-    document.getElementById("commentBox").style.display = 'none'
-    document.getElementById("commentPaginationNum").style.display = 'none'
+    document.getElementById("commentBox").style.display = "none"
+    document.getElementById("commentPaginationNum").style.display = "none"
   }
 
   let totalPageSize = Math.ceil(commentTotalCount / listSize)

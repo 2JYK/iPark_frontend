@@ -1,12 +1,12 @@
 // 게시글 상세페이지
-const receivedData = parseInt(location.href.split('?')[1])
+const receivedData = parseInt(location.href.split("?")[1])
 
 
 // 게시글 불러오기
 async function getArticlesDetail(receivedData) {
   if (parseJwt("access") != null) {
     token = {
-      'content-type': "application/json",
+      "content-type": "application/json",
       "Access-Control-Allow-Origin": "*",
       "Authorization": "Bearer " + localStorage.getItem("access"),
     }
@@ -15,7 +15,7 @@ async function getArticlesDetail(receivedData) {
   }
 
   const response = await fetch(`${backendBaseUrl}/community/${receivedData}/`, {
-    method: 'GET',
+    method: "GET",
     headers: token
   })
 
@@ -96,7 +96,7 @@ async function getArticlesDetail(receivedData) {
 
 // 게시글 수정
 async function updateArticle(receivedData) {
-  const image = document.getElementById("popup-body-file").files
+  const image = document.getElementById("popupBodyFile").files
   const title = document.getElementById("popupBodyTitle").value
   const content = document.getElementById("popupBodyContent").value
   const formData = new FormData()
@@ -127,10 +127,10 @@ async function updateArticle(receivedData) {
 async function deleteArticle(receivedData) {
   const response = await fetch(`${backendBaseUrl}/community/${receivedData}/`, {
     headers: {
-      'Content-Type': 'application/json',
-      'Authorization': "Bearer " + localStorage.getItem("access")
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + localStorage.getItem("access")
     },
-    method: 'DELETE'
+    method: "DELETE"
   })
 
   if (response.status == 200) {
@@ -154,7 +154,7 @@ async function articleCommentPost(article_id) {
   if (parseJwt("access") != undefined) {
     token = {
       Accept: "application/json",
-      'content-type': "application/json",
+      "content-type": "application/json",
       "Access-Control-Allow-Origin": "*",
       "Authorization": "Bearer " + localStorage.getItem("access"),
     }
@@ -222,7 +222,7 @@ async function articleCommentGet(article_id) {
   if (parseJwt("access") != undefined) {
     token = {
       Accept: "application/json",
-      'content-type': "application/json",
+      "content-type": "application/json",
       "Access-Control-Allow-Origin": "*",
       "Authorization": "Bearer " + localStorage.getItem("access"),
     }

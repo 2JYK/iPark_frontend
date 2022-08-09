@@ -50,35 +50,35 @@ async function handleSignup() {
     for (let i = 0; i < key.length; i++) {
       switch (key[i]) {
         case "username":
-          const err_username = document.getElementById("username-field")
+          const err_username = document.getElementById("usernameField")
           var new_span = document.createElement("span")
           new_span.setAttribute("id", "error")
           new_span.innerText = error[i]
           err_username.appendChild(new_span)
           break
         case "email":
-          const err_email = document.getElementById("email-field")
+          const err_email = document.getElementById("emailField")
           var new_span = document.createElement("span")
           new_span.setAttribute("id", "error")
           new_span.innerText = error[i]
           err_email.appendChild(new_span)
           break
         case "fullname":
-          const err_fullname = document.getElementById("fullname-field")
+          const err_fullname = document.getElementById("fullnameField")
           var new_span = document.createElement("span")
           new_span.setAttribute("id", "error")
           new_span.innerText = error[i]
           err_fullname.appendChild(new_span)
           break
         case "password":
-          const err_password = document.getElementById("password-field")
+          const err_password = document.getElementById("passwordField")
           var new_span = document.createElement("span")
           new_span.setAttribute("id", "error")
           new_span.innerText = error[i]
           err_password.appendChild(new_span)
           break
         case "phone":
-          const err_phone = document.getElementById("phone-field")
+          const err_phone = document.getElementById("phoneField")
           var new_span = document.createElement("span")
           new_span.setAttribute("id", "error")
           new_span.innerText = error[i]

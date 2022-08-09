@@ -27,9 +27,14 @@ $(function () {
 })
 
 
-//HTML 정규식
+// HTML 정규식
 function removeHTML(text) {
-  text = text.innerHTML.replace(/<[^>]*>?/ig, '\n');
+  text = text.innerHTML.replace(/<[^>]*>?/ig, '\n');  // <br> 태그 변환
+  // <, >, & 역정규식 변환
+  text = text.replaceAll("&lt;", '<')
+  text = text.replaceAll("&gt;", '>')
+  text = text.replaceAll("&amp;", '&')
+
   return text
 }
 
@@ -43,12 +48,13 @@ function openModal() {
   //수정 모달 안에 원래 있던 내용 넣어주기
   const oldTitle = document.getElementById("articleTitle")
   const oldContent = document.getElementById("articleContent")
+  const putTitle = removeHTML(oldTitle)
   const putContent = removeHTML(oldContent)
   const oldImage = document.getElementById("articleImage")
   const inputTitle = document.getElementById("popupBodyTitle")
   const inputContent = document.getElementById("popupBodyContent")
 
-  inputTitle.value = oldTitle.innerHTML
+  inputTitle.value = putTitle
   inputContent.value = putContent
 
   if (oldImage) {
@@ -65,6 +71,7 @@ function openModal() {
 }
 
 
+// 사진 미리보기 함수
 function readURL(input) {
   if (input.files && input.files[0]) {
     var reader = new FileReader()

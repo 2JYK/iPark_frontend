@@ -47,7 +47,6 @@ async function searchUser() {
   if (response.status == 200) {
     const popup = document.getElementById("popup")
     popup.style.visibility = "visible"
-    console.log(document.querySelector("#email-field select option"))
     document.getElementById("accountUsername").value = verification_json.username
     document.getElementById("accountFullname").value = verification_json.fullname
     document.getElementById("accountEmail").value = verification_json.email.split("@")[0]
@@ -66,6 +65,11 @@ async function searchUser() {
 
 // 계정확인 페이지 : 수정된 데이터 송신
 async function changeAccount() {
+  var error_node = document.getElementById("error")
+  if (error_node) {
+    error_node.parentNode.removeChild(error_node)
+  }
+
   let changedData
 
   if (document.getElementById("accountPassword").value) {
@@ -97,16 +101,57 @@ async function changeAccount() {
     body: JSON.stringify(changedData)
   })
 
-  account_response = response.json()
+  account_response = await response.json()
   if (response.status == 201) {
     alert("회원정보 수정이 완료되었습니다.")
     window.location.replace(`${frontendBaseUrl}/index.html`)
 
   } else {
-    alert(account_response.data)
+    // alert(account_response["error"])
+    const key = Object.keys(account_response)
+    const error = Object.values(account_response)
+
+    for (let i = 0; i < key.length; i++) {
+      switch (key[i]) {
+        case "username":
+          const err_username = document.getElementById("username-field")
+          var new_span = document.createElement("span")
+          new_span.setAttribute("id", "error")
+          new_span.innerText = error[i]
+          err_username.appendChild(new_span)
+          break
+        case "email":
+          const err_email = document.getElementById("email-field")
+          var new_span = document.createElement("span")
+          new_span.setAttribute("id", "error")
+          new_span.innerText = error[i]
+          err_email.appendChild(new_span)
+          break
+        case "fullname":
+          const err_fullname = document.getElementById("fullname-field")
+          var new_span = document.createElement("span")
+          new_span.setAttribute("id", "error")
+          new_span.innerText = error[i]
+          err_fullname.appendChild(new_span)
+          break
+        case "password":
+          const err_password = document.getElementById("password-field")
+          var new_span = document.createElement("span")
+          new_span.setAttribute("id", "error")
+          new_span.innerText = error[i]
+          err_password.appendChild(new_span)
+          break
+        case "phone":
+          const err_phone = document.getElementById("phone-field")
+          var new_span = document.createElement("span")
+          new_span.setAttribute("id", "error")
+          new_span.innerText = error[i]
+          err_phone.appendChild(new_span)
+          break
+      }
+    }
   }
 }
-
 
 // 회원 탈퇴
 async function withdrawal() {

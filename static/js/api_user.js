@@ -154,7 +154,7 @@ async function kakaoUserForm(authObj, kakaoData) {
           window.location.replace(`${frontendBaseUrl}/index.html`)
 
       } else if (res.status == 200 && code.res_code == 1) {
-        sign.style.display = "none"
+        document.getElementById("sign").style.display = "none"
         kakaosignup.style.display = "block"
         const username = document.getElementById("floatingInput")
         const email = document.getElementById("floatingInputEmail")

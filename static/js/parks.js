@@ -10,7 +10,8 @@ if (!urlParkCommentPageNum) {
 function appendParkHtml(
   park_name, addr, check_count, image,
   list_content, admintel, main_equip, template_url, updated_at,
-  id, bookmarks, comments) {
+  id, comments) {
+  getParkBookmark(id)
 
   parkDetailTempHtml = `
     <!-- 첫번째 구간 : 이름, 북마크 -->
@@ -18,9 +19,7 @@ function appendParkHtml(
       <div class="park-name">
         <h1>${park_name}</h1>
       </div>
-      <div class="bookmark">
-        <i id="heart" class="fa-regular fa-heart" type="button" onclick="postBookmark(${id})"></i>
-        <span id= "bookmarkCnt" class="bookmark-cnt">${bookmarks.length}</span>
+      <div id="bookmark" class="bookmark">
       </div>
     </div>
 
@@ -223,7 +222,6 @@ $(document).ready(function () {
     x["template_url"],
     x["updated_at"],
     x["id"],
-    x["bookmarks"],
     x["comments"],
   )
 
@@ -290,23 +288,6 @@ $(document).ready(function () {
     }
   })
   // sessionStorage.removeItem("park_info")
-
-
-  // 북마크 여부 확인
-  if (x["bookmarks"] !== "") {
-    const userid = parseJwt("access").user_id
-    const bookmarks = x["bookmarks"]
-    const userlist = []
-
-    bookmarks.forEach(data => {
-      userlist.push(data["user"])
-    })
-
-    if (userlist.includes(userid)) {
-      const heart = document.getElementById("heart")
-      heart.classList.add("fa-solid")
-    }
-  }
 })
 
 

@@ -83,6 +83,41 @@ async function deleteComment(comment_id) {
 }
 
 
+//북마크 정보 불러오기
+async function getParkBookmark(id) {
+  token = {
+    "content-type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+    "Authorization": "Bearer " + localStorage.getItem("access"),
+  }
+  const response = await fetch(`${backendBaseUrl}/park/${id}/bookmark/`, {
+    method: "GET",
+    headers: token
+  })
+
+  responseJson = await response.json()
+
+  heartDiv = document.getElementById("bookmark")
+  heartDiv.innerHTML = `<i id="heart" class="fa-regular fa-heart" type="button" onclick="postBookmark(${id})"></i>
+                        <span id= "bookmarkCnt" class="bookmark-cnt">${responseJson.length}</span>`
+
+  //북마크 여부 확인
+  if (responseJson !== "") {
+    const userid = parseJwt("access").user_id
+    const userlist = []
+
+    responseJson.forEach(data => {
+      userlist.push(data["user"])
+    })
+
+    if (userlist.includes(userid)) {
+      const heart = document.getElementById("heart")
+      heart.classList.add("fa-solid")
+    }
+  }
+}
+
+
 // 북마크 등록 및 취소 (공원 상세 페이지)
 async function postBookmark(id) {
   const response = await fetch(`${backendBaseUrl}/park/${id}/`, {

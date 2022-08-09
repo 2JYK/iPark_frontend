@@ -88,7 +88,6 @@ async function getParkBookmark(id) {
   token = {
     "content-type": "application/json",
     "Access-Control-Allow-Origin": "*",
-    "Authorization": "Bearer " + localStorage.getItem("access"),
   }
   const response = await fetch(`${backendBaseUrl}/park/${id}/bookmark/`, {
     method: "GET",

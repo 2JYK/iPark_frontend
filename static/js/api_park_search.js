@@ -56,7 +56,8 @@ function getParks() {
 
 function getParkByName() {
   const parkName = "param=" + document.getElementById("search").value + "&"
-
+  $("#parks").empty()
+  
   $.ajax({
     type: "GET",
     url: `${backendBaseUrl}/park/option/` + "?" + parkName,

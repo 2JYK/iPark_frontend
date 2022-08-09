@@ -69,7 +69,7 @@ function appendParkHtml(
     <div>
       <div class="park-comment">
         <form action="POST">
-        <div class="comment-box">
+        <div class="comment-box" id="commentBox">
           <div class="comments" id="comments${id}">
             <!-- 공원 상세보기 댓글 : append.html -->
           </div>
@@ -84,7 +84,7 @@ function appendParkHtml(
 
         <!-- 댓글 입력창 -->
         <div class="comment-input-box">
-          <div class="comment-input-comment">
+          <div class="comment-input-comment" id="commnetInputBox">
             <input type="text" id="commentInputComment" placeholder="댓글을 입력해주세요" required /></input>
           </div>
           <div class="comment-input-button">
@@ -166,7 +166,6 @@ function editComment(comment_id) {
   if (editButton.innerHTML == `<i class="fa-solid fa-pencil"></i>`) {
     editButton.innerHTML = `<i class="fa-solid fa-check"></i>`
 
-
     document.getElementById(`deleteButton(${comment_id})`).style.display = 'block'
     document.getElementById(`commentUploadTime(${comment_id})`).style.display = 'none'
 
@@ -182,6 +181,13 @@ function editComment(comment_id) {
 
 // 댓글 페이지네이션 
 function pagination(commentTotalCount, paginationSize, listSize, parkCommentPage, id) {
+  // 댓글이 없을 시 댓글박스 숨김처리
+  if (commentTotalCount <= 0) {
+    document.getElementById("commnetInputBox").innerHTML = `<input type="text" id="commentInputComment" placeholder="첫 댓글을 입력해주세요" required=""></input>`
+    document.getElementById("commentBox").style.display = 'none'
+    document.getElementById("commentPaginationNum").style.display = 'none'
+  }
+
   let totalPageSize = Math.ceil(commentTotalCount / listSize)
   let firstBottomNumber = parkCommentPage - parkCommentPage % paginationSize + 1
   let lastBottomNumber = parkCommentPage - parkCommentPage % paginationSize + paginationSize

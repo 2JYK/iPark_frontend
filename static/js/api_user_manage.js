@@ -26,10 +26,15 @@ async function findUsername() {
 }
 
 
+// 계정관리 페이지에 로그인한 사용자의 username 미리 표시하기 위한 값
+const username = document.getElementById("checkUsername")
+username.value = JSON.parse(localStorage.getItem("payload"))["username"]
+
+
 // 계정관리 페이지 사용 권한 확인
 async function searchUser() {
   const userData = {
-    username: document.getElementById("checkUsername").value,
+    username: username.value,
     password: document.getElementById("checkPassword").value
   }
 

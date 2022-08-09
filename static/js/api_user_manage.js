@@ -175,7 +175,6 @@ async function withdrawal() {
       window.location.replace(`${frontendBaseUrl}/index.html`)
 
     } else {
-      alert(withdrawal_json["message"])
     }
   }
 }

@@ -20,7 +20,7 @@ function appendParkHtml(
       </div>
       <div class="bookmark">
         <i id="heart" class="fa-regular fa-heart" type="button" onclick="postBookmark(${id})"></i>
-        <span class="bookmark-cnt">${bookmarks.length}</span>
+        <span id= "bookmarkCnt" class="bookmark-cnt">${bookmarks.length}</span>
       </div>
     </div>
 
@@ -290,6 +290,8 @@ $(document).ready(function () {
     }
   })
   // sessionStorage.removeItem("park_info")
+
+
   // 북마크 여부 확인
   if (x["bookmarks"] !== "") {
     const userid = parseJwt("access").user_id
@@ -306,3 +308,15 @@ $(document).ready(function () {
     }
   }
 })
+
+
+// 북마크 갯수 카운트
+function changeBookmarkCount() {
+  heart = document.getElementById("heart")
+  heartCount = document.getElementById("bookmarkCnt")
+  if (heart.classList.contains("fa-solid")) {
+    heartCount.innerHTML = parseInt(heartCount.innerHTML) - 1
+  } else {
+    heartCount.innerHTML = parseInt(heartCount.innerHTML) + 1
+  }
+}

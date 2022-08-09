@@ -95,9 +95,10 @@ async function postBookmark(id) {
 
   response_json = await response.json()
   if (response.status == 200) {
-    showParkDetail(id)
+    changeBookmarkCount()
+    $("#heart").toggleClass("fa-solid");
+
   } else {
     alert("로그인한 사용자만 이용할 수 있습니다")
-    window.location.reload()
   }
 }

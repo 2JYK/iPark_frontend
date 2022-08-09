@@ -12,7 +12,7 @@ TOKEN = {
 
 // HTML 정규식
 function removeHTMLText(text) {
-  text = text.replaceAll(/<[^>]*>?/g, "");  // XSS 치한
+  text = text.replaceAll(/<[^>]*>?/g, "");
 
   // text = text.replaceAll("<","&lt;")
   // text = text.replaceAll(">","&gt;")

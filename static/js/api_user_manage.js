@@ -65,10 +65,11 @@ async function searchUser() {
 
 // 계정확인 페이지 : 수정된 데이터 송신
 async function changeAccount() {
-  var error_node = document.getElementById("error")
-  if (error_node) {
-    error_node.parentNode.removeChild(error_node)
-  }
+  var error_node = document.querySelectorAll("#error")
+  error_node.forEach(
+    error =>
+      error.parentNode.removeChild(error)
+  )
 
   let changedData
 
@@ -107,7 +108,6 @@ async function changeAccount() {
     window.location.replace(`${frontendBaseUrl}/index.html`)
 
   } else {
-    // alert(account_response["error"])
     const key = Object.keys(account_response)
     const error = Object.values(account_response)
 

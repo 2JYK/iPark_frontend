@@ -16,6 +16,12 @@ $(function () {
 
 // 회원가입 
 async function handleSignup() {
+  var error_node = document.querySelectorAll("#error")
+  error_node.forEach(
+    error =>
+      error.parentNode.removeChild(error)
+  )
+
   const signupData = {
     username: document.getElementById("floatingInput").value,
     email: document.getElementById("floatingInputEmail").value + document.getElementById("emailSection").value,
@@ -45,7 +51,6 @@ async function handleSignup() {
       switch (key[i]) {
         case "username":
           const err_username = document.getElementById("username-field")
-          err_username.removeChild(err_username.lastChild)
           var new_span = document.createElement("span")
           new_span.setAttribute("id", "error")
           new_span.innerText = error[i]
@@ -53,7 +58,6 @@ async function handleSignup() {
           break
         case "email":
           const err_email = document.getElementById("email-field")
-          err_email.removeChild(err_email.lastChild)
           var new_span = document.createElement("span")
           new_span.setAttribute("id", "error")
           new_span.innerText = error[i]
@@ -61,7 +65,6 @@ async function handleSignup() {
           break
         case "fullname":
           const err_fullname = document.getElementById("fullname-field")
-          err_fullname.removeChild(err_fullname.lastChild)
           var new_span = document.createElement("span")
           new_span.setAttribute("id", "error")
           new_span.innerText = error[i]
@@ -69,7 +72,6 @@ async function handleSignup() {
           break
         case "password":
           const err_password = document.getElementById("password-field")
-          err_password.removeChild(err_password.lastChild)
           var new_span = document.createElement("span")
           new_span.setAttribute("id", "error")
           new_span.innerText = error[i]
@@ -77,7 +79,6 @@ async function handleSignup() {
           break
         case "phone":
           const err_phone = document.getElementById("phone-field")
-          err_phone.removeChild(err_phone.lastChild)
           var new_span = document.createElement("span")
           new_span.setAttribute("id", "error")
           new_span.innerText = error[i]

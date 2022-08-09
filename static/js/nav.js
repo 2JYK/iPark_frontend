@@ -36,26 +36,29 @@ if (parseJwt("access") != null) {
 function refreshToken() {
 	const payload = JSON.parse(localStorage.getItem("payload"))
 
-	if (payload.exp > (Date.now() / 1000)) {
-		return
+	if (payload) {
+		if (payload.exp > (Date.now() / 1000)) {
+			return
 
-	} else {
-		const requestRefreshToken = async (url) => {
-			const response = await fetch(url, {
-				headers: {
-					"Content-Type": "application/json"
-				},
-				method: "POST",
-				body: JSON.stringify({
-					"refresh": localStorage.getItem("refresh")
+		} else {
+			const requestRefreshToken = async (url) => {
+				const response = await fetch(url, {
+					headers: {
+						"Content-Type": "application/json"
+					},
+					method: "POST",
+					body: JSON.stringify({
+						"refresh": localStorage.getItem("refresh")
+					})
 				})
+				return response.json()
+			}
+			requestRefreshToken(`${backendBaseUrl}/user/api/token/refresh/`).then((data) => {
+				const accessToken = data.access
+				localStorage.setItem("access", accessToken)
 			})
-			return response.json()
 		}
-		requestRefreshToken(`${backendBaseUrl}/user/api/token/refresh/`).then((data) => {
-			const accessToken = data.access
-			localStorage.setItem("access", accessToken)
-		})
+	} else {
 	}
 }
 refreshToken()
@@ -155,6 +158,7 @@ window.addEventListener("unload", function (e) {
 		toDoWhenClosing()
 	}
 })
+
 
 function goToMyArticle() {
 	sessionStorage.setItem("id", 3)

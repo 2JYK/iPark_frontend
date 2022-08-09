@@ -187,6 +187,11 @@ body::before {
 
 /* 이메일 패스워드 안내 : 빨간글씨*/
 .red-font {
+    color: green;
+    font-size: 15px;
+}
+
+#error {
     color: red;
     font-size: 15px;
 }

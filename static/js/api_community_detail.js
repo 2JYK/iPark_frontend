@@ -66,7 +66,7 @@ async function getArticlesDetail(receivedData) {
 
   if (response_json.image != null) {
     const articleImage = document.getElementById("articleImage")
-    articleImage.setAttribute("src", `https://front.ilovepark.net${response_json.image}`)  //
+    articleImage.setAttribute("src", `https://front.ilovepark.net${response_json.image}`)
     // articleImage.setAttribute("src", `http://127.0.0.1:8000${response_json.image}`)
   } else {
     const articleImage = document.getElementById("articleImage")
@@ -183,6 +183,10 @@ async function articleCommentPost(article_id) {
     const commentWrap = document.querySelector(".comment-wrap")
     const comment = document.createElement("div")
 
+    // 댓글수 카운트
+    const commentCount = document.querySelector("#commentCount")
+    commentCount.innerHTML = parseInt(commentCount.innerHTML) + 1
+
     comment.className = "comment"
     comment.id = `del${data.id}`
     comment.innerHTML = `
@@ -281,6 +285,10 @@ async function articleCommentDel(comment_id) {
     if (response.status == 200) {
       const del_div = document.querySelector(`#del${comment_id}`)
       del_div.remove()
+    
+      // 댓글수 카운트
+    const commentCount = document.querySelector("#commentCount")
+    commentCount.innerHTML = parseInt(commentCount.innerHTML) - 1
     } else {
       alert(response_json["message"])
     }

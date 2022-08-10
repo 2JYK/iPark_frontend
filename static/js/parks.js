@@ -124,7 +124,6 @@ function editComment(comment_id) {
 // 댓글 페이지네이션 
 function pagination(commentTotalCount, paginationSize, listSize, parkCommentPage, id) {
   // 댓글이 없을 시 댓글박스 숨김처리
-  console.log(commentTotalCount, paginationSize, listSize, parkCommentPage, id)
   if (commentTotalCount <= 0) {
     document.getElementById("commnetInputBox").innerHTML = `<input type="text" id="commentInputComment" placeholder="첫 댓글을 입력해주세요" required=""></input>`
     document.getElementById("commentBox").style.display = "none"

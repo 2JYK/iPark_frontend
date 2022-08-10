@@ -1,11 +1,3 @@
-//검색창 엔터 이벤트
-function searchEnterEvent() {
-  if (window.event.keyCode == 13) {
-    // 엔터키 이벤트 발행시
-    getParkByName() // 검색 함수 실행
-  }
-}
-
 // 공원 검색 결과 (옵션 버튼 사용)
 function get_parks_html(title, id, park_name, image, check_count) {
   temp_html = `<div class="park-box ${title}" id="park" onclick="showParkDetail(${id})">

@@ -190,7 +190,7 @@ $(document).ready(function () {
   // 공원 지도 
   var park = new naver.maps.LatLng(x["latitude"], x["longitude"]),
     map = new naver.maps.Map("map", {
-      center: park.destinationPoint(0, 500),
+      center: park.destinationPoint(0, 180),
       zoom: 15
     }),
     marker = new naver.maps.Marker({

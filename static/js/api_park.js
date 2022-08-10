@@ -1,3 +1,11 @@
+// 엔터 이벤트
+function enterPostComment() {
+  if (window.event.keyCode == 13) {
+    postComment() 
+  }
+}
+
+
 // 댓글 작성 
 async function postComment(id) {
   const comment = document.getElementById("commentInputComment").value
@@ -26,7 +34,12 @@ async function postComment(id) {
   }
 }
 
-
+// 엔터 이벤트
+function enterPutComment() {
+  if (window.event.keyCode == 13) {
+    putComment() 
+  }
+}
 // 댓글 수정 
 async function putComment(comment_id) {
   const inputContent = document.getElementById(`inputContent(${comment_id})`)

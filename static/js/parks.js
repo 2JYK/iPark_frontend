@@ -87,7 +87,7 @@ function appendParkHtml(
         <!-- 댓글 입력창 -->
         <div class="comment-input-box">
           <div class="comment-input-comment" id="commnetInputBox">
-            <input type="text" id="commentInputComment" placeholder="댓글을 입력해주세요. (최대 200자)" maxlength="200" required /></input>
+            <input type="text" id="commentInputComment" onkeydown="enterPostComment()" placeholder="댓글을 입력해주세요. (최대 200자)" maxlength="200" required /></input>
           </div>
           <div class="comment-input-button">
             <button class="btn btn-outline-secondary" type="button" id="commentButton" onclick="postComment(${id})">등록</button>
@@ -112,7 +112,7 @@ function editComment(comment_id) {
     document.getElementById(`commentUploadTime(${comment_id})`).style.display = "none"
 
     const comment = document.getElementById(`commentContent(${comment_id})`)
-    comment.innerHTML = `<textarea class="textarea" id="inputContent(${comment_id})">${comment.innerText}</textarea>`
+    comment.innerHTML = `<textarea class="textarea" onkeydown="enterPutComment()" id="inputContent(${comment_id})">${comment.innerText}</textarea>`
     editButton.setAttribute("onclick", `putComment(${comment_id})`)
 
   } else {

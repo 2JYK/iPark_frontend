@@ -70,7 +70,7 @@ function appendParkHtml(
     <!-- 공원 댓글창 -->
     <div>
       <div class="park-comment">
-        <form action="POST">
+        <form>
         <div class="comment-box" id="commentBox">
           <div class="comments" id="comments${id}">
             <!-- 공원 상세보기 댓글 : append.html -->
@@ -87,7 +87,8 @@ function appendParkHtml(
         <!-- 댓글 입력창 -->
         <div class="comment-input-box">
           <div class="comment-input-comment" id="commnetInputBox">
-            <input type="text" id="commentInputComment" onkeydown="enterPostComment()" placeholder="댓글을 입력해주세요. (최대 200자)" maxlength="200" required /></input>
+            <input style="display:none;"/></input>
+            <input type="text" id="commentInputComment" onkeydown="enterPostComment(${id})" placeholder="댓글을 입력해주세요. (최대 200자)" maxlength="200" required /></input>
           </div>
           <div class="comment-input-button">
             <button class="btn btn-outline-secondary" type="button" id="commentButton" onclick="postComment(${id})">등록</button>
@@ -112,7 +113,7 @@ function editComment(comment_id) {
     document.getElementById(`commentUploadTime(${comment_id})`).style.display = "none"
 
     const comment = document.getElementById(`commentContent(${comment_id})`)
-    comment.innerHTML = `<textarea class="textarea" onkeydown="enterPutComment()" id="inputContent(${comment_id})">${comment.innerText}</textarea>`
+    comment.innerHTML = `<textarea class="textarea" onkeydown="enterPutComment(${id})" id="inputContent(${comment_id})">${comment.innerText}</textarea>`
     editButton.setAttribute("onclick", `putComment(${comment_id})`)
 
   } else {

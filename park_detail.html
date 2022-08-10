@@ -148,7 +148,21 @@
     </p>
     <p class="text-center text-muted">© IPark made by 2JYK</p>
   </footer>
-
+  
+  <script>// 엔터 이벤트
+  function enterPostComment(id) {
+    if (window.event.keyCode == 13) {
+      postComment(id) 
+    }
+  }
+  
+  // 엔터 이벤트
+  function enterPutComment(id) {
+    if (window.event.keyCode == 13) {
+      putComment(id) 
+    }
+  }
+</script>
   <script src="./static/js/api.js"></script>
   <script src="./static/js/nav.js"></script>
   <script src="./static/js/toggle.js"></script>

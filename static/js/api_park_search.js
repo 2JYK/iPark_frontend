@@ -1,15 +1,5 @@
 // 쿼리 파라미터를 통한 공원 정보 get 
-function getParks() {
-  var optionButton = document.getElementsByClassName("option")
-  for (var i = 0; i < optionButton.length; i++) {
-    optionButton[i].classList.remove("clicked")
-  }
-
-  var zoneButton = document.getElementsByClassName("option")
-  for (var i = 0; i < zoneButton.length; i++) {
-    zoneButton[i].classList.remove("clicked")
-  }
-
+function getParks(title) {
   $("#parks").empty()
 
   let option_param = ""
@@ -19,19 +9,9 @@ function getParks() {
     }
   }
 
-  let zone_param = ""
-  for (let i = 0; i < zoneList.length; i++) {
-    if (zoneList[i] != undefined) {
-      zone_param += "param=" + zoneList[i] + "&"
-    }
-  }
-
-  valueList = []
-  zoneList = []
-
   $.ajax({
     type: "GET",
-    url: `${backendBaseUrl}/park/option/` + "?" + option_param + zone_param,
+    url: `${backendBaseUrl}/park/option/` + "?" + option_param,
     data: {},
 
     error: function () {
@@ -43,6 +23,7 @@ function getParks() {
     success: function (response) {
       for (let i = 0; i < response.length; i++) {
         get_parks_html(
+          title,
           response[i].id,
           response[i].park_name,
           response[i].image,
@@ -57,7 +38,7 @@ function getParks() {
 function getParkByName() {
   const parkName = "param=" + document.getElementById("search").value + "&"
   $("#parks").empty()
-  
+
   $.ajax({
     type: "GET",
     url: `${backendBaseUrl}/park/option/` + "?" + parkName,
@@ -71,7 +52,7 @@ function getParkByName() {
 
     success: function (response) {
       for (let i = 0; i < response.length; i++) {
-        get_parks_html(
+        get_park_by_name(
           response[i].id,
           response[i].park_name,
           response[i].image,

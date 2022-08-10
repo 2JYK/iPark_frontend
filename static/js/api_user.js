@@ -156,15 +156,37 @@ async function kakaoUserForm(authObj, kakaoData) {
       } else if (res.status == 200 && code.res_code == 1) {
         document.getElementById("sign").style.display = "none"
         kakaosignup.style.display = "block"
+      
         const username = document.getElementById("floatingInput")
-        const email = document.getElementById("floatingInputEmail")
+        const emailId = document.getElementById("floatingInputEmail")
+        const emailDomain = document.getElementById("emailSection")
         const fullname = document.getElementById("floatingInputFullname")
-        username.value = kakaoUserData.username
-        email.value = kakaoUserData.email
-        fullname.value = kakaoUserData.fullname
+
+        var domains = Array.from($("#emailSection>option").map(function() { return $(this).val(); }))
+
+        if (!domains.includes(emailDomain.value)) {
+          document.getElementById("emailSection").outerHTML = 
+            `<select id="emailSection">
+              <option selected>-- 이메일 선택 --</option>
+              <option value="@naver.com">@naver.com</option>
+              <option value="@gmail.com">@gmail.com</option>
+              <option value="@kakao.com">@kakao.com</option>
+              <option value="@daum.net">@daum.net</option>
+              <option value="@nate.com">@nate.com</option>
+              <option value="@outlook.com">@outlook.com</option>
+            </select>
+            <span style="color:red; font-size:15px;">* naver, google, kakao, daum, nate, outlook만 가능</span>
+            `
+
+        } else {
+          username.value = kakaoUserData.username
+          emailId.value = kakaoUserData.email.split('@')[0]
+          emailDomain.value = ['@'] + kakaoUserData.email.split('@')[1]
+          fullname.value = kakaoUserData.fullname
+        }
       }
     }
-    )
+  )
 }
 
 

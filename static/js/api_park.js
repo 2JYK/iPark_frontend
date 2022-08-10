@@ -151,7 +151,7 @@ async function getParkComment(id, urlParkCommentPageNum) {
   })
 
   responseJson = await response.json()
-  console.log(responseJson[0])
+  // console.log(responseJson[0])
   comment_total_count = responseJson[1]["comment_total_count"]
 
   pagination(comment_total_count, 10, 10, urlParkCommentPageNum, id)

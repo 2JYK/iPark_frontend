@@ -28,7 +28,7 @@ function showparkList(n, data) {
 
 // 공원 상세 정보 보기 
 function showParkDetail(id, urlParkCommentPageNum) {
-  console.log("start")
+  // console.log("start")
   if (!urlParkCommentPageNum) {
     urlParkCommentPageNum = 1
   }

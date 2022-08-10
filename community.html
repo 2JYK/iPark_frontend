@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="Content-Type" content="text/html">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -65,7 +66,7 @@
             <li><a id="myLogin" class="dropdown-item" href="#" onclick="logout()">로그아웃</a></li>
           </ul>
         </div>
-        
+
         <!-- 공원 목록 사이트 바 -->
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbarLight"
           aria-labelledby="offcanvasNavbarLightLabel">
@@ -188,8 +189,8 @@
     <!-- 검색 창 -->
     <form class="d-flex search" role="search" action="">
       <input style="display: none;">
-      <input class="form-control me-2 d-flex" onkeydown="searchEnterEvent()" type="search" id="search" name="search" placeholder="Search"
-        aria-label="Search">
+      <input class="form-control me-2 d-flex" onkeydown="searchEnterEvent()" type="search" id="search" name="search"
+        placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success" onclick="getSearchArticles()" type="button">Search</button>
     </form>
 

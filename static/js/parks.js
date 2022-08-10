@@ -10,7 +10,8 @@ if (!urlParkCommentPageNum) {
 function appendParkHtml(
   park_name, addr, check_count, image,
   list_content, admintel, main_equip, template_url, updated_at,
-  id, comments) {
+  id) {
+  getParkComment(id, urlParkCommentPageNum)
   getParkBookmark(id)
 
   parkDetailTempHtml = `
@@ -98,66 +99,6 @@ function appendParkHtml(
   `
   $("#parkDetail").append(parkDetailTempHtml)
 
-  // 공원 상세보기 댓글
-  for (let j = 0; j < comments.length; j++) {
-    let timePost = new Date(comments[j].updated_at)
-    let timeBefore = time2str(timePost)
-
-    // 사용자가 댓글 작성자인지를 확인하여 수정,삭제 버튼이 보이게하기 위함
-    if (comments[j].user_id) {
-      if (parseJwt("access") == null) {
-        $(`#comments${id}`).append(`
-        <div class="comment" id="comment">
-          <div class="comment-username">
-            ${comments[j].user}
-          </div>
-          <div class="comment-comment" id="commentContent">
-            ${comments[j].comment}
-          </div>
-          <div class="comment-upload-time" id="commentUploadTime">
-            ${timeBefore}
-          </div>
-        </div>
-      `)
-      } else if (comments[j].user_id == parseJwt("access").user_id) {
-        $(`#comments${id}`).append(`
-        <div class="comment" id="comment(${comments[j].id})">
-          <div class="comment-username">
-            ${comments[j].user}
-          </div>
-          <div class="comment-comment" id="commentContent(${comments[j].id})">
-            ${comments[j].comment}
-          </div>
-          <div class="comment-upload-time" id="commentUploadTime(${comments[j].id})">
-            ${timeBefore}
-          </div>
-          <div class="comment-buttons" id="parkCommentButtons">
-            <button class="comment-edit" type="button" id="updateButton(${comments[j].id})" onclick="editComment(${comments[j].id})">
-              <i class="fa-solid fa-pencil"></i>
-            </button>
-            <button class="comment-delete" type="button" id="deleteButton(${comments[j].id})" onclick="deleteComment(${comments[j].id})">
-              <i class="fa-regular fa-trash-can"></i>
-            </button>
-          </div> 
-        </div>
-      `)
-      } else if (comments[j].user_id != parseJwt("access").user_id) {
-        $(`#comments${id}`).append(`
-        <div class="comment" id="comment">
-          <div class="comment-username">
-            ${comments[j].user}
-          </div>
-          <div class="comment-comment" id="commentContent">
-            ${comments[j].comment}
-          </div>
-          <div class="comment-upload-time" id="commentUploadTime">
-            ${timeBefore}
-          </div>
-        </div>
-      `)
-      }
-    }
-  }
 }
 
 // 댓글 수정버튼 클릭 -> 수정 상태로 변경
@@ -183,6 +124,7 @@ function editComment(comment_id) {
 // 댓글 페이지네이션 
 function pagination(commentTotalCount, paginationSize, listSize, parkCommentPage, id) {
   // 댓글이 없을 시 댓글박스 숨김처리
+  console.log(commentTotalCount, paginationSize, listSize, parkCommentPage, id)
   if (commentTotalCount <= 0) {
     document.getElementById("commnetInputBox").innerHTML = `<input type="text" id="commentInputComment" placeholder="첫 댓글을 입력해주세요" required=""></input>`
     document.getElementById("commentBox").style.display = "none"
@@ -222,7 +164,6 @@ $(document).ready(function () {
     x["template_url"],
     x["updated_at"],
     x["id"],
-    x["comments"],
   )
 
   // 주차장
@@ -245,9 +186,6 @@ $(document).ready(function () {
                  </div>`
     $(".parking-lots").append(temp_html)
   }
-
-  // 공원 댓글 페이지네이션 
-  pagination(x["comment_total_count"], 10, 10, urlParkCommentPageNum, x["id"])
 
   // 공원 지도 
   var park = new naver.maps.LatLng(x["latitude"], x["longitude"]),

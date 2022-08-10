@@ -137,3 +137,83 @@ async function postBookmark(id) {
     alert("로그인한 사용자만 이용할 수 있습니다")
   }
 }
+
+
+// 댓글 불러오기
+async function getParkComment(id, urlParkCommentPageNum) {
+  token = {
+    "content-type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+  }
+  const response = await fetch(`${backendBaseUrl}/park/${id}/comment/?urlParkCommentPageNum=${urlParkCommentPageNum}`, {
+    method: "GET",
+    headers: token,
+  })
+
+  responseJson = await response.json()
+  console.log(responseJson[0])
+  comment_total_count = responseJson[1]["comment_total_count"]
+
+  pagination(comment_total_count, 10, 10, urlParkCommentPageNum, id)
+
+  for (let j = 0; j < responseJson[0].length; j++) {
+    let timePost = new Date(responseJson[0][j].updated_at)
+    let timeBefore = time2str(timePost)
+
+    // 사용자가 댓글 작성자인지를 확인하여 수정,삭제 버튼이 보이게하기 위함
+    if (responseJson[0][j].user_id) {
+      if (parseJwt("access") == null) {
+        $(`#comments${id}`).append(`
+        <div class="comment" id="comment">
+          <div class="comment-username">
+            ${responseJson[0][j].user}
+          </div>
+          <div class="comment-comment" id="commentContent">
+            ${responseJson[0][j].comment}
+          </div>
+          <div class="comment-upload-time" id="commentUploadTime">
+            ${timeBefore}
+          </div>
+        </div>
+      `)
+      } else if (responseJson[0][j].user_id == parseJwt("access").user_id) {
+        $(`#comments${id}`).append(`
+        <div class="comment" id="comment(${responseJson[0][j].id})">
+          <div class="comment-username">
+            ${responseJson[0][j].user}
+          </div>
+          <div class="comment-comment" id="commentContent(${responseJson[0][j].id})">
+            ${responseJson[0][j].comment}
+          </div>
+          <div class="comment-upload-time" id="commentUploadTime(${responseJson[0][j].id})">
+            ${timeBefore}
+          </div>
+          <div class="comment-buttons" id="parkCommentButtons">
+            <button class="comment-edit" type="button" id="updateButton(${responseJson[0][j].id})" onclick="editComment(${responseJson[0][j].id})">
+              <i class="fa-solid fa-pencil"></i>
+            </button>
+            <button class="comment-delete" type="button" id="deleteButton(${responseJson[0][j].id})" onclick="deleteComment(${responseJson[0][j].id})">
+              <i class="fa-regular fa-trash-can"></i>
+            </button>
+          </div> 
+        </div>
+      `)
+      } else if (responseJson[0][j].user_id != parseJwt("access").user_id) {
+        $(`#comments${id}`).append(`
+        <div class="comment" id="comment">
+          <div class="comment-username">
+            ${responseJson[0][j].user}
+          </div>
+          <div class="comment-comment" id="commentContent">
+            ${responseJson[0][j].comment}
+          </div>
+          <div class="comment-upload-time" id="commentUploadTime">
+            ${timeBefore}
+          </div>
+        </div>
+      `)
+      }
+    }
+  }
+
+}

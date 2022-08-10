@@ -169,6 +169,12 @@ color: green;
   width: 15%
 }
 
+@media (max-width:1300px) {
+  .my-4 {
+    margin-top: 20rem!important;
+  }
+}
+
 @media (max-width:900px) {
   .th-width {
     font-size: 11px;
@@ -222,9 +228,7 @@ color: green;
     font-size: 12px;
     padding: .5rem 0;
   }
-}
 
-@media (max-width:760px) {
   footer {
     display: none;
   }

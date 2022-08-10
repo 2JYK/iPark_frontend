@@ -218,13 +218,13 @@ blockquote h1{
   }
 
   .carousel {
-    width: 90%;
+    width: 80%;
   
     margin: auto;
     margin-top: 1%;
   }
   
   .carousel-img {
-    height: 400px;
+    height: 250px;
   }
 }

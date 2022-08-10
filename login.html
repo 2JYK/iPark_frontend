@@ -39,12 +39,15 @@
       <form action="">
         <!-- 아이디 -->
         <div class="int-area">
-          <input type="text" name="username" id="username" autocomplete="off" required />
+          <input style="display: none;">
+          <input type="text" name="username" onkeydown="loginEnterEvent()" id="username" autocomplete="off" required />
           <label for="username">Username</label>
         </div>
         <!-- 패스워드 -->
         <div class="int-area">
-          <input type="password" name="password" id="password" autocomplete="off" required />
+          <input style="display: none;">
+          <input type="password" name="password" onkeydown="loginEnterEvent()" id="password" autocomplete="off"
+            required />
           <label for="password">Password</label>
         </div>
         <!-- 로그인 -->
@@ -145,6 +148,14 @@
         <a href="./login.html">로그인</a>
       </div>
     </form>
+
+    <script>
+      function loginEnterEvent() {
+        if (window.event.keyCode == 13) {
+          handleLogin()
+        }
+      }
+    </script>
 
     <script src="./static/js/api.js"></script>
     <script src="./static/js/api_user.js"></script>

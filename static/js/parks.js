@@ -86,7 +86,7 @@ function appendParkHtml(
         <!-- 댓글 입력창 -->
         <div class="comment-input-box">
           <div class="comment-input-comment" id="commnetInputBox">
-            <input type="text" id="commentInputComment" placeholder="댓글을 입력해주세요" required /></input>
+            <input type="text" id="commentInputComment" placeholder="댓글을 입력해주세요. (최대 200자)" maxlength="200" required /></input>
           </div>
           <div class="comment-input-button">
             <button class="btn btn-outline-secondary" type="button" id="commentButton" onclick="postComment(${id})">등록</button>

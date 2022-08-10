@@ -1,5 +1,22 @@
-// 공원 검색 결과 
-function get_parks_html(id, park_name, image, check_count) {
+// 공원 검색 결과 (옵션 버튼 사용)
+function get_parks_html(title, id, park_name, image, check_count) {
+  temp_html = `<div class="park-box ${title}" id="park" onclick="showParkDetail(${id})">
+                <div class="park-image">
+                    <img src="${image}" alt="${park_name}" style="width: 190px; height: 180px; margin-right: 10px;"/>
+                </div>
+                <div class="park-name">
+                    <p>${park_name}</p>
+                </div>
+                <div class="park-check-count">
+                    <p>조회수 : ${check_count}</p>
+                </div>
+              </div>`
+  $("#parks").append(temp_html)
+}
+
+
+// 공원 검색 결과 (검색창 사용)
+function get_park_by_name(id, park_name, image, check_count) {
   temp_html = `<div class="park-box" id="park" onclick="showParkDetail(${id})">
                 <div class="park-image">
                     <img src="${image}" alt="${park_name}" style="width: 190px; height: 180px; margin-right: 10px;"/>
@@ -49,22 +66,6 @@ values.forEach(value => {
     }
   })
 })
-var zones = document.querySelectorAll(".park-zone a")
-var zoneList = []
-zones.forEach(zone => {
-  zone.addEventListener("click", () => {
-    if (!zoneList.includes(zone.title)) {
-      zoneList.push(zone.title)
-    } else {
-      for (let i = 0; i < zoneList.length; i++) {
-        if (zoneList[i] == zone.title) {
-          zoneList.splice(i, 1)
-          i--
-        }
-      }
-    }
-  })
-})
 
 
 // 공원 옵션 버튼 
@@ -73,15 +74,17 @@ document.querySelectorAll(".button").forEach(
 )
 
 
-// 버튼 클릭 시 색상 변경
+// 버튼 클릭 시 색상 변경, 클릭한 옵션에 따른 공원 검색 결과 제시
 var optionButton = document.querySelectorAll("#button")
-function optionClick(event) {
-  event.target.classList.toggle("clicked")
-}
-
 function controlColor() {
   for (var i = 0; i < optionButton.length; i++) {
-    optionButton[i].addEventListener("click", optionClick)
+    const classes = optionButton[i].classList
+    const button = optionButton[i]
+
+    button.addEventListener("click", () => {
+      classes.toggle("clicked")
+      getParks(button.title)
+    })
   }
 }
 controlColor()

@@ -8,6 +8,26 @@ modal.addEventListener("click", () => {
 })
 
 
+// 엔터 이벤트
+  // 검색 창
+function searchEnterEvent() {
+    if (window.event.keyCode == 13) {
+      // 엔터키 이벤트 발행시
+      getSearchArticles() // 검색 함수 실행
+    }
+}
+
+
+  // 상세게시글 댓글 창
+  function commentEnterEvent() {
+    if (window.event.keyCode == 13) {
+        // 엔터키 이벤트 발행시
+        const receivedData = parseInt(location.href.split("?")[1])
+        articleCommentPost(receivedData) // 댓글 POST 함수 실행
+      }
+  }
+
+
 // 모달
 $(function () {
   const body = document.querySelector("body");

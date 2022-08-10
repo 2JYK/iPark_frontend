@@ -182,7 +182,7 @@
     <!-- 댓글 입력 -->
     <div class="comment-input">
       <div class="comment-group">
-        <textarea name="comment-text" maxlength="200" class="comment-text" placeholder="댓글을 입력해주세요..."
+        <textarea name="comment-text" onkeydown="commentEnterEvent()" maxlength="200" class="comment-text" placeholder="댓글을 입력해주세요..."
           aria-describedby="button-addon2" id="commentPost"></textarea>
       </div>
       <div class="comment-post">

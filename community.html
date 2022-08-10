@@ -194,7 +194,7 @@
     <!-- 검색 창 -->
     <form class="d-flex search" role="search" action="">
       <input style="display: none;">
-      <input class="form-control me-2 d-flex" type="search" id="search" name="search" placeholder="Search"
+      <input class="form-control me-2 d-flex" onkeydown="searchEnterEvent()" type="search" id="search" name="search" placeholder="Search"
         aria-label="Search">
       <button class="btn btn-outline-success" onclick="getSearchArticles()" type="button">Search</button>
     </form>

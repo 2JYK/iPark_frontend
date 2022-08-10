@@ -164,6 +164,7 @@ async function articleCommentPost(article_id) {
   } else {
     token = {}
     alert("로그인한 사용자만 이용할 수 있습니다")
+    document.getElementById("commentPost").value = ""
   }
 
   const response = await fetch(`${backendBaseUrl}/community/${article_id}/comment/`, {

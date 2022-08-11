@@ -25,14 +25,8 @@ function showparkList(n, data) {
   }
 }
 
-
 // 공원 상세 정보 보기 
-function showParkDetail(id, urlParkCommentPageNum) {
-  // console.log("start")
-  if (!urlParkCommentPageNum) {
-    urlParkCommentPageNum = 1
-  }
-
+function showParkDetail(id) {
   $("#parkDetail").empty()
   $.ajax({
     type: "GET",
@@ -40,16 +34,11 @@ function showParkDetail(id, urlParkCommentPageNum) {
     beforeSend: function (xhr) {
       xhr.setRequestHeader("Content-type", "application/json")
     },
-    data: { id, urlParkCommentPageNum },
 
     success: function (response) {
-      sessionStorage.setItem("park_info", JSON.stringify(response))
-
-      if (urlParkCommentPageNum) {
-        window.location.replace(`${frontendBaseUrl}/park_detail.html?park_comment_page=${urlParkCommentPageNum}`)
-      } else {
-        window.location.replace(`${frontendBaseUrl}/park_detail.html`)
+      sessionStorage.setItem("park", JSON.stringify(response))
+      window.location.replace(`${frontendBaseUrl}/park_detail.html?id=${id}`)
       }
     }
-  })
+  )
 }

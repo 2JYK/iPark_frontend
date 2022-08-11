@@ -9,6 +9,10 @@ async function getBookmark() {
 		method: "GET",
 		headers: token
 	})
+	if (parseJwt("access") == null) {
+		alert("로그인한 사용자만 이용할 수 있습니다")
+		window.history.back()
+	}
 
 	response_json = await response.json()
 	return response_json

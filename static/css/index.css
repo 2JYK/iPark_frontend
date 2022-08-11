@@ -71,7 +71,6 @@ blockquote p{
 }
 
 blockquote h1{
-  font-family: "Arvo", serif;
   color:#B2A4A7;
   font-size:2em;
   font-weight:700;
@@ -123,6 +122,10 @@ blockquote h1{
 
 .body-text {
   padding: 0 3%;
+}
+
+h1 {
+  font-family: 'Happiness-Sans-Title';
 }
 
 /* 바디 아이콘 */

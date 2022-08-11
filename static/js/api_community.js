@@ -183,8 +183,11 @@ async function getPaginationList(id, url) {
 // 검색 GET
 function getSearchArticles() {
   $("#best").empty()
-  const search = document.getElementById("search").value
+  $("#page").css("display", "none")
+  $(".py-3").css("display", "none")
 
+
+  const search = document.getElementById("search").value
   query_param = `?keyword=${search}`
 
   $.ajax({

@@ -67,6 +67,7 @@ async function getPaginationList(id, url) {
   let tag_param = ""
   if (id !== undefined) {
     tag_param = "id=" + id
+    history.pushState(null, null, tag_param)
   } else if (id == undefined) {
     tag_param = ""
   }

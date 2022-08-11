@@ -26,7 +26,7 @@
   margin-right: 0px;
 }
 
-.fa-heart {
+.fa-star {
   font-size: 40px;
   color: #2db43a;
 }
@@ -378,10 +378,10 @@
 
   .comment-comment {
     margin-right: 10px;
-    }
+  }
 
   .check-count-addr p {
-    margin: 3px; 
-    margin-right: auto; 
+    margin: 3px;
+    margin-right: auto;
   }
 }

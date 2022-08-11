@@ -231,11 +231,11 @@ $(document).ready(function () {
 
 // 북마크 갯수 카운트
 function changeBookmarkCount() {
-  heart = document.getElementById("heart")
-  heartCount = document.getElementById("bookmarkCnt")
-  if (heart.classList.contains("fa-solid")) {
-    heartCount.innerHTML = parseInt(heartCount.innerHTML) - 1
+  star = document.getElementById("star")
+  starCount = document.getElementById("bookmarkCnt")
+  if (star.classList.contains("fa-solid")) {
+    starCount.innerHTML = parseInt(starCount.innerHTML) - 1
   } else {
-    heartCount.innerHTML = parseInt(heartCount.innerHTML) + 1
+    starCount.innerHTML = parseInt(starCount.innerHTML) + 1
   }
 }

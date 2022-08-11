@@ -97,8 +97,8 @@ async function getParkBookmark(id) {
 
   responseJson = await response.json()
 
-  heartDiv = document.getElementById("bookmark")
-  heartDiv.innerHTML = `<i id="heart" class="fa-regular fa-heart" type="button" onclick="postBookmark(${id})"></i>
+  starDiv = document.getElementById("bookmark")
+  starDiv.innerHTML = `<i id="star" class="fa-regular fa-star" type="button" onclick="postBookmark(${id})"></i>
                         <span id= "bookmarkCnt" class="bookmark-cnt">${responseJson.length}</span>`
 
   //북마크 여부 확인
@@ -111,8 +111,8 @@ async function getParkBookmark(id) {
     })
 
     if (userlist.includes(userid)) {
-      const heart = document.getElementById("heart")
-      heart.classList.add("fa-solid")
+      const star = document.getElementById("star")
+      star.classList.add("fa-solid")
     }
   }
 }
@@ -132,7 +132,7 @@ async function postBookmark(id) {
   response_json = await response.json()
   if (response.status == 200) {
     changeBookmarkCount()
-    $("#heart").toggleClass("fa-solid");
+    $("#star").toggleClass("fa-solid");
 
   } else {
     alert("로그인한 사용자만 이용할 수 있습니다")

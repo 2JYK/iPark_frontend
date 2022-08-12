@@ -300,6 +300,9 @@ body .dribbble img {
 }
 
 @media screen and (max-width: 414px) {
+  p {
+    margin-bottom: 1rem;
+  }
   .park-options {
     justify-content: space-evenly;
     margin-bottom: 1.5rem;
@@ -307,7 +310,7 @@ body .dribbble img {
 
   .park-option a {
     width: 75px;
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 400;
     margin: 2px;
     padding: 10px;
@@ -319,15 +322,29 @@ body .dribbble img {
   }
 
   .park-zone a {
-    font-size: 13px;
+    width: 65px;
+    font-size: 10px;
     font-weight: 400;
+    margin: 2px;
     padding: 10px;
-    width: 93px;
     text-align: center;
   }
 
   .search {
     margin: auto auto 1.5rem auto;
+  }
+
+  .selection-part {
+    margin-top: 3%;
+  }
+
+  .selection-guide-name {
+    display: none;
+  }
+
+  .selection-guide {
+    font-size: 12px;
+    margin-bottom: 4px;
   }
 }
 @media screen and (min-width: 820px) {

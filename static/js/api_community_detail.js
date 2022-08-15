@@ -66,7 +66,7 @@ async function getArticlesDetail(receivedData) {
 
   if (response_json.image != null) {
     const articleImage = document.getElementById("articleImage")
-    articleImage.setAttribute("src", `https://front.ilovepark.net${response_json.image}`)
+    articleImage.setAttribute("src", `https://back.ilovepark.net${response_json.image}`)
     // articleImage.setAttribute("src", `http://127.0.0.1:8000${response_json.image}`)
   } else {
     const articleImage = document.getElementById("articleImage")

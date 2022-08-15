@@ -108,10 +108,8 @@ function appendParkHtml(
         <div class="img">
           <img class="img" src="${image}" alt="${park_name}"/>
         </div>
-        <div class="map" id="map"></div>
       </div>
-  
-      <div class="map-maker-info">지도에서 <img src="static/css/img/marker.png" style="height: 28px;"> 클릭해보세요 ! 길찾기가 가능합니다 </div>
+      
   
       <!-- 네번째 구간 : 설명  -->
       <div class="park-description">
@@ -128,6 +126,8 @@ function appendParkHtml(
         </div>
         <div class="updated-at">${updated_at}</div>
       </div>
+      <div class="map" id="map"></div>
+      <div class="map-maker-info">지도에서 <img src="static/css/img/marker.png" style="height: 28px;"> 클릭해보세요 ! 길찾기가 가능합니다 </div>
       <div class="line"></div>
   
       <!-- 주차장 추천 -->

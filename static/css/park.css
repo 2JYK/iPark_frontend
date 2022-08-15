@@ -50,7 +50,9 @@
 
 .button {
   --background: #2db43a;
-  --text: #fff;
+  --text: rgb(255, 255, 255);
+  --font-weight: 700;
+  font-family: 'Happiness-Sans-Title';
   --font-size: 16px;
   --duration: .44s;
   --move-hover: -4px;
@@ -207,6 +209,15 @@ body .dribbble img {
   cursor: pointer;
 }
 
+.park-name p {
+  font-family: 'Happiness-Sans-Title';
+}
+
+.park-box p {
+  text-align: center;
+  margin-bottom: 1px;
+}
+
 /* 인기 순 공원 가로 나열 */
 .popular-parks {
   display: flex;
@@ -356,5 +367,50 @@ body .dribbble img {
 @media screen and (max-width: 820px) {
   .search input {
     width: 70%;
+  }
+}
+@media screen and (min-width: 415px) {
+  .park-image img {
+    width: 190px; 
+    height: 180px; 
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .popular-parks {
+    overflow: hidden;
+    overflow-x: auto;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .parks {
+    overflow: hidden;
+    overflow-x: auto;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .park-box{
+    width: 33.33%;
+    height: 33.33%;
+  }
+  .park-image {
+    width: 113px;
+    margin-right: 10px;
+  }
+
+  .park-image img{
+    width: 113px;
+    height: 113px;
+    margin: 10px;
+  }
+
+  .park-box p {
+    font-size: 13px;
+    text-align: center;
+    margin-bottom: 1px;
   }
 }

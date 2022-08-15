@@ -2,7 +2,7 @@
 function get_parks_html(title, id, park_name, image, check_count) {
   temp_html = `<div class="park-box ${title}" id="park" onclick="showParkDetail(${id})">
                 <div class="park-image">
-                    <img src="${image}" alt="${park_name}" style="width: 190px; height: 180px; margin-right: 10px;"/>
+                    <img src="${image}" alt="${park_name}" />
                 </div>
                 <div class="park-name">
                     <p>${park_name}</p>
@@ -19,7 +19,7 @@ function get_parks_html(title, id, park_name, image, check_count) {
 function get_park_by_name(id, park_name, image, check_count) {
   temp_html = `<div class="park-box" id="park" onclick="showParkDetail(${id})">
                 <div class="park-image">
-                    <img src="${image}" alt="${park_name}" style="width: 190px; height: 180px; margin-right: 10px;"/>
+                    <img src="${image}" alt="${park_name}" />
                 </div>
                 <div class="park-name">
                     <p>${park_name}</p>
@@ -36,7 +36,7 @@ function get_park_by_name(id, park_name, image, check_count) {
 function popular_parks_html(id, park_name, image, check_count) {
   temp_html = `<div class="park-box" id="park" onclick="showParkDetail(${id})">
                 <div class="park-image">
-                    <img src="${image}" alt="${park_name}" style="width: 190px; height: 180px; margin-right: 10px;"/>
+                    <img src="${image}" alt="${park_name}" />
                 </div>
                 <div class="park-name">
                     <p>${park_name}</p>

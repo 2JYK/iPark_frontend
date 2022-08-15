@@ -29,6 +29,7 @@ function getParks(title) {
           response[i].image,
           response[i].check_count
         )
+        document.getElementById("resultCount").innerHTML = "(" + response.length + ")"
       }
     }
   })
@@ -58,6 +59,7 @@ function getParkByName() {
           response[i].image,
           response[i].check_count
         )
+        document.getElementById("resultCount").innerHTML = "(" + response.length + ")"
       }
     }
   })

@@ -169,7 +169,7 @@ h1 {
   }
 }
 
-@media (max-width: 500px) { 
+@media (max-width: 600px) { 
   blockquote {
     width: auto;
   }
@@ -184,6 +184,21 @@ h1 {
 
   .body-text {
     padding: 0 5%;
+  }
+
+  blockquote {
+    width: auto;
+  }
+
+  .carousel {
+    width: 80%;
+  
+    margin: auto;
+    margin-top: 1%;
+  }
+  
+  .carousel-img {
+    height: 250px;
   }
 
   .text {
@@ -213,21 +228,4 @@ h1 {
 .body-last-home { padding-left: 10px; }
 .body-last-park { padding-left: 20px; }
 .body-last-commusity { padding-left: 7px; }
-}
-
-@media (max-width: 400px) { 
-  blockquote {
-    width: auto;
-  }
-
-  .carousel {
-    width: 80%;
-  
-    margin: auto;
-    margin-top: 1%;
-  }
-  
-  .carousel-img {
-    height: 250px;
-  }
 }

@@ -1,7 +1,7 @@
 // 아이디 찾기 
 async function findUsername() {
   const userData = {
-    email: document.getElementById("inputEmail").value,
+    email: document.getElementById("floatingInputEmail").value + document.getElementById("emailSection").value,
     phone: document.getElementById("inputPhone").value
   }
 

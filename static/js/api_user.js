@@ -143,29 +143,29 @@ async function kakaoUserForm(authObj, kakaoData) {
       const code = await res.json()
 
       if (res.status == 200 && code.res_code == 2) {
-          localStorage.setItem("access", code.access)
-          localStorage.setItem("refresh", code.refresh)
-          const base64Url = code.access.split(".")[1]
-          const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/")
-          const jsonPayload = decodeURIComponent(atob(base64).split("").map(function (c) {
-            return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2)
-          }).join(""))
-          localStorage.setItem("payload", jsonPayload)
-          window.location.replace(`${frontendBaseUrl}/index.html`)
+        localStorage.setItem("access", code.access)
+        localStorage.setItem("refresh", code.refresh)
+        const base64Url = code.access.split(".")[1]
+        const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/")
+        const jsonPayload = decodeURIComponent(atob(base64).split("").map(function (c) {
+          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2)
+        }).join(""))
+        localStorage.setItem("payload", jsonPayload)
+        window.location.replace(`${frontendBaseUrl}/index.html`)
 
       } else if (res.status == 200 && code.res_code == 1) {
         document.getElementById("sign").style.display = "none"
         kakaosignup.style.display = "block"
-      
+
         const username = document.getElementById("floatingInput")
         const emailId = document.getElementById("floatingInputEmail")
         const emailDomain = document.getElementById("emailSection")
         const fullname = document.getElementById("floatingInputFullname")
 
-        var domains = Array.from($("#emailSection>option").map(function() { return $(this).val(); }))
+        var domains = Array.from($("#emailSection>option").map(function () { return $(this).val(); }))
 
         if (!domains.includes(emailDomain.value)) {
-          document.getElementById("emailSection").outerHTML = 
+          document.getElementById("emailSection").outerHTML =
             `<select id="emailSection">
               <option selected>-- 이메일 선택 --</option>
               <option value="@naver.com">@naver.com</option>
@@ -186,7 +186,7 @@ async function kakaoUserForm(authObj, kakaoData) {
         }
       }
     }
-  )
+    )
 }
 
 
@@ -194,7 +194,7 @@ async function kakaoUserForm(authObj, kakaoData) {
 async function verifyUser() {
   const userDataForVerify = {
     username: document.getElementById("inputUsername").value,
-    email: document.getElementById("inputEmail").value
+    email: document.getElementById("floatingInputEmail").value + document.getElementById("emailSection").value
   }
 
   const response = await fetch(`${backendBaseUrl}/user/alterpassword/`, {

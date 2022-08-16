@@ -256,6 +256,7 @@ body::before {
     border-radius: 10px;
     background-color: #fff;
     box-shadow: 5px 10px 10px 1px rgba(0, 0, 0, .3);
+    line-height: normal;
 }
 
 /* 모달창 헤더 */

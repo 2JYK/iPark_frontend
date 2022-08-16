@@ -21,15 +21,20 @@ function getParks(title) {
     },
 
     success: function (response) {
-      for (let i = 0; i < response.length; i++) {
-        get_parks_html(
-          title,
-          response[i].id,
-          response[i].park_name,
-          response[i].image,
-          response[i].check_count
-        )
-        document.getElementById("resultCount").innerHTML = "(" + response.length + ")"
+      if (response.length > 0) {
+        for (let i = 0; i < response.length; i++) {
+          get_parks_html(
+            title,
+            response[i].id,
+            response[i].park_name,
+            response[i].image,
+            response[i].check_count
+          )
+          document.getElementById("resultCount").innerHTML = "(" + response.length + ")"
+        }
+      }
+      else {
+        document.getElementById("resultCount").innerHTML = "(" + 0 + ")"
       }
     }
   })

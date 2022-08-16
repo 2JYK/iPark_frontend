@@ -15,6 +15,12 @@ $(document).ready(function () {
 		x["updated_at"],
 	)
 
+
+  // 홈페이지
+  if(x["template_url"] == "") {
+    document.getElementById("URL").style.display = "none"
+  }
+
 	// 주차장
 	if (x["parking"] == "") {
 		temp_html = `<span>주차장 데이터가 없습니다.</span>`
@@ -120,7 +126,7 @@ function appendParkHtml(
   
       <!-- 다섯째 구간 : url, 정보업데이트시간 -->
       <div class="park-url-updated">
-        <div class="template-url">
+        <div class="template-url" id="URL">
           <a href="${template_url}" class="template-url"><i class="fas fa-hand-point-right fa-fw fa-1x fa-beat-fade"></i>
           ${park_name} 홈페이지 </a>
         </div>
@@ -220,9 +226,10 @@ function pagination(commentTotalCount, paginationSize, listSize, parkCommentPage
   const paginationNum = document.querySelector(".comment-pagination-num")
 
   for (let i = firstBottomNumber; i <= lastBottomNumber; i++) {
+
     if (i == parkCommentPage) {
       paginationNum.innerHTML += `<span class="comment-pagination-num cur-page" id="parkCommentPage(${i})" onclick="showParkDetail('${id}', '${i}')"> ${i} </span>`
-
+   
     } else {
       paginationNum.innerHTML += `<span class="comment-pagination-num" id="parkCommentPage(${i})" onclick="showParkDetail('${id}', '${i}')"> ${i} </span>`
     }

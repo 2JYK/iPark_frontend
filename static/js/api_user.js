@@ -145,6 +145,7 @@ async function kakaoUserForm(authObj, kakaoData) {
       if (res.status == 200 && code.res_code == 2) {
         localStorage.setItem("access", code.access)
         localStorage.setItem("refresh", code.refresh)
+        localStorage.setItem("username", code.username)
         const base64Url = code.access.split(".")[1]
         const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/")
         const jsonPayload = decodeURIComponent(atob(base64).split("").map(function (c) {

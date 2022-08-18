@@ -1,4 +1,5 @@
 # iPark Project
+backend repo -> https://github.com/2JYK/iPark_django_backend
 ## 프로젝트 개요
 - 공원을 중심으로 한 지역의 커뮤니티 구성
 - 커뮤니티를 통해 친목 도모 및 나눔마켓 활성화
@@ -227,10 +228,8 @@
 # 🎯 데이터베이스
 ERD Cloud
 
-![image](https://user-images.githubusercontent.com/89643366/182328335-a72858b8-baa5-401f-b183-9cf9d25fdca8.png)
+<img width="1242" alt="ipark" src="https://user-images.githubusercontent.com/104303285/185301330-45f1b424-d643-4312-8fa5-b28f69164583.png">
 
-</div>
-</details>
 
 <br>
 

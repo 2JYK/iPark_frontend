@@ -56,6 +56,13 @@ async function postBookmark(id) {
 
 // 댓글 불러오기
 async function getParkComment(id, urlParkCommentPageNum) {
+
+  // if (!urlParkCommentPageNum) {
+  //   urlParkCommentPageNum = 1
+  // }
+
+
+  // console.log("댓 글 불 러 오 기 ",id, urlParkCommentPageNum)
   token = {
     "content-type": "application/json",
     "Access-Control-Allow-Origin": "*",
@@ -64,7 +71,7 @@ async function getParkComment(id, urlParkCommentPageNum) {
     method: "GET",
     headers: token,
   })
-
+  
   responseJson = await response.json()
   comment_total_count = responseJson[1]["comment_total_count"]
 
@@ -151,7 +158,7 @@ async function postComment(id) {
   })
 
   response_json = await response.json()
-  if (response.status == 200) {
+  if (response.status == 201) {
     showParkDetail(id)
   } else if (response.status == 400) {
     alert(response_json["message"])
@@ -178,7 +185,7 @@ async function putComment(comment_id) {
   })
 
   response_json = await response.json()
-  if (response.status == 200) {
+  if (response.status == 201) {
     const comment = document.getElementById(`commentContent(${comment_id})`)
     comment.innerHTML = `
       <div class="comment-comment" id="commentContent(${comment_id})">
